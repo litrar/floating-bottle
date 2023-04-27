@@ -6,10 +6,29 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return MaterialApp(
+      home: registration(),
+    );
+  }
+
+  Widget registration() {
+    return Scaffold(
+        body: Stack(
+      children: <Widget>[
+        Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assetsfolder/registration.jpg"),
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        const Center(
+          child: Text("Hello background"),
+        )
+      ],
+    ));
   }
 }
