@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         const Center(
-          child: Text("This is the background"),
+          child: Text("login page"),
         )
       ],
     ));
