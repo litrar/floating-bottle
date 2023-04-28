@@ -1,3 +1,4 @@
+import 'package:floating_bottle/pages/authentication/login.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,26 +10,27 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: registration(),
+      // home: registration(),
+      home: Login(),
     );
   }
 
-  Widget registration() {
-    return Scaffold(
-        body: Stack(
-      children: <Widget>[
-        Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assetsfolder/registration.jpg"),
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        const Center(
-          child: Text("login page"),
-        )
-      ],
-    ));
-  }
+// Widget registration() {
+//   return Scaffold(
+//       body: Stack(
+//     children: <Widget>[
+//       Container(
+//         decoration: const BoxDecoration(
+//           image: DecorationImage(
+//             image: AssetImage("assetsfolder/registration.jpg"),
+//             fit: BoxFit.cover,
+//           ),
+//         ),
+//       ),
+//       const Center(
+//         child: Text("this is the background"),
+//       )
+//     ],
+//   ));
+// }
 }
