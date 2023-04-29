@@ -1,3 +1,4 @@
+import 'package:floating_bottle/pages/authentication/vertification.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -243,15 +244,26 @@ class _RegistrationState extends State<Registration>{
             )
         ),
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) {
-                return Registration();
-              },
-            ),
-          );
-        },
+          if (isChecked == true) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return Vertification();
+                },
+              ),
+            );
+          } else {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return Registration();
+                },
+              ),
+            );
+          }
+        }
       ),
     );
   }
