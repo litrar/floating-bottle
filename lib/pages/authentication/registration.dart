@@ -3,6 +3,8 @@ import 'package:floating_bottle/pages/authentication/vertification.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'login.dart';
+
 class Registration extends StatefulWidget {
   const Registration({Key? key}) : super(key: key);
 
@@ -285,7 +287,14 @@ class _RegistrationState extends State<Registration>{
           ),),
           TextButton(
             onPressed: (){
-            Navigator.of(context).pop();
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return Login();
+                  },
+                ),
+              );
           },
               child: const Text("Log in",style: TextStyle(
                   color: Colors.indigo,

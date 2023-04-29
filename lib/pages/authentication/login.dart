@@ -10,7 +10,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginPageState extends State<Login>{
-  final bool _passwordVisible = false;
+  bool _passwordVisible = false;
 
   @override
   Widget build(BuildContext context){
@@ -104,6 +104,16 @@ class _LoginPageState extends State<Login>{
             widthFactor: 2.3,
             child: Icon(Icons.lock,size: 30,),
           ),
+          suffixIcon: IconButton(
+              onPressed: () {
+                setState(() {
+                  _passwordVisible = !_passwordVisible;
+                });
+              },
+              icon: Icon(
+                  _passwordVisible ? Icons.visibility : Icons.visibility_off,
+                  size: 25,
+                  color: Theme.of(context).primaryColorDark)),
           border: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(35)),
               borderSide: BorderSide(
