@@ -1,8 +1,6 @@
-<<<<<<< HEAD
+
 import 'package:floating_bottle/pages/authentication/vertification.dart';
 import 'package:flutter/cupertino.dart';
-=======
->>>>>>> 64e1302b4aad27a00b91f735baffd2d6d0e6dd1d
 import 'package:flutter/material.dart';
 
 class Registration extends StatefulWidget {
@@ -248,7 +246,6 @@ class _RegistrationState extends State<Registration>{
             )
         ),
         onPressed: () {
-<<<<<<< HEAD
           if (isChecked == true) {
             Navigator.push(
               context,
@@ -269,17 +266,6 @@ class _RegistrationState extends State<Registration>{
             );
           }
         }
-=======
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) {
-                return const Registration();
-              },
-            ),
-          );
-        },
->>>>>>> 64e1302b4aad27a00b91f735baffd2d6d0e6dd1d
       ),
     );
   }
