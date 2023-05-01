@@ -159,8 +159,9 @@ class _InterestState extends State<Interest> {
             margin: EdgeInsets.only(left: 5,right: 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Icon(Icons.cookie_outlined,size: 25,color: Colors.black,),
+              children: [ pressed1
+                ?Icon(Icons.cookie_outlined,size: 25,color: Colors.black,)
+                :Icon(Icons.cookie_outlined,size: 25,color: Colors.white,),
                 Text("Cooking",style: pressed1
                     ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                     : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -190,8 +191,9 @@ class _InterestState extends State<Interest> {
             margin: EdgeInsets.only(left: 5,right: 5),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Icon(Icons.camera_alt_outlined,size: 25,color: Colors.black,),
+              children: [ pressed2
+                ?Icon(Icons.camera_alt_outlined,size: 25,color: Colors.black,)
+                :Icon(Icons.camera_alt_outlined,size: 25,color: Colors.white,),
                 Text("Photography",style: pressed2
                     ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                     : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -221,8 +223,9 @@ class _InterestState extends State<Interest> {
             margin: EdgeInsets.only(left: 0,right: 40),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Icon(Icons.color_lens_outlined,size: 25,color: Colors.black,),
+              children: [ pressed3
+                ?Icon(Icons.color_lens_outlined,size: 25,color: Colors.black,)
+                :Icon(Icons.color_lens_outlined,size: 25,color: Colors.white,),
                 Text("Art",style: pressed3
                     ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                     : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -252,8 +255,9 @@ class _InterestState extends State<Interest> {
             margin: EdgeInsets.only(left: 5,right: 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Icon(Icons.sports_basketball_outlined,size: 25,color: Colors.black,),
+              children: [ pressed4
+                ?Icon(Icons.sports_basketball_outlined,size: 25,color: Colors.black,)
+                :Icon(Icons.sports_basketball_outlined,size: 25,color: Colors.white,),
                 Text("Basketball",style: pressed4
                     ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                     : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -283,8 +287,9 @@ class _InterestState extends State<Interest> {
             margin: EdgeInsets.only(left: 5,right: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Icon(Icons.accessibility_new_outlined,size: 25,color: Colors.black,),
+              children: [ pressed5
+                ?Icon(Icons.accessibility_new_outlined,size: 25,color: Colors.black,)
+                :Icon(Icons.accessibility_new_outlined,size: 25,color: Colors.white,),
                 Text("Dance",style: pressed5
                     ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                     : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -314,8 +319,9 @@ class _InterestState extends State<Interest> {
             margin: EdgeInsets.only(left: 5,right: 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Icon(Icons.book_outlined,size: 25,color: Colors.black,),
+              children: [ pressed6
+                ?Icon(Icons.book_outlined,size: 25,color: Colors.black,)
+                :Icon(Icons.book_outlined,size: 25,color: Colors.white,),
                 Text("Reading",style: pressed6
                     ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                     : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -345,8 +351,9 @@ class _InterestState extends State<Interest> {
             margin: EdgeInsets.only(left: 5,right: 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Icon(Icons.piano,size: 25,color: Colors.black,),
+              children: [ pressed7
+                ?Icon(Icons.piano,size: 25,color: Colors.black,)
+                :Icon(Icons.piano,size: 25,color: Colors.white,),
                 Text("Instrument",style: pressed7
                     ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                     : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -376,8 +383,9 @@ class _InterestState extends State<Interest> {
             margin: EdgeInsets.only(left: 5,right: 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Icon(Icons.color_lens_outlined,size: 25,color: Colors.black,),
+              children: [ pressed8
+                ?Icon(Icons.color_lens_outlined,size: 25,color: Colors.black,)
+                :Icon(Icons.color_lens_outlined,size: 25,color: Colors.white,),
                 Text("Makeup",style: pressed8
                     ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                     : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -407,8 +415,9 @@ class _InterestState extends State<Interest> {
             margin: EdgeInsets.only(left: 5,right: 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Icon(Icons.local_drink_outlined,size: 25,color: Colors.black,),
+              children: [ pressed9
+                ?Icon(Icons.local_drink_outlined,size: 25,color: Colors.black,)
+                :Icon(Icons.local_drink_outlined,size: 25,color: Colors.white,),
                 Text("Cuisine",style: pressed9
                     ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                     : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -438,8 +447,9 @@ class _InterestState extends State<Interest> {
               margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.computer,size: 25,color: Colors.black,),
+                children: [ pressed10
+                  ?Icon(Icons.computer,size: 25,color: Colors.black,)
+                  :Icon(Icons.computer,size: 25,color: Colors.white,),
                   Text("Coding",style: pressed10
                       ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                       : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -469,8 +479,9 @@ class _InterestState extends State<Interest> {
               margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.shopping_cart_outlined,size: 25,color: Colors.black,),
+                children: [ pressed11
+                  ?Icon(Icons.shopping_cart_outlined,size: 25,color: Colors.black,)
+                  :Icon(Icons.shopping_cart_outlined,size: 25,color: Colors.white,),
                   Text("Shopping",style: pressed11
                       ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                       : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -500,8 +511,9 @@ class _InterestState extends State<Interest> {
               margin: EdgeInsets.only(left: 0,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.music_note_outlined,size: 25,color: Colors.black,),
+                children: [ pressed12
+                  ?Icon(Icons.music_note_outlined,size: 25,color: Colors.black,)
+                  :Icon(Icons.music_note_outlined,size: 25,color: Colors.white,),
                   Text("Music",style: pressed12
                       ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                       : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -531,8 +543,9 @@ class _InterestState extends State<Interest> {
               margin: EdgeInsets.only(left: 0,right: 40),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.pets_outlined,size: 25,color: Colors.black,),
+                children: [ pressed13
+                  ?Icon(Icons.pets_outlined,size: 25,color: Colors.black,)
+                  :Icon(Icons.pets_outlined,size: 25,color: Colors.white,),
                   Text("Pet",style: pressed13
                       ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                       : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -562,8 +575,9 @@ class _InterestState extends State<Interest> {
               margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.sports_tennis_outlined,size: 25,color: Colors.black,),
+                children: [ pressed14
+                  ?Icon(Icons.sports_tennis_outlined,size: 25,color: Colors.black,)
+                  :Icon(Icons.sports_tennis_outlined,size: 25,color: Colors.white,),
                   Text("Tennis",style: pressed14
                       ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                       : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -593,8 +607,9 @@ class _InterestState extends State<Interest> {
               margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.videogame_asset_sharp,size: 25,color: Colors.black,),
+                children: [ pressed15
+                  ?Icon(Icons.videogame_asset_sharp,size: 25,color: Colors.black,)
+                  :Icon(Icons.videogame_asset_sharp,size: 25,color: Colors.white,),
                   Text("Video Games",style: pressed15
                       ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                       : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -624,8 +639,9 @@ class _InterestState extends State<Interest> {
               margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.water_outlined,size: 25,color: Colors.black,),
+                children: [ pressed16
+                  ?Icon(Icons.water_outlined,size: 25,color: Colors.black,)
+                  :Icon(Icons.water_outlined,size: 25,color: Colors.white,),
                   Text("Swimming",style: pressed16
                       ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                       : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -655,8 +671,9 @@ class _InterestState extends State<Interest> {
               margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.movie_creation_outlined,size: 25,color: Colors.black,),
+                children: [ pressed17
+                  ?Icon(Icons.movie_creation_outlined,size: 25,color: Colors.black,)
+                  :Icon(Icons.movie_creation_outlined,size: 25,color: Colors.white,),
                   Text("Movie",style: pressed17
                       ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                       : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -686,8 +703,9 @@ class _InterestState extends State<Interest> {
               margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.travel_explore_outlined,size: 25,color: Colors.black,),
+                children: [ pressed18
+                  ?Icon(Icons.travel_explore_outlined,size: 25,color: Colors.black,)
+                  :Icon(Icons.travel_explore_outlined,size: 25,color: Colors.white,),
                   Text("Traveling",style: pressed18
                       ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                       : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -717,8 +735,9 @@ class _InterestState extends State<Interest> {
               margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.tv,size: 25,color: Colors.black,),
+                children: [ pressed19
+                  ?Icon(Icons.tv,size: 25,color: Colors.black,)
+                  :Icon(Icons.tv,size: 25,color: Colors.white,),
                   Text("Cartoon",style: pressed19
                       ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                       : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -748,8 +767,9 @@ class _InterestState extends State<Interest> {
               margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.celebration_outlined,size: 25,color: Colors.black,),
+                children: [ pressed20
+                  ? Icon(Icons.celebration_outlined,size: 25,color: Colors.black,)
+                  : Icon(Icons.celebration_outlined,size: 25,color: Colors.white,),
                   Text("Party",style: pressed20
                       ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                       : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
