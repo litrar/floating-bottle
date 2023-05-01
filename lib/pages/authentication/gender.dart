@@ -159,9 +159,13 @@ class _GenderState extends State<Gender> {
           margin: EdgeInsets.only(top: 300),
           height: 75,
           width: 340,
-          decoration: BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
+          decoration: wpressed&&mpressed
+          ? BoxDecoration(color: Colors.white60, borderRadius: BorderRadius.circular(35))
+          : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
           alignment: Alignment.center,
-          child: Text("Continue",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
+          child: Text("Continue",style: wpressed&&mpressed
+              ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
+              : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
           ),
         )
     );
