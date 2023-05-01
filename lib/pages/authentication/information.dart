@@ -11,6 +11,8 @@ class Information extends StatefulWidget {
   State<Information> createState() => _InformationState();
 }
 class _InformationState extends State<Information> {
+  late DateTime selectedDateTime;
+
   Widget build(BuildContext context){
     return Scaffold(
         body: Stack(
@@ -124,10 +126,24 @@ class _InformationState extends State<Information> {
         decoration: InputDecoration(
           isDense: true,
           prefixIcon:
-          Align(
-            widthFactor: 2.3,
-            child: Icon(Icons.date_range,size: 30,),
-          ),
+              Align(
+                widthFactor: 1.5,
+                child: IconButton(
+                    onPressed: () async {
+                      var result = await showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(1923, 01),
+                          lastDate: DateTime(2023, 12)
+                      );
+                      if (result != null) {
+                        setState(() {
+                          selectedDateTime = result;
+                        });
+                      };
+                    },
+                    icon: Icon(Icons.calendar_month,size: 30,)),
+              ),
           border: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(35)),
               borderSide: BorderSide(
