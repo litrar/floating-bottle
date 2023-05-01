@@ -19,7 +19,6 @@ class BottomBar extends StatelessWidget {
       showSelectedLabels: true,
       currentIndex: SubPage.PAGES.indexOf(currentPage),
       selectedItemColor: Colors.black,
-
       selectedLabelStyle: TextStyle(color: Colors.black,fontSize: 10.sp),
       unselectedLabelStyle: TextStyle(color: Colors.black,fontSize: 10.sp),
       unselectedFontSize: 14.sp,

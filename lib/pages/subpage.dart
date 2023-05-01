@@ -39,8 +39,8 @@ class DevPage extends StatelessWidget {
         systemOverlayStyle: SystemUiOverlayStyle(statusBarColor:  theme.floatingButton),
         backgroundColor: theme.floatingButton,
       ),
-      body: Center(
-        child: Image.asset("assetfolder/icon/開發中圖示.png"),
+      body: const Center(
+        child: Icon(Icons.arrow_back,),
       ),
       bottomNavigationBar: BottomBar(currentPage),
     );

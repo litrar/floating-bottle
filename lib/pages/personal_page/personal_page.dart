@@ -1,13 +1,13 @@
 import 'package:floating_bottle/pages/subpage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import '../../components/bottom_bar.dart';
+import '../theme/color_theme.dart';
 import '../theme/theme_bloc.dart';
 import 'p_route.dart';
-
+import 'package:image_picker/image_picker.dart';
 
 class PersonalSubPage implements SubPage {
   PersonalSubPage();
@@ -18,9 +18,8 @@ class PersonalSubPage implements SubPage {
   @override
   Widget getIcon(bool active) {
     return active
-        ? Image.asset("assetfolder/icon/任務_黑.png",
-            cacheHeight: 50, cacheWidth: 50)
-        : Image.asset("assetfolder/icon/任務_白.png",
+        ? Image.asset("assetsfolder/個人_黑.png", cacheHeight: 50, cacheWidth: 50)
+        : Image.asset("assetsfolder/icon/個人_白.png",
             cacheHeight: 50, cacheWidth: 50);
   }
 
@@ -28,196 +27,125 @@ class PersonalSubPage implements SubPage {
   GoRoute get route => p_route;
 }
 
-class PersonalPage extends StatefulWidget {
-  PersonalPage({Key? key}) : super(key: key);
-
-  State<PersonalPage> createState() => _PersonalPageState();
-}
-
-
-class _PersonalPageState extends State<PersonalPage> with TickerProviderStateMixin {
-  late TabController _controller;
-  final List<Tab> topTabs = <Tab>[
-    new Tab(text: 'Friends'),
-    new Tab(text: 'Pending'),
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = TabController(vsync: this, length: 3);
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+class PersonalPage extends StatelessWidget {
+  const PersonalPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // TaskApi taskApi = context.read<TaskApi>();
-    ThemeCubit themeCubit = context.read();
-    return Scaffold(
-      bottomNavigationBar: BottomBar(SubPage.PAGES as SubPage),
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50.h),
-        child: AppBar(
-          toolbarHeight: 40.h,
-          systemOverlayStyle: SystemUiOverlayStyle(
-              statusBarColor: themeCubit.state.floatingButton),
-          backgroundColor: themeCubit.state.floatingButton,
-          titleSpacing: 0.0,
-          title: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: <Widget>[
-                Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 5.w),
-                    child: Image.asset("assetfolder/logo_white.png",
-                        width: 45.w, height: 45.h)),
-              ]),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.search_outlined,
-                color: Colors.white,
-                size: 38.sp,
-              ),
-              onPressed: () {
-                // Navigator.push(context, MaterialPageRoute(builder: (_)=>TaskSearchPage()));
-              },
-            ),
-            IconButton(
-                icon: Icon(Icons.notifications_outlined,
-                    color: Colors.white, size: 38.sp),
-                onPressed: () {
-                }),
-          ],
-        ),
-      ),
-      body: SafeArea(
-        child: Column(
+    return BlocBuilder<ThemeCubit, ColorTheme>(builder: (context, state) {
+      return Scaffold(
+        bottomNavigationBar: BottomBar(SubPage.PERSONAL),
+        body: Stack(
           children: [
-            TabBar(
-              controller: _controller,
-              tabs: topTabs,
-              labelStyle: TextStyle(fontSize: 15.sp),
-              isScrollable: true,
-              unselectedLabelColor: Colors.black,
-              labelColor: Color.fromARGB(255, 234, 127, 61),
-              indicatorColor: Color.fromARGB(255, 255, 127, 61),
-              indicatorSize: TabBarIndicatorSize.label,
+            Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assetsfolder/personal_background.jpg"),
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
-            SizedBox(height: 10.h),
-            // TaskList()
           ],
         ),
+      );
+    });
+  }
+
+  Widget _avatarBar(BuildContext buildContext) {
+    return Container(
+      height: 92.h,
+      child: Row(
+        children: [
+          Container(
+              alignment: Alignment.center,
+              padding: EdgeInsets.only(left: 18.w, right: 5.w),
+              width: 90.w,
+              height: 65.h,
+              child: InkWell(
+                onTap: () async {
+                  final ImagePicker _picker = ImagePicker();
+                  final XFile? image =
+                      await _picker.pickImage(source: ImageSource.gallery);
+                  if (image == null) return;
+                  // var res =
+                  // await buildContext.read<UserApi>().editAvatar(image.path);
+                  // if (res.isSuccess) {
+                  //   await DialogService.show(CustomDialog(title: "更換頭貼成功"));
+                  // } else
+                  //   await DialogService.show(
+                  //       CustomDialog(title: "更換頭貼失敗", content: res.message));
+                  //rebuild
+                },
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(500),
+                    child: Stack(
+                      children: [
+                        //Image.network("http://140.119.19.77:8080/images/avatars/638cce8bdf1be43a84a05f7d/image_picker1020539843404575019.jpg"),
+                        // userInfo.avatar == null
+                        //     ? Image.asset("assetfolder/Gray.jpg")
+                        //     : Image(
+                        //     image: CachedNetworkImageProvider(
+                        //         userInfo.avatar!)),
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Container(
+                            height: 15.h,
+                            width: double.maxFinite,
+                            child: Icon(Icons.photo_camera_outlined,
+                                size: 13.sp, color: Colors.blue),
+                            color: Colors.black,
+                          ),
+                        )
+                      ],
+                    )),
+              )),
+          Container(
+            //  color: Colors.blue,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  padding: EdgeInsets.only(top: 21.h),
+                  child: Row(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.only(left: 10),
+                        child: Text(
+                          "Remi Chuang",
+                          style: TextStyle(fontSize: 24.sp),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          /**
+                           * Navigator.push(
+                              buildContext,
+                              MaterialPageRoute(
+                              builder: (_) => EditAccNamePage()));
+                           */
+                        },
+                        child: Icon(
+                          Icons.edit_outlined,
+                          size: 24.sp,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  // padding: EdgeInsets.only(bottom: 20.h),
+                  padding: EdgeInsets.fromLTRB(10, 0, 0, 20.h),
+                  child: Text(
+                    "haha",
+                    style: TextStyle(fontSize: 12.sp),
+                  ),
+                )
+              ],
+            ),
+          )
+        ],
       ),
-      floatingActionButton: _floatButton(context, themeCubit,),
-      // floatingActionButton: _floatButton(context, themeCubit, taskApi)
     );
   }
-
-  Widget _floatButton(
-      BuildContext context, ThemeCubit themeCubit) {
-      // BuildContext context, ThemeCubit themeCubit, TaskApi taskApi) {
-
-    return InkWell(
-        onTap: () {
-          context.go("/tasks/create");
-        },
-        child: Container(
-          decoration: BoxDecoration(
-              color: themeCubit.state.floatingButton,
-              border: Border.all(color: Colors.black),
-              borderRadius: BorderRadius.circular(2000)),
-          child: Icon(Icons.add, size: 48.sp, color: Colors.white),
-        ));
-  }
 }
-
-// // class TaskList extends StatefulWidget {
-// //   const TaskList({Key? key}) : super(key: key);
-
-// //   @override
-// //   _TaskListState createState() => _TaskListState();
-// // }
-
-// // // class _TaskListState extends State<TaskList> {
-// //   static const _pageSize = 20;
-// //   final PagingController<int, NormalTaskSimpleDTO> _controller =
-// //       PagingController(firstPageKey: 0);
-
-// //   @override
-// //   void initState() {
-// //     addControllerListener(context);
-// //     super.initState();
-// //   }
-
-// //   @override
-// //   void dispose() {
-// //     _controller.dispose();
-// //     super.dispose();
-// //   }
-
-// //   @override
-// //   Widget build(BuildContext context) {
-// //     TaskApi taskApi = context.read();
-
-// //     Set<String> doingTakenTaskIds = Set<String>();
-
-// //     // 取得已接下的任務
-// //     void getDoingTakenTask() async {
-// //       var res = await taskApi.getDoingTakenTask();
-// //       for (NormalTaskSimpleDTO task in res.data) {
-// //         doingTakenTaskIds.add(task.normalTaskID);
-// //       }
-// //     }
-
-// //     getDoingTakenTask();
-
-// //     return Expanded(
-// //         child: RefreshIndicator(
-// //             onRefresh: () async {
-// //               await Future.sync(() => _controller.refresh());
-// //             },
-// //             child: PagedListView(
-// //                 pagingController: _controller,
-// //                 builderDelegate: PagedChildBuilderDelegate<NormalTaskSimpleDTO>(
-// //                     noMoreItemsIndicatorBuilder: (context) => Column(
-// //                           children: [
-// //                             Divider(
-// //                               color: Colors.grey.shade400,
-// //                               thickness: 1.h,
-// //                             ),
-// //                             SizedBox(height: 20.h)
-// //                           ],
-// //                         ),
-// //                     itemBuilder: (context, task, i) {
-// //                       return TaskCard(
-// //                         hadTaken: doingTakenTaskIds.contains(task.normalTaskID),
-// //                         task: task,
-// //                         taskApi: taskApi,
-// //                         refreshFunc: () {},
-// //                       );
-// //                     }))));
-// //   }
-
-// //   void addControllerListener(BuildContext context) {
-// //     TaskApi taskApi = context.read();
-// //     _controller.addPageRequestListener((pageKey) async {
-// //       var res = await taskApi.getTasks(_pageSize, pageKey * _pageSize);
-// //       if (res.isSuccess) {
-// //         var taskList = res.data!;
-// //         final isLastPage = taskList.length < _pageSize;
-// //         if (isLastPage) {
-// //           _controller.appendLastPage(taskList);
-// //         } else {
-// //           final nextPageKey = pageKey + 1;
-// //           _controller.appendPage(taskList, nextPageKey);
-// //         }
-// //       }
-// //     });
-// //   }
-// }

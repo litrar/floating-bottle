@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'color_theme.dart';
 
-class StdTheme implements ColorTheme{
-
+class StdTheme implements ColorTheme {
   @override
-  Color get background => Colors.white;
-
+  Color get background => const Color.fromARGB(255, 189, 205, 214);
+  
   @override
   Color get error => Color(0xFFF424F);
 
@@ -14,15 +13,4 @@ class StdTheme implements ColorTheme{
 
   @override
   Color get text => Colors.black;
-
 }
-
-
-
-
-
-
-
-
-
-
