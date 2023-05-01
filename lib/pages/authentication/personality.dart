@@ -158,8 +158,9 @@ class _PersonalityState extends State<Personality> {
               margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.compass_calibration_outlined,size: 25,color: Colors.black,),
+                children: [pressed1
+                  ?Icon(Icons.compass_calibration_outlined,size: 25,color: Colors.black,)
+                  :Icon(Icons.compass_calibration_outlined,size: 25,color: Colors.white,),
                   Text("Adventurous",style: pressed1
                       ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                       : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -189,8 +190,9 @@ class _PersonalityState extends State<Personality> {
               margin: EdgeInsets.only(left: 5,right: 5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.analytics_outlined,size: 25,color: Colors.black,),
+                children: [pressed2
+                  ?Icon(Icons.analytics_outlined,size: 25,color: Colors.black,)
+                  :Icon(Icons.analytics_outlined,size: 25,color: Colors.white,),
                   Text("Analytical",style: pressed2
                       ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                       : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -220,8 +222,9 @@ class _PersonalityState extends State<Personality> {
               margin: EdgeInsets.only(left: 0,right: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.star,size: 25,color: Colors.black,),
+                children: [pressed3
+                  ?Icon(Icons.star,size: 25,color: Colors.black,)
+                  :Icon(Icons.star,size: 25,color: Colors.white,),
                   Text("Confident",style: pressed3
                       ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                       : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -251,8 +254,9 @@ class _PersonalityState extends State<Personality> {
               margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.create_outlined,size: 25,color: Colors.black,),
+                children: [pressed4
+                  ?Icon(Icons.create_outlined,size: 25,color: Colors.black,)
+                  :Icon(Icons.create_outlined,size: 25,color: Colors.white,),
                   Text("Creative",style: pressed4
                       ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                       : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -282,8 +286,9 @@ class _PersonalityState extends State<Personality> {
               margin: EdgeInsets.only(left: 5,right: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.monitor_heart_outlined,size: 25,color: Colors.black,),
+                children: [pressed5
+                  ?Icon(Icons.monitor_heart_outlined,size: 25,color: Colors.black,)
+                  :Icon(Icons.monitor_heart_outlined,size: 25,color: Colors.white,),
                   Text("Empathetic",style: pressed5
                       ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                       : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -313,8 +318,9 @@ class _PersonalityState extends State<Personality> {
               margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.people_alt,size: 25,color: Colors.black,),
+                children: [pressed6
+                  ?Icon(Icons.people_alt,size: 25,color: Colors.black,)
+                  :Icon(Icons.people_alt,size: 25,color: Colors.white,),
                   Text("Friendly",style: pressed6
                       ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                       : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -344,8 +350,9 @@ class _PersonalityState extends State<Personality> {
               margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.person_rounded,size: 25,color: Colors.black,),
+                children: [pressed7
+                  ?Icon(Icons.person_rounded,size: 25,color: Colors.black,)
+                  :Icon(Icons.person_rounded,size: 25,color: Colors.white,),
                   Text("Indepedent",style: pressed7
                       ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                       : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -375,8 +382,9 @@ class _PersonalityState extends State<Personality> {
               margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.mood_bad_outlined,size: 25,color: Colors.black,),
+                children: [pressed8
+                  ?Icon(Icons.mood_bad_outlined,size: 25,color: Colors.black,)
+                  :Icon(Icons.mood_bad_outlined,size: 25,color: Colors.white,),
                   Text("Introverted",style: pressed8
                       ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                       : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -406,8 +414,9 @@ class _PersonalityState extends State<Personality> {
               margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.tag_faces,size: 25,color: Colors.black,),
+                children: [pressed9
+                  ?Icon(Icons.tag_faces,size: 25,color: Colors.black,)
+                  :Icon(Icons.tag_faces,size: 25,color: Colors.white,),
                   Text("Optimistic",style: pressed9
                       ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                       : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -437,8 +446,9 @@ class _PersonalityState extends State<Personality> {
               margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.add_chart,size: 25,color: Colors.black,),
+                children: [pressed10
+                  ?Icon(Icons.add_chart,size: 25,color: Colors.black,)
+                  :Icon(Icons.add_chart,size: 25,color: Colors.white,),
                   Text("Organized",style: pressed10
                       ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                       : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -468,8 +478,9 @@ class _PersonalityState extends State<Personality> {
               margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.people_alt_outlined,size: 25,color: Colors.black,),
+                children: [pressed11
+                  ?Icon(Icons.people_alt_outlined,size: 25,color: Colors.black,)
+                  :Icon(Icons.people_alt_outlined,size: 25,color: Colors.white,),
                   Text("Reliable",style: pressed11
                       ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                       : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -499,8 +510,9 @@ class _PersonalityState extends State<Personality> {
               margin: EdgeInsets.only(left: 0,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.thumb_up_alt_outlined,size: 25,color: Colors.black,),
+                children: [pressed12
+                  ?Icon(Icons.thumb_up_alt_outlined,size: 25,color: Colors.black,)
+                  :Icon(Icons.thumb_up_alt_outlined,size: 25,color: Colors.white,),
                   Text("Perfectionist",style: pressed12
                       ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                       : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -530,8 +542,9 @@ class _PersonalityState extends State<Personality> {
               margin: EdgeInsets.only(left: 0,right: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.center_focus_strong_outlined,size: 25,color: Colors.black,),
+                children: [pressed13
+                  ?Icon(Icons.center_focus_strong_outlined,size: 25,color: Colors.black,)
+                  :Icon(Icons.center_focus_strong_outlined,size: 25,color: Colors.white,),
                   Text("Meticulous",style: pressed13
                       ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                       : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -561,8 +574,9 @@ class _PersonalityState extends State<Personality> {
               margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.accessibility_new_outlined,size: 25,color: Colors.black,),
+                children: [pressed14
+                  ?Icon(Icons.accessibility_new_outlined,size: 25,color: Colors.black,)
+                  :Icon(Icons.accessibility_new_outlined,size: 25,color: Colors.white,),
                   Text("Outgoing",style: pressed14
                       ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                       : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -592,8 +606,9 @@ class _PersonalityState extends State<Personality> {
               margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.self_improvement_outlined,size: 25,color: Colors.black,),
+                children: [pressed15
+                  ?Icon(Icons.self_improvement_outlined,size: 25,color: Colors.black,)
+                  :Icon(Icons.self_improvement_outlined,size: 25,color: Colors.white,),
                   Text("Spontaneous",style: pressed15
                       ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                       : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -623,8 +638,9 @@ class _PersonalityState extends State<Personality> {
               margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.face,size: 25,color: Colors.black,),
+                children: [pressed16
+                  ?Icon(Icons.face,size: 25,color: Colors.black,)
+                  :Icon(Icons.face,size: 25,color: Colors.white,),
                   Text("Thoughtful",style: pressed16
                       ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                       : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -654,8 +670,9 @@ class _PersonalityState extends State<Personality> {
               margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.badge_outlined,size: 25,color: Colors.black,),
+                children: [pressed17
+                  ?Icon(Icons.badge_outlined,size: 25,color: Colors.black,)
+                  :Icon(Icons.badge_outlined,size: 25,color: Colors.white,),
                   Text("Trustworthy",style: pressed17
                       ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                       : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -685,8 +702,9 @@ class _PersonalityState extends State<Personality> {
               margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.schedule,size: 25,color: Colors.black,),
+                children: [pressed18
+                  ?Icon(Icons.schedule,size: 25,color: Colors.black,)
+                  :Icon(Icons.schedule,size: 25,color: Colors.white,),
                   Text("Visionary",style: pressed18
                       ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                       : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -716,8 +734,9 @@ class _PersonalityState extends State<Personality> {
               margin: EdgeInsets.only(left: 5,right: 5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.heart_broken,size: 25,color: Colors.black,),
+                children: [pressed19
+                  ?Icon(Icons.heart_broken,size: 25,color: Colors.black,)
+                  :Icon(Icons.heart_broken,size: 25,color: Colors.white,),
                   Text("Warm-hearted",style: pressed19
                       ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                       : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
@@ -747,8 +766,9 @@ class _PersonalityState extends State<Personality> {
               margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.wb_incandescent_outlined,size: 25,color: Colors.black,),
+                children: [pressed20
+                  ?Icon(Icons.wb_incandescent_outlined,size: 25,color: Colors.black,)
+                  :Icon(Icons.wb_incandescent_outlined,size: 25,color: Colors.white,),
                   Text("Witty",style: pressed20
                       ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
                       : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
