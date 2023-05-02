@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import 'information.dart';
 // import 'package:flutter_verification_box/verification_box.dart';
@@ -29,7 +27,7 @@ class _VertificationState extends State<Vertification> {
                   Container(
                     margin: const EdgeInsets.only(top: 150, left: 20),
                     child:
-                    Text("Almost there!", style: TextStyle(
+                    const Text("Almost there!", style: TextStyle(
                         fontSize: 35,
                         fontWeight: FontWeight.bold,
                         color: Colors.white
@@ -37,7 +35,7 @@ class _VertificationState extends State<Vertification> {
                   ),
                   Container(
                     margin: const EdgeInsets.only(top: 10, left: 20),
-                    child: Text(
+                    child: const Text(
                       "Plese enter the code that we have sent to your email for vertification.",
                       style: TextStyle(
                           fontWeight: FontWeight.w500,
@@ -64,10 +62,10 @@ class _VertificationState extends State<Vertification> {
     //   ),
     // );
     return Container(
-      margin: EdgeInsets.only(left: 25,right: 25,top: 30),
+      margin: const EdgeInsets.only(left: 25,right: 25,top: 30),
       child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
+          children: const [
             SizedBox(
                 width: 70,
                 child: TextField(
@@ -166,13 +164,10 @@ class _VertificationState extends State<Vertification> {
 
   Widget _submitButton() {
     return Container(
-      margin: EdgeInsets.only(left: 35, right: 35, top: 25, bottom: 20),
+      margin: const EdgeInsets.only(left: 35, right: 35, top: 25, bottom: 20),
       width: 350,
       height: 70,
       child: ElevatedButton(
-        child: Text("Submit", style: TextStyle(
-            fontSize: 20
-        ),),
         style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(Colors.grey.shade500),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -184,18 +179,21 @@ class _VertificationState extends State<Vertification> {
             context,
             MaterialPageRoute(
               builder: (context) {
-                return Information();
+                return const Information();
               },
             ),
           );
         },
+        child: const Text("Submit", style: TextStyle(
+            fontSize: 20
+        ),),
       ),
     );
   }
 
   Widget _resendButton() {
     return Container(
-      margin: EdgeInsets.only(left: 0, right: 0, top: 5, bottom: 0),
+      margin: const EdgeInsets.only(left: 0, right: 0, top: 5, bottom: 0),
       width: 200,
       height: 60,
       child: Row(
@@ -205,7 +203,7 @@ class _VertificationState extends State<Vertification> {
           TextButton(onPressed: () {
             Navigator.of(context).pop();
           },
-              child: Text("Resend code", style: TextStyle(
+              child: const Text("Resend code", style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w400,
                   fontSize: 20,

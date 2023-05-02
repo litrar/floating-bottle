@@ -1,6 +1,6 @@
 import 'package:floating_bottle/pages/authentication/personality.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class Language extends StatefulWidget {
   Language({Key? key}) : super(key: key);
@@ -24,7 +24,7 @@ class _LanguageState extends State<Language> {
             ListView(
               children: [
                 Container(
-                  margin: EdgeInsets.only(left: 20,right: 20,top: 15),
+                  margin: const EdgeInsets.only(left: 20,right: 20,top: 15),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -39,18 +39,11 @@ class _LanguageState extends State<Language> {
                             ),
                           );
                         },
-                        icon: Icon(Icons.arrow_back_ios_rounded,size: 40,color: Colors.white,),),
+                        icon: const Icon(Icons.arrow_back_ios_rounded,size: 40,color: Colors.white,),),
                       TextButton(onPressed: (){
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return Language();
-                            },
-                          ),
-                        );
+                        context.go("/personal");
                       },
-                        child: Text("Skip",style: TextStyle(
+                        child: const Text("Skip",style: TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.w600,
                             color: Colors.white
@@ -60,8 +53,8 @@ class _LanguageState extends State<Language> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 40,top: 30),
-                  child: Text("I can speak ...",style: TextStyle(
+                  margin: const EdgeInsets.only(left: 40,top: 30),
+                  child: const Text("I can speak ...",style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 35,
                       color: Colors.white

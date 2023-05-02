@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import '../../components/bottom_bar.dart';
+import '../components/bottom_bar.dart';
 import '../theme/color_theme.dart';
 import '../theme/theme_bloc.dart';
 import 'p_route.dart';
@@ -11,15 +11,11 @@ import 'package:image_picker/image_picker.dart';
 
 class PersonalSubPage implements SubPage {
   PersonalSubPage();
-
-  @override
-  String get label => "任務";
-
   @override
   Widget getIcon(bool active) {
     return active
         ? Image.asset("assetsfolder/個人_黑.png", cacheHeight: 50, cacheWidth: 50)
-        : Image.asset("assetsfolder/icon/個人_白.png",
+        : Image.asset("assetsfolder/個人_白.png",
             cacheHeight: 50, cacheWidth: 50);
   }
 
@@ -45,6 +41,10 @@ class PersonalPage extends StatelessWidget {
                 ),
               ),
             ),
+            Text(
+              'this is personal page',
+              style: TextStyle(fontSize: 20.sp),
+            )
           ],
         ),
       );

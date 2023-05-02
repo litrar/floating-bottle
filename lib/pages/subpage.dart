@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:floating_bottle/pages/mailbox_page/mailbox.dart';
 import 'package:floating_bottle/pages/match_page/match.dart';
-import '../components/bottom_bar.dart';
+import 'components/bottom_bar.dart';
 
 abstract class SubPage {
   static final SubPage CONTACT = ContactSubPage();
@@ -17,9 +17,6 @@ abstract class SubPage {
 
   static final PAGES = [CONTACT, MAILBOX, MATCH, PERSONAL];
 
-  //Widget buildPage(BuildContext buildContext);
-
-  String get label;
 
   Widget getIcon(bool active);
 

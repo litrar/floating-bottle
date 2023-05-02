@@ -1,15 +1,32 @@
 import 'package:floating_bottle/pages/authentication/login.dart';
+import 'package:floating_bottle/pages/components/error_page.dart';
+import 'package:floating_bottle/pages/subpage.dart';
 import 'package:floating_bottle/pages/theme/theme_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  late GoRouter _goRouter;
+  MyApp({super.key}) {
+    _goRouter = GoRouter(
+        // navigatorKey: NavigatorProvider.navigatorKey,
+        initialLocation: Login.route.path,
+        routes: [
+          Login.route,
+          for (var page in SubPage.PAGES) page.route,
+        ],
+        // refreshListenable: _authNotifier,
+        // redirect: _guard,
+        errorBuilder: ((context, state) =>
+            ErrorPage("uncaught error: ${state.error}")));
+  }
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -17,38 +34,24 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return BlocProvider(
-          create: (_) => ThemeCubit(),
-          child: const MaterialApp(
-            home: Login(),
-          ),
-        );
+        return MultiBlocProvider(
+            providers: [BlocProvider(create: (_) => ThemeCubit())],
+            child: _app());
+        // BlocProvider(
+        //   create: (_) => ThemeCubit(),
+        //   child: const MaterialApp(
+        //     home: Login(),
+        //   ),
+        // );
       },
     );
-    // return MaterialApp(
-    //   home: BlocProvider(
-    //     create: (_) => ThemeCubit(),
-    //     child: const Login(),
-    //   ),
-    // );
   }
 
-// Widget registration() {
-//   return Scaffold(
-//       body: Stack(
-//     children: <Widget>[
-//       Container(
-//         decoration: const BoxDecoration(
-//           image: DecorationImage(
-//             image: AssetImage("assetsfolder/registration.jpg"),
-//             fit: BoxFit.cover,
-//           ),
-//         ),
-//       ),
-//       const Center(
-//         child: Text("this is the background"),
-//       )
-//     ],
-//   ));
-// }
+  Widget _app() {
+    return MaterialApp.router(
+        routerConfig: _goRouter,
+        theme: ThemeData(primarySwatch: Colors.orange),
+        //navigatorKey: NavigatorProvider.navigatorKey,
+        debugShowCheckedModeBanner: false);
+  }
 }
