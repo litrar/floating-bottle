@@ -5,5 +5,8 @@ final mail_route = GoRoute(
     path: "/mailbox",
     builder: (context, state) => MailBoxPage(),
     routes: [
+
+
+      
     ]
 );

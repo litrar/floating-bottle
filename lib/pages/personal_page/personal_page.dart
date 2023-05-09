@@ -14,8 +14,8 @@ class PersonalSubPage implements SubPage {
   @override
   Widget getIcon(bool active) {
     return active
-        ? Image.asset("assetsfolder/個人_黑.png", cacheHeight: 50, cacheWidth: 50)
-        : Image.asset("assetsfolder/個人_白.png",
+        ? Image.asset("assetsfolder/account_black.png", cacheHeight: 50, cacheWidth: 50)
+        : Image.asset("assetsfolder/account_white.png",
             cacheHeight: 50, cacheWidth: 50);
   }
 
