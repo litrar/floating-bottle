@@ -37,12 +37,6 @@ class MyApp extends StatelessWidget {
         return MultiBlocProvider(
             providers: [BlocProvider(create: (_) => ThemeCubit())],
             child: _app());
-        // BlocProvider(
-        //   create: (_) => ThemeCubit(),
-        //   child: const MaterialApp(
-        //     home: Login(),
-        //   ),
-        // );
       },
     );
   }

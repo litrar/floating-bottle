@@ -3,6 +3,8 @@ import 'package:floating_bottle/pages/authentication/registration.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../subpage.dart';
+
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
@@ -156,14 +158,7 @@ class _LoginPageState extends State<Login> {
                 RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(35)))),
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) {
-                return const Information();
-              },
-            ),
-          );
+          context.go(SubPage.PERSONAL.route.path);
         },
         child: const Text(
           "Log in",

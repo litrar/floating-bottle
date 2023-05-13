@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../components/bottom_bar.dart';
 import '../theme/color_theme.dart';
 import '../theme/theme_bloc.dart';
+import 'edit_name.dart';
 import 'p_route.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -14,7 +15,8 @@ class PersonalSubPage implements SubPage {
   @override
   Widget getIcon(bool active) {
     return active
-        ? Image.asset("assetsfolder/account_black.png", cacheHeight: 50, cacheWidth: 50)
+        ? Image.asset("assetsfolder/account_black.png",
+            cacheHeight: 50, cacheWidth: 50)
         : Image.asset("assetsfolder/account_white.png",
             cacheHeight: 50, cacheWidth: 50);
   }
@@ -41,9 +43,10 @@ class PersonalPage extends StatelessWidget {
                 ),
               ),
             ),
-            Text(
-              'this is personal page',
-              style: TextStyle(fontSize: 20.sp),
+            Column(
+              children: [
+                _avatar(context),
+              ],
             )
           ],
         ),
@@ -51,8 +54,9 @@ class PersonalPage extends StatelessWidget {
     });
   }
 
-  Widget _avatarBar(BuildContext buildContext) {
+  Widget _avatar(BuildContext buildContext) {
     return Container(
+      margin: const EdgeInsets.only(top: 30.0),
       height: 92.h,
       child: Row(
         children: [
@@ -80,7 +84,7 @@ class PersonalPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(500),
                     child: Stack(
                       children: [
-                        //Image.network("http://140.119.19.77:8080/images/avatars/638cce8bdf1be43a84a05f7d/image_picker1020539843404575019.jpg"),
+                        Image.asset("assetsfolder/avatar.jpg"),
                         // userInfo.avatar == null
                         //     ? Image.asset("assetfolder/Gray.jpg")
                         //     : Image(
@@ -118,12 +122,10 @@ class PersonalPage extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          /**
-                           * Navigator.push(
+                          Navigator.push(
                               buildContext,
                               MaterialPageRoute(
-                              builder: (_) => EditAccNamePage()));
-                           */
+                                  builder: (_) => EditNamePage()));
                         },
                         child: Icon(
                           Icons.edit_outlined,
