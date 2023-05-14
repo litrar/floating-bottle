@@ -1,6 +1,6 @@
 import 'package:floating_bottle/pages/authentication/personality.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import 'gender.dart';
 
@@ -48,7 +48,7 @@ class _InterestState extends State<Interest> {
             ListView(
               children: [
                 Container(
-                  margin: const EdgeInsets.only(left: 20,right: 20,top: 15),
+                  margin: EdgeInsets.only(left: 20,right: 20,top: 15),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -58,16 +58,23 @@ class _InterestState extends State<Interest> {
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return const Gender();
+                                return Gender();
                               },
                             ),
                           );
                         },
-                        icon: const Icon(Icons.arrow_back_ios_rounded,size: 40,color: Colors.white,),),
+                        icon: Icon(Icons.arrow_back_ios_rounded,size: 40,color: Colors.white,),),
                       TextButton(onPressed: (){
-                        context.go("/personal");
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return Personality();
+                            },
+                          ),
+                        );
                       },
-                        child: const Text("Skip",style: TextStyle(
+                        child: Text("Skip",style: TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.w600,
                             color: Colors.white
@@ -77,15 +84,15 @@ class _InterestState extends State<Interest> {
                   ),
                 ),
                 Container(
-                  margin: const EdgeInsets.only(left: 40,top: 5),
-                  child: const Text("My Interests",style: TextStyle(
+                  margin: EdgeInsets.only(left: 40,top: 5),
+                  child: Text("My Interests",style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 35,
                       color: Colors.white
                   ),),
                 ),
                 Container(
-                  margin: const EdgeInsets.only(left: 14,right: 10),
+                  margin: EdgeInsets.only(left: 14,right: 10),
                   child: Row(
                     children: [
                       Column(
@@ -120,7 +127,7 @@ class _InterestState extends State<Interest> {
                   ),
                 ),
                 Container(
-                  margin: const EdgeInsets.only(left: 45,right: 40),
+                  margin: EdgeInsets.only(left: 45,right: 40),
                   child: Row(
                     children: [
                       _continueButton()
@@ -136,32 +143,32 @@ class _InterestState extends State<Interest> {
   Widget _cookingButton(){
     return TextButton(
         onPressed: (){
-            setState(() {
-              pressed1 = !pressed1;
-            });
+          setState(() {
+            pressed1 = !pressed1;
+          });
         },
         child: Container(
-          margin: const EdgeInsets.only(top: 5),
-          height: 45,
-          width: 175,
-          decoration: pressed1
-              ? BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(35))
-              : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
-          alignment: Alignment.center,
-          child: Container(
-            margin: const EdgeInsets.only(left: 5,right: 15),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [ pressed1
-                ?const Icon(Icons.cookie_outlined,size: 25,color: Colors.black,)
-                :const Icon(Icons.cookie_outlined,size: 25,color: Colors.white,),
-                Text("Cooking",style: pressed1
-                    ? const TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
-                    : const TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
-                ),
-              ],
-            ),
-          )
+            margin: EdgeInsets.only(top: 5),
+            height: 45,
+            width: 175,
+            decoration: pressed1
+                ? BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(35))
+                : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
+            alignment: Alignment.center,
+            child: Container(
+              margin: EdgeInsets.only(left: 5,right: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [ pressed1
+                    ?Icon(Icons.cookie_outlined,size: 25,color: Colors.black,)
+                    :Icon(Icons.cookie_outlined,size: 25,color: Colors.white,),
+                  Text("Cooking",style: pressed1
+                      ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
+                      : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
+                  ),
+                ],
+              ),
+            )
         )
     );
   }
@@ -173,27 +180,27 @@ class _InterestState extends State<Interest> {
           });
         },
         child: Container(
-          margin: const EdgeInsets.only(top: 0),
-          height: 45,
-          width: 175,
-          decoration: pressed2
-              ? BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(35))
-              : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
-          alignment: Alignment.center,
-          child: Container(
-            margin: const EdgeInsets.only(left: 5,right: 5),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [ pressed2
-                ?const Icon(Icons.camera_alt_outlined,size: 25,color: Colors.black,)
-                :const Icon(Icons.camera_alt_outlined,size: 25,color: Colors.white,),
-                Text("Photography",style: pressed2
-                    ? const TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
-                    : const TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
-                ),
-              ],
-            ),
-          )
+            margin: EdgeInsets.only(top: 0),
+            height: 45,
+            width: 175,
+            decoration: pressed2
+                ? BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(35))
+                : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
+            alignment: Alignment.center,
+            child: Container(
+              margin: EdgeInsets.only(left: 5,right: 5),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [ pressed2
+                    ?Icon(Icons.camera_alt_outlined,size: 25,color: Colors.black,)
+                    :Icon(Icons.camera_alt_outlined,size: 25,color: Colors.white,),
+                  Text("Photography",style: pressed2
+                      ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
+                      : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
+                  ),
+                ],
+              ),
+            )
         )
     );
   }
@@ -205,27 +212,27 @@ class _InterestState extends State<Interest> {
           });
         },
         child: Container(
-          margin: const EdgeInsets.only(top: 0),
-          height: 45,
-          width: 175,
-          decoration: pressed3
-              ? BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(35))
-              : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
-          alignment: Alignment.center,
-          child: Container(
-            margin: const EdgeInsets.only(left: 0,right: 40),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [ pressed3
-                ?const Icon(Icons.color_lens_outlined,size: 25,color: Colors.black,)
-                :const Icon(Icons.color_lens_outlined,size: 25,color: Colors.white,),
-                Text("Art",style: pressed3
-                    ? const TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
-                    : const TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
-                ),
-              ],
-            ),
-          )
+            margin: EdgeInsets.only(top: 0),
+            height: 45,
+            width: 175,
+            decoration: pressed3
+                ? BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(35))
+                : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
+            alignment: Alignment.center,
+            child: Container(
+              margin: EdgeInsets.only(left: 0,right: 40),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [ pressed3
+                    ?Icon(Icons.color_lens_outlined,size: 25,color: Colors.black,)
+                    :Icon(Icons.color_lens_outlined,size: 25,color: Colors.white,),
+                  Text("Art",style: pressed3
+                      ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
+                      : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
+                  ),
+                ],
+              ),
+            )
         )
     );
   }
@@ -237,27 +244,27 @@ class _InterestState extends State<Interest> {
           });
         },
         child: Container(
-          margin: const EdgeInsets.only(top: 0),
-          height: 45,
-          width: 175,
-          decoration: pressed4
-              ? BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(35))
-              : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
-          alignment: Alignment.center,
-          child: Container(
-            margin: const EdgeInsets.only(left: 5,right: 15),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [ pressed4
-                ?const Icon(Icons.sports_basketball_outlined,size: 25,color: Colors.black,)
-                :const Icon(Icons.sports_basketball_outlined,size: 25,color: Colors.white,),
-                Text("Basketball",style: pressed4
-                    ? const TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
-                    : const TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
-                ),
-              ],
-            ),
-          )
+            margin: EdgeInsets.only(top: 0),
+            height: 45,
+            width: 175,
+            decoration: pressed4
+                ? BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(35))
+                : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
+            alignment: Alignment.center,
+            child: Container(
+              margin: EdgeInsets.only(left: 5,right: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [ pressed4
+                    ?Icon(Icons.sports_basketball_outlined,size: 25,color: Colors.black,)
+                    :Icon(Icons.sports_basketball_outlined,size: 25,color: Colors.white,),
+                  Text("Basketball",style: pressed4
+                      ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
+                      : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
+                  ),
+                ],
+              ),
+            )
         )
     );
   }
@@ -269,27 +276,27 @@ class _InterestState extends State<Interest> {
           });
         },
         child: Container(
-          margin: const EdgeInsets.only(top: 0),
-          height: 45,
-          width: 175,
-          decoration: pressed5
-              ? BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(35))
-              : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
-          alignment: Alignment.center,
-          child: Container(
-            margin: const EdgeInsets.only(left: 5,right: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [ pressed5
-                ?const Icon(Icons.accessibility_new_outlined,size: 25,color: Colors.black,)
-                :const Icon(Icons.accessibility_new_outlined,size: 25,color: Colors.white,),
-                Text("Dance",style: pressed5
-                    ? const TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
-                    : const TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
-                ),
-              ],
-            ),
-          )
+            margin: EdgeInsets.only(top: 0),
+            height: 45,
+            width: 175,
+            decoration: pressed5
+                ? BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(35))
+                : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
+            alignment: Alignment.center,
+            child: Container(
+              margin: EdgeInsets.only(left: 5,right: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [ pressed5
+                    ?Icon(Icons.accessibility_new_outlined,size: 25,color: Colors.black,)
+                    :Icon(Icons.accessibility_new_outlined,size: 25,color: Colors.white,),
+                  Text("Dance",style: pressed5
+                      ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
+                      : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
+                  ),
+                ],
+              ),
+            )
         )
     );
   }
@@ -301,27 +308,27 @@ class _InterestState extends State<Interest> {
           });
         },
         child: Container(
-          margin: const EdgeInsets.only(top: 0),
-          height: 45,
-          width: 175,
-          decoration: pressed6
-              ? BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(35))
-              : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
-          alignment: Alignment.center,
-          child: Container(
-            margin: const EdgeInsets.only(left: 5,right: 15),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [ pressed6
-                ?const Icon(Icons.book_outlined,size: 25,color: Colors.black,)
-                :const Icon(Icons.book_outlined,size: 25,color: Colors.white,),
-                Text("Reading",style: pressed6
-                    ? const TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
-                    : const TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
-                ),
-              ],
-            ),
-          )
+            margin: EdgeInsets.only(top: 0),
+            height: 45,
+            width: 175,
+            decoration: pressed6
+                ? BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(35))
+                : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
+            alignment: Alignment.center,
+            child: Container(
+              margin: EdgeInsets.only(left: 5,right: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [ pressed6
+                    ?Icon(Icons.book_outlined,size: 25,color: Colors.black,)
+                    :Icon(Icons.book_outlined,size: 25,color: Colors.white,),
+                  Text("Reading",style: pressed6
+                      ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
+                      : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
+                  ),
+                ],
+              ),
+            )
         )
     );
   }
@@ -333,27 +340,27 @@ class _InterestState extends State<Interest> {
           });
         },
         child: Container(
-          margin: const EdgeInsets.only(top: 0),
-          height: 45,
-          width: 175,
-          decoration: pressed7
-              ? BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(35))
-              : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
-          alignment: Alignment.center,
-          child: Container(
-            margin: const EdgeInsets.only(left: 5,right: 15),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [ pressed7
-                ?const Icon(Icons.piano,size: 25,color: Colors.black,)
-                :const Icon(Icons.piano,size: 25,color: Colors.white,),
-                Text("Instrument",style: pressed7
-                    ? const TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
-                    : const TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
-                ),
-              ],
-            ),
-          )
+            margin: EdgeInsets.only(top: 0),
+            height: 45,
+            width: 175,
+            decoration: pressed7
+                ? BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(35))
+                : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
+            alignment: Alignment.center,
+            child: Container(
+              margin: EdgeInsets.only(left: 5,right: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [ pressed7
+                    ?Icon(Icons.piano,size: 25,color: Colors.black,)
+                    :Icon(Icons.piano,size: 25,color: Colors.white,),
+                  Text("Instrument",style: pressed7
+                      ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
+                      : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
+                  ),
+                ],
+              ),
+            )
         )
     );
   }
@@ -365,27 +372,27 @@ class _InterestState extends State<Interest> {
           });
         },
         child: Container(
-          margin: const EdgeInsets.only(top: 0),
-          height: 45,
-          width: 175,
-          decoration: pressed8
-              ? BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(35))
-              : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
-          alignment: Alignment.center,
-          child: Container(
-            margin: const EdgeInsets.only(left: 5,right: 15),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [ pressed8
-                ?const Icon(Icons.color_lens_outlined,size: 25,color: Colors.black,)
-                :const Icon(Icons.color_lens_outlined,size: 25,color: Colors.white,),
-                Text("Makeup",style: pressed8
-                    ? const TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
-                    : const TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
-                ),
-              ],
-            ),
-          )
+            margin: EdgeInsets.only(top: 0),
+            height: 45,
+            width: 175,
+            decoration: pressed8
+                ? BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(35))
+                : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
+            alignment: Alignment.center,
+            child: Container(
+              margin: EdgeInsets.only(left: 5,right: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [ pressed8
+                    ?Icon(Icons.color_lens_outlined,size: 25,color: Colors.black,)
+                    :Icon(Icons.color_lens_outlined,size: 25,color: Colors.white,),
+                  Text("Makeup",style: pressed8
+                      ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
+                      : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
+                  ),
+                ],
+              ),
+            )
         )
     );
   }
@@ -397,27 +404,27 @@ class _InterestState extends State<Interest> {
           });
         },
         child: Container(
-          margin: const EdgeInsets.only(top: 0),
-          height: 45,
-          width: 175,
-          decoration: pressed9
-              ? BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(35))
-              : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
-          alignment: Alignment.center,
-          child: Container(
-            margin: const EdgeInsets.only(left: 5,right: 15),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [ pressed9
-                ?const Icon(Icons.local_drink_outlined,size: 25,color: Colors.black,)
-                :const Icon(Icons.local_drink_outlined,size: 25,color: Colors.white,),
-                Text("Cuisine",style: pressed9
-                    ? const TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
-                    : const TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
-                ),
-              ],
-            ),
-          )
+            margin: EdgeInsets.only(top: 0),
+            height: 45,
+            width: 175,
+            decoration: pressed9
+                ? BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(35))
+                : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
+            alignment: Alignment.center,
+            child: Container(
+              margin: EdgeInsets.only(left: 5,right: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [ pressed9
+                    ?Icon(Icons.local_drink_outlined,size: 25,color: Colors.black,)
+                    :Icon(Icons.local_drink_outlined,size: 25,color: Colors.white,),
+                  Text("Cuisine",style: pressed9
+                      ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
+                      : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
+                  ),
+                ],
+              ),
+            )
         )
     );
   }
@@ -429,7 +436,7 @@ class _InterestState extends State<Interest> {
           });
         },
         child: Container(
-            margin: const EdgeInsets.only(top: 0),
+            margin: EdgeInsets.only(top: 0),
             height: 45,
             width: 175,
             decoration: pressed10
@@ -437,15 +444,15 @@ class _InterestState extends State<Interest> {
                 : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
             alignment: Alignment.center,
             child: Container(
-              margin: const EdgeInsets.only(left: 5,right: 15),
+              margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [ pressed10
-                  ?const Icon(Icons.computer,size: 25,color: Colors.black,)
-                  :const Icon(Icons.computer,size: 25,color: Colors.white,),
+                    ?Icon(Icons.computer,size: 25,color: Colors.black,)
+                    :Icon(Icons.computer,size: 25,color: Colors.white,),
                   Text("Coding",style: pressed10
-                      ? const TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
-                      : const TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
+                      ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
+                      : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
                   ),
                 ],
               ),
@@ -461,7 +468,7 @@ class _InterestState extends State<Interest> {
           });
         },
         child: Container(
-            margin: const EdgeInsets.only(top: 5),
+            margin: EdgeInsets.only(top: 5),
             height: 45,
             width: 175,
             decoration: pressed11
@@ -469,15 +476,15 @@ class _InterestState extends State<Interest> {
                 : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
             alignment: Alignment.center,
             child: Container(
-              margin: const EdgeInsets.only(left: 5,right: 15),
+              margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [ pressed11
-                  ?const Icon(Icons.shopping_cart_outlined,size: 25,color: Colors.black,)
-                  :const Icon(Icons.shopping_cart_outlined,size: 25,color: Colors.white,),
+                    ?Icon(Icons.shopping_cart_outlined,size: 25,color: Colors.black,)
+                    :Icon(Icons.shopping_cart_outlined,size: 25,color: Colors.white,),
                   Text("Shopping",style: pressed11
-                      ? const TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
-                      : const TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
+                      ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
+                      : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
                   ),
                 ],
               ),
@@ -493,7 +500,7 @@ class _InterestState extends State<Interest> {
           });
         },
         child: Container(
-            margin: const EdgeInsets.only(top: 0),
+            margin: EdgeInsets.only(top: 0),
             height: 45,
             width: 175,
             decoration: pressed12
@@ -501,15 +508,15 @@ class _InterestState extends State<Interest> {
                 : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
             alignment: Alignment.center,
             child: Container(
-              margin: const EdgeInsets.only(left: 0,right: 15),
+              margin: EdgeInsets.only(left: 0,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [ pressed12
-                  ?const Icon(Icons.music_note_outlined,size: 25,color: Colors.black,)
-                  :const Icon(Icons.music_note_outlined,size: 25,color: Colors.white,),
+                    ?Icon(Icons.music_note_outlined,size: 25,color: Colors.black,)
+                    :Icon(Icons.music_note_outlined,size: 25,color: Colors.white,),
                   Text("Music",style: pressed12
-                      ? const TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
-                      : const TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
+                      ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
+                      : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
                   ),
                 ],
               ),
@@ -525,7 +532,7 @@ class _InterestState extends State<Interest> {
           });
         },
         child: Container(
-            margin: const EdgeInsets.only(top: 0),
+            margin: EdgeInsets.only(top: 0),
             height: 45,
             width: 175,
             decoration: pressed13
@@ -533,15 +540,15 @@ class _InterestState extends State<Interest> {
                 : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
             alignment: Alignment.center,
             child: Container(
-              margin: const EdgeInsets.only(left: 0,right: 40),
+              margin: EdgeInsets.only(left: 0,right: 40),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [ pressed13
-                  ?const Icon(Icons.pets_outlined,size: 25,color: Colors.black,)
-                  :const Icon(Icons.pets_outlined,size: 25,color: Colors.white,),
+                    ?Icon(Icons.pets_outlined,size: 25,color: Colors.black,)
+                    :Icon(Icons.pets_outlined,size: 25,color: Colors.white,),
                   Text("Pet",style: pressed13
-                      ? const TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
-                      : const TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
+                      ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
+                      : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
                   ),
                 ],
               ),
@@ -557,7 +564,7 @@ class _InterestState extends State<Interest> {
           });
         },
         child: Container(
-            margin: const EdgeInsets.only(top: 0),
+            margin: EdgeInsets.only(top: 0),
             height: 45,
             width: 175,
             decoration: pressed14
@@ -565,15 +572,15 @@ class _InterestState extends State<Interest> {
                 : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
             alignment: Alignment.center,
             child: Container(
-              margin: const EdgeInsets.only(left: 5,right: 15),
+              margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [ pressed14
-                  ?const Icon(Icons.sports_tennis_outlined,size: 25,color: Colors.black,)
-                  :const Icon(Icons.sports_tennis_outlined,size: 25,color: Colors.white,),
+                    ?Icon(Icons.sports_tennis_outlined,size: 25,color: Colors.black,)
+                    :Icon(Icons.sports_tennis_outlined,size: 25,color: Colors.white,),
                   Text("Tennis",style: pressed14
-                      ? const TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
-                      : const TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
+                      ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
+                      : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
                   ),
                 ],
               ),
@@ -589,7 +596,7 @@ class _InterestState extends State<Interest> {
           });
         },
         child: Container(
-            margin: const EdgeInsets.only(top: 0),
+            margin: EdgeInsets.only(top: 0),
             height: 45,
             width: 175,
             decoration: pressed15
@@ -597,15 +604,15 @@ class _InterestState extends State<Interest> {
                 : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
             alignment: Alignment.center,
             child: Container(
-              margin: const EdgeInsets.only(left: 5,right: 15),
+              margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [ pressed15
-                  ?const Icon(Icons.videogame_asset_sharp,size: 25,color: Colors.black,)
-                  :const Icon(Icons.videogame_asset_sharp,size: 25,color: Colors.white,),
+                    ?Icon(Icons.videogame_asset_sharp,size: 25,color: Colors.black,)
+                    :Icon(Icons.videogame_asset_sharp,size: 25,color: Colors.white,),
                   Text("Video Games",style: pressed15
-                      ? const TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
-                      : const TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
+                      ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
+                      : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
                   ),
                 ],
               ),
@@ -621,7 +628,7 @@ class _InterestState extends State<Interest> {
           });
         },
         child: Container(
-            margin: const EdgeInsets.only(top: 0),
+            margin: EdgeInsets.only(top: 0),
             height: 45,
             width: 175,
             decoration: pressed16
@@ -629,15 +636,15 @@ class _InterestState extends State<Interest> {
                 : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
             alignment: Alignment.center,
             child: Container(
-              margin: const EdgeInsets.only(left: 5,right: 15),
+              margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [ pressed16
-                  ?const Icon(Icons.water_outlined,size: 25,color: Colors.black,)
-                  :const Icon(Icons.water_outlined,size: 25,color: Colors.white,),
+                    ?Icon(Icons.water_outlined,size: 25,color: Colors.black,)
+                    :Icon(Icons.water_outlined,size: 25,color: Colors.white,),
                   Text("Swimming",style: pressed16
-                      ? const TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
-                      : const TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
+                      ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
+                      : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
                   ),
                 ],
               ),
@@ -653,7 +660,7 @@ class _InterestState extends State<Interest> {
           });
         },
         child: Container(
-            margin: const EdgeInsets.only(top: 0),
+            margin: EdgeInsets.only(top: 0),
             height: 45,
             width: 175,
             decoration: pressed17
@@ -661,15 +668,15 @@ class _InterestState extends State<Interest> {
                 : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
             alignment: Alignment.center,
             child: Container(
-              margin: const EdgeInsets.only(left: 5,right: 15),
+              margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [ pressed17
-                  ?const Icon(Icons.movie_creation_outlined,size: 25,color: Colors.black,)
-                  :const Icon(Icons.movie_creation_outlined,size: 25,color: Colors.white,),
+                    ?Icon(Icons.movie_creation_outlined,size: 25,color: Colors.black,)
+                    :Icon(Icons.movie_creation_outlined,size: 25,color: Colors.white,),
                   Text("Movie",style: pressed17
-                      ? const TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
-                      : const TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
+                      ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
+                      : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
                   ),
                 ],
               ),
@@ -685,7 +692,7 @@ class _InterestState extends State<Interest> {
           });
         },
         child: Container(
-            margin: const EdgeInsets.only(top: 0),
+            margin: EdgeInsets.only(top: 0),
             height: 45,
             width: 175,
             decoration: pressed18
@@ -693,15 +700,15 @@ class _InterestState extends State<Interest> {
                 : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
             alignment: Alignment.center,
             child: Container(
-              margin: const EdgeInsets.only(left: 5,right: 15),
+              margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [ pressed18
-                  ?const Icon(Icons.travel_explore_outlined,size: 25,color: Colors.black,)
-                  :const Icon(Icons.travel_explore_outlined,size: 25,color: Colors.white,),
+                    ?Icon(Icons.travel_explore_outlined,size: 25,color: Colors.black,)
+                    :Icon(Icons.travel_explore_outlined,size: 25,color: Colors.white,),
                   Text("Traveling",style: pressed18
-                      ? const TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
-                      : const TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
+                      ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
+                      : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
                   ),
                 ],
               ),
@@ -717,7 +724,7 @@ class _InterestState extends State<Interest> {
           });
         },
         child: Container(
-            margin: const EdgeInsets.only(top: 0),
+            margin: EdgeInsets.only(top: 0),
             height: 45,
             width: 175,
             decoration: pressed19
@@ -725,15 +732,15 @@ class _InterestState extends State<Interest> {
                 : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
             alignment: Alignment.center,
             child: Container(
-              margin: const EdgeInsets.only(left: 5,right: 15),
+              margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [ pressed19
-                  ?const Icon(Icons.tv,size: 25,color: Colors.black,)
-                  :const Icon(Icons.tv,size: 25,color: Colors.white,),
+                    ?Icon(Icons.tv,size: 25,color: Colors.black,)
+                    :Icon(Icons.tv,size: 25,color: Colors.white,),
                   Text("Cartoon",style: pressed19
-                      ? const TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
-                      : const TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
+                      ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
+                      : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
                   ),
                 ],
               ),
@@ -749,7 +756,7 @@ class _InterestState extends State<Interest> {
           });
         },
         child: Container(
-            margin: const EdgeInsets.only(top: 0),
+            margin: EdgeInsets.only(top: 0),
             height: 45,
             width: 175,
             decoration: pressed20
@@ -757,15 +764,15 @@ class _InterestState extends State<Interest> {
                 : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
             alignment: Alignment.center,
             child: Container(
-              margin: const EdgeInsets.only(left: 5,right: 15),
+              margin: EdgeInsets.only(left: 5,right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [ pressed20
-                  ? const Icon(Icons.celebration_outlined,size: 25,color: Colors.black,)
-                  : const Icon(Icons.celebration_outlined,size: 25,color: Colors.white,),
+                    ? Icon(Icons.celebration_outlined,size: 25,color: Colors.black,)
+                    : Icon(Icons.celebration_outlined,size: 25,color: Colors.white,),
                   Text("Party",style: pressed20
-                      ? const TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
-                      : const TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
+                      ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
+                      : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
                   ),
                 ],
               ),
@@ -777,7 +784,7 @@ class _InterestState extends State<Interest> {
     return TextButton(
         onPressed: (){
           if(pressed1 == false || pressed2 == false || pressed3 == false || pressed4 == false ||pressed5 == false || pressed6 == false || pressed7 == false || pressed8 == false || pressed9 == false || pressed10 == false
-           || pressed11 == false || pressed12 == false || pressed13 == false || pressed14 == false ||pressed15 == false || pressed16 == false || pressed17 == false || pressed18 == false || pressed19 == false || pressed20 == false){
+              || pressed11 == false || pressed12 == false || pressed13 == false || pressed14 == false ||pressed15 == false || pressed16 == false || pressed17 == false || pressed18 == false || pressed19 == false || pressed20 == false){
             setState(() {
               cpressed = !cpressed;
             });
@@ -792,18 +799,18 @@ class _InterestState extends State<Interest> {
           }
         },
         child: Container(
-          margin: const EdgeInsets.only(top: 10),
+          margin: EdgeInsets.only(top: 10),
           height: 65,
           width: 310,
           decoration: pressed1&&pressed2&&pressed3&&pressed4&&pressed5&&pressed6&&pressed7&&pressed8&&pressed9&&pressed10
-                    &&pressed11&&pressed12&&pressed13&&pressed14&&pressed15&&pressed16&&pressed17&&pressed18&&pressed19&&pressed20
+              &&pressed11&&pressed12&&pressed13&&pressed14&&pressed15&&pressed16&&pressed17&&pressed18&&pressed19&&pressed20
               ? BoxDecoration(color: Colors.white60, borderRadius: BorderRadius.circular(35))
               : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
           alignment: Alignment.center,
           child: Text("Continue",style: pressed1&&pressed2&&pressed3&&pressed4&&pressed5&&pressed6&&pressed7&&pressed8&&pressed9&&pressed10
               &&pressed11&&pressed12&&pressed13&&pressed14&&pressed15&&pressed16&&pressed17&&pressed18&&pressed19&&pressed20
-              ? const TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
-              : const TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
+              ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
+              : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
           ),
         )
     );
