@@ -239,7 +239,7 @@ class _RegistrationState extends State<Registration>{
       height: 70,
       child: ElevatedButton(
         child: const Text("Register",style: TextStyle(
-            fontSize: 20
+            fontSize: 20,color: Colors.white
         ),),
         style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(Colors.blueGrey),
