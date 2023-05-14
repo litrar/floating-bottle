@@ -185,7 +185,7 @@ class _VertificationState extends State<Vertification> {
           );
         },
         child: const Text("Submit", style: TextStyle(
-            fontSize: 20
+            fontSize: 20,color: Colors.white
         ),),
       ),
     );
