@@ -54,7 +54,7 @@ class PersonalPage extends StatelessWidget {
     });
   }
 
-  Widget _avatar(BuildContext buildContext) {
+  Widget _avatar(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 30.0),
       height: 92.h,
@@ -95,56 +95,54 @@ class PersonalPage extends StatelessWidget {
                           child: Container(
                             height: 15.h,
                             width: double.maxFinite,
+                            color: Colors.black,
                             child: Icon(Icons.photo_camera_outlined,
                                 size: 13.sp, color: Colors.blue),
-                            color: Colors.black,
                           ),
                         )
                       ],
                     )),
               )),
-          Container(
-            //  color: Colors.blue,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  padding: EdgeInsets.only(top: 21.h),
-                  child: Row(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.only(left: 10),
-                        child: Text(
-                          "Remi Chuang",
-                          style: TextStyle(fontSize: 24.sp),
-                        ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                padding: EdgeInsets.only(top: 21.h),
+                child: Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Text(
+                        "Remi Chuang",
+                        style: TextStyle(fontSize: 24.sp),
                       ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              buildContext,
-                              MaterialPageRoute(
-                                  builder: (_) => EditNamePage()));
-                        },
-                        child: Icon(
-                          Icons.edit_outlined,
-                          size: 24.sp,
-                        ),
-                      )
-                    ],
-                  ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const EditNamePage()),
+                        );
+                      },
+                      child: Icon(
+                        Icons.edit_outlined,
+                        size: 24.sp,
+                      ),
+                    )
+                  ],
                 ),
-                Container(
-                  // padding: EdgeInsets.only(bottom: 20.h),
-                  padding: EdgeInsets.fromLTRB(10, 0, 0, 20.h),
-                  child: Text(
-                    "haha",
-                    style: TextStyle(fontSize: 12.sp),
-                  ),
-                )
-              ],
-            ),
+              ),
+              Container(
+                // padding: EdgeInsets.only(bottom: 20.h),
+                padding: EdgeInsets.fromLTRB(10, 0, 0, 20.h),
+                child: Text(
+                  "haha",
+                  style: TextStyle(fontSize: 12.sp),
+                ),
+              )
+            ],
           )
         ],
       ),

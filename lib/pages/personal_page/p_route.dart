@@ -1,3 +1,4 @@
+import 'package:floating_bottle/pages/personal_page/edit_name.dart';
 import 'package:floating_bottle/pages/personal_page/personal_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
@@ -8,28 +9,10 @@ final p_route = GoRoute(
     path: "/personal",
     builder: mainPage,
     routes: [
-  //     GoRoute(
-  //       /// /tasks/NormalTask
-  //         path: TaskType.NORMAL.nameSpace,
-  //         routes: [
-  //           // /tasks/NormalTask/detail/${taskId}
-  //           GoRoute(path: "detail/:taskId", builder: ((context, state) => NormalTaskDetailPage(taskId: state.params["taskId"] ?? ""))),
-  //           // /tasks/NormalTask/take_task/${taskId}
-  //           GoRoute(path: "take_task/:taskId", builder: ((context,state)=>TakeTaskPage(state.params["taskId"]??""))),
-  //           // /tasks/NormalTask/edit/${taskId}
-  //           GoRoute(path: "edit/:taskId", builder: ((context, state) => EditNormalTaskPage(state.params["taskId"] ?? ""))),
-  //           // /tasks/NormalTask/candidates/${taskId}
-  //           GoRoute(path: "candidates/:taskId",
-  //             builder: ((context, state) => TaskCandidatesPage(TaskType.NORMAL, state.params["taskId"]??"")),
-  //             routes: [
-  //               // /tasks/NormalTask/candidates/${taskId}/detail/${candidateId}
-  //               GoRoute(path: "detail/:candidateId",builder: ((context, state) => CandidateDetailPage(TaskType.NORMAL, state.params["taskId"]??"", state.params["candidateId"]??"")))
-  //             ]
-  //           )
-  //         ],
-  //         builder: (_,s)=> ContactPage()
-  //     ),
-  // //    GoRoute(path: "candidates/${TaskType.NORMAL.nameSpace}/:taskId", builder: ((context, state) => TaskCandidatesPage(TaskType.NORMAL, state.params["taskId"]??""))),
-  //     GoRoute(path: 'create', builder: ((context, state) => CreateTaskPage()))
+      GoRoute(
+      path: "edit_name",
+      builder: (context,state) => const EditNamePage()
+    ),
+
     ]
 );

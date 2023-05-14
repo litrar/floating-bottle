@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../components/bottom_bar.dart';
 import '../subpage.dart';
 
@@ -19,9 +19,30 @@ class EditNamePage extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            margin: const EdgeInsets.only(top: 100.0),
-            child: Text('this is edit_name_page'),
+          SafeArea(
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Padding(padding: EdgeInsets.only(left: 15.w)),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(
+                        Icons.arrow_back_ios_new,
+                        color: const Color.fromARGB(255, 122, 161, 216),
+                        size: 25.sp,
+                      ),
+                    )
+                  ],
+                ),
+                Container(
+                  margin: const EdgeInsets.only(top: 100.0),
+                  child: const Text('tlkjlkhis is edit_name_pagelkj'),
+                ),
+              ],
+            ),
           )
         ],
       ),
