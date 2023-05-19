@@ -39,7 +39,7 @@ class EditNamePage extends StatelessWidget {
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 100.0),
-                  child: const Text('tlkjlkhis is edit_name_pagelkj'),
+                  child: const Text('This is edit_name_page'),
                 ),
               ],
             ),
