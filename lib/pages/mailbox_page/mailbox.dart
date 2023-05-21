@@ -20,9 +20,9 @@ class MailboxSubPage implements SubPage {
   Widget getIcon(bool active) {
     return active
         ? Image.asset("assetsfolder/mailbox.jpg",
-            cacheHeight: 50, cacheWidth: 50)
+        cacheHeight: 50, cacheWidth: 50)
         : Image.asset("assetsfolder/mailbox.jpg",
-            cacheHeight: 50, cacheWidth: 50);
+        cacheHeight: 50, cacheWidth: 50);
   }
 
   @override
@@ -34,30 +34,30 @@ class MailBoxPage extends StatelessWidget {
 
   final Friend friend = Friend([
     User(
-      "assetsfolder/avatar.jpg",
+      "assetsfolder/friend1.jpg",
       "Ann",
-      Letter("Ann", "assetsfolder/avatar.jpg", "It was great to hear from you. I'm writing to you..."),
+      Letter("Ann", "assetsfolder/friend1.jpg", "It was great to hear from you. I'm writing to ..."),
       "2023/5/19",
       "20:45",
     ),
     User(
-      "assetsfolder/avatar.jpg",
+      "assetsfolder/friend2.jpg",
       "Pink",
-      Letter("Pink", "assetsfolder/avatar.jpg", "Happy Wednesday! I hope this email finds you..."),
+      Letter("Pink", "assetsfolder/friend2.jpg", "Happy Wednesday! I hope this email finds you..."),
       "2023/5/19",
       "20:45",
     ),
     User(
-      "assetsfolder/avatar.jpg",
+      "assetsfolder/friend3.jpg",
       "HiChew",
-      Letter("HiChew", "assetsfolder/avatar.jpg", "Thank you for your last email. Sorry for the late..."),
+      Letter("HiChew", "assetsfolder/friend3.jpg", "Thank you for your last email. Sorry for the..."),
       "2023/5/19",
       "20:45",
     ),
     User(
-      "assetsfolder/avatar.jpg",
+      "assetsfolder/friend4.jpg",
       "Emma Lin",
-      Letter("Emma Lin", "assetsfolder/avatar.jpg", "April Fool's pranks are way too predictable. I'll..."),
+      Letter("Emma Lin", "assetsfolder/friend4.jpg", "April Fool's pranks are way too predictable. I'll..."),
       "2023/5/19",
       "20:45",
     ),
@@ -80,15 +80,16 @@ class MailBoxPage extends StatelessWidget {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top: 100,bottom: 200),
+                margin: EdgeInsets.only(top: 100),
                 child: Column(
                   children: [
                     Text(
                       'New Letters',
                       style: TextStyle(
                         fontSize: 30.sp,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w700,
                         color: Colors.blueGrey,
+                        fontFamily: 'Bellota-Regular',
                       ),
                     ),
                     Divider(
@@ -101,71 +102,88 @@ class MailBoxPage extends StatelessWidget {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top: 105),
+                width: 450,
+                margin: EdgeInsets.only(top: 102,right: 1),
                 child: ListView(
                   children: friend.friends.map((fp) {
                     return Container(
-                      margin: EdgeInsets.only(top: 0,bottom: 0,right: 10,left: 10),
-                      child: Column(
-                        children: [
-                          InkWell(
-                            child: Row(
+                      decoration: BoxDecoration(color: Colors.white.withOpacity(0.5)),
+                        child: Container(
+                          decoration: const BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(color: Colors.black),
+                              )),
+                          height: 60.h,
+                          padding: EdgeInsets.only(left: 20.w),
+                          child: Expanded(
+                            child: Column(
                               children: [
-                                ClipRRect(
-                                    borderRadius: BorderRadius.circular(500),
-                                    child: Image.asset("${fp.picture}",height: 70,width: 70,)
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "  ${fp.name}",
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 20,
+                                InkWell(
+                                  child: Row(
+                                    children: [
+                                      ClipRRect(
+                                          borderRadius: BorderRadius.circular(500),
+                                          child: Image.asset("${fp.picture}",height: 70,width: 70,)
+                                      ),
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Text(
+                                                "  ${fp.name}",
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: 20,
+                                                  fontFamily: 'Bellota-Regular',
+                                                ),
+                                              ),
+                                              Column(
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      Text("    ${fp.date}",style: TextStyle(
+                                                          fontFamily: 'Bellota-Regular',
+                                                          fontWeight: FontWeight.w600
+                                                      ),),
+                                                      Text("  ${fp.time}",style: TextStyle(
+                                                          fontFamily: 'Bellota-Regular',
+                                                          fontWeight: FontWeight.w600
+                                                      ),)
+                                                    ],
+                                                  ),
+                                                ],
+                                              )
+                                            ],
                                           ),
-                                        ),
-                                        Column(
-                                          children: [
-                                            Row(
-                                              children: [
-                                                Text("    ${fp.date}"),
-                                                Text("  ${fp.time}")
-                                              ],
-                                            ),
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text("  ${fp.letter.content}",style: TextStyle(
-                                            color: Colors.grey.shade700
-                                        ),)
-                                      ],
-                                    )
-                                  ],
-                                )
+                                          Row(
+                                            children: [
+                                              Text("  ${fp.letter.content}",style: TextStyle(
+                                                color: Colors.grey.shade800,
+                                                fontFamily: 'Bellota-Regular',
+                                              ),
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
+                                                softWrap: true,
+                                              )
+                                            ],
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) => LetterContent(name: "${fp.name}", picture: "${fp.picture}", content: "${fp.letter.content}",),
+                                      ),
+                                    );
+                                  },
+                                ),
                               ],
                             ),
-                            onTap: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => LetterContent(name: "${fp.name}"),
-                                ),
-                              );
-                            },
                           ),
-                          Divider(
-                            color: Colors.black,
-                            thickness: 2,
-                            indent: 0,
-                            endIndent: 0,
-                          ),
-                        ],
-                      ),
+                        )
                     );
                   }).toList(),
                 ),
@@ -177,5 +195,3 @@ class MailBoxPage extends StatelessWidget {
     );
   }
 }
-
-
