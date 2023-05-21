@@ -86,8 +86,9 @@ flutter:
     - family: Bellota-Regular
       fonts:
         - asset: assetsfolder/Bellota-Regular.ttf
-  #   - family: Trajan Pro
-  #     fonts:
+    - family: Abril Fatface
+      fonts: 
+        - asset: assetsfolder/AbrilFatface-Regular.ttf
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
