@@ -1,5 +1,6 @@
 import 'package:floating_bottle/pages/contact_page/contact_history.dart';
 import 'package:go_router/go_router.dart';
+import '../write_letter.dart';
 import 'contact.dart';
 
 final c_route = GoRoute(
@@ -7,5 +8,9 @@ final c_route = GoRoute(
     builder: (context, state) => ContactPage(),
     routes: [
       GoRoute(
-          path: "history", builder: (context, state) => ContactHistory()),
+          path: "history",
+          builder: (context, state) => ContactHistory(),
+          routes: [
+            GoRoute(path:"write", builder: (context, state) => WriteLetter()),
+          ]),
     ]);

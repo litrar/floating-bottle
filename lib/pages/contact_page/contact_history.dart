@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-
 import '../mailbox_page/friend.dart';
 import '../mailbox_page/letter.dart';
 import '../mailbox_page/user.dart';
+import '../theme/theme_bloc.dart';
 
 class ContactHistory extends StatelessWidget {
   ContactHistory({super.key});
@@ -46,6 +47,7 @@ class ContactHistory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeCubit themeCubit = context.read();
     return Scaffold(
       body: Stack(children: [
         Container(
@@ -84,6 +86,7 @@ class ContactHistory extends StatelessWidget {
           ],
         ))
       ]),
+      floatingActionButton: _floatButton(context, themeCubit),
     );
   }
 
@@ -187,8 +190,6 @@ class ContactHistory extends StatelessWidget {
                                         ),
                                       ),
                                       Row(
-                                        // mainAxisAlignment:
-                                        //     MainAxisAlignment.spaceBetween,
                                         children: [
                                           SizedBox(
                                             width: 140.w,
@@ -244,5 +245,19 @@ class ContactHistory extends StatelessWidget {
             ))
       ],
     );
+  }
+
+  Widget _floatButton(BuildContext context, ThemeCubit themeCubit) {
+    return InkWell(
+        onTap: () {
+          context.go("/contact/history/write");
+        },
+        child: Container(
+          decoration: BoxDecoration(
+              color: themeCubit.state.floatingButton,
+              border: Border.all(color: Color.fromARGB(255, 234, 231, 223)),
+              borderRadius: BorderRadius.circular(2000)),
+          child: Icon(Icons.add, size: 48.sp, color: Colors.black),
+        ));
   }
 }
