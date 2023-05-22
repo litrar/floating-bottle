@@ -252,7 +252,7 @@ class PersonalPage extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return const Setting(email: "110306999@g.nccu.edu.tw",);
+                        return const Setting(email: "110306999@g.nccu.edu.tw",name:"");
                       },
                     ),
                   );
@@ -288,7 +288,7 @@ class PersonalPage extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return Setting(email: "110306999@g.nccu.edu.tw",);
+                        return Setting(email: "110306999@g.nccu.edu.tw",name:"");
                       },
                     ),
                   );
@@ -314,7 +314,7 @@ class PersonalPage extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return const Setting(email: "110306999@g.nccu.edu.tw",);
+                        return const Setting(email: "110306999@g.nccu.edu.tw",name:"");
                       },
                     ),
                   );
@@ -331,7 +331,7 @@ class PersonalPage extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) {
-                  return const Setting(email: "110306999@g.nccu.edu.tw",);
+                  return const Setting(email: "110306999@g.nccu.edu.tw",name:"");
                 },
               ),
             );
@@ -374,7 +374,7 @@ class PersonalPage extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return const Setting(email: "110306999@g.nccu.edu.tw",);
+                        return const Setting(email: "110306999@g.nccu.edu.tw",name:"");
                       },
                     ),
                   );
