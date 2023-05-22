@@ -1,5 +1,5 @@
-
-import 'package:flutter/cupertino.dart';
+import 'package:floating_bottle/pages/mailbox_page/other_reasons_report.dart';
+import 'package:floating_bottle/pages/mailbox_page/send_report.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -37,7 +37,7 @@ class _ReportState extends State<Report> {
           Column(
             children: [
               Container(
-                margin: EdgeInsets.only(top: 70.h,left: 130.w),
+                margin: EdgeInsets.only(top: 70.h,left: 120.w),
                 child: Text("Reasons for reporting？",style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 30,
@@ -57,7 +57,14 @@ class _ReportState extends State<Report> {
                           fontFamily: 'Bellota-Regular',
                         ),),
                         onTap: (){
-
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return const SendReport();
+                              },
+                            ),
+                          );
                         },
                       ),
                     ),
@@ -71,7 +78,14 @@ class _ReportState extends State<Report> {
                           fontFamily: 'Bellota-Regular',
                         ),),
                         onTap: (){
-
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return const SendReport();
+                              },
+                            ),
+                          );
                         },
                       ),
                     ),
@@ -85,7 +99,14 @@ class _ReportState extends State<Report> {
                           fontFamily: 'Bellota-Regular',
                         ),),
                         onTap: (){
-
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return const SendReport();
+                              },
+                            ),
+                          );
                         },
                       ),
                     ),
@@ -97,7 +118,14 @@ class _ReportState extends State<Report> {
                         fontFamily: 'Bellota-Regular',
                       ),),
                       onTap: (){
-
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const SendReport();
+                            },
+                          ),
+                        );
                       },
                     ),
                     Divider(thickness: 1.5.h,color: Colors.black,),
@@ -110,7 +138,14 @@ class _ReportState extends State<Report> {
                           fontFamily: 'Bellota-Regular',
                         ),),
                         onTap: (){
-
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return const SendReport();
+                              },
+                            ),
+                          );
                         },
                       ),
                     ),
@@ -124,7 +159,14 @@ class _ReportState extends State<Report> {
                           fontFamily: 'Bellota-Regular',
                         ),),
                         onTap: (){
-
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return const OtherReasonsReport();
+                              },
+                            ),
+                          );
                         },
                       ),
                     ),
