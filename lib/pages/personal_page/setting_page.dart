@@ -1,4 +1,5 @@
 import 'package:floating_bottle/pages/personal_page/delete_account_page.dart';
+import 'package:floating_bottle/pages/personal_page/personal_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -27,15 +28,14 @@ class _SettingState extends State<Setting> {
               children: [
                 IconButton(
                   onPressed:(){
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) {
-                    //       return MailBoxPage();
-                    //     },
-                    //   ),
-                    // );
-                    Navigator.pop(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return const PersonalPage();
+                        },
+                      ),
+                    );
                   },
                   icon: Icon(Icons.arrow_back_ios_rounded,size: 35.sp,color: Colors.blueGrey,),),
                 Text("  Settings",style: TextStyle(
