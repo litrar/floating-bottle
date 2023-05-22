@@ -1,5 +1,7 @@
+import 'package:floating_bottle/pages/mailbox_page/report.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'mailbox.dart';
 
 class LetterContent extends StatefulWidget {
@@ -25,24 +27,25 @@ class _LetterContentState extends State<LetterContent> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(left: 15,right: 20,top: 70),
+            margin: EdgeInsets.only(left: 15.w,right: 20.w,top: 50.h),
             child: Row(
               children: [
                 IconButton(
                   onPressed:(){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return MailBoxPage();
-                        },
-                      ),
-                    );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) {
+                    //       return MailBoxPage();
+                    //     },
+                    //   ),
+                    // );
+                    Navigator.pop(context);
                   },
-                  icon: Icon(Icons.arrow_back_ios_rounded,size: 35,color: Colors.blueGrey,),),
+                  icon: Icon(Icons.arrow_back_ios_rounded,size: 35.sp,color: Colors.blueGrey,),),
                   Text("  ${widget.name}",style: TextStyle(
                     color: Colors.blueGrey,
-                    fontSize: 32,
+                    fontSize: 32.sp,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Bellota-Regular',
                 ),)
@@ -50,21 +53,25 @@ class _LetterContentState extends State<LetterContent> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 130,left: 40),
+            margin: EdgeInsets.only(top: 100.h,left: 40.w),
             child: Row(
               children: [
-                ClipRRect(
-                    borderRadius: BorderRadius.circular(500),
-                    child: Image.asset("${widget.picture}",height: 60,width: 60,)
+                ClipOval(
+                  child: Image.asset(
+                    "${widget.picture}",
+                    width: 60.w,
+                    height: 55.h,
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 Text("  ${widget.name}  ",style: TextStyle(
                   fontWeight: FontWeight.w600,
-                  fontSize: 30,
+                  fontSize: 30.sp,
                   color: Colors.black,
                   fontFamily: 'Bellota-Regular',
                 ),),
                 InkWell(
-                    child: Icon(Icons.delete,size: 35,),
+                    child: Icon(Icons.delete,size: 35.sp,),
                     onTap: (){
 
                     },
@@ -73,9 +80,9 @@ class _LetterContentState extends State<LetterContent> {
             ),
           ),
           Container(
-            height: 550,
-            width: 500,
-            margin: EdgeInsets.only(top: 210,left: 50,right: 50),
+            height: 420.h,
+            width: 500.w,
+            margin: EdgeInsets.only(top: 165.h,left: 50.w,right: 50.w),
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.black),
@@ -88,7 +95,7 @@ class _LetterContentState extends State<LetterContent> {
                 child: ListView(
                   children: [
                     Text("${widget.content}",style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 16.sp,
                       fontFamily: 'Bellota-Regular',
                       fontWeight: FontWeight.w600
                     ),),
@@ -96,14 +103,11 @@ class _LetterContentState extends State<LetterContent> {
                 ))
           ),
           Container(
-            margin: EdgeInsets.only(top: 800,left: 70),
+            margin: EdgeInsets.only(top: 620.h,left: 60.w),
             child: SizedBox(
-              width: 100,
-              height: 50,
+              width: 95.w,
+              height: 43.h,
               child: ElevatedButton(
-                child: Text("Reply", style: TextStyle(
-                    fontSize: 22,color: Colors.black,fontFamily: 'Bellota-Regular'
-                ),),
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.white),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -120,18 +124,18 @@ class _LetterContentState extends State<LetterContent> {
                   //   ),
                   // );
                 },
+                child: Text("Reply", style: TextStyle(
+                    fontSize: 22.sp,color: Colors.black,fontFamily: 'Bellota-Regular'
+                ),),
               ),
             )
           ),
           Container(
-            margin: EdgeInsets.only(top: 800,left: 250),
+            margin: EdgeInsets.only(top:620.h,left: 210.w),
             child: SizedBox(
-              width: 100,
-              height: 50,
+              width: 95.w,
+              height: 43.h,
               child: ElevatedButton(
-                child: Text("Report", style: TextStyle(
-                    fontSize: 22,color: Colors.white,fontFamily: 'Bellota-Regular'
-                ),),
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.red),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -139,15 +143,18 @@ class _LetterContentState extends State<LetterContent> {
                     )
                 ),
                 onPressed: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) {
-                  //       return LanguageLevelResult(level: "", item: "");
-                  //     },
-                  //   ),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const Report();
+                      },
+                    ),
+                  );
                 },
+                child: Text("Report", style: TextStyle(
+                    fontSize: 22.sp,color: Colors.white,fontFamily: 'Bellota-Regular'
+                ),),
               ),
             )
           )
