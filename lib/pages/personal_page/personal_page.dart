@@ -1,3 +1,4 @@
+import 'package:floating_bottle/pages/personal_page/setting_page.dart';
 import 'package:floating_bottle/pages/subpage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -221,40 +222,53 @@ class PersonalPage extends StatelessWidget {
         decoration: BoxDecoration(
             color: Colors.white.withOpacity(0.3),
             border: Border.all(color: Colors.black)),
-        child: Row(
-          children: [
-            Padding(padding: EdgeInsets.only(left: 20.w)),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.insert_comment_outlined,
-                size: 40,
+        child: InkWell(
+          child: Row(
+            children: [
+              Padding(padding: EdgeInsets.only(left: 20.w)),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.insert_comment_outlined,
+                  size: 40,
+                ),
               ),
-            ),
-            SizedBox(
-              width: 20.w,
-            ),
-            Text(
-              'Try Our Message Box',
-              style: TextStyle(
-                  fontSize: 21.sp,
-                  fontFamily: 'Bellota-Regular',
-                  fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              width: 20.w,
-            ),
-            IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(
-                Icons.arrow_forward_ios,
-                size: 25.sp,
+              SizedBox(
+                width: 20.w,
               ),
-            )
-          ],
-        ));
+              Text(
+                'Try Our Message Box',
+                style: TextStyle(
+                    fontSize: 21.sp,
+                    fontFamily: 'Bellota-Regular',
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                width: 20.w,
+              ),
+              IconButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const Setting();
+                      },
+                    ),
+                  );
+                },
+                icon: Icon(
+                  Icons.arrow_forward_ios,
+                  size: 25.sp,
+                ),
+              )
+            ],
+          ),
+          onTap: (){
+
+          },
+        )
+    );
   }
 
   Widget _settings(BuildContext context) {
@@ -264,37 +278,58 @@ class PersonalPage extends StatelessWidget {
         decoration: BoxDecoration(
             color: Colors.white.withOpacity(0.3),
             border: Border.all(color: Colors.black)),
-        child: Row(
-          children: [
-            Padding(padding: EdgeInsets.only(left: 20.w)),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.settings_outlined, size: 40.0),
-            ),
-            SizedBox(
-              width: 85.w,
-            ),
-            Text(
-              'Settings',
-              style: TextStyle(
-                  fontSize: 21.sp,
-                  fontFamily: 'Bellota-Regular',
-                  fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              width: 82.w,
-            ),
-            IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(
-                Icons.arrow_forward_ios,
-                size: 25.sp,
+        child: InkWell(
+          child: Row(
+            children: [
+              Padding(padding: EdgeInsets.only(left: 20.w)),
+              IconButton(
+                onPressed: () {
+                },
+                icon: const Icon(Icons.settings_outlined, size: 40.0),
               ),
-            )
-          ],
-        ));
+              SizedBox(
+                width: 85.w,
+              ),
+              Text(
+                'Settings',
+                style: TextStyle(
+                    fontSize: 21.sp,
+                    fontFamily: 'Bellota-Regular',
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                width: 82.w,
+              ),
+              IconButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const Setting();
+                      },
+                    ),
+                  );
+                },
+                icon: Icon(
+                  Icons.arrow_forward_ios,
+                  size: 25.sp,
+                ),
+              )
+            ],
+          ),
+          onTap: (){
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return const Setting();
+                },
+              ),
+            );
+          },
+        )
+    );
   }
 
   Widget _contact(BuildContext context) {
@@ -304,37 +339,50 @@ class PersonalPage extends StatelessWidget {
         decoration: BoxDecoration(
             color: Colors.white.withOpacity(0.3),
             border: Border.all(color: Colors.black)),
-        child: Row(
-          children: [
-            Padding(padding: EdgeInsets.only(left: 20.w)),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.record_voice_over_outlined, size: 40.0),
-            ),
-            SizedBox(
-              width: 70.w,
-            ),
-            Text(
-              'Contact Us',
-              style: TextStyle(
-                  fontSize: 21.sp,
-                  fontFamily: 'Bellota-Regular',
-                  fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              width: 65.w,
-            ),
-            IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(
-                Icons.arrow_forward_ios,
-                size: 25.sp,
+        child: InkWell(
+          child: Row(
+            children: [
+              Padding(padding: EdgeInsets.only(left: 20.w)),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.record_voice_over_outlined, size: 40.0),
               ),
-            )
-          ],
-        ));
+              SizedBox(
+                width: 70.w,
+              ),
+              Text(
+                'Contact Us',
+                style: TextStyle(
+                    fontSize: 21.sp,
+                    fontFamily: 'Bellota-Regular',
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                width: 65.w,
+              ),
+              IconButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const Setting();
+                      },
+                    ),
+                  );
+                },
+                icon: Icon(
+                  Icons.arrow_forward_ios,
+                  size: 25.sp,
+                ),
+              )
+            ],
+          ),
+          onTap: (){
+
+          },
+        )
+    );
   }
 
   Widget _logoutButton(BuildContext context) {
