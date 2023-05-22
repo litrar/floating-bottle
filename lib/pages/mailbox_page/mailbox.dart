@@ -80,7 +80,7 @@ class MailBoxPage extends StatelessWidget {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top: 100),
+                margin: EdgeInsets.only(top: 80.h),
                 child: Column(
                   children: [
                     Text(
@@ -96,81 +96,97 @@ class MailBoxPage extends StatelessWidget {
                       color: Colors.black,
                       endIndent: 0,
                       indent: 0,
-                      thickness: 2,
+                      thickness: 2.h,
                     ),
                   ],
                 ),
               ),
               Container(
-                width: 450,
-                margin: EdgeInsets.only(top: 102,right: 1),
-                child: ListView(
-                  children: friend.friends.map((fp) {
-                    return Container(
-                      decoration: BoxDecoration(color: Colors.white.withOpacity(0.5)),
-                        child: Container(
-                          decoration: const BoxDecoration(
-                              border: Border(
-                                bottom: BorderSide(color: Colors.black),
-                              )),
-                          height: 60.h,
-                          padding: EdgeInsets.only(left: 20.w),
-                          child: Expanded(
-                            child: Column(
-                              children: [
-                                InkWell(
-                                  child: Row(
-                                    children: [
-                                      ClipRRect(
-                                          borderRadius: BorderRadius.circular(500),
-                                          child: Image.asset("${fp.picture}",height: 70,width: 70,)
-                                      ),
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Text(
-                                                "  ${fp.name}",
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.w700,
-                                                  fontSize: 20,
-                                                  fontFamily: 'Bellota-Regular',
-                                                ),
-                                              ),
-                                              Column(
-                                                children: [
-                                                  Row(
-                                                    children: [
-                                                      Text("    ${fp.date}",style: TextStyle(
-                                                          fontFamily: 'Bellota-Regular',
-                                                          fontWeight: FontWeight.w600
-                                                      ),),
-                                                      Text("  ${fp.time}",style: TextStyle(
-                                                          fontFamily: 'Bellota-Regular',
-                                                          fontWeight: FontWeight.w600
-                                                      ),)
-                                                    ],
+                width: 450.w,
+                margin: EdgeInsets.only(top: 120.h,right: 1.w),
+                child:
+                CustomScrollView(
+                  slivers: [
+                    SliverFillRemaining(
+                      child: Column(
+                        children: [
+                          for(var fp in friend.friends)
+                            Container(
+                              decoration: BoxDecoration(color: Colors.white.withOpacity(0.5)),
+                              child: Material(
+                                color: Colors.white.withOpacity(0.0),
+                                child: InkWell(
+                                  child: Container(
+                                    decoration: const BoxDecoration(
+                                        border: Border(
+                                          bottom: BorderSide(color: Colors.black),
+                                        )),
+                                    height: 60.h,
+                                    padding: EdgeInsets.only(left: 20.w),
+                                    child: Row(
+                                      children: [
+                                        ClipOval(
+                                          child: Image.asset(
+                                            "${fp.picture}",
+                                            width: 60.w,
+                                            height: 55.h,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                        Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                ConstrainedBox(
+                                                    constraints: BoxConstraints(minWidth: 45.w),
+                                                child: Text(
+                                                  "  ${fp.name}",
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w700,
+                                                    fontSize: 20.sp,
+                                                    fontFamily: 'Bellota-Regular',
                                                   ),
-                                                ],
-                                              )
-                                            ],
-                                          ),
-                                          Row(
-                                            children: [
-                                              Text("  ${fp.letter.content}",style: TextStyle(
-                                                color: Colors.grey.shade800,
-                                                fontFamily: 'Bellota-Regular',
-                                              ),
-                                                maxLines: 1,
-                                                overflow: TextOverflow.ellipsis,
-                                                softWrap: true,
-                                              )
-                                            ],
-                                          ),
-                                        ],
-                                      )
-                                    ],
+                                                ),),
+                                                Row(
+                                                  children: [
+                                                    Text("    ${fp.date}",style: TextStyle(
+                                                        fontFamily: 'Bellota-Regular',
+                                                        fontWeight: FontWeight.w600),),
+                                                    Text("  ${fp.time}",style: TextStyle(
+                                                        fontFamily: 'Bellota-Regular',
+                                                        fontWeight: FontWeight.w600
+                                                    ),)
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+                                            Flexible(
+                                              child: SingleChildScrollView(
+                                                  child: Row(
+                                                    children: [
+                                                      LimitedBox(
+                                                        maxWidth: 265.w,
+                                                        child: Text(
+                                                          maxLines: 1,
+                                                          overflow: TextOverflow.ellipsis,
+                                                          "   ${fp.letter.content}",
+                                                          style: TextStyle(
+                                                              fontSize: 14.sp,
+                                                              color: const Color.fromARGB(
+                                                                  255, 138, 138, 138),
+                                                              fontFamily: 'Bellota-Regular',
+                                                              fontWeight: FontWeight.bold),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  )),
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    ),
                                   ),
                                   onTap: () {
                                     Navigator.of(context).push(
@@ -178,15 +194,15 @@ class MailBoxPage extends StatelessWidget {
                                         builder: (context) => LetterContent(name: "${fp.name}", picture: "${fp.picture}", content: "${fp.letter.content}",),
                                       ),
                                     );
-                                  },
+                                    },
                                 ),
-                              ],
-                            ),
-                          ),
-                        )
-                    );
-                  }).toList(),
-                ),
+                              ),
+                            )
+                        ],
+                      ),
+                    )
+                  ],
+                )
               )
             ],
           ),
