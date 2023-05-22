@@ -29,7 +29,7 @@ class _WriteLetterState extends State<WriteLetter> {
               Padding(padding: EdgeInsets.only(left: 15.w)),
               IconButton(
                 onPressed: () {
-                  context.go('/contact/history');
+                  Navigator.of(context).pop();
                 },
                 icon: Icon(
                   Icons.arrow_back_ios_new,
