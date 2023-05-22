@@ -81,8 +81,8 @@ class _LetterContentState extends State<LetterContent> {
           ),
           Container(
             height: 420.h,
-            width: 500.w,
-            margin: EdgeInsets.only(top: 165.h,left: 50.w,right: 50.w),
+            width: 550.w,
+            margin: EdgeInsets.only(top: 165.h,left: 40.w,right: 40.w),
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.black),
