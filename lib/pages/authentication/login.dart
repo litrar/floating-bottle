@@ -150,8 +150,8 @@ class _LoginPageState extends State<Login> {
   Widget _loginButton() {
     return Container(
       margin: EdgeInsets.only(left: 35.w, right: 35.w, top: 20.h, bottom: 25.h),
-      width: 350.w,
-      height: 63.h,
+      width: 300.w,
+      height: 60.h,
       child: ElevatedButton(
         style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(Colors.blueGrey),
@@ -172,8 +172,8 @@ class _LoginPageState extends State<Login> {
   Widget _createAccountButton() {
     return Container(
       margin: EdgeInsets.only(left: 35.w, right: 35.w, top: 25.h, bottom: 40.h),
-      width: 350.w,
-      height: 63.h,
+      width: 300.w,
+      height: 60.h,
       child: ElevatedButton(
         style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(Colors.grey.shade500),
