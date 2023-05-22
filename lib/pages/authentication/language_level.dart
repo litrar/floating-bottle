@@ -1,6 +1,7 @@
 import 'package:floating_bottle/pages/authentication/language.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'language_level_result.dart';
 
@@ -19,18 +20,18 @@ class _LanguageLevelState extends State<LanguageLevel> {
             children: <Widget>[
               LanguageLevelResult(level: '', item: "${widget.item}"),
               Container(
-                margin: EdgeInsets.all(0),
+                margin: const EdgeInsets.all(0),
                 color: Colors.white60,
               ),
               // for(var l in language)
               Container(
-                  margin: EdgeInsets.only(top: 350,left: 70,right: 70,bottom: 240),
+                  margin: EdgeInsets.only(top: 250.h,left: 70.w,right: 70.w,bottom: 200.h),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     color: Colors.black54,
                   ),
                   child: Container(
-                    margin: EdgeInsets.only(top: 15),
+                    margin: EdgeInsets.only(top: 10.h),
                     child: Column(
                       children: [
                         Row(
@@ -38,11 +39,11 @@ class _LanguageLevelState extends State<LanguageLevel> {
                           children: [
                             Text("My ${widget.item} level is...",style: TextStyle(
                                 color: Colors.white70,
-                                fontSize: 18
+                                fontSize: 18.sp
                             ),)
                           ],
                         ),
-                        Divider(color: Colors.white,thickness: 1.5),
+                        Divider(color: Colors.white,thickness: 1.5.h),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -57,11 +58,11 @@ class _LanguageLevelState extends State<LanguageLevel> {
                                 style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.black12),),
                                 child: Text("Native Speaker",style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 20
+                                    fontSize: 20.sp
                                 ),))
                           ],
                         ),
-                        Divider(color: Colors.white,thickness: 1.5,),
+                        Divider(color: Colors.white,thickness: 1.5.h,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -76,11 +77,11 @@ class _LanguageLevelState extends State<LanguageLevel> {
                                 style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.black12),),
                                 child: Text("Beginner",style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 20
+                                    fontSize: 20.sp
                                 ),))
                           ],
                         ),
-                        Divider(color: Colors.white,thickness: 1.5),
+                        Divider(color: Colors.white,thickness: 1.5.h),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -95,11 +96,11 @@ class _LanguageLevelState extends State<LanguageLevel> {
                                 style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.black12),),
                                 child: Text("Intermediate",style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 20
+                                    fontSize: 20.sp
                                 ),))
                           ],
                         ),
-                        Divider(color: Colors.white,thickness: 1.5),
+                        Divider(color: Colors.white,thickness: 1.5.h),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -114,7 +115,7 @@ class _LanguageLevelState extends State<LanguageLevel> {
                                 style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.black12),),
                                 child: Text("Advanced",style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 20
+                                    fontSize: 20.sp
                                 ),))
                           ],
                         ),
