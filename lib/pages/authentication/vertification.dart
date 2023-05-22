@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'information.dart';
 // import 'package:flutter_verification_box/verification_box.dart';
@@ -25,23 +26,23 @@ class _VertificationState extends State<Vertification> {
               ListView(
                 children: [
                   Container(
-                    margin: const EdgeInsets.only(top: 150, left: 20),
+                    margin: EdgeInsets.only(top: 100.h, left: 20.w),
                     child:
-                    const Text("Almost there!", style: TextStyle(
-                        fontSize: 35,
+                    Text("Almost there!", style: TextStyle(
+                        fontSize: 35.sp,
                         fontWeight: FontWeight.bold,
                         color: Colors.white
                     ),),
                   ),
                   Container(
-                    margin: const EdgeInsets.only(top: 10, left: 20),
-                    child: const Text(
+                    margin: EdgeInsets.only(top: 10.h, left: 20.w),
+                    child: Text(
                       "Plese enter the code that we have sent to your email for vertification.",
                       style: TextStyle(
                           fontWeight: FontWeight.w500,
-                          fontSize: 20,
+                          fontSize: 20.sp,
                           color: Colors.white,
-                          height: 1.5
+                          height: 1.h
                       ),),
                   ),
                   _verifiField(),
@@ -62,16 +63,17 @@ class _VertificationState extends State<Vertification> {
     //   ),
     // );
     return Container(
-      margin: const EdgeInsets.only(left: 25,right: 25,top: 30),
+      margin: EdgeInsets.only(left: 25.w,right: 25.w,top: 30.h),
       child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
+          children: [
             SizedBox(
-                width: 70,
+                width: 65.w,
+                height: 70.h,
                 child: TextField(
                   decoration: InputDecoration(
                     isDense: true,
-                    border: OutlineInputBorder(
+                    border: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(15)),
                         borderSide: BorderSide(
                             color: Colors.transparent
@@ -80,21 +82,22 @@ class _VertificationState extends State<Vertification> {
                     filled: true,
                     fillColor: Colors.white,
                     isCollapsed: true,
-                    contentPadding: EdgeInsets.symmetric(horizontal: 20,vertical: 15),
+                    contentPadding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 15.h),
                   ),
                   maxLength: 1,
                   style: TextStyle(
-                    fontSize: 25,color: Colors.black,fontWeight: FontWeight.w500,
+                    fontSize: 25.sp,color: Colors.black,fontWeight: FontWeight.w500,
                   ),
                 )
             ),
 
             SizedBox(
-                width: 70,
+                width: 65.w,
+                height: 70.h,
                 child: TextField(
                   decoration: InputDecoration(
                     isDense: true,
-                    border: OutlineInputBorder(
+                    border: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(15)),
                         borderSide: BorderSide(
                             color: Colors.transparent
@@ -103,21 +106,22 @@ class _VertificationState extends State<Vertification> {
                     filled: true,
                     fillColor: Colors.white,
                     isCollapsed: true,
-                    contentPadding: EdgeInsets.symmetric(horizontal: 20,vertical: 15),
+                    contentPadding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 15.h),
                   ),
                   maxLength: 1,
                   style: TextStyle(
-                    fontSize: 25,color: Colors.black,fontWeight: FontWeight.w500,
+                    fontSize: 25.sp,color: Colors.black,fontWeight: FontWeight.w500,
                   ),
                 )
             ),
 
             SizedBox(
-                width: 70,
+                width: 65.w,
+                height: 70.h,
                 child: TextField(
                   decoration: InputDecoration(
                     isDense: true,
-                    border: OutlineInputBorder(
+                    border: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(15)),
                         borderSide: BorderSide(
                             color: Colors.transparent
@@ -126,21 +130,22 @@ class _VertificationState extends State<Vertification> {
                     filled: true,
                     fillColor: Colors.white,
                     isCollapsed: true,
-                    contentPadding: EdgeInsets.symmetric(horizontal: 20,vertical: 15),
+                    contentPadding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 15.h),
                   ),
                   maxLength: 1,
                   style: TextStyle(
-                    fontSize: 25,color: Colors.black,fontWeight: FontWeight.w500,
+                    fontSize: 25.sp,color: Colors.black,fontWeight: FontWeight.w500,
                   ),
                 )
             ),
 
             SizedBox(
-                width: 70,
+                width: 65.w,
+                height: 70.h,
                 child: TextField(
                   decoration: InputDecoration(
                     isDense: true,
-                    border: OutlineInputBorder(
+                    border: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(15)),
                         borderSide: BorderSide(
                             color: Colors.transparent
@@ -149,11 +154,11 @@ class _VertificationState extends State<Vertification> {
                     filled: true,
                     fillColor: Colors.white,
                     isCollapsed: true,
-                    contentPadding: EdgeInsets.symmetric(horizontal: 20,vertical: 15),
+                    contentPadding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 15.h),
                   ),
                   maxLength: 1,
                   style: TextStyle(
-                    fontSize: 25,color: Colors.black,fontWeight: FontWeight.w500,
+                    fontSize: 25.sp,color: Colors.black,fontWeight: FontWeight.w500,
                   ),
                 )
             ),
@@ -164,14 +169,14 @@ class _VertificationState extends State<Vertification> {
 
   Widget _submitButton() {
     return Container(
-      margin: const EdgeInsets.only(left: 35, right: 35, top: 25, bottom: 20),
-      width: 350,
-      height: 70,
+      margin: EdgeInsets.only(left: 35.w, right: 35.w, top: 25.h, bottom: 10.h),
+      width: 350.w,
+      height: 60.h,
       child: ElevatedButton(
         style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(Colors.grey.shade500),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(35))
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(55))
             )
         ),
         onPressed: () {
@@ -184,8 +189,8 @@ class _VertificationState extends State<Vertification> {
             ),
           );
         },
-        child: const Text("Submit", style: TextStyle(
-            fontSize: 20,color: Colors.white
+        child: Text("Submit", style: TextStyle(
+            fontSize: 20.sp,color: Colors.white
         ),),
       ),
     );
@@ -193,9 +198,8 @@ class _VertificationState extends State<Vertification> {
 
   Widget _resendButton() {
     return Container(
-      margin: const EdgeInsets.only(left: 0, right: 0, top: 5, bottom: 0),
-      width: 200,
-      height: 60,
+      width: 200.w,
+      height: 60.h,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -203,10 +207,10 @@ class _VertificationState extends State<Vertification> {
           TextButton(onPressed: () {
             Navigator.of(context).pop();
           },
-              child: const Text("Resend code", style: TextStyle(
+              child: Text("Resend code", style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w400,
-                  fontSize: 20,
+                  fontSize: 20.sp,
                   decoration: TextDecoration.underline
               ),))
         ],
