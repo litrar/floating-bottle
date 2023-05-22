@@ -35,7 +35,7 @@ class _ChangeEmailState extends State<ChangeEmail> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return Setting(email: "${widget.email}",);
+                            return Setting(email: "${widget.email}",name:"");
                           },
                         ),
                       );
@@ -112,34 +112,6 @@ class _ChangeEmailState extends State<ChangeEmail> {
                       },
                     ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(top: 30.h),
-                  child: SizedBox(
-                    width: 120.w,
-                    height: 40.h,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(Colors.white),
-                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))
-                          )
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return Setting(email: "${widget.email}",);
-                          },
-                        ),
-                      );
-                      },
-                      child: Text("Confirm", style: TextStyle(
-                          fontSize: 22.sp,color: Colors.black,fontFamily: 'Bellota-Regular'
-                      ),),
-                    ),
-                  ),
-                )
               ],
             )
           ],
