@@ -1,5 +1,6 @@
 import 'package:floating_bottle/pages/authentication/language_level.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 class SearchBarDelegate extends SearchDelegate<String> {
@@ -9,7 +10,7 @@ class SearchBarDelegate extends SearchDelegate<String> {
   List<Widget>? buildActions(BuildContext context) {
     return [
       IconButton(
-        icon: Icon(Icons.clear),
+        icon: const Icon(Icons.clear),
         onPressed: () => query = "",
       )
     ];
@@ -46,12 +47,12 @@ class SearchBarDelegate extends SearchDelegate<String> {
           title: RichText(
               text: TextSpan(
                   text: suggestionList[index].substring(0, query.length),
-                  style: const TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold,fontSize: 20),
+                  style: TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold,fontSize: 20.sp),
                   children: [
                     TextSpan(
                       text: suggestionList[index].substring(query.length),
-                      style: TextStyle(color: Colors.grey,fontSize: 20),),
+                      style: TextStyle(color: Colors.grey,fontSize: 20.sp),),
                   ])),
           onTap: () {
             query = suggestionList[index];
