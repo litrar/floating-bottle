@@ -31,19 +31,19 @@ class _InformationState extends State<Information> {
               ListView(
                 children: [
                   Container(
-                      margin: EdgeInsets.only(top: 15,left: 310,bottom: 20),
+                      margin: EdgeInsets.only(top: 15.h,left: 270.w,bottom: 10.h),
                       child: TextButton(onPressed: (){
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return Gender();
+                              return const Gender();
                             },
                           ),
                         );
                       },
                         child: Text("Skip",style: TextStyle(
-                            fontSize: 25,
+                            fontSize: 23.sp,
                             fontWeight: FontWeight.w600,
                             color: Colors.white
                         ),),
@@ -107,75 +107,75 @@ class _InformationState extends State<Information> {
   }
   Widget _schoolField(){
     return Container(
-      margin: EdgeInsets.only(left: 25,right: 25,top: 100),
+      margin: EdgeInsets.only(left: 25.w,right: 25.w,top: 50.h),
       child: TextField(
         decoration: InputDecoration(
           isDense: true,
           prefixIcon:
           Align(
-            widthFactor: 2.3,
-            child: Icon(Icons.school,size: 30,),
+            widthFactor: 2.3.w,
+            child: Icon(Icons.school,size: 26.sp,),
           ),
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(35)),
+          border: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(55)),
               borderSide: BorderSide(
                   color: Colors.transparent
               )
           ),
           hintText: " School",
-          hintStyle: TextStyle(fontSize: 22,color: Colors.grey.shade400),
+          hintStyle: TextStyle(fontSize: 18.sp,color: Colors.grey.shade400),
           filled: true,
           fillColor: Colors.white,
           isCollapsed: true,
-          contentPadding: EdgeInsets.symmetric(horizontal: 50,vertical: 25),
+          contentPadding: EdgeInsets.symmetric(horizontal: 50.w,vertical: 20.h),
         ),
         style: TextStyle(
-            fontSize: 22,color: Colors.black,fontWeight: FontWeight.w500
+            fontSize: 22.sp,color: Colors.black,fontWeight: FontWeight.w500
         ),
-        cursorWidth: 3,
+        cursorWidth: 3.w,
       ),
     );
   }
   Widget _cityField(){
     return Container(
-      margin: EdgeInsets.only(left: 25,right: 25,top: 20),
+      margin: EdgeInsets.only(left: 25.w,right: 25.w,top: 20.h),
       child: TextField(
         decoration: InputDecoration(
           isDense: true,
           prefixIcon:
           Align(
-            widthFactor: 2.3,
-            child: Icon(Icons.location_city,size: 30,),
+            widthFactor: 2.3.w,
+            child: Icon(Icons.location_city,size: 26.sp,),
           ),
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(35)),
+          border: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(55)),
               borderSide: BorderSide(
                   color: Colors.transparent
               )
           ),
           hintText: " City",
-          hintStyle: TextStyle(fontSize: 22,color: Colors.grey.shade400),
+          hintStyle: TextStyle(fontSize: 18.sp,color: Colors.grey.shade400),
           filled: true,
           fillColor: Colors.white,
           isCollapsed: true,
-          contentPadding: EdgeInsets.symmetric(horizontal: 50,vertical: 25),
+          contentPadding: EdgeInsets.symmetric(horizontal: 50.w,vertical: 20.h),
         ),
         style: TextStyle(
-            fontSize: 22,color: Colors.black,fontWeight: FontWeight.w500
+            fontSize: 22.sp,color: Colors.black,fontWeight: FontWeight.w500
         ),
-        cursorWidth: 3,
+        cursorWidth: 3.w,
       ),
     );
   }
   Widget _birthField(){
     return Container(
-      margin: EdgeInsets.only(left: 25,right: 25,top: 20),
+      margin: EdgeInsets.only(left: 25.w,right: 25.w,top: 20.h),
       child: TextField(
         decoration: InputDecoration(
           isDense: true,
           prefixIcon:
           Align(
-            widthFactor: 1.5,
+            widthFactor: 1.5.w,
             child: IconButton(
                 onPressed: () async {
                   var result = await showDatePicker(
@@ -190,41 +190,38 @@ class _InformationState extends State<Information> {
                     });
                   };
                 },
-                icon: Icon(Icons.calendar_month,size: 30,)),
+                icon: Icon(Icons.calendar_month,size: 26.sp,)),
           ),
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(35)),
+          border: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(55)),
               borderSide: BorderSide(
                   color: Colors.transparent
               )
           ),
           hintText: " Date of birth",
-          hintStyle: TextStyle(fontSize: 22,color: Colors.grey.shade400),
+          hintStyle: TextStyle(fontSize: 18.sp,color: Colors.grey.shade400),
           filled: true,
           fillColor: Colors.white,
           isCollapsed: true,
-          contentPadding: EdgeInsets.symmetric(horizontal: 50,vertical: 25),
+          contentPadding: EdgeInsets.symmetric(horizontal: 50.w,vertical: 20.h),
         ),
         style: TextStyle(
-            fontSize: 22,color: Colors.black,fontWeight: FontWeight.w500
+            fontSize: 22.sp,color: Colors.black,fontWeight: FontWeight.w500
         ),
-        cursorWidth: 3,
+        cursorWidth: 3.w,
       ),
     );
   }
   Widget _continueButton(){
     return Container(
-      margin: EdgeInsets.only(left: 35,right: 35,top: 40,bottom: 40),
-      width: 350,
-      height: 70,
+      margin: EdgeInsets.only(left: 35.w,right: 35.w,top: 40.h,bottom: 40.h),
+      width: 350.w,
+      height: 60.h,
       child: ElevatedButton(
-        child: Text("Continue",style: TextStyle(
-            fontSize: 20,color: Colors.white
-        ),),
         style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(Colors.blueGrey),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(35))
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(55))
             )
         ),
         onPressed: () {
@@ -232,11 +229,14 @@ class _InformationState extends State<Information> {
             context,
             MaterialPageRoute(
               builder: (context) {
-                return Gender();
+                return const Gender();
               },
             ),
           );
         },
+        child: Text("Continue",style: TextStyle(
+            fontSize: 20.sp,color: Colors.white
+        ),),
       ),
     );
   }
