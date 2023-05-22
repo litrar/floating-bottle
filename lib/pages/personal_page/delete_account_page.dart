@@ -14,7 +14,7 @@ class _DeleteAccountState extends State<DeleteAccount> {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          const Setting(),
+          const Setting(email: "110306999@g.nccu.edu.tw",),
           Container(
             margin: const EdgeInsets.all(0),
             color: Colors.white60,
@@ -61,7 +61,7 @@ class _DeleteAccountState extends State<DeleteAccount> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) {
-                                      return const Setting();
+                                      return const Setting(email: "110306999@g.nccu.edu.tw",);
                                     },
                                   ),
                                 );
