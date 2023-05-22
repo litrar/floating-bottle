@@ -36,7 +36,7 @@ class MailBoxPage extends StatelessWidget {
     User(
       "assetsfolder/friend1.jpg",
       "Ann",
-      Letter("Ann", "assetsfolder/friend1.jpg", "It was great to hear from you. I'm writing to ..."),
+      Letter("Ann", "assetsfolder/friend1.jpg", "It was great to hear from you. I hope this letter finds you well. I’m writing to you to catch up and let you know what’s been going on in my life. Since we last spoke, I’ve been keeping busy with work and personal projects. I’ve started a new job at a marketing agency, which has been both challenging and exciting. The team is great and I’m learning a lot every day. In my free time, I’ve been working on my photography skills and have even started a small business taking photos for local events and weddings. I’ve also been fortunate enough to do some traveling recently. Last month, I went on a trip to Japan and had an amazing time exploring the country and experiencing its culture. The food was incredible and the scenery was breathtaking. I can’t wait to plan my next adventure. How about you? What have you been up to lately? Best regards, Ann"),
       "2023/5/19",
       "20:45",
     ),
