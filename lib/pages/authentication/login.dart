@@ -1,6 +1,7 @@
 import 'package:floating_bottle/pages/authentication/information.dart';
 import 'package:floating_bottle/pages/authentication/registration.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import '../subpage.dart';
@@ -11,7 +12,7 @@ class Login extends StatefulWidget {
   @override
   State<Login> createState() => _LoginPageState();
   static final GoRoute route =
-      GoRoute(path: "/logIn", builder: ((context, state) => Login()));
+      GoRoute(path: "/logIn", builder: ((context, state) => const Login()));
 }
 
 class _LoginPageState extends State<Login> {
@@ -34,33 +35,33 @@ class _LoginPageState extends State<Login> {
             ListView(
               children: [
                 Container(
-                  margin: const EdgeInsets.only(top: 200),
+                  margin: EdgeInsets.only(top: 120.h),
                   child: Column(
                     children: [
-                      const Text(
+                      Text(
                         "Hi there!",
                         style: TextStyle(
                             fontWeight: FontWeight.w700,
-                            fontSize: 30,
+                            fontSize: 30.sp,
                             color: Colors.white),
                       ),
-                      const Text(
+                      Text(
                         "Let's Get Penpals",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 35,
-                          height: 1.5,
+                          fontSize: 33.sp,
+                          height: 1.h,
                           color: Colors.white,
                         ),
                       ),
                       _emailField(),
                       _passwordField(),
                       _loginButton(),
-                      const Text(
+                      Text(
                         "or",
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 25,
+                            fontSize: 25.sp,
                             fontWeight: FontWeight.w400),
                       ),
                       _createAccountButton(),
@@ -75,47 +76,47 @@ class _LoginPageState extends State<Login> {
 
   Widget _emailField() {
     return Container(
-      margin: const EdgeInsets.only(left: 35, right: 35, top: 40),
+      margin: EdgeInsets.only(left: 35.w, right: 35.w, top: 40.h),
       child: TextField(
         decoration: InputDecoration(
           isDense: true,
-          prefixIcon: const Align(
-            widthFactor: 2.3,
+          prefixIcon: Align(
+            widthFactor: 2.3.w,
             child: Icon(
               Icons.email_outlined,
-              size: 30,
+              size: 26.sp,
             ),
           ),
           border: const OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(35)),
+              borderRadius: BorderRadius.all(Radius.circular(55)),
               borderSide: BorderSide(color: Colors.transparent)),
           hintText: " Email Address",
-          hintStyle: TextStyle(fontSize: 22, color: Colors.grey.shade400),
+          hintStyle: TextStyle(fontSize: 18.sp, color: Colors.grey.shade400),
           filled: true,
           fillColor: Colors.white,
           isCollapsed: true,
           contentPadding:
-              const EdgeInsets.symmetric(horizontal: 50, vertical: 25),
+             EdgeInsets.symmetric(horizontal: 50.w, vertical: 20.h),
         ),
-        style: const TextStyle(
-            fontSize: 22, color: Colors.black, fontWeight: FontWeight.w500),
-        cursorWidth: 3,
+        style: TextStyle(
+            fontSize: 22.sp, color: Colors.black, fontWeight: FontWeight.w500),
+        cursorWidth: 3.w,
       ),
     );
   }
 
   Widget _passwordField() {
     return Container(
-      margin: const EdgeInsets.only(left: 35, right: 35, top: 20),
+      margin: EdgeInsets.only(left: 35.w, right: 35.w, top: 20.h),
       child: TextField(
         obscureText: !_passwordVisible,
         decoration: InputDecoration(
           isDense: true,
-          prefixIcon: const Align(
-            widthFactor: 2.3,
+          prefixIcon: Align(
+            widthFactor: 2.3.w,
             child: Icon(
               Icons.lock,
-              size: 30,
+              size: 26.sp,
             ),
           ),
           suffixIcon: IconButton(
@@ -126,43 +127,43 @@ class _LoginPageState extends State<Login> {
               },
               icon: Icon(
                   _passwordVisible ? Icons.visibility : Icons.visibility_off,
-                  size: 25,
+                  size: 23.sp,
                   color: Theme.of(context).primaryColorDark)),
           border: const OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(35)),
+              borderRadius: BorderRadius.all(Radius.circular(55)),
               borderSide: BorderSide(color: Colors.transparent)),
           hintText: "Password",
-          hintStyle: TextStyle(fontSize: 22, color: Colors.grey.shade400),
+          hintStyle: TextStyle(fontSize: 18.sp, color: Colors.grey.shade400),
           filled: true,
           fillColor: Colors.white,
           isCollapsed: true,
           contentPadding:
-              const EdgeInsets.symmetric(horizontal: 50, vertical: 25),
+              EdgeInsets.symmetric(horizontal: 50.w, vertical: 20.h),
         ),
-        style: const TextStyle(
-            fontSize: 22, color: Colors.black, fontWeight: FontWeight.w500),
-        cursorWidth: 3,
+        style: TextStyle(
+            fontSize: 22.sp, color: Colors.black, fontWeight: FontWeight.w500),
+        cursorWidth: 3.w,
       ),
     );
   }
 
   Widget _loginButton() {
     return Container(
-      margin: const EdgeInsets.only(left: 35, right: 35, top: 20, bottom: 25),
-      width: 350,
-      height: 70,
+      margin: EdgeInsets.only(left: 35.w, right: 35.w, top: 20.h, bottom: 25.h),
+      width: 350.w,
+      height: 63.h,
       child: ElevatedButton(
         style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(Colors.blueGrey),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(35)))),
+                    borderRadius: BorderRadius.circular(55)))),
         onPressed: () {
           context.go(SubPage.PERSONAL.route.path);
         },
-        child: const Text(
+        child: Text(
           "Log in",
-          style: TextStyle(fontSize: 20,color: Colors.white),
+          style: TextStyle(fontSize: 20.sp,color: Colors.white),
         ),
       ),
     );
@@ -170,15 +171,15 @@ class _LoginPageState extends State<Login> {
 
   Widget _createAccountButton() {
     return Container(
-      margin: const EdgeInsets.only(left: 35, right: 35, top: 25, bottom: 40),
-      width: 350,
-      height: 70,
+      margin: EdgeInsets.only(left: 35.w, right: 35.w, top: 25.h, bottom: 40.h),
+      width: 350.w,
+      height: 63.h,
       child: ElevatedButton(
         style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(Colors.grey.shade500),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(35)))),
+                    borderRadius: BorderRadius.circular(55)))),
         onPressed: () {
           Navigator.push(
             context,
@@ -189,9 +190,9 @@ class _LoginPageState extends State<Login> {
             ),
           );
         },
-        child: const Text(
+        child: Text(
           "Create an account",
-          style: TextStyle(fontSize: 20,color: Colors.white),
+          style: TextStyle(fontSize: 20.sp,color: Colors.white),
         ),
       ),
     );
