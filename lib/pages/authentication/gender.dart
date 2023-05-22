@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'information.dart';
 import 'interest.dart';
@@ -30,7 +31,7 @@ class _GenderState extends State<Gender> {
               ListView(
                 children: [
                   Container(
-                    margin: EdgeInsets.only(left: 20,right: 20,top: 15),
+                    margin: EdgeInsets.only(left: 20.w,right: 20.w,top: 15.h),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -40,24 +41,24 @@ class _GenderState extends State<Gender> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return Information();
+                                  return const Information();
                                 },
                               ),
                             );
                           },
-                          icon: Icon(Icons.arrow_back_ios_rounded,size: 40,color: Colors.white,),),
+                          icon: Icon(Icons.arrow_back_ios_rounded,size: 36.sp,color: Colors.white,),),
                         TextButton(onPressed: (){
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return Interest();
+                                return const Interest();
                               },
                             ),
                           );
                         },
                           child: Text("Skip",style: TextStyle(
-                              fontSize: 25,
+                              fontSize: 23.sp,
                               fontWeight: FontWeight.w600,
                               color: Colors.white
                           ),),
@@ -66,10 +67,10 @@ class _GenderState extends State<Gender> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(left: 40,top: 80),
+                    margin: EdgeInsets.only(left: 40.w,top: 70.h),
                     child: Text("I'm a...",style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 35,
+                        fontSize: 30.sp,
                         color: Colors.white
                     ),),
                   ),
@@ -96,16 +97,16 @@ class _GenderState extends State<Gender> {
           }
         },
         child: Container(
-          margin: EdgeInsets.only(top: 30),
-          height: 75,
-          width: 340,
+          margin: EdgeInsets.only(top: 30.h),
+          height: 60.h,
+          width: 300.w,
           decoration: wpressed
-              ? BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(35))
-              : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
+              ? BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(55))
+              : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(55)),
           alignment: Alignment.center,
           child: Text("Woman",style: wpressed
-              ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
-              : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
+              ? TextStyle(color: Colors.black,fontSize: 20.sp,fontWeight: FontWeight.bold)
+              : TextStyle(color: Colors.white,fontSize: 20.sp,fontWeight: FontWeight.bold)
           ),
         )
     );
@@ -124,16 +125,16 @@ class _GenderState extends State<Gender> {
           }
         },
         child: Container(
-          margin: EdgeInsets.all(8),
-          height: 75,
-          width: 340,
+          margin: const EdgeInsets.all(8),
+          height: 60.h,
+          width: 300.w,
           decoration: mpressed
-              ? BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(35))
-              : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
+              ? BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(55))
+              : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(55)),
           alignment: Alignment.center,
           child: Text("Man",style: mpressed
-              ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
-              : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
+              ? TextStyle(color: Colors.black,fontSize: 20.sp,fontWeight: FontWeight.bold)
+              : TextStyle(color: Colors.white,fontSize: 20.sp,fontWeight: FontWeight.bold)
           ),
         )
     );
@@ -149,23 +150,23 @@ class _GenderState extends State<Gender> {
               context,
               MaterialPageRoute(
                 builder: (context) {
-                  return Interest();
+                  return const Interest();
                 },
               ),
             );
           }
         },
         child: Container(
-          margin: EdgeInsets.only(top: 300),
-          height: 75,
-          width: 340,
+          margin: EdgeInsets.only(top: 200.h),
+          height: 60.h,
+          width: 300.w,
           decoration: wpressed&&mpressed
-              ? BoxDecoration(color: Colors.white60, borderRadius: BorderRadius.circular(35))
-              : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(35)),
+              ? BoxDecoration(color: Colors.white60, borderRadius: BorderRadius.circular(55))
+              : BoxDecoration(color: Colors.blueGrey, borderRadius: BorderRadius.circular(55)),
           alignment: Alignment.center,
           child: Text("Continue",style: wpressed&&mpressed
-              ? TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)
-              : TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold)
+              ? TextStyle(color: Colors.black,fontSize: 20.sp,fontWeight: FontWeight.bold)
+              : TextStyle(color: Colors.white,fontSize: 20.sp,fontWeight: FontWeight.bold)
           ),
         )
     );
