@@ -2,6 +2,7 @@
 import 'package:floating_bottle/pages/authentication/vertification.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'login.dart';
 
@@ -33,19 +34,19 @@ class _RegistrationState extends State<Registration>{
             ListView(
               children: [
                 Container(
-                  margin: const EdgeInsets.only(top: 90,left: 20),
+                  margin: EdgeInsets.only(top: 70.h,left: 20.w),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Text("Create an account!",style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 35,
+                          fontSize: 35.sp,
                           color: Colors.white
                       ),),
                       Text("Register to get started.",style: TextStyle(
                         fontWeight: FontWeight.w700,
-                        fontSize: 25,
-                        height: 1.5,
+                        fontSize: 25.sp,
+                        height: 1.5.h,
                         color: Colors.white,
                       ),),
 
@@ -67,30 +68,30 @@ class _RegistrationState extends State<Registration>{
   }
   Widget _nickNameField(){
     return Container(
-      margin: const EdgeInsets.only(left: 25,right: 25,top: 40),
+      margin: EdgeInsets.only(left: 25.w,right: 25.w,top: 25.h),
       child: TextField(
         decoration: InputDecoration(
           isDense: true,
           prefixIcon:
-          const Align(
-            widthFactor: 2.3,
-            child: Icon(Icons.person,size: 30,),
+          Align(
+            widthFactor: 2.3.w,
+            child: Icon(Icons.person,size: 26.sp,),
           ),
           border: const OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(35)),
+              borderRadius: BorderRadius.all(Radius.circular(55)),
               borderSide: BorderSide(
                   color: Colors.transparent
               )
           ),
           hintText: " Nickname",
-          hintStyle: TextStyle(fontSize: 22,color: Colors.grey.shade400),
+          hintStyle: TextStyle(fontSize: 18.sp,color: Colors.grey.shade400),
           filled: true,
           fillColor: Colors.white,
           isCollapsed: true,
-          contentPadding: const EdgeInsets.symmetric(horizontal: 50,vertical: 25),
+          contentPadding: EdgeInsets.symmetric(horizontal: 50.w,vertical: 20.h),
         ),
-        style: const TextStyle(
-            fontSize: 22,color: Colors.black,fontWeight: FontWeight.w500
+        style: TextStyle(
+            fontSize: 22.sp,color: Colors.black,fontWeight: FontWeight.w500
         ),
         cursorWidth: 3,
       ),
@@ -98,46 +99,46 @@ class _RegistrationState extends State<Registration>{
   }
   Widget _emailField(){
     return Container(
-      margin: const EdgeInsets.only(left: 25,right: 25,top: 10),
+      margin: EdgeInsets.only(left: 25.w,right: 25.w,top: 10.h),
       child: TextField(
         decoration: InputDecoration(
           isDense: true,
           prefixIcon:
-          const Align(
-            widthFactor: 2.3,
-            child: Icon(Icons.email_outlined,size: 30,),
+          Align(
+            widthFactor: 2.3.w,
+            child: Icon(Icons.email_outlined,size: 26.sp,),
           ),
           border: const OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(35)),
+              borderRadius: BorderRadius.all(Radius.circular(55)),
               borderSide: BorderSide(
                   color: Colors.transparent
               )
           ),
           hintText: " Email Address",
-          hintStyle: TextStyle(fontSize: 22,color: Colors.grey.shade400),
+          hintStyle: TextStyle(fontSize: 18.sp,color: Colors.grey.shade400),
           filled: true,
           fillColor: Colors.white,
           isCollapsed: true,
-          contentPadding: const EdgeInsets.symmetric(horizontal: 50,vertical: 25),
+          contentPadding: EdgeInsets.symmetric(horizontal: 50.w,vertical: 20.h),
         ),
-        style: const TextStyle(
-            fontSize: 22,color: Colors.black,fontWeight: FontWeight.w500
+        style: TextStyle(
+            fontSize: 22.sp,color: Colors.black,fontWeight: FontWeight.w500
         ),
-        cursorWidth: 3,
+        cursorWidth: 3.w,
       ),
     );
   }
   Widget _passwordField(){
     return Container(
-      margin: const EdgeInsets.only(left: 25,right: 25,top: 10),
+      margin: EdgeInsets.only(left: 25.w,right: 25.w,top: 10.h),
       child: TextField(
         obscureText: !_passwordVisible,
         decoration: InputDecoration(
           isDense: true,
           prefixIcon:
-          const Align(
-            widthFactor: 2.3,
-            child: Icon(Icons.lock,size: 30,),
+          Align(
+            widthFactor: 2.3.w,
+            child: Icon(Icons.lock,size: 26.sp,),
           ),
           suffixIcon: IconButton(
               onPressed: () {
@@ -147,39 +148,39 @@ class _RegistrationState extends State<Registration>{
               },
               icon: Icon(
                   _passwordVisible ? Icons.visibility : Icons.visibility_off,
-                  size: 25,
+                  size: 25.sp,
                   color: Theme.of(context).primaryColorDark)),
           border: const OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(35)),
+              borderRadius: BorderRadius.all(Radius.circular(55)),
               borderSide: BorderSide(
                   color: Colors.transparent
               )
           ),
           hintText: " Password",
-          hintStyle: TextStyle(fontSize: 22,color: Colors.grey.shade400),
+          hintStyle: TextStyle(fontSize: 18.sp,color: Colors.grey.shade400),
           filled: true,
           fillColor: Colors.white,
           isCollapsed: true,
-          contentPadding: const EdgeInsets.symmetric(horizontal: 50,vertical: 25),
+          contentPadding: EdgeInsets.symmetric(horizontal: 50.w,vertical: 20.h),
         ),
-        style: const TextStyle(
-            fontSize: 22,color: Colors.black,fontWeight: FontWeight.w500
+        style: TextStyle(
+            fontSize: 22.sp,color: Colors.black,fontWeight: FontWeight.w500
         ),
-        cursorWidth: 3,
+        cursorWidth: 3.w,
       ),
     );
   }
   Widget _confirmPasswordField(){
     return Container(
-      margin: const EdgeInsets.only(left: 25,right: 25,top: 10),
+      margin: EdgeInsets.only(left: 25.w,right: 25.w,top: 10.h),
       child: TextField(
         obscureText: !_passwordVisible,
         decoration: InputDecoration(
           isDense: true,
           prefixIcon:
-          const Align(
-            widthFactor: 2.3,
-            child: Icon(Icons.lock,size: 30,),
+          Align(
+            widthFactor: 2.3.w,
+            child: Icon(Icons.lock,size: 26.sp,),
           ),
           suffixIcon: IconButton(
               onPressed: () {
@@ -189,35 +190,35 @@ class _RegistrationState extends State<Registration>{
               },
               icon: Icon(
                   _passwordVisible ? Icons.visibility : Icons.visibility_off,
-                  size: 25,
+                  size: 25.sp,
                   color: Theme.of(context).primaryColorDark)),
           border: const OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(35)),
+              borderRadius: BorderRadius.all(Radius.circular(55)),
               borderSide: BorderSide(
                   color: Colors.transparent
               )
           ),
           hintText: " Confirm Password",
-          hintStyle: TextStyle(fontSize: 22,color: Colors.grey.shade400),
+          hintStyle: TextStyle(fontSize: 18.sp,color: Colors.grey.shade400),
           filled: true,
           fillColor: Colors.white,
           isCollapsed: true,
-          contentPadding: const EdgeInsets.symmetric(horizontal: 50,vertical: 25),
+          contentPadding: EdgeInsets.symmetric(horizontal: 50.w,vertical: 20.h),
         ),
-        style: const TextStyle(
-            fontSize: 22,color: Colors.black,fontWeight: FontWeight.w500
+        style: TextStyle(
+            fontSize: 22.sp,color: Colors.black,fontWeight: FontWeight.w500
         ),
-        cursorWidth: 3,
+        cursorWidth: 3.w,
       ),
     );
   }
   Widget _agreeCheckbox(){
     return Container(
-      margin: const EdgeInsets.only(left: 25,right: 25,top: 10),
+      margin: EdgeInsets.only(left: 25.w,right: 25.w,top: 10.h),
       child: CheckboxListTile(
-        title: const Text("By registering, you are agreeing with our Terms of Use and Privacy Policy",style: TextStyle(
+        title: Text("By registering, you are agreeing with our Terms of Use and Privacy Policy",style: TextStyle(
             fontWeight: FontWeight.w400,
-            fontSize: 20,
+            fontSize: 17.sp,
             color: Colors.white
         ),),
         side: const BorderSide(color: Colors.white),
@@ -234,17 +235,14 @@ class _RegistrationState extends State<Registration>{
   }
   Widget _registerButton(){
     return Container(
-      margin: const EdgeInsets.only(left: 35,right: 35,top: 25,bottom: 40),
-      width: 350,
-      height: 70,
+      margin: EdgeInsets.only(left: 35.w,right: 35.w,top: 15.h,bottom: 40.h),
+      width: 350.w,
+      height: 60.h,
       child: ElevatedButton(
-        child: const Text("Register",style: TextStyle(
-            fontSize: 20,color: Colors.white
-        ),),
         style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(Colors.blueGrey),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(35))
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(55))
             )
         ),
         onPressed: () {
@@ -253,7 +251,7 @@ class _RegistrationState extends State<Registration>{
               context,
               MaterialPageRoute(
                 builder: (context) {
-                  return Vertification();
+                  return const Vertification();
                 },
               ),
             );
@@ -262,26 +260,29 @@ class _RegistrationState extends State<Registration>{
               context,
               MaterialPageRoute(
                 builder: (context) {
-                  return Registration();
+                  return const Registration();
                 },
               ),
             );
           }
-        }
+        },
+        child: Text("Register",style: TextStyle(
+            fontSize: 20.sp,color: Colors.white
+        ),)
       ),
     );
   }
   Widget _loginTextButton(){
     return Container(
-      margin: const EdgeInsets.only(left: 0,right: 0,top: 15,bottom: 0),
+      margin: EdgeInsets.only(left: 0.w,right: 0.w,top: 15.h,bottom: 0.h),
       color: const Color(0xFFB0C4DE),
-      width: 200,
-      height: 60,
+      width: 200.w,
+      height: 60.h,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Text("          Already have an account?",style: TextStyle(
-              fontSize: 20,
+          Text("          Already have an account?",style: TextStyle(
+              fontSize: 20.sp,
               fontWeight: FontWeight.w400,
               color: Colors.black
           ),),
@@ -291,15 +292,15 @@ class _RegistrationState extends State<Registration>{
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return Login();
+                    return const Login();
                   },
                 ),
               );
           },
-              child: const Text("Log in",style: TextStyle(
+              child: Text("Log in",style: TextStyle(
                   color: Colors.indigo,
                   fontWeight: FontWeight.w400,
-                  fontSize: 20,
+                  fontSize: 20.sp,
                   decoration: TextDecoration.underline
               ),))
         ],
