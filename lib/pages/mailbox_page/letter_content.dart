@@ -1,7 +1,9 @@
+import 'package:floating_bottle/pages/mailbox_page/delete_letter.dart';
 import 'package:floating_bottle/pages/mailbox_page/report.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../write_letter.dart';
 import 'mailbox.dart';
 
 class LetterContent extends StatefulWidget {
@@ -73,7 +75,14 @@ class _LetterContentState extends State<LetterContent> {
                 InkWell(
                     child: Icon(Icons.delete,size: 35.sp,),
                     onTap: (){
-
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return DeleteLetter(name: '${widget.name}', picture: '${widget.picture}', content: '${widget.content}',);
+                          },
+                        ),
+                      );
                     },
                   ),
               ],
@@ -115,14 +124,14 @@ class _LetterContentState extends State<LetterContent> {
                     )
                 ),
                 onPressed: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) {
-                  //       return LanguageLevelResult(level: "", item: "");
-                  //     },
-                  //   ),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return WriteLetter();
+                      },
+                    ),
+                  );
                 },
                 child: Text("Reply", style: TextStyle(
                     fontSize: 22.sp,color: Colors.black,fontFamily: 'Bellota-Regular'
