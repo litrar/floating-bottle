@@ -123,11 +123,11 @@ class _InformationState extends State<Information> {
               )
           ),
           hintText: " School",
-          hintStyle: TextStyle(fontSize: 18.sp,color: Colors.grey.shade400),
+          hintStyle: TextStyle(fontSize: 20.sp,color: Colors.grey.shade400),
           filled: true,
           fillColor: Colors.white,
           isCollapsed: true,
-          contentPadding: EdgeInsets.symmetric(horizontal: 50.w,vertical: 20.h),
+          contentPadding: EdgeInsets.symmetric(horizontal: 1.w,vertical: 20.h),
         ),
         style: TextStyle(
             fontSize: 22.sp,color: Colors.black,fontWeight: FontWeight.w500
@@ -154,11 +154,11 @@ class _InformationState extends State<Information> {
               )
           ),
           hintText: " City",
-          hintStyle: TextStyle(fontSize: 18.sp,color: Colors.grey.shade400),
+          hintStyle: TextStyle(fontSize: 20.sp,color: Colors.grey.shade400),
           filled: true,
           fillColor: Colors.white,
           isCollapsed: true,
-          contentPadding: EdgeInsets.symmetric(horizontal: 50.w,vertical: 20.h),
+          contentPadding: EdgeInsets.symmetric(horizontal: 1.w,vertical: 20.h),
         ),
         style: TextStyle(
             fontSize: 22.sp,color: Colors.black,fontWeight: FontWeight.w500
@@ -199,11 +199,11 @@ class _InformationState extends State<Information> {
               )
           ),
           hintText: " Date of birth",
-          hintStyle: TextStyle(fontSize: 18.sp,color: Colors.grey.shade400),
+          hintStyle: TextStyle(fontSize: 20.sp,color: Colors.grey.shade400),
           filled: true,
           fillColor: Colors.white,
           isCollapsed: true,
-          contentPadding: EdgeInsets.symmetric(horizontal: 50.w,vertical: 20.h),
+          contentPadding: EdgeInsets.symmetric(horizontal: 1.w,vertical: 20.h),
         ),
         style: TextStyle(
             fontSize: 22.sp,color: Colors.black,fontWeight: FontWeight.w500
