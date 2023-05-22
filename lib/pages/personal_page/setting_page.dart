@@ -1,15 +1,18 @@
 import 'package:floating_bottle/pages/personal_page/change_email_page.dart';
+import 'package:floating_bottle/pages/personal_page/change_gender_page.dart';
+import 'package:floating_bottle/pages/personal_page/change_name_page.dart';
 import 'package:floating_bottle/pages/personal_page/delete_account_page.dart';
 import 'package:floating_bottle/pages/personal_page/personal_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Setting extends StatefulWidget {
-  const Setting({Key? key,required this.email}) : super(key: key);
+  const Setting({Key? key,required this.email,required this.name}) : super(key: key);
 
   @override
   State<Setting> createState() => _SettingState();
   final String email;
+  final String name;
 }
 class _SettingState extends State<Setting> {
   Widget build(BuildContext context) {
@@ -152,6 +155,14 @@ class _SettingState extends State<Setting> {
                           Padding(padding: EdgeInsets.only(left: 20.w)),
                           IconButton(
                             onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return ChangeName(email: '${widget.email}', name: '${widget.name}',);
+                                  },
+                                ),
+                              );
                             },
                             icon: const Icon(Icons.person_rounded, size: 40.0),
                           ),
@@ -174,7 +185,7 @@ class _SettingState extends State<Setting> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return Setting(email: '${widget.email}',);
+                                    return ChangeName(email: '${widget.email}', name: '${widget.name}',);
                                   },
                                 ),
                               );
@@ -191,7 +202,7 @@ class _SettingState extends State<Setting> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return Setting(email: '${widget.email}',);
+                              return ChangeName(email: '${widget.email}', name: '${widget.name}',);
                             },
                           ),
                         );
@@ -210,6 +221,14 @@ class _SettingState extends State<Setting> {
                           Padding(padding: EdgeInsets.only(left: 20.w)),
                           IconButton(
                             onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return const ChangeGender();
+                                  },
+                                ),
+                              );
                             },
                             icon: const Icon(Icons.male, size: 40.0),
                           ),
@@ -232,7 +251,7 @@ class _SettingState extends State<Setting> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return Setting(email: '${widget.email}',);
+                                    return const ChangeGender();
                                   },
                                 ),
                               );
@@ -249,7 +268,7 @@ class _SettingState extends State<Setting> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return Setting(email: '${widget.email}',);
+                              return const ChangeGender();
                             },
                           ),
                         );
@@ -290,7 +309,7 @@ class _SettingState extends State<Setting> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return Setting(email: '${widget.email}',);
+                                    return Setting(email: '${widget.email}', name: '${widget.name}',);
                                   },
                                 ),
                               );
@@ -307,7 +326,7 @@ class _SettingState extends State<Setting> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return Setting(email: '${widget.email}',);
+                              return Setting(email: '${widget.email}', name: '${widget.name}',);
                             },
                           ),
                         );
@@ -348,7 +367,7 @@ class _SettingState extends State<Setting> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return Setting(email: '${widget.email}',);
+                                    return Setting(email: '${widget.email}', name: '${widget.name}',);
                                   },
                                 ),
                               );
@@ -365,7 +384,7 @@ class _SettingState extends State<Setting> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return Setting(email: '${widget.email}',);
+                              return Setting(email: '${widget.email}', name: '${widget.name}',);
                             },
                           ),
                         );
@@ -406,7 +425,7 @@ class _SettingState extends State<Setting> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return Setting(email: '${widget.email}',);
+                                    return Setting(email: '${widget.email}', name: '${widget.name}',);
                                   },
                                 ),
                               );
@@ -423,7 +442,7 @@ class _SettingState extends State<Setting> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return Setting(email: '${widget.email}',);
+                              return Setting(email: '${widget.email}', name: '${widget.name}',);
                             },
                           ),
                         );
@@ -464,7 +483,7 @@ class _SettingState extends State<Setting> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return Setting(email: '${widget.email}',);
+                                    return Setting(email: '${widget.email}', name: '${widget.name}',);
                                   },
                                 ),
                               );
@@ -481,7 +500,7 @@ class _SettingState extends State<Setting> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return Setting(email: '${widget.email}',);
+                              return Setting(email: '${widget.email}', name: '${widget.name}',);
                             },
                           ),
                         );
