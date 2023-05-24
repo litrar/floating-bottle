@@ -9,8 +9,12 @@ final c_route = GoRoute(
     routes: [
       GoRoute(
           path: "history",
+          // path: "history/:user"
           builder: (context, state) => ContactHistory(),
+          // builder: (context, state) => ContactHistory(state.params["user"] ?? ""),
+        
           routes: [
             GoRoute(path:"write", builder: (context, state) => WriteLetter()),
+            // GoRoute(path:"letter", builder: (context, state) => LetterContent()),
           ]),
     ]);

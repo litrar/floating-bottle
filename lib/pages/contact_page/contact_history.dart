@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import '../mailbox_page/friend.dart';
 import '../mailbox_page/letter.dart';
+import '../mailbox_page/letter_content.dart';
 import '../mailbox_page/user.dart';
 import '../theme/theme_bloc.dart';
 
@@ -151,7 +152,15 @@ class ContactHistory extends StatelessWidget {
                         color: Colors.white.withOpacity(0.0),
                         child: InkWell(
                           onTap: () {
-                            context.go('/contact/history');
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => LetterContent(
+                                  name: "${f.name}",
+                                  picture: "${f.picture}",
+                                  content: "${f.letter.content}",
+                                ),
+                              ),
+                            );
                           },
                           child: Container(
                             decoration: const BoxDecoration(
@@ -260,4 +269,6 @@ class ContactHistory extends StatelessWidget {
           child: Icon(Icons.add, size: 48.sp, color: Colors.black),
         ));
   }
+
+  
 }
