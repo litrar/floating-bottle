@@ -1,7 +1,5 @@
-import 'package:easy_search_bar/easy_search_bar.dart';
 import 'package:floating_bottle/pages/components/button.dart';
 import 'package:floating_bottle/pages/match_page/match_result.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:searchfield/searchfield.dart';
@@ -14,6 +12,10 @@ class MatchFilterPage extends StatefulWidget {
 
 class _MatchFilterPageState extends State<MatchFilterPage> {
   bool isSelected = false;
+  bool p1 = true;
+  bool p2 = true;
+  bool p3 = true;
+  bool p4 = true;
   String searchValue = "";
   final List<MyButton> buttons = [
     const MyButton(bName: 'Same School'),
@@ -457,11 +459,6 @@ class _MatchFilterPageState extends State<MatchFilterPage> {
   }
 
   Widget _continueButton(BuildContext context) {
-    bool p1 = true;
-    bool p2 = true;
-    bool p3 = true;
-    bool p4 = true;
-
     for (int i = 0; i < 4; i++) {
       if (buttons[i].getBool() == true) {
         p1 = !p1;
