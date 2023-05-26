@@ -17,44 +17,7 @@ class _MatchFilterPageState extends State<MatchFilterPage> {
   bool p3 = true;
   bool p4 = true;
   String searchValue = "";
-  final List<MyButton> buttons = [
-    const MyButton(bName: 'Same School'),
-    const MyButton(bName: 'Same Major'),
-    const MyButton(bName: 'Different School'),
-    const MyButton(bName: 'Different Major'),
-    const MyButton(bName: 'Female'),
-    const MyButton(bName: 'Male'),
-    const MyButton(bName: 'Adventurous'),
-    const MyButton(bName: 'Reliable'),
-    const MyButton(bName: 'Analytical'),
-    const MyButton(bName: 'Perfectionist'),
-    const MyButton(bName: 'Confident'),
-    const MyButton(bName: 'Meticulous'),
-    const MyButton(bName: 'Creative'),
-    const MyButton(bName: 'Outgoing'),
-    const MyButton(bName: 'Empathetic'),
-    const MyButton(bName: 'Spontaneous'),
-    const MyButton(bName: 'Friendly'),
-    const MyButton(bName: 'Thoughtful'),
-    const MyButton(bName: 'Independent'),
-    const MyButton(bName: 'Trustworthy'),
-    const MyButton(bName: 'Introverted'),
-    const MyButton(bName: 'Extroverted'),
-    const MyButton(bName: 'Cooking'),
-    const MyButton(bName: 'Photography'),
-    const MyButton(bName: 'Music'),
-    const MyButton(bName: 'Art'),
-    const MyButton(bName: 'Pet'),
-    const MyButton(bName: 'Sports'),
-    const MyButton(bName: 'Dancing'),
-    const MyButton(bName: 'Games'),
-    const MyButton(bName: 'Reading'),
-    const MyButton(bName: 'Traveling'),
-    const MyButton(bName: 'Coding'),
-    const MyButton(bName: 'Cuisine'),
-    const MyButton(bName: 'Makeup'),
-    const MyButton(bName: 'Movie'),
-  ];
+
   final List<String> suggestions_c = [
     'Taipei City',
     'New Taipei City',
@@ -64,6 +27,45 @@ class _MatchFilterPageState extends State<MatchFilterPage> {
   final List<String> suggestions_l = ['Chinese', 'English', 'Spanish'];
   @override
   Widget build(BuildContext context) {
+    final List<MyButton> buttons = [
+      MyButton(() => setState(() {}), bName: 'Same School'),
+      MyButton(() => setState(() {}), bName: 'Same Major'),
+      MyButton(() => setState(() {}), bName: 'Different School'),
+      MyButton(() => setState(() {}), bName: 'Different Major'),
+      MyButton(() => setState(() {}), bName: 'Female'),
+      MyButton(() => setState(() {}), bName: 'Male'),
+      MyButton(() => setState(() {}), bName: 'Adventurous'),
+      MyButton(() => setState(() {}), bName: 'Reliable'),
+      MyButton(() => setState(() {}), bName: 'Analytical'),
+      MyButton(() => setState(() {}), bName: 'Perfectionist'),
+      MyButton(() => setState(() {}), bName: 'Confident'),
+      MyButton(() => setState(() {}), bName: 'Meticulous'),
+      MyButton(() => setState(() {}), bName: 'Creative'),
+      MyButton(() => setState(() {}), bName: 'Outgoing'),
+      MyButton(() => setState(() {}), bName: 'Empathetic'),
+      MyButton(() => setState(() {}), bName: 'Spontaneous'),
+      MyButton(() => setState(() {}), bName: 'Friendly'),
+      MyButton(() => setState(() {}), bName: 'Thoughtful'),
+      MyButton(() => setState(() {}), bName: 'Independent'),
+      MyButton(() => setState(() {}), bName: 'Trustworthy'),
+      MyButton(() => setState(() {}), bName: 'Introverted'),
+      MyButton(() => setState(() {}), bName: 'Extroverted'),
+      MyButton(() => setState(() {}), bName: 'Cooking'),
+      MyButton(() => setState(() {}), bName: 'Photography'),
+      MyButton(() => setState(() {}), bName: 'Music'),
+      MyButton(() => setState(() {}), bName: 'Art'),
+      MyButton(() => setState(() {}), bName: 'Pet'),
+      MyButton(() => setState(() {}), bName: 'Sports'),
+      MyButton(() => setState(() {}), bName: 'Dancing'),
+      MyButton(() => setState(() {}), bName: 'Games'),
+      MyButton(() => setState(() {}), bName: 'Reading'),
+      MyButton(() => setState(() {}), bName: 'Traveling'),
+      MyButton(() => setState(() {}), bName: 'Coding'),
+      MyButton(() => setState(() {}), bName: 'Cuisine'),
+      MyButton(() => setState(() {}), bName: 'Makeup'),
+      MyButton(() => setState(() {}), bName: 'Movie'),
+    ];
+
     return Scaffold(
       body: Stack(
         children: [
@@ -81,13 +83,13 @@ class _MatchFilterPageState extends State<MatchFilterPage> {
               children: [
                 _arrowBack(context),
                 _title(context),
-                _school(context),
-                _sexual(context),
+                _school(context, buttons),
+                _sexual(context, buttons),
                 _city(context),
                 _language(context),
-                _personality(context),
-                _interest(context),
-                _continueButton(context)
+                _personality(context, buttons),
+                _interest(context, buttons),
+                _continueButton(context, buttons)
               ],
             ),
           ))
@@ -126,7 +128,7 @@ class _MatchFilterPageState extends State<MatchFilterPage> {
     );
   }
 
-  Widget _school(BuildContext context) {
+  Widget _school(BuildContext context, List<MyButton> buttons) {
     return Container(
         height: 110.h,
         margin: EdgeInsets.only(top: 10.h),
@@ -160,7 +162,7 @@ class _MatchFilterPageState extends State<MatchFilterPage> {
         ));
   }
 
-  Widget _sexual(BuildContext context) {
+  Widget _sexual(BuildContext context, List<MyButton> buttons) {
     return Container(
         height: 75.h,
         margin: EdgeInsets.only(top: 10.h),
@@ -311,7 +313,7 @@ class _MatchFilterPageState extends State<MatchFilterPage> {
         ));
   }
 
-  Widget _personality(BuildContext context) {
+  Widget _personality(BuildContext context, List<MyButton> buttons) {
     return Container(
         height: 345.h,
         margin: EdgeInsets.only(top: 10.h),
@@ -387,7 +389,7 @@ class _MatchFilterPageState extends State<MatchFilterPage> {
         ));
   }
 
-  Widget _interest(BuildContext context) {
+  Widget _interest(BuildContext context, List<MyButton> buttons) {
     return Container(
       height: 300.h,
       margin: EdgeInsets.only(top: 10.h),
@@ -458,7 +460,7 @@ class _MatchFilterPageState extends State<MatchFilterPage> {
     );
   }
 
-  Widget _continueButton(BuildContext context) {
+  Widget _continueButton(BuildContext context, List<MyButton> buttons) {
     for (int i = 0; i < 4; i++) {
       if (buttons[i].getBool() == true) {
         p1 = !p1;

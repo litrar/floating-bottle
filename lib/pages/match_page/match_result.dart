@@ -1,3 +1,4 @@
+import 'package:floating_bottle/pages/contact_page/contact_detail.dart';
 import 'package:floating_bottle/pages/mailbox_page/new_user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,7 +17,7 @@ class _MatchResultPageState extends State<MatchResultPage> {
         name: 'Ann',
         school: 'National Chengchi University',
         gender: 'Woman',
-        city: 'Taipei',
+        city: 'Taipeisd',
         age: '20',
         personalities: ['Extroverted', 'Outgoing'],
         interests: ['Cooking', 'Movie', 'Pet'],
@@ -111,9 +112,13 @@ class _MatchResultPageState extends State<MatchResultPage> {
       width: MediaQuery.of(context).size.width * 0.8,
       decoration: user.isSelected!
           ? BoxDecoration(
-              borderRadius: BorderRadius.circular(35), color: Colors.white)
+              borderRadius: BorderRadius.circular(35),
+              color: Colors.white,
+              border: Border.all(color: Colors.black))
           : BoxDecoration(
-              borderRadius: BorderRadius.circular(35), color: Colors.blueGrey),
+              borderRadius: BorderRadius.circular(35),
+              color: Colors.blueGrey,
+              border: Border.all(color: Colors.black)),
       child: Material(
         color: Colors.white.withOpacity(0.0),
         child: InkWell(
@@ -121,10 +126,13 @@ class _MatchResultPageState extends State<MatchResultPage> {
             setState(() {
               user.isSelected = !user.isSelected!;
             });
-            // matchedUser1 = isSelected;
-            // if(isSelected == false){
-
-            // }
+            if (user.isSelected == false) {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => ContactDetailPage(user: user),
+                ),
+              );
+            }
           },
           child: Container(
             padding: EdgeInsets.only(left: 20.w),
@@ -145,12 +153,12 @@ class _MatchResultPageState extends State<MatchResultPage> {
                 style: user.isSelected!
                     ? TextStyle(
                         color: Colors.black,
-                        fontSize: 30.sp,
+                        fontSize: 26.sp,
                         fontFamily: 'Bellota-Regular',
                         fontWeight: FontWeight.bold)
                     : TextStyle(
                         color: Colors.white,
-                        fontSize: 30.sp,
+                        fontSize: 26.sp,
                         fontFamily: 'Bellota-Regular',
                         fontWeight: FontWeight.bold),
               )

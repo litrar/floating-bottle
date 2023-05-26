@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyButton extends StatefulWidget {
-  const MyButton({super.key, required this.bName});
+  const MyButton(this.setStatePage, {super.key, required this.bName});
   final String bName;
+  final void Function() setStatePage;
 
   bool getBool() {
     return _MyButtonState().isSelected;
@@ -43,6 +44,7 @@ class _MyButtonState extends State<MyButton> {
         child: InkWell(
           onTap: () {
             setState(() {
+              widget.setStatePage();
               isSelected = !isSelected;
             });
           },
@@ -63,9 +65,5 @@ class _MyButtonState extends State<MyButton> {
         ),
       ),
     );
-  }
-
-  bool getState() {
-    return isSelected;
   }
 }
