@@ -39,11 +39,12 @@ dependencies:
   go_router: ^6.0.6
   flutter_screenutil: ^5.0.1
   cached_network_image:
-  image_picker:
+  image_picker: ^0.8.3 
   http: ^0.13.0
   dio: ^4.0.6
   easy_search_bar: ^2.5.0
   searchfield: ^0.8.3
+  flutter_quill: ^7.2.0
 
 dev_dependencies:
   flutter_test:

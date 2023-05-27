@@ -1,6 +1,8 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
 
 class WriteLetter extends StatefulWidget {
   WriteLetter({Key? key}) : super(key: key);
@@ -9,6 +11,9 @@ class WriteLetter extends StatefulWidget {
 }
 
 class _WriteLetterState extends State<WriteLetter> {
+  XFile? image;
+  final ImagePicker picker = ImagePicker();
+
   String button = 'Bottle It';
   @override
   Widget build(BuildContext context) {
@@ -55,6 +60,14 @@ class _WriteLetterState extends State<WriteLetter> {
     );
   }
 
+  Future getImage(ImageSource media) async {
+    var img = await picker.pickImage(source: media);
+
+    setState(() {
+      image = img;
+    });
+  }
+
   Widget _avatar(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: 15.h),
@@ -88,14 +101,16 @@ class _WriteLetterState extends State<WriteLetter> {
             //   width: 100.w,
             // ),
             IconButton(
-              onPressed: () {},
+              onPressed: () async {},
               icon: Icon(
                 Icons.attach_file,
                 size: 35.sp,
               ),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () async {
+                image = await picker.pickImage(source: ImageSource.gallery);
+              },
               icon: Icon(
                 Icons.insert_photo,
                 size: 35.sp,
@@ -108,28 +123,47 @@ class _WriteLetterState extends State<WriteLetter> {
   }
 
   Widget _textField(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: 10.h),
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
-      child: TextFormField(
-        keyboardType: TextInputType.multiline,
-        maxLines: 25,
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: Colors.white.withOpacity(0.3),
-          border: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: Colors.black,
+    return Column(
+      children: [
+        Container(
+          margin: EdgeInsets.only(top: 10.h),
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
+          child: TextFormField(
+            keyboardType: TextInputType.multiline,
+            maxLines: 20,
+            decoration: InputDecoration(
+              prefix: image != null
+                  ? Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.file(
+                          //to show image, you type like this.
+                          File(image!.path),
+                          fit: BoxFit.cover,
+                          width: 50.w,
+                          height: 50.w,
+                        ),
+                      ),
+                    )
+                  : null,
+              filled: true,
+              fillColor: Colors.white.withOpacity(0.3),
+              border: OutlineInputBorder(
+                  borderSide: const BorderSide(
+                    color: Colors.black,
+                  ),
+                  borderRadius: BorderRadius.circular(5)),
+              hintText: 'Write Something',
+              hintStyle: const TextStyle(
+                color: Color.fromARGB(255, 138, 138, 138),
+                fontFamily: 'Bellota-Regular',
               ),
-              borderRadius: BorderRadius.circular(5)),
-          hintText: 'Write Something',
-          hintStyle: const TextStyle(
-            color: Color.fromARGB(255, 138, 138, 138),
-            fontFamily: 'Bellota-Regular',
+              isDense: true,
+            ),
           ),
-          isDense: true,
         ),
-      ),
+      ],
     );
   }
 
