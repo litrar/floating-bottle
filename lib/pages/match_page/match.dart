@@ -1,4 +1,6 @@
+import 'package:floating_bottle/pages/match_page/d_match_result.dart';
 import 'package:floating_bottle/pages/match_page/match_filter.dart';
+import 'package:floating_bottle/pages/match_page/search_id.dart';
 import 'package:floating_bottle/pages/subpage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -215,6 +217,24 @@ class _MatchPageState extends State<MatchPage> {
                 MaterialPageRoute(
                   builder: (context) {
                     return const MatchFilterPage();
+                  },
+                ),
+              );
+            } else if (searchID == false) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const SearchIDPage();
+                  },
+                ),
+              );
+            } else {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const DMatchResultPage();
                   },
                 ),
               );

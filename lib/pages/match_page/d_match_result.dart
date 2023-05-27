@@ -1,20 +1,21 @@
-import 'package:floating_bottle/pages/contact_page/contact_detail.dart';
-import 'package:floating_bottle/pages/mailbox_page/new_user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../contact_page/contact_detail.dart';
+import '../mailbox_page/new_user.dart';
 import '../write_letter.dart';
 
-class MatchResultPage extends StatefulWidget {
-  MatchResultPage({super.key, this.id});
-  int? id;
+class DMatchResultPage extends StatefulWidget {
+  const DMatchResultPage({super.key});
+
   @override
-  State<MatchResultPage> createState() => _MatchResultPageState();
+  State<DMatchResultPage> createState() => _DMatchResultPageState();
 }
 
-class _MatchResultPageState extends State<MatchResultPage> {
+class _DMatchResultPageState extends State<DMatchResultPage> {
   List<NewUser> users = [
     NewUser(
         avatar: 'assetsfolder/friend1.jpg',
+        id: 67890,
         name: 'Ann',
         school: 'National Chengchi University',
         gender: 'Woman',
@@ -23,33 +24,14 @@ class _MatchResultPageState extends State<MatchResultPage> {
         personalities: ['Extroverted', 'Outgoing'],
         interests: ['Cooking', 'Movie', 'Pet'],
         isSelected: true),
-    NewUser(
-        avatar: 'assetsfolder/friend3.jpg',
-        name: 'Hanns',
-        school: 'National Chengchi University',
-        gender: 'Man',
-        city: 'Taipei',
-        age: '19',
-        personalities: ['Extroverted', 'Trustworthy'],
-        interests: ['Cooking', 'Reading'],
-        isSelected: true),
-    NewUser(
-        avatar: 'assetsfolder/friend2.jpg',
-        name: 'Stella',
-        school: 'National Chengchi University',
-        gender: 'Woman',
-        city: 'Taipei',
-        age: '20',
-        personalities: ['Outgoing', 'Reliable'],
-        interests: ['Movie', 'Pet'],
-        isSelected: true),
   ];
   bool cbutton = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(children: [
+        body: Stack(
+      children: [
         Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
@@ -78,17 +60,12 @@ class _MatchResultPageState extends State<MatchResultPage> {
               ],
             ),
             _title(context),
-            SizedBox(
-              height: 30.h,
-            ),
             _matchedUser(context, users[0]),
-            _matchedUser(context, users[1]),
-            _matchedUser(context, users[2]),
             _continueButton(context),
           ],
         ))
-      ]),
-    );
+      ],
+    ));
   }
 
   Container _title(BuildContext context) {
@@ -107,7 +84,9 @@ class _MatchResultPageState extends State<MatchResultPage> {
 
   Widget _matchedUser(BuildContext context, NewUser user) {
     return Container(
-      margin: EdgeInsets.only(top: 20.h),
+      margin: users.length == 1
+          ? EdgeInsets.only(top: 120.h)
+          : EdgeInsets.only(top: 20.h),
       height: 60.h,
       width: MediaQuery.of(context).size.width * 0.8,
       decoration: user.isSelected!
@@ -189,9 +168,12 @@ class _MatchResultPageState extends State<MatchResultPage> {
           }
         },
         child: Container(
-          margin: EdgeInsets.only(
-            top: 90.h,
-          ),
+          
+          margin: users.length == 1
+              ? EdgeInsets.only(top: 210.h)
+              : users.length == 2
+                  ? EdgeInsets.only(top: 150.h)
+                  : EdgeInsets.only(top: 90.h),
           height: 55.h,
           width: MediaQuery.of(context).size.width * 0.8,
           decoration: !check.contains(false)

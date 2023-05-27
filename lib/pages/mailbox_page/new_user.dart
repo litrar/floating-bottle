@@ -1,4 +1,5 @@
 class NewUser {
+  int? id;
   String? email;
   String name;
   String? avatar;
@@ -15,7 +16,8 @@ class NewUser {
   bool? isSelected;
 
   NewUser(
-      {this.email,
+      {this.id,
+      this.email,
       required this.name,
       required this.avatar,
       this.gender,
@@ -25,6 +27,5 @@ class NewUser {
       this.city,
       this.personalities,
       this.interests,
-      this.isSelected
-      });
+      this.isSelected});
 }

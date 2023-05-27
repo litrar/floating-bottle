@@ -511,7 +511,7 @@ class _MatchFilterPageState extends State<MatchFilterPage> {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return const MatchResultPage();
+                    return MatchResultPage();
                   },
                 ),
               );
