@@ -1,3 +1,4 @@
+import 'package:floating_bottle/pages/personal_page/logout_page.dart';
 import 'package:floating_bottle/pages/personal_page/setting_page.dart';
 import 'package:floating_bottle/pages/subpage.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,7 @@ import 'package:go_router/go_router.dart';
 import '../components/bottom_bar.dart';
 import '../theme/color_theme.dart';
 import '../theme/theme_bloc.dart';
-import 'edit_name.dart';
+import 'change_name_page.dart';
 import 'p_route.dart';
 
 class PersonalSubPage implements SubPage {
@@ -16,9 +17,9 @@ class PersonalSubPage implements SubPage {
   Widget getIcon(bool active) {
     return active
         ? Image.asset("assetsfolder/account_black.png",
-            cacheHeight: 50, cacheWidth: 50)
+        cacheHeight: 50, cacheWidth: 50)
         : Image.asset("assetsfolder/account_white.png",
-            cacheHeight: 50, cacheWidth: 50);
+        cacheHeight: 50, cacheWidth: 50);
   }
 
   @override
@@ -120,7 +121,7 @@ class PersonalPage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const EditNamePage()),
+                              builder: (context) => const ChangeName(email: '', name: '',)),
                         );
                       },
                       child: Icon(
@@ -399,7 +400,16 @@ class PersonalPage extends StatelessWidget {
       child: Material(
         color: Colors.white.withOpacity(0.0),
         child: InkWell(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return const Logout();
+                },
+              ),
+            );
+          },
           child: Container(
               height: 40.h,
               width: MediaQuery.of(context).size.width * 0.8,
