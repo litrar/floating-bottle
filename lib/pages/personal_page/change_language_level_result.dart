@@ -79,7 +79,7 @@ class _ChangeLanguageLevelResultState extends State<ChangeLanguageLevelResult> {
                       child:
                       Row(
                         children: [
-                          Text("I live in...",style: TextStyle(
+                          Text("I can speak...",style: TextStyle(
                             color: Colors.black,
                             fontSize: 25.sp,
                             fontWeight: FontWeight.w600,
