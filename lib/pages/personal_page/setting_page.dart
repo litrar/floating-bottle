@@ -2,9 +2,12 @@ import 'package:floating_bottle/pages/personal_page/change_email_page.dart';
 import 'package:floating_bottle/pages/personal_page/change_gender_page.dart';
 import 'package:floating_bottle/pages/personal_page/change_name_page.dart';
 import 'package:floating_bottle/pages/personal_page/delete_account_page.dart';
+import 'package:floating_bottle/pages/personal_page/edit_personality_page.dart';
 import 'package:floating_bottle/pages/personal_page/personal_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'edit_interest_page.dart';
 
 class Setting extends StatefulWidget {
   const Setting({Key? key,required this.email,required this.name}) : super(key: key);
@@ -287,6 +290,14 @@ class _SettingState extends State<Setting> {
                           Padding(padding: EdgeInsets.only(left: 20.w)),
                           IconButton(
                             onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return const EditInterest();
+                                  },
+                                ),
+                              );
                             },
                             icon: const Icon(Icons.interests, size: 40.0),
                           ),
@@ -309,7 +320,7 @@ class _SettingState extends State<Setting> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return Setting(email: '${widget.email}', name: '${widget.name}',);
+                                    return const EditInterest();
                                   },
                                 ),
                               );
@@ -326,7 +337,7 @@ class _SettingState extends State<Setting> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return Setting(email: '${widget.email}', name: '${widget.name}',);
+                              return const EditInterest();
                             },
                           ),
                         );
@@ -345,6 +356,14 @@ class _SettingState extends State<Setting> {
                           Padding(padding: EdgeInsets.only(left: 20.w)),
                           IconButton(
                             onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return const EditPersonality();
+                                  },
+                                ),
+                              );
                             },
                             icon: const Icon(Icons.monitor_heart, size: 40.0),
                           ),
@@ -367,7 +386,7 @@ class _SettingState extends State<Setting> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return Setting(email: '${widget.email}', name: '${widget.name}',);
+                                    return const EditPersonality();
                                   },
                                 ),
                               );
@@ -384,7 +403,7 @@ class _SettingState extends State<Setting> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return Setting(email: '${widget.email}', name: '${widget.name}',);
+                              return const EditPersonality();
                             },
                           ),
                         );
@@ -543,4 +562,3 @@ class _SettingState extends State<Setting> {
     );
   }
 }
-
