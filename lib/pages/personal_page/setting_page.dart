@@ -2,11 +2,13 @@ import 'package:floating_bottle/pages/personal_page/change_email_page.dart';
 import 'package:floating_bottle/pages/personal_page/change_gender_page.dart';
 import 'package:floating_bottle/pages/personal_page/change_name_page.dart';
 import 'package:floating_bottle/pages/personal_page/delete_account_page.dart';
+import 'package:floating_bottle/pages/personal_page/edit_language_page.dart';
 import 'package:floating_bottle/pages/personal_page/edit_personality_page.dart';
 import 'package:floating_bottle/pages/personal_page/personal_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'edit_city_page.dart';
 import 'edit_interest_page.dart';
 
 class Setting extends StatefulWidget {
@@ -422,6 +424,14 @@ class _SettingState extends State<Setting> {
                           Padding(padding: EdgeInsets.only(left: 20.w)),
                           IconButton(
                             onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return const EditCity();
+                                  },
+                                ),
+                              );
                             },
                             icon: const Icon(Icons.location_city, size: 40.0),
                           ),
@@ -444,7 +454,7 @@ class _SettingState extends State<Setting> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return Setting(email: '${widget.email}', name: '${widget.name}',);
+                                    return const EditCity();
                                   },
                                 ),
                               );
@@ -461,7 +471,7 @@ class _SettingState extends State<Setting> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return Setting(email: '${widget.email}', name: '${widget.name}',);
+                              return const EditCity();
                             },
                           ),
                         );
@@ -480,6 +490,14 @@ class _SettingState extends State<Setting> {
                           Padding(padding: EdgeInsets.only(left: 20.w)),
                           IconButton(
                             onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return const EditLanguage();
+                                  },
+                                ),
+                              );
                             },
                             icon: const Icon(Icons.language, size: 40.0),
                           ),
@@ -502,7 +520,7 @@ class _SettingState extends State<Setting> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return Setting(email: '${widget.email}', name: '${widget.name}',);
+                                    return const EditLanguage();
                                   },
                                 ),
                               );
@@ -519,7 +537,7 @@ class _SettingState extends State<Setting> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return Setting(email: '${widget.email}', name: '${widget.name}',);
+                              return const EditLanguage();
                             },
                           ),
                         );
