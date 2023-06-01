@@ -1,4 +1,4 @@
-import 'package:floating_bottle/pages/match_page/d_match_result.dart';
+import 'package:floating_bottle/pages/match_page/random_match_result.dart';
 import 'package:floating_bottle/pages/match_page/match_filter.dart';
 import 'package:floating_bottle/pages/match_page/search_id.dart';
 import 'package:floating_bottle/pages/subpage.dart';

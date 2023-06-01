@@ -1,6 +1,8 @@
 import 'package:floating_bottle/pages/contact_page/contact_detail.dart';
 import 'package:floating_bottle/pages/mailbox_page/new_user.dart';
+import 'package:floating_bottle/pages/match_page/bloc/selected_people_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../write_letter.dart';
 
@@ -14,6 +16,7 @@ class MatchResultPage extends StatefulWidget {
 class _MatchResultPageState extends State<MatchResultPage> {
   List<NewUser> users = [
     NewUser(
+        id: 1,
         avatar: 'assetsfolder/friend1.jpg',
         name: 'Ann',
         school: 'National Chengchi University',
@@ -22,8 +25,9 @@ class _MatchResultPageState extends State<MatchResultPage> {
         age: '20',
         personalities: ['Extroverted', 'Outgoing'],
         interests: ['Cooking', 'Movie', 'Pet'],
-        isSelected: true),
+        isSelected: false),
     NewUser(
+        id: 2,
         avatar: 'assetsfolder/friend3.jpg',
         name: 'Hanns',
         school: 'National Chengchi University',
@@ -32,8 +36,9 @@ class _MatchResultPageState extends State<MatchResultPage> {
         age: '19',
         personalities: ['Extroverted', 'Trustworthy'],
         interests: ['Cooking', 'Reading'],
-        isSelected: true),
+        isSelected: false),
     NewUser(
+        id: 3,
         avatar: 'assetsfolder/friend2.jpg',
         name: 'Stella',
         school: 'National Chengchi University',
@@ -42,52 +47,62 @@ class _MatchResultPageState extends State<MatchResultPage> {
         age: '20',
         personalities: ['Outgoing', 'Reliable'],
         interests: ['Movie', 'Pet'],
-        isSelected: true),
+        isSelected: false),
   ];
   bool cbutton = true;
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(children: [
-        Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assetsfolder/match_background.jpg"),
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        SafeArea(
-            child: Column(
-          children: [
-            Row(
-              children: [
-                Padding(padding: EdgeInsets.only(left: 15.w)),
-                IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                    Navigator.pop(context);
-                  },
-                  icon: Icon(
-                    Icons.arrow_back_ios_new,
-                    color: Colors.white,
-                    size: 35.sp,
-                  ),
+  Widget build(BuildContext _context) {
+    return BlocProvider(
+      lazy: true,
+      create: (_) => SelectedUsersCubit(users),
+      child: Builder(builder: (context) {
+        return Scaffold(
+          body: Stack(children: [
+            Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assetsfolder/match_background.jpg"),
+                  fit: BoxFit.cover,
                 ),
+              ),
+            ),
+            SafeArea(
+                child: Column(
+              children: [
+                Row(
+                  children: [
+                    Padding(padding: EdgeInsets.only(left: 15.w)),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(
+                        Icons.arrow_back_ios_new,
+                        color: Colors.white,
+                        size: 35.sp,
+                      ),
+                    ),
+                  ],
+                ),
+                _title(context),
+                SizedBox(
+                  height: 30.h,
+                ),
+                BlocBuilder<SelectedUsersCubit, List<NewUser>>(
+                    builder: (context, state) {
+                  return Column(children: [
+                    for (var user in users)
+                      _matchedUser(context.read(), context, user)
+                  ]);
+                }),
+                _continueButton(context),
               ],
-            ),
-            _title(context),
-            SizedBox(
-              height: 30.h,
-            ),
-            _matchedUser(context, users[0]),
-            _matchedUser(context, users[1]),
-            _matchedUser(context, users[2]),
-            _continueButton(context),
-          ],
-        ))
-      ]),
+            ))
+          ]),
+        );
+      }),
     );
   }
 
@@ -105,7 +120,8 @@ class _MatchResultPageState extends State<MatchResultPage> {
     );
   }
 
-  Widget _matchedUser(BuildContext context, NewUser user) {
+  Widget _matchedUser(
+      SelectedUsersCubit cubit, BuildContext context, NewUser user) {
     return Container(
       margin: EdgeInsets.only(top: 20.h),
       height: 60.h,
@@ -113,20 +129,18 @@ class _MatchResultPageState extends State<MatchResultPage> {
       decoration: user.isSelected!
           ? BoxDecoration(
               borderRadius: BorderRadius.circular(35),
-              color: Colors.white,
+              color: const Color.fromARGB(255, 86, 140, 167),
               border: Border.all(color: Colors.black))
           : BoxDecoration(
               borderRadius: BorderRadius.circular(35),
-              color: const Color.fromARGB(255, 86, 140, 167),
+              color: Colors.white,
               border: Border.all(color: Colors.black)),
       child: Material(
         color: Colors.white.withOpacity(0.0),
         child: InkWell(
           onTap: () {
-            setState(() {
-              user.isSelected = !user.isSelected!;
-            });
-            if (user.isSelected == false) {
+            cubit.set_selected(user.id!, !user.isSelected);
+            if (user.isSelected == true) {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => ContactDetailPage(user: user),
@@ -152,12 +166,12 @@ class _MatchResultPageState extends State<MatchResultPage> {
                 user.name,
                 style: user.isSelected!
                     ? TextStyle(
-                        color: Colors.black,
+                        color: Colors.white,
                         fontSize: 26.sp,
                         fontFamily: 'Bellota-Regular',
                         fontWeight: FontWeight.bold)
                     : TextStyle(
-                        color: Colors.white,
+                        color: Colors.black,
                         fontSize: 26.sp,
                         fontFamily: 'Bellota-Regular',
                         fontWeight: FontWeight.bold),
@@ -170,13 +184,16 @@ class _MatchResultPageState extends State<MatchResultPage> {
   }
 
   Widget _continueButton(BuildContext context) {
-    List<bool> check = users.map((e) => e.isSelected!).toList();
+    // List<bool> check = users.map((e) => e.isSelected!).toList();
 
-    return InkWell(
-        onTap: () {
-          if (check.contains(false)) {
-            setState(() {
-              cbutton = !cbutton;
+    return BlocBuilder<SelectedUsersCubit, List<NewUser>>(
+        builder: (context, state) {
+      SelectedUsersCubit cubit = context.read();
+      NewUser? selected = cubit.getSelect();
+
+      return InkWell(
+          onTap: () {
+            if (selected != null) {
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -185,28 +202,29 @@ class _MatchResultPageState extends State<MatchResultPage> {
                   },
                 ),
               );
-            });
-          }
-        },
-        child: Container(
-          margin: EdgeInsets.only(
-            top: 90.h,
-          ),
-          height: 55.h,
-          width: MediaQuery.of(context).size.width * 0.8,
-          decoration: !check.contains(false)
-              ? BoxDecoration(
-                  color: Color.fromARGB(255, 152, 169, 189),
-                  borderRadius: BorderRadius.circular(35))
-              : BoxDecoration(
-                  color: const Color.fromARGB(255, 86, 140, 167),
-                  borderRadius: BorderRadius.circular(35)),
-          alignment: Alignment.center,
-          child: const Text("Send a letter",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold)),
-        ));
+            }
+          },
+          child: Container(
+            margin: EdgeInsets.only(
+              top: 90.h,
+            ),
+            height: 55.h,
+            width: MediaQuery.of(context).size.width * 0.8,
+            decoration: !(selected == null)
+            // selected?.isSelected ?? false
+                ? BoxDecoration(
+                    color: const Color.fromARGB(255, 86, 140, 167),
+                    borderRadius: BorderRadius.circular(35))
+                : BoxDecoration(
+                    color: const Color.fromARGB(255, 152, 169, 189),
+                    borderRadius: BorderRadius.circular(35)),
+            alignment: Alignment.center,
+            child: const Text("Send a letter",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold)),
+          ));
+    });
   }
 }

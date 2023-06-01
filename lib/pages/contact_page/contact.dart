@@ -35,6 +35,8 @@ class ContactPage extends StatefulWidget {
 
 class _ContactPageState extends State<ContactPage>
     with SingleTickerProviderStateMixin {
+      
+
   final Friend friend = Friend([
     User(
       "assetsfolder/friend1.jpg",
