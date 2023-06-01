@@ -16,8 +16,9 @@ class MatchSubPage implements SubPage {
   @override
   Widget getIcon(bool active) {
     return active
-        ? Image.asset("assetsfolder/match.jpg", cacheHeight: 50, cacheWidth: 50)
-        : Image.asset("assetsfolder/match.jpg",
+        ? Image.asset("assetsfolder/user_black-removebg-preview.png",
+            cacheHeight: 50, cacheWidth: 50)
+        : Image.asset("assetsfolder/user_white-removebg-preview.png",
             cacheHeight: 50, cacheWidth: 50);
   }
 
