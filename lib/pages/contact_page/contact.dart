@@ -17,9 +17,9 @@ class ContactSubPage implements SubPage {
   @override
   Widget getIcon(bool active) {
     return active
-        ? Image.asset("assetsfolder/contact.jpg",
+        ? Image.asset("assetsfolder/address book-black.png",
             cacheHeight: 50, cacheWidth: 50)
-        : Image.asset("assetsfolder/contact.jpg",
+        : Image.asset("assetsfolder/address_book-white-removebg-preview.png",
             cacheHeight: 50, cacheWidth: 50);
   }
 
