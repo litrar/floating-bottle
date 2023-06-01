@@ -19,9 +19,9 @@ class MailboxSubPage implements SubPage {
   @override
   Widget getIcon(bool active) {
     return active
-        ? Image.asset("assetsfolder/mailbox.jpg",
+        ? Image.asset("assetsfolder/mail_black-removebg-preview.png",
         cacheHeight: 50, cacheWidth: 50)
-        : Image.asset("assetsfolder/mailbox.jpg",
+        : Image.asset("assetsfolder/mail_white-removebg-preview.png",
         cacheHeight: 50, cacheWidth: 50);
   }
 
