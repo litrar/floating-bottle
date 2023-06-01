@@ -1,3 +1,4 @@
+import 'package:floating_bottle/pages/components/devloping.dart';
 import 'package:floating_bottle/pages/personal_page/logout_page.dart';
 import 'package:floating_bottle/pages/personal_page/setting_page.dart';
 import 'package:floating_bottle/pages/subpage.dart';
@@ -16,10 +17,10 @@ class PersonalSubPage implements SubPage {
   @override
   Widget getIcon(bool active) {
     return active
-        ? Image.asset("assetsfolder/personal_black-removebg-preview.png",
-        cacheHeight: 50, cacheWidth: 50)
-        : Image.asset("assetsfolder/personal_white-removebg-preview.png",
-        cacheHeight: 50, cacheWidth: 50);
+        ? Image.asset("assetsfolder/account_black.png",
+            cacheHeight: 50, cacheWidth: 50)
+        : Image.asset("assetsfolder/account_white.png",
+            cacheHeight: 50, cacheWidth: 50);
   }
 
   @override
@@ -27,7 +28,8 @@ class PersonalSubPage implements SubPage {
 }
 
 class PersonalPage extends StatelessWidget {
-  const PersonalPage({super.key});
+  const PersonalPage(this.name, {super.key});
+  final String name;
 
   @override
   Widget build(BuildContext context) {
@@ -109,7 +111,7 @@ class PersonalPage extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.only(left: 10),
                       child: Text(
-                        "Remi Chuang ",
+                        name,
                         style: TextStyle(
                             fontSize: 22.sp,
                             fontFamily: 'Bellota-Regular',
@@ -121,7 +123,10 @@ class PersonalPage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const ChangeName(email: '', name: '',)),
+                              builder: (context) => const ChangeName(
+                                    email: '',
+                                    name: 'Remi Chuang',
+                                  )),
                         );
                       },
                       child: Icon(
@@ -204,7 +209,14 @@ class PersonalPage extends StatelessWidget {
             ),
             IconButton(
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return DevelopingPage("Letter History");
+                    },
+                  ),
+                );
               },
               icon: Icon(
                 Icons.arrow_forward_ios,
@@ -253,7 +265,7 @@ class PersonalPage extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return const Setting(email: "110306999@g.nccu.edu.tw",name:"");
+                        return DevelopingPage("Message Box");
                       },
                     ),
                   );
@@ -265,11 +277,8 @@ class PersonalPage extends StatelessWidget {
               )
             ],
           ),
-          onTap: (){
-
-          },
-        )
-    );
+          onTap: () {},
+        ));
   }
 
   Widget _settings(BuildContext context) {
@@ -289,7 +298,9 @@ class PersonalPage extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return Setting(email: "110306999@g.nccu.edu.tw",name:"");
+                        return Setting(
+                            email: "110306999@g.nccu.edu.tw",
+                            name: "Remi Chuang");
                       },
                     ),
                   );
@@ -315,7 +326,8 @@ class PersonalPage extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return const Setting(email: "110306999@g.nccu.edu.tw",name:"");
+                        return const Setting(
+                            email: "110306999@g.nccu.edu.tw", name: "");
                       },
                     ),
                   );
@@ -327,18 +339,18 @@ class PersonalPage extends StatelessWidget {
               )
             ],
           ),
-          onTap: (){
+          onTap: () {
             Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) {
-                  return const Setting(email: "110306999@g.nccu.edu.tw",name:"");
+                  return const Setting(
+                      email: "110306999@g.nccu.edu.tw", name: "");
                 },
               ),
             );
           },
-        )
-    );
+        ));
   }
 
   Widget _contact(BuildContext context) {
@@ -375,7 +387,7 @@ class PersonalPage extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return const Setting(email: "110306999@g.nccu.edu.tw",name:"");
+                        return DevelopingPage('Contact Us');
                       },
                     ),
                   );
@@ -387,11 +399,8 @@ class PersonalPage extends StatelessWidget {
               )
             ],
           ),
-          onTap: (){
-
-          },
-        )
-    );
+          onTap: () {},
+        ));
   }
 
   Widget _logoutButton(BuildContext context) {

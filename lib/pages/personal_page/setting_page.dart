@@ -12,13 +12,15 @@ import 'edit_city_page.dart';
 import 'edit_interest_page.dart';
 
 class Setting extends StatefulWidget {
-  const Setting({Key? key,required this.email,required this.name}) : super(key: key);
+  const Setting({Key? key, required this.email, required this.name})
+      : super(key: key);
 
   @override
   State<Setting> createState() => _SettingState();
   final String email;
   final String name;
 }
+
 class _SettingState extends State<Setting> {
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,27 +35,35 @@ class _SettingState extends State<Setting> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(left: 15.w,right: 20.w,top: 52.h),
+            margin: EdgeInsets.only(left: 15.w, right: 20.w, top: 52.h),
             child: Row(
               children: [
                 IconButton(
-                  onPressed:(){
+                  onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return const PersonalPage();
+                          return const PersonalPage('Remi Chuang');
                         },
                       ),
                     );
                   },
-                  icon: Icon(Icons.arrow_back_ios_rounded,size: 35.sp,color: Colors.blueGrey,),),
-                Text("  Settings",style: TextStyle(
-                  color: Colors.blueGrey,
-                  fontSize: 32.sp,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Bellota-Regular',
-                ),)
+                  icon: Icon(
+                    Icons.arrow_back_ios_rounded,
+                    size: 35.sp,
+                    color: Colors.blueGrey,
+                  ),
+                ),
+                Text(
+                  "  Settings",
+                  style: TextStyle(
+                    color: Colors.blueGrey,
+                    fontSize: 32.sp,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Bellota-Regular',
+                  ),
+                )
               ],
             ),
           ),
@@ -62,10 +72,13 @@ class _SettingState extends State<Setting> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("        Account",style: TextStyle(
-                  color: Colors.grey.shade900,
-                  fontFamily: 'Bellota-Regular',
-                ),),
+                Text(
+                  "        Account",
+                  style: TextStyle(
+                    color: Colors.grey.shade900,
+                    fontFamily: 'Bellota-Regular',
+                  ),
+                ),
                 Container(
                     width: MediaQuery.of(context).size.width,
                     height: 50.h,
@@ -82,7 +95,9 @@ class _SettingState extends State<Setting> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return const ChangeEmail(email: '110306999@g.nccu.edu.tw',);
+                                    return const ChangeEmail(
+                                      email: '110306999@g.nccu.edu.tw',
+                                    );
                                   },
                                 ),
                               );
@@ -109,7 +124,7 @@ class _SettingState extends State<Setting> {
                             ),
                           ),
                           SizedBox(
-                            width: 90.w,
+                            width: 70.w,
                           ),
                           IconButton(
                             onPressed: () {
@@ -117,7 +132,9 @@ class _SettingState extends State<Setting> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return const ChangeEmail(email: '110306999@g.nccu.edu.tw',);
+                                    return const ChangeEmail(
+                                      email: '110306999@g.nccu.edu.tw',
+                                    );
                                   },
                                 ),
                               );
@@ -129,24 +146,28 @@ class _SettingState extends State<Setting> {
                           )
                         ],
                       ),
-                      onTap: (){
+                      onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return ChangeEmail(email: '${widget.email}',);
+                              return ChangeEmail(
+                                email: '${widget.email}',
+                              );
                             },
                           ),
                         );
                       },
-                    )
-                ),
+                    )),
                 Container(
                   margin: EdgeInsets.only(top: 40.h),
-                  child: Text("        Personal",style: TextStyle(
-                    color: Colors.grey.shade900,
-                    fontFamily: 'Bellota-Regular',
-                  ),),
+                  child: Text(
+                    "        Personal",
+                    style: TextStyle(
+                      color: Colors.grey.shade900,
+                      fontFamily: 'Bellota-Regular',
+                    ),
+                  ),
                 ),
                 Container(
                     width: MediaQuery.of(context).size.width,
@@ -164,7 +185,10 @@ class _SettingState extends State<Setting> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return ChangeName(email: '${widget.email}', name: '${widget.name}',);
+                                    return ChangeName(
+                                      email: '${widget.email}',
+                                      name: '${widget.name}',
+                                    );
                                   },
                                 ),
                               );
@@ -190,7 +214,10 @@ class _SettingState extends State<Setting> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return ChangeName(email: '${widget.email}', name: '${widget.name}',);
+                                    return ChangeName(
+                                      email: '${widget.email}',
+                                      name: '${widget.name}',
+                                    );
                                   },
                                 ),
                               );
@@ -202,18 +229,20 @@ class _SettingState extends State<Setting> {
                           )
                         ],
                       ),
-                      onTap: (){
+                      onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return ChangeName(email: '${widget.email}', name: '${widget.name}',);
+                              return ChangeName(
+                                email: '${widget.email}',
+                                name: '${widget.name}',
+                              );
                             },
                           ),
                         );
                       },
-                    )
-                ),
+                    )),
                 Container(
                     width: MediaQuery.of(context).size.width,
                     height: 40.h,
@@ -268,7 +297,7 @@ class _SettingState extends State<Setting> {
                           )
                         ],
                       ),
-                      onTap: (){
+                      onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -278,8 +307,7 @@ class _SettingState extends State<Setting> {
                           ),
                         );
                       },
-                    )
-                ),
+                    )),
                 Container(
                     width: MediaQuery.of(context).size.width,
                     height: 40.h,
@@ -334,7 +362,7 @@ class _SettingState extends State<Setting> {
                           )
                         ],
                       ),
-                      onTap: (){
+                      onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -344,8 +372,7 @@ class _SettingState extends State<Setting> {
                           ),
                         );
                       },
-                    )
-                ),
+                    )),
                 Container(
                     width: MediaQuery.of(context).size.width,
                     height: 40.h,
@@ -400,7 +427,7 @@ class _SettingState extends State<Setting> {
                           )
                         ],
                       ),
-                      onTap: (){
+                      onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -410,8 +437,7 @@ class _SettingState extends State<Setting> {
                           ),
                         );
                       },
-                    )
-                ),
+                    )),
                 Container(
                     width: MediaQuery.of(context).size.width,
                     height: 40.h,
@@ -466,7 +492,7 @@ class _SettingState extends State<Setting> {
                           )
                         ],
                       ),
-                      onTap: (){
+                      onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -476,8 +502,7 @@ class _SettingState extends State<Setting> {
                           ),
                         );
                       },
-                    )
-                ),
+                    )),
                 Container(
                     width: MediaQuery.of(context).size.width,
                     height: 40.h,
@@ -532,7 +557,7 @@ class _SettingState extends State<Setting> {
                           )
                         ],
                       ),
-                      onTap: (){
+                      onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -542,20 +567,21 @@ class _SettingState extends State<Setting> {
                           ),
                         );
                       },
-                    )
-                ),
+                    )),
                 Container(
-                  margin: EdgeInsets.only(top: 50.h,left: 83.w),
+                  margin: EdgeInsets.only(top: 50.h, left: 83.w),
                   child: SizedBox(
                     width: 200.w,
                     height: 45.h,
                     child: ElevatedButton(
                       style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(Colors.red),
-                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
-                          )
-                      ),
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.red),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(20)))),
                       onPressed: () {
                         Navigator.push(
                           context,
@@ -566,9 +592,13 @@ class _SettingState extends State<Setting> {
                           ),
                         );
                       },
-                      child: Text("Delete Account", style: TextStyle(
-                          fontSize: 22.sp,color: Colors.white,fontFamily: 'Bellota-Regular'
-                      ),),
+                      child: Text(
+                        "Delete Account",
+                        style: TextStyle(
+                            fontSize: 22.sp,
+                            color: Colors.white,
+                            fontFamily: 'Bellota-Regular'),
+                      ),
                     ),
                   ),
                 )
