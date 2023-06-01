@@ -13,8 +13,30 @@ class WriteLetter extends StatefulWidget {
 class _WriteLetterState extends State<WriteLetter> {
   XFile? image;
   final ImagePicker picker = ImagePicker();
-
+  final myController = TextEditingController();
   String button = 'Bottle It';
+  String text = '';
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Start listening to changes.
+    myController.addListener(_printLatestValue);
+  }
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is removed from the widget tree.
+    // This also removes the _printLatestValue listener.
+    myController.dispose();
+    super.dispose();
+  }
+
+  void _printLatestValue() {
+    print('Second text field: ${myController.text}');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,16 +122,20 @@ class _WriteLetterState extends State<WriteLetter> {
             // SizedBox(
             //   width: 100.w,
             // ),
-            IconButton(
-              onPressed: () async {},
-              icon: Icon(
-                Icons.attach_file,
-                size: 35.sp,
-              ),
-            ),
+            // IconButton(
+            //   onPressed: () async {},
+            //   icon: Icon(
+            //     Icons.attach_file,
+            //     size: 35.sp,
+            //   ),
+            // ),
             IconButton(
               onPressed: () async {
-                image = await picker.pickImage(source: ImageSource.gallery);
+                XFile? x = await picker.pickImage(source: ImageSource.gallery);
+
+                setState(() {
+                  image = x;
+                });
               },
               icon: Icon(
                 Icons.insert_photo,
@@ -129,8 +155,10 @@ class _WriteLetterState extends State<WriteLetter> {
           margin: EdgeInsets.only(top: 10.h),
           padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: TextFormField(
+            // initialValue: text,
+            controller: myController,
             keyboardType: TextInputType.multiline,
-            maxLines: 20,
+            maxLines: 22,
             decoration: InputDecoration(
               prefix: image != null
                   ? Padding(
@@ -204,7 +232,9 @@ class _WriteLetterState extends State<WriteLetter> {
       child: Material(
         color: Colors.white.withOpacity(0.0),
         child: InkWell(
-          onTap: () {},
+          onTap: () {
+            text = myController.text;
+          },
           child: Container(
               height: 40.h,
               width: MediaQuery.of(context).size.width * 0.3,

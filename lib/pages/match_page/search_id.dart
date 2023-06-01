@@ -1,4 +1,4 @@
-import 'package:floating_bottle/pages/match_page/d_match_result.dart';
+import 'package:floating_bottle/pages/match_page/random_match_result.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

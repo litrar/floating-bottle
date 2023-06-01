@@ -49,7 +49,6 @@ class _DMatchResultPageState extends State<DMatchResultPage> {
                 IconButton(
                   onPressed: () {
                     Navigator.pop(context);
-                    Navigator.pop(context);
                   },
                   icon: Icon(
                     Icons.arrow_back_ios_new,
