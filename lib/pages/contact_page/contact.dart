@@ -35,8 +35,6 @@ class ContactPage extends StatefulWidget {
 
 class _ContactPageState extends State<ContactPage>
     with SingleTickerProviderStateMixin {
-      
-
   final Friend friend = Friend([
     User(
       "assetsfolder/friend1.jpg",
@@ -46,26 +44,37 @@ class _ContactPageState extends State<ContactPage>
       "2023/5/19",
       "20:45",
     ),
+    // User(
+    //   "assetsfolder/friend2.jpg",
+    //   "Pink",
+    //   Letter("Pink", "assetsfolder/friend2.jpg",
+    //       "It was great to hear from you. I'm writing to you..."),
+    //   "2023/5/19",
+    //   "20:45",
+    // ),
+    // User(
+    //   "assetsfolder/friend3.jpg",
+    //   "HiChew",
+    //   Letter("HiChew", "assetsfolder/friend3.jpg",
+    //       "It was great to hear from you. I'm writing to you..."),
+    //   "2023/5/19",
+    //   "20:45",
+    // ),
+    // User(
+    //   "assetsfolder/friend4.jpg",
+    //   "Charles",
+    //   Letter("Charles", "assetsfolder/friend4.jpg",
+    //       "It was great to hear from you. I'm writing to you..."),
+    //   "2023/5/19",
+    //   "20:45",
+    // ),
+  ]);
+
+  final Friend pending = Friend([
     User(
       "assetsfolder/friend2.jpg",
       "Pink",
       Letter("Pink", "assetsfolder/friend2.jpg",
-          "It was great to hear from you. I'm writing to you..."),
-      "2023/5/19",
-      "20:45",
-    ),
-    User(
-      "assetsfolder/friend3.jpg",
-      "HiChew",
-      Letter("HiChew", "assetsfolder/friend3.jpg",
-          "It was great to hear from you. I'm writing to you..."),
-      "2023/5/19",
-      "20:45",
-    ),
-    User(
-      "assetsfolder/friend4.jpg",
-      "Charles",
-      Letter("Charles", "assetsfolder/friend4.jpg",
           "It was great to hear from you. I'm writing to you..."),
       "2023/5/19",
       "20:45",
@@ -107,13 +116,50 @@ class _ContactPageState extends State<ContactPage>
               ),
             ),
             SafeArea(
-                child: Column(
-              children: [
-                Center(child: _tabBar(context)),
-                Padding(padding: EdgeInsets.only(top: 10.h)),
-                
-                Expanded(child: _listView(context)),
-              ],
+                child: DefaultTabController(
+              length: 2,
+              child: Scaffold(
+                backgroundColor: Colors.white.withOpacity(0.0),
+                appBar: PreferredSize(
+                  preferredSize: const Size.fromHeight(50.0),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: TabBar(
+                      tabs: topTabs
+                          .map(
+                            (e) => e,
+                          )
+                          .toList(),
+                      // controller: _controller,
+                      labelStyle: TextStyle(
+                          fontSize: 20.sp,
+                          fontFamily: 'Abril Fatface',
+                          fontWeight: FontWeight.bold),
+                      isScrollable: true,
+                      unselectedLabelColor: Color.fromARGB(255, 175, 199, 232),
+                      labelColor: Color.fromARGB(255, 118, 168, 239),
+                      indicatorColor: const Color.fromARGB(255, 122, 161, 216),
+                      indicatorSize: TabBarIndicatorSize.label,
+                    ),
+                  ),
+                ),
+                body: TabBarView(
+                  children: [
+                    Column(
+                      children: [
+                        Padding(padding: EdgeInsets.only(top: 10.h)),
+                        Expanded(child: _listView(context, friend)),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Padding(padding: EdgeInsets.only(top: 10.h)),
+                        Expanded(child: _listView(context, pending)),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ))
           ],
         ),
@@ -137,10 +183,10 @@ class _ContactPageState extends State<ContactPage>
     );
   }
 
-  Widget _listView(BuildContext context) {
+  Widget _listView(BuildContext context, Friend f) {
     return ListView(
       children: [
-        for (var f in friend.friends)
+        for (var f in f.friends)
           Container(
               decoration: BoxDecoration(color: Colors.white.withOpacity(0.5)),
               child: Material(

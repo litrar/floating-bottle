@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'information.dart';
 import 'login.dart';
 
 class Registration extends StatefulWidget {
@@ -247,14 +248,14 @@ class _RegistrationState extends State<Registration>{
         ),
         onPressed: () {
           if (isChecked == true) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return const Vertification();
-                },
-              ),
-            );
+           Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return const Information();
+              },
+            ),
+          );
           } else {
             Navigator.push(
               context,

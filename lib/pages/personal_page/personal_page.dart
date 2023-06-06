@@ -17,9 +17,9 @@ class PersonalSubPage implements SubPage {
   @override
   Widget getIcon(bool active) {
     return active
-        ? Image.asset("assetsfolder/account_black.png",
+        ? Image.asset("assetsfolder/personal_black-removebg-preview.png",
             cacheHeight: 50, cacheWidth: 50)
-        : Image.asset("assetsfolder/account_white.png",
+        : Image.asset("assetsfolder/personal_white-removebg-preview.png",
             cacheHeight: 50, cacheWidth: 50);
   }
 
@@ -169,7 +169,7 @@ class PersonalPage extends StatelessWidget {
                 // mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    '8',
+                    '0',
                     style: TextStyle(
                         fontSize: 36.sp,
                         fontFamily: 'Bellota-Regular',
@@ -189,7 +189,7 @@ class PersonalPage extends StatelessWidget {
             ),
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(
-                '32',
+                '0',
                 style: TextStyle(
                     fontSize: 36.sp,
                     fontFamily: 'Bellota-Regular',
