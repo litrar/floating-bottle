@@ -2,6 +2,7 @@
     package="com.example.floating_bottle">
    <application
         android:label="floating_bottle"
+        android:usesCleartextTraffic="true"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
