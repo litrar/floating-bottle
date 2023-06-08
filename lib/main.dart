@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:floating_bottle/pages/authentication/login.dart';
 import 'package:floating_bottle/pages/components/error_page.dart';
 import 'package:floating_bottle/pages/subpage.dart';
@@ -7,12 +8,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+import 'api/letter.dart';
+import 'api/match.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  final Dio _dio = Dio(BaseOptions(
+      connectTimeout: 10000,
+      receiveTimeout: 10000,
+      sendTimeout: 10000,
+      validateStatus: (_) => true));
   late GoRouter _goRouter;
   MyApp({super.key}) {
     _goRouter = GoRouter(
@@ -36,7 +45,17 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MultiBlocProvider(
             providers: [BlocProvider(create: (_) => ThemeCubit())],
-            child: _app());
+            // child: _app()
+             child: MultiRepositoryProvider(
+              providers: [
+                
+                RepositoryProvider(create: (_) => LetterApi(_dio)),
+                RepositoryProvider(create: (_) => MatchApi(_dio)),
+                
+              ],
+              child: _app()
+          )
+            );
       },
     );
   }

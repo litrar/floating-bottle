@@ -1,8 +1,13 @@
 import 'dart:io';
+import 'package:floating_bottle/pages/mailbox_page/letter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../api/letter.dart';
+import 'http_page_builder.dart';
 
 class WriteLetter extends StatefulWidget {
   WriteLetter({Key? key}) : super(key: key);
@@ -39,6 +44,7 @@ class _WriteLetterState extends State<WriteLetter> {
 
   @override
   Widget build(BuildContext context) {
+    LetterApi letterApi = context.read();
     return Scaffold(
       body: Stack(children: [
         Container(
@@ -201,7 +207,15 @@ class _WriteLetterState extends State<WriteLetter> {
       child: Material(
         color: Colors.white.withOpacity(0.0),
         child: InkWell(
-          onTap: () {
+          onTap: () async {
+            var result = await context.read<LetterApi>().sendLetter(LetterSent(
+                matcherId: 1,
+                matchedAccountId: 2,
+                topic: 'hi',
+                content: 'hello',
+                attType: ' null',
+                time: DateTime(2023)));
+            print(result);
             context.go('/contact');
           },
           child: Container(

@@ -163,7 +163,7 @@ class _LoginPageState extends State<Login> {
         },
         child: Text(
           "Log in",
-          style: TextStyle(fontSize: 20.sp,color: Colors.white),
+          style: TextStyle(fontSize: 20.sp, color: Colors.white),
         ),
       ),
     );
@@ -192,7 +192,7 @@ class _LoginPageState extends State<Login> {
         },
         child: Text(
           "Create an account",
-          style: TextStyle(fontSize: 20.sp,color: Colors.white),
+          style: TextStyle(fontSize: 20.sp, color: Colors.white),
         ),
       ),
     );
