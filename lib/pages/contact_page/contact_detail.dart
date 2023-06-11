@@ -1,10 +1,10 @@
-import 'package:floating_bottle/pages/mailbox_page/new_user.dart';
+import 'package:floating_bottle/api/user/user_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ContactDetailPage extends StatefulWidget {
   const ContactDetailPage({super.key, required this.user});
-  final NewUser user;
+  final UserInfo user;
 
   @override
   State<ContactDetailPage> createState() => _ContactDetailPageState();
@@ -73,7 +73,7 @@ class _ContactDetailPageState extends State<ContactDetailPage> {
               fontWeight: FontWeight.bold),
         ),
         Text(
-          widget.user.school ?? 'National Chengchi University',
+          widget.user.college ?? 'National Chengchi University',
           style: TextStyle(
               color: const Color.fromARGB(255, 146, 145, 145),
               fontSize: 15.sp,
@@ -97,7 +97,7 @@ class _ContactDetailPageState extends State<ContactDetailPage> {
                   BoxDecoration(border: Border.all(color: Colors.black)),
               child: Row(
                 children: [
-                  widget.user.gender == 'Woman'
+                  widget.user.sex == 'Woman'
                       ? const Icon(
                           Icons.female,
                           size: 40,
@@ -107,7 +107,7 @@ class _ContactDetailPageState extends State<ContactDetailPage> {
                           size: 40,
                         ),
                   Text(
-                    widget.user.gender!,
+                    widget.user.sex!,
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 18.sp,

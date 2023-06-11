@@ -1,12 +1,12 @@
-import 'package:floating_bottle/pages/mailbox_page/new_user.dart';
+import 'package:floating_bottle/api/user/user_info.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SelectedUsersCubit extends Cubit<List<NewUser>> {
+class SelectedUsersCubit extends Cubit<List<UserInfo>> {
   SelectedUsersCubit(super.initialState) : super();
 
   void set_selected(int userID, bool isSelected) {
     print("selected\n");
-    List<NewUser> newUsers = [];
+    List<UserInfo> newUsers = [];
 
     for (var user in state) {
       newUsers.add(user);
@@ -15,10 +15,10 @@ class SelectedUsersCubit extends Cubit<List<NewUser>> {
       } else
         user.isSelected = false;
     }
-    emit(newUsers);
+    // emit(newUsers);
   }
 
-  NewUser? getSelect() {
+  UserInfo? getSelect() {
     for (var user in state) {
       if (user.isSelected) {
         return user;

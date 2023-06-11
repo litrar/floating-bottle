@@ -5,5 +5,6 @@ abstract class LetterApi {
 
   Future<HttpRes<LetterGot>> getLetter(int matcher, int matched);
   Future<bool> sendLetter(LetterSent createData);
+  Future<HttpRes> deleteLetter(int letterId);
 }
 

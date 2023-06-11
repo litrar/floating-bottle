@@ -24,5 +24,14 @@ class _LetterApi implements LetterApi {
         options: Options(headers: {'Content-Type': 'multipart/form-data'}));
     return res.statusCode == 200;
   }
+  
+  @override
+  Future<HttpRes> deleteLetter(int letterId) async{
+    var res = await _dio.delete("https://ecc3-111-241-177-116.ngrok-free.app/api/Letter/$letterId");
+    return HttpRes(
+        isSuccess: res.statusCode == 200,
+        message: res.data["message"],
+        code: res.statusCode);
+  }
 
 }

@@ -1,6 +1,10 @@
+import 'package:floating_bottle/api/match.dart';
+import 'package:floating_bottle/api/match/models/filter_fillout_data.dart';
 import 'package:floating_bottle/pages/components/button.dart';
+import 'package:floating_bottle/pages/match_page/match.dart';
 import 'package:floating_bottle/pages/match_page/match_result.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:searchfield/searchfield.dart';
 
@@ -12,60 +16,168 @@ class MatchFilterPage extends StatefulWidget {
 
 class _MatchFilterPageState extends State<MatchFilterPage> {
   bool isSelected = false;
-  bool p1 = true;
-  bool p2 = true;
-  bool p3 = true;
-  bool p4 = true;
+  bool p1 = false;
+  bool p2 = false;
+  bool p3 = false;
+  bool p4 = false;
   String searchValue = "";
-
   final List<String> suggestions_c = [
     'Taipei City',
     'New Taipei City',
     'Kaohsiung City'
   ];
-
   final List<String> suggestions_l = ['Chinese', 'English', 'Spanish'];
+
   @override
   Widget build(BuildContext context) {
-    final List<MyButton> buttons = [
-      MyButton(() => setState(() {}), bName: 'Same School'),
-      MyButton(() => setState(() {}), bName: 'Same Major'),
-      MyButton(() => setState(() {}), bName: 'Different School'),
-      MyButton(() => setState(() {}), bName: 'Different Major'),
-      MyButton(() => setState(() {}), bName: 'Female'),
-      MyButton(() => setState(() {}), bName: 'Male'),
-      MyButton(() => setState(() {}), bName: 'Adventurous'),
-      MyButton(() => setState(() {}), bName: 'Reliable'),
-      MyButton(() => setState(() {}), bName: 'Analytical'),
-      MyButton(() => setState(() {}), bName: 'Perfectionist'),
-      MyButton(() => setState(() {}), bName: 'Confident'),
-      MyButton(() => setState(() {}), bName: 'Meticulous'),
-      MyButton(() => setState(() {}), bName: 'Creative'),
-      MyButton(() => setState(() {}), bName: 'Outgoing'),
-      MyButton(() => setState(() {}), bName: 'Empathetic'),
-      MyButton(() => setState(() {}), bName: 'Spontaneous'),
-      MyButton(() => setState(() {}), bName: 'Friendly'),
-      MyButton(() => setState(() {}), bName: 'Thoughtful'),
-      MyButton(() => setState(() {}), bName: 'Independent'),
-      MyButton(() => setState(() {}), bName: 'Trustworthy'),
-      MyButton(() => setState(() {}), bName: 'Introverted'),
-      MyButton(() => setState(() {}), bName: 'Extroverted'),
-      MyButton(() => setState(() {}), bName: 'Cooking'),
-      MyButton(() => setState(() {}), bName: 'Photography'),
-      MyButton(() => setState(() {}), bName: 'Music'),
-      MyButton(() => setState(() {}), bName: 'Art'),
-      MyButton(() => setState(() {}), bName: 'Pet'),
-      MyButton(() => setState(() {}), bName: 'Sports'),
-      MyButton(() => setState(() {}), bName: 'Dancing'),
-      MyButton(() => setState(() {}), bName: 'Games'),
-      MyButton(() => setState(() {}), bName: 'Reading'),
-      MyButton(() => setState(() {}), bName: 'Traveling'),
-      MyButton(() => setState(() {}), bName: 'Coding'),
-      MyButton(() => setState(() {}), bName: 'Cuisine'),
-      MyButton(() => setState(() {}), bName: 'Makeup'),
-      MyButton(() => setState(() {}), bName: 'Movie'),
-    ];
+    MatchApi matchApi = context.read();
 
+    final List<MyButton> buttons = [
+      MyButton(
+        () => setState(() {}),
+        bName: 'Same School',
+        f: context.read<FilterFillOutData>(),
+        category: 'college',
+      ),
+      MyButton(() => setState(() {}),
+          bName: 'Same Major',
+          f: context.read<FilterFillOutData>(),
+          category: 'department'),
+      MyButton(() => setState(() {}),
+          bName: 'Different School',
+          f: context.read<FilterFillOutData>(),
+          category: 'college'),
+      MyButton(() => setState(() {}),
+          bName: 'Different Major',
+          f: context.read<FilterFillOutData>(),
+          category: 'department'),
+      MyButton(() => setState(() {}),
+          bName: 'Female',
+          f: context.read<FilterFillOutData>(),
+          category: 'sex'),
+      MyButton(() => setState(() {}),
+          bName: 'Male', f: context.read<FilterFillOutData>(), category: 'sex'),
+      MyButton(() => setState(() {}),
+          bName: 'Adventurous',
+          f: context.read<FilterFillOutData>(),
+          category: 'personalities'),
+      MyButton(() => setState(() {}),
+          bName: 'Reliable',
+          f: context.read<FilterFillOutData>(),
+          category: 'personalities'),
+      MyButton(() => setState(() {}),
+          bName: 'Analytical',
+          f: context.read<FilterFillOutData>(),
+          category: 'personalities'),
+      MyButton(() => setState(() {}),
+          bName: 'Perfectionist',
+          f: context.read<FilterFillOutData>(),
+          category: 'personalities'),
+      MyButton(() => setState(() {}),
+          bName: 'Confident',
+          f: context.read<FilterFillOutData>(),
+          category: 'personalities'),
+      MyButton(() => setState(() {}),
+          bName: 'Meticulous',
+          f: context.read<FilterFillOutData>(),
+          category: 'personalities'),
+      MyButton(() => setState(() {}),
+          bName: 'Creative',
+          f: context.read<FilterFillOutData>(),
+          category: 'personalities'),
+      MyButton(() => setState(() {}),
+          bName: 'Outgoing',
+          f: context.read<FilterFillOutData>(),
+          category: 'personalities'),
+      MyButton(() => setState(() {}),
+          bName: 'Empathetic',
+          f: context.read<FilterFillOutData>(),
+          category: 'personalities'),
+      MyButton(() => setState(() {}),
+          bName: 'Spontaneous',
+          f: context.read<FilterFillOutData>(),
+          category: 'personalities'),
+      MyButton(() => setState(() {}),
+          bName: 'Friendly',
+          f: context.read<FilterFillOutData>(),
+          category: 'personalities'),
+      MyButton(() => setState(() {}),
+          bName: 'Thoughtful',
+          f: context.read<FilterFillOutData>(),
+          category: 'personalities'),
+      MyButton(() => setState(() {}),
+          bName: 'Independent',
+          f: context.read<FilterFillOutData>(),
+          category: 'personalities'),
+      MyButton(() => setState(() {}),
+          bName: 'Trustworthy',
+          f: context.read<FilterFillOutData>(),
+          category: 'personalities'),
+      MyButton(() => setState(() {}),
+          bName: 'Introverted',
+          f: context.read<FilterFillOutData>(),
+          category: 'personalities'),
+      MyButton(() => setState(() {}),
+          bName: 'Extroverted',
+          f: context.read<FilterFillOutData>(),
+          category: 'personalities'),
+      MyButton(() => setState(() {}),
+          bName: 'Cooking',
+          f: context.read<FilterFillOutData>(),
+          category: 'interests'),
+      MyButton(() => setState(() {}),
+          bName: 'Photography',
+          f: context.read<FilterFillOutData>(),
+          category: 'interests'),
+      MyButton(() => setState(() {}),
+          bName: 'Music',
+          f: context.read<FilterFillOutData>(),
+          category: 'interests'),
+      MyButton(() => setState(() {}),
+          bName: 'Art',
+          f: context.read<FilterFillOutData>(),
+          category: 'interests'),
+      MyButton(() => setState(() {}),
+          bName: 'Pet',
+          f: context.read<FilterFillOutData>(),
+          category: 'interests'),
+      MyButton(() => setState(() {}),
+          bName: 'Sports',
+          f: context.read<FilterFillOutData>(),
+          category: 'interests'),
+      MyButton(() => setState(() {}),
+          bName: 'Dancing',
+          f: context.read<FilterFillOutData>(),
+          category: 'interests'),
+      MyButton(() => setState(() {}),
+          bName: 'Games',
+          f: context.read<FilterFillOutData>(),
+          category: 'interests'),
+      MyButton(() => setState(() {}),
+          bName: 'Reading',
+          f: context.read<FilterFillOutData>(),
+          category: 'interests'),
+      MyButton(() => setState(() {}),
+          bName: 'Traveling',
+          f: context.read<FilterFillOutData>(),
+          category: 'interests'),
+      MyButton(() => setState(() {}),
+          bName: 'Coding',
+          f: context.read<FilterFillOutData>(),
+          category: 'interests'),
+      MyButton(() => setState(() {}),
+          bName: 'Cuisine',
+          f: context.read<FilterFillOutData>(),
+          category: 'interests'),
+      MyButton(() => setState(() {}),
+          bName: 'Makeup',
+          f: context.read<FilterFillOutData>(),
+          category: 'interests'),
+      MyButton(() => setState(() {}),
+          bName: 'Movie',
+          f: context.read<FilterFillOutData>(),
+          category: 'interests'),
+    ];
     return Scaffold(
       body: Stack(
         children: [
@@ -104,7 +216,15 @@ class _MatchFilterPageState extends State<MatchFilterPage> {
         Padding(padding: EdgeInsets.only(left: 15.w)),
         IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            context.read<FilterFillOutData>().clear();
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return const MatchPage();
+                },
+              ),
+            );
           },
           icon: Icon(
             Icons.arrow_back_ios_new,
@@ -461,31 +581,6 @@ class _MatchFilterPageState extends State<MatchFilterPage> {
   }
 
   Widget _continueButton(BuildContext context, List<MyButton> buttons) {
-    for (int i = 0; i < 4; i++) {
-      if (buttons[i].getBool() == true) {
-        p1 = !p1;
-        break;
-      }
-    }
-    for (int i = 4; i < 6; i++) {
-      if (buttons[i].getBool() == true) {
-        p2 = !p2;
-        break;
-      }
-    }
-    for (int i = 6; i < 22; i++) {
-      if (buttons[i].getBool() == true) {
-        p3 = !p3;
-        break;
-      }
-    }
-    for (int i = 22; i < 36; i++) {
-      if (buttons[i].getBool() == true) {
-        p4 = !p4;
-        break;
-      }
-    }
-    bool cbutton = true;
     return Container(
       margin: EdgeInsets.only(top: 20.h),
       height: 40.h,
@@ -499,14 +594,37 @@ class _MatchFilterPageState extends State<MatchFilterPage> {
       child: Material(
         color: Colors.white.withOpacity(0.0),
         child: InkWell(
-            onTap: () {
-              // if (p1 == false || p2 == false || p3 == false || p4 == false) {
-              //   setState(() {
-              //     cbutton = !cbutton;
-              //     print('d');
-              //   });
-              // } else
-              //   print('no');
+            onTap: () async {
+              // for (int i = 0; i < 4; i++) {
+              //   if (buttons[i].getBool() == true) {
+              //     p1 = !p1;
+              //     break;
+              //   }
+              // }
+              // for (int i = 4; i < 6; i++) {
+              //   if (buttons[i].getBool() == true) {
+              //     p2 = !p2;
+              //     break;
+              //   }
+              // }
+              // for (int i = 6; i < 22; i++) {
+              //   if (buttons[i].getBool() == true) {
+              //     p3 = !p3;
+              //     break;
+              //   }
+              // }
+              // for (int i = 22; i < 36; i++) {
+              //   if (buttons[i].getBool() == true) {
+              //     p4 = !p4;
+              //     break;
+              //   }
+              // }
+              print('$p1$p2$p3$p4');
+              MatchApi matchApi = context.read();
+              var res = await matchApi.getFilterMatch(context.read<FilterFillOutData>());
+              if(res.isSuccess){
+                
+              }
               Navigator.push(
                 context,
                 MaterialPageRoute(

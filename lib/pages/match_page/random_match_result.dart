@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../contact_page/contact_detail.dart';
-import '../mailbox_page/new_user.dart';
+import '../../api/user/user_info.dart';
 import '../write_letter.dart';
 
 class DMatchResultPage extends StatefulWidget {
@@ -12,13 +12,13 @@ class DMatchResultPage extends StatefulWidget {
 }
 
 class _DMatchResultPageState extends State<DMatchResultPage> {
-  List<NewUser> users = [
-    NewUser(
+  List<UserInfo> users = [
+    UserInfo(
         avatar: 'assetsfolder/friend1.jpg',
         id: 67890,
         name: 'Ann',
-        school: 'National Chengchi University',
-        gender: 'Woman',
+        college: 'National Chengchi University',
+        sex: 'Woman',
         city: 'Taipeisd',
         age: '20',
         personalities: ['Extroverted', 'Outgoing'],
@@ -81,7 +81,7 @@ class _DMatchResultPageState extends State<DMatchResultPage> {
     );
   }
 
-  Widget _matchedUser(BuildContext context, NewUser user) {
+  Widget _matchedUser(BuildContext context, UserInfo user) {
     return Container(
       margin: users.length == 1
           ? EdgeInsets.only(top: 120.h)

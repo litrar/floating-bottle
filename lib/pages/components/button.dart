@@ -1,10 +1,14 @@
+import 'package:floating_bottle/api/match/models/filter_fillout_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyButton extends StatefulWidget {
-  const MyButton(this.setStatePage, {super.key, required this.bName});
+  const MyButton(this.setStatePage,
+      {super.key, required this.bName, this.f, this.category});
   final String bName;
   final void Function() setStatePage;
+  final FilterFillOutData? f;
+  final String? category;
 
   bool getBool() {
     return _MyButtonState().isSelected;
@@ -43,10 +47,48 @@ class _MyButtonState extends State<MyButton> {
         color: Colors.white.withOpacity(0.0),
         child: InkWell(
           onTap: () {
-            setState(() {
-              widget.setStatePage();
-              isSelected = !isSelected;
-            });
+            switch (widget.category) {
+              case "college":
+                setState(() {
+                  widget.setStatePage();
+                  isSelected = !isSelected;
+                  widget.f?.college = 'NCCU';
+                  print(widget.f!.all());
+                });
+                break;
+              case "department":
+                setState(() {
+                  widget.setStatePage();
+                  isSelected = !isSelected;
+                  widget.f?.department = "MIS";
+                  print(widget.f!.all());
+                });
+                break;
+              case "sex":
+                setState(() {
+                  widget.setStatePage();
+                  isSelected = !isSelected;
+                  widget.f?.sex = widget.bName;
+                  print(widget.f!.all());
+                });
+                break;
+              case "personalities":
+                setState(() {
+                  widget.setStatePage();
+                  isSelected = !isSelected;
+                  widget.f?.personalties.add(widget.bName);
+                  print(widget.f!.all());
+                });
+                break;
+              case "interests":
+                setState(() {
+                  widget.setStatePage();
+                  isSelected = !isSelected;
+                  widget.f?.interests.add(widget.bName);
+                  print(widget.f!.all());
+                });
+                break;
+            }
           },
           child: Container(
               alignment: Alignment.center,

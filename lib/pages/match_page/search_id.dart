@@ -2,7 +2,7 @@ import 'package:floating_bottle/pages/match_page/random_match_result.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../mailbox_page/new_user.dart';
+import '../../api/user/user_info.dart';
 
 class SearchIDPage extends StatefulWidget {
   const SearchIDPage({super.key});
@@ -12,13 +12,13 @@ class SearchIDPage extends StatefulWidget {
 }
 
 class _SearchIDPageState extends State<SearchIDPage> {
-  List<NewUser> users = [
-    NewUser(
+  List<UserInfo> users = [
+    UserInfo(
         avatar: 'assetsfolder/friend1.jpg',
         id: 67890,
         name: 'Ann',
-        school: 'National Chengchi University',
-        gender: 'Woman',
+        college: 'National Chengchi University',
+        sex: 'Woman',
         city: 'Taipeisd',
         age: '20',
         personalities: ['Extroverted', 'Outgoing'],

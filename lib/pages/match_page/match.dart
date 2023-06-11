@@ -1,3 +1,4 @@
+import 'package:floating_bottle/pages/match_page/match_filter_listener.dart';
 import 'package:floating_bottle/pages/match_page/random_match_result.dart';
 import 'package:floating_bottle/pages/match_page/match_filter.dart';
 import 'package:floating_bottle/pages/match_page/search_id.dart';
@@ -217,7 +218,7 @@ class _MatchPageState extends State<MatchPage> {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return const MatchFilterPage();
+                    return const FilterRepository();
                   },
                 ),
               );

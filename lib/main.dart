@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:floating_bottle/api/match/models/filter_fillout_data.dart';
 import 'package:floating_bottle/pages/authentication/login.dart';
 import 'package:floating_bottle/pages/components/error_page.dart';
 import 'package:floating_bottle/pages/subpage.dart';
@@ -46,16 +47,21 @@ class MyApp extends StatelessWidget {
         return MultiBlocProvider(
             providers: [BlocProvider(create: (_) => ThemeCubit())],
             // child: _app()
-             child: MultiRepositoryProvider(
-              providers: [
-                
-                RepositoryProvider(create: (_) => LetterApi(_dio)),
-                RepositoryProvider(create: (_) => MatchApi(_dio)),
-                
-              ],
-              child: _app()
-          )
-            );
+            child: MultiRepositoryProvider(providers: [
+              RepositoryProvider(create: (_) => LetterApi(_dio)),
+              RepositoryProvider(create: (_) => MatchApi(_dio)),
+              RepositoryProvider(
+                  create: (_) => FilterFillOutData(
+                      college: '',
+                      department: '',
+                      sex: '',
+                      city: '',
+                      languages: [],
+                      personalties: [],
+                      interests: []),
+                      ),
+            ], 
+            child: _app()));
       },
     );
   }

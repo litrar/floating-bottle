@@ -1,5 +1,5 @@
 import 'package:floating_bottle/pages/contact_page/contact_detail.dart';
-import 'package:floating_bottle/pages/mailbox_page/new_user.dart';
+import 'package:floating_bottle/api/user/user_info.dart';
 import 'package:floating_bottle/pages/match_page/bloc/selected_people_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,41 +8,41 @@ import '../write_letter.dart';
 
 class MatchResultPage extends StatefulWidget {
   MatchResultPage({super.key, this.id});
-  int? id;
+  List<int>? id;
   @override
   State<MatchResultPage> createState() => _MatchResultPageState();
 }
 
 class _MatchResultPageState extends State<MatchResultPage> {
-  List<NewUser> users = [
-    NewUser(
+  List<UserInfo> users = [
+    UserInfo(
         id: 1,
         avatar: 'assetsfolder/friend1.jpg',
         name: 'Ann',
-        school: 'National Chengchi University',
-        gender: 'Woman',
+        college: 'National Chengchi University',
+        sex: 'Woman',
         city: 'Taipeisd',
         age: '20',
         personalities: ['Extroverted', 'Outgoing'],
         interests: ['Cooking', 'Movie', 'Pet'],
         isSelected: false),
-    NewUser(
+    UserInfo(
         id: 2,
         avatar: 'assetsfolder/friend3.jpg',
         name: 'Hanns',
-        school: 'National Chengchi University',
-        gender: 'Man',
+        college: 'National Chengchi University',
+        sex: 'Man',
         city: 'Taipei',
         age: '19',
         personalities: ['Extroverted', 'Trustworthy'],
         interests: ['Cooking', 'Reading'],
         isSelected: false),
-    NewUser(
+    UserInfo(
         id: 3,
         avatar: 'assetsfolder/friend2.jpg',
         name: 'Stella',
-        school: 'National Chengchi University',
-        gender: 'Woman',
+        college: 'National Chengchi University',
+        sex: 'Woman',
         city: 'Taipei',
         age: '20',
         personalities: ['Outgoing', 'Reliable'],
@@ -90,7 +90,7 @@ class _MatchResultPageState extends State<MatchResultPage> {
                 SizedBox(
                   height: 30.h,
                 ),
-                BlocBuilder<SelectedUsersCubit, List<NewUser>>(
+                BlocBuilder<SelectedUsersCubit, List<UserInfo>>(
                     builder: (context, state) {
                   return Column(children: [
                     for (var user in users)
@@ -121,7 +121,7 @@ class _MatchResultPageState extends State<MatchResultPage> {
   }
 
   Widget _matchedUser(
-      SelectedUsersCubit cubit, BuildContext context, NewUser user) {
+      SelectedUsersCubit cubit, BuildContext context, UserInfo user) {
     return Container(
       margin: EdgeInsets.only(top: 20.h),
       height: 60.h,
@@ -186,10 +186,10 @@ class _MatchResultPageState extends State<MatchResultPage> {
   Widget _continueButton(BuildContext context) {
     // List<bool> check = users.map((e) => e.isSelected!).toList();
 
-    return BlocBuilder<SelectedUsersCubit, List<NewUser>>(
+    return BlocBuilder<SelectedUsersCubit, List<UserInfo>>(
         builder: (context, state) {
       SelectedUsersCubit cubit = context.read();
-      NewUser? selected = cubit.getSelect();
+      UserInfo? selected = cubit.getSelect();
 
       return InkWell(
           onTap: () {
