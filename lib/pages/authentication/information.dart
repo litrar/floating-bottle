@@ -1,6 +1,9 @@
+import 'package:floating_bottle/controllers/account_detail_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
 import 'gender.dart';
 
@@ -12,6 +15,7 @@ class Information extends StatefulWidget {
   State<Information> createState() => _InformationState();
 }
 class _InformationState extends State<Information> {
+  AccountDetailController accountDetailController = Get.put(AccountDetailController());
   late DateTime selectedDateTime;
   var imgUrl = "https://images.app.goo.gl/xE38wS6pmvP5RZwRA";
 
@@ -32,7 +36,9 @@ class _InformationState extends State<Information> {
                 children: [
                   Container(
                       margin: EdgeInsets.only(top: 15.h,left: 270.w,bottom: 10.h),
-                      child: TextButton(onPressed: (){
+                      child: TextButton(
+                        onPressed: () async {
+                        accountDetailController.accountDetailWithData();
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -133,6 +139,7 @@ class _InformationState extends State<Information> {
             fontSize: 22.sp,color: Colors.black,fontWeight: FontWeight.w500
         ),
         cursorWidth: 3.w,
+        controller: accountDetailController.schoolController,
       ),
     );
   }
@@ -164,6 +171,7 @@ class _InformationState extends State<Information> {
             fontSize: 22.sp,color: Colors.black,fontWeight: FontWeight.w500
         ),
         cursorWidth: 3.w,
+        controller: accountDetailController.cityController,
       ),
     );
   }
@@ -209,6 +217,7 @@ class _InformationState extends State<Information> {
             fontSize: 22.sp,color: Colors.black,fontWeight: FontWeight.w500
         ),
         cursorWidth: 3.w,
+        controller: accountDetailController.birthDateController,
       ),
     );
   }
@@ -224,7 +233,11 @@ class _InformationState extends State<Information> {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(55))
             )
         ),
-        onPressed: () {
+        onPressed: () async {
+          accountDetailController.accountDetailWithData();
+          print(accountDetailController.schoolController);
+          print(accountDetailController.cityController);
+          print(accountDetailController.birthDateController);
           Navigator.push(
             context,
             MaterialPageRoute(
