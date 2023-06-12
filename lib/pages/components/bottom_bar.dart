@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:go_router/go_router.dart';
 import '../subpage.dart';
 
@@ -21,7 +23,8 @@ class BottomBar extends StatelessWidget {
       selectedFontSize: 14.sp,
       type: BottomNavigationBarType.fixed,
       onTap: (page) {
-        context.go(SubPage.PAGES[page].route.path);
+        // context.go(SubPage.PAGES[page].route.path);
+        Get.toNamed(SubPage.PAGES[page].route.name);
       },
       items: [
         for (var page in SubPage.PAGES)
