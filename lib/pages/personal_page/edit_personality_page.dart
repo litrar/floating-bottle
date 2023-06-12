@@ -1,10 +1,10 @@
+import 'package:floating_bottle/pages/authentication/button3.dart';
 import 'package:floating_bottle/pages/personal_page/save_personality_page.dart';
 import 'package:floating_bottle/pages/personal_page/setting_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../authentication/button1.dart';
 
 class EditPersonality extends StatefulWidget {
   const EditPersonality({Key? key}) : super(key: key);
@@ -14,27 +14,27 @@ class EditPersonality extends StatefulWidget {
 }
 class _EditPersonalityState extends State<EditPersonality> {
   Widget build(BuildContext context) {
-    final List<MyButton1> buttons = [
-      MyButton1((isSelected) => setState(() {}), bName: 'Adventurous', icon: const Icon(Icons.compass_calibration_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Analytical', icon: const Icon(Icons.analytics_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Confident', icon: const Icon(Icons.star)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Creative', icon: const Icon(Icons.create_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Empathetic', icon: const Icon(Icons.monitor_heart_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Friendly', icon: const Icon(Icons.people_alt)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Independent', icon: const Icon(Icons.person_rounded)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Introverted', icon: const Icon(Icons.mood_bad_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Optimistic', icon: const Icon(Icons.tag_faces)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Organized', icon: const Icon(Icons.add_chart)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Reliable', icon: const Icon(Icons.people_alt_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Perfectionist', icon: const Icon(Icons.thumb_up_alt_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Meticulous', icon: const Icon(Icons.center_focus_strong_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Outgoing', icon: const Icon(Icons.accessibility_new_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Spontaneous', icon: const Icon(Icons.self_improvement_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Thoughtful', icon: const Icon(Icons.face)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Trustworthy', icon: const Icon(Icons.badge_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Visionary', icon: const Icon(Icons.schedule)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Warm-hearted', icon: const Icon(Icons.heart_broken)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Witty', icon: const Icon(Icons.wb_incandescent_outlined)),
+    final List<MyButton3> buttons = [
+      MyButton3((isSelected) => setState(() {}), bName: 'Adventurous', icon: const Icon(Icons.compass_calibration_outlined)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Analytical', icon: const Icon(Icons.analytics_outlined)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Confident', icon: const Icon(Icons.star)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Creative', icon: const Icon(Icons.create_outlined)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Empathetic', icon: const Icon(Icons.monitor_heart_outlined)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Friendly', icon: const Icon(Icons.people_alt)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Independent', icon: const Icon(Icons.person_rounded)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Introverted', icon: const Icon(Icons.mood_bad_outlined)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Optimistic', icon: const Icon(Icons.tag_faces)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Organized', icon: const Icon(Icons.add_chart)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Reliable', icon: const Icon(Icons.people_alt_outlined)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Perfectionist', icon: const Icon(Icons.thumb_up_alt_outlined)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Meticulous', icon: const Icon(Icons.center_focus_strong_outlined)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Outgoing', icon: const Icon(Icons.accessibility_new_outlined)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Spontaneous', icon: const Icon(Icons.self_improvement_outlined)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Thoughtful', icon: const Icon(Icons.face)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Trustworthy', icon: const Icon(Icons.badge_outlined)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Visionary', icon: const Icon(Icons.schedule)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Warm-hearted', icon: const Icon(Icons.heart_broken)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Witty', icon: const Icon(Icons.wb_incandescent_outlined)),
     ];
     return Scaffold(
         body: Stack(
@@ -94,7 +94,7 @@ class _EditPersonalityState extends State<EditPersonality> {
         )
     );
   }
-  Widget button(BuildContext context,List<MyButton1> buttons){
+  Widget button(BuildContext context,List<MyButton3> buttons){
     return Container(
       height: 500.h,
       child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
