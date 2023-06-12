@@ -1,18 +1,19 @@
 import 'package:floating_bottle/pages/personal_page/edit_name.dart';
 import 'package:floating_bottle/pages/personal_page/personal_page.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:go_router/go_router.dart';
 
-final mainPage = (BuildContext context, GoRouterState state) => PersonalPage('Remi Chuang');
+final mainPage = (BuildContext context, GetXState state) => PersonalPage('Remi Chuang');
 
-final p_route = GoRoute(
-    path: "/personal",
-    builder: mainPage,
-    routes: [
-      GoRoute(
-      path: "edit_name",
-      builder: (context,state) => const EditNamePage()
+final p_route = GetPage(
+  name: "/personal",
+  page: () => PersonalPage('Remi Chuang'),
+  children: [
+    GetPage(
+      name: "/edit_name",
+      page: () => const EditNamePage(),
     ),
-
-    ]
+  ],
 );
