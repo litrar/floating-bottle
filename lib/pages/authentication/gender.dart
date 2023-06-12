@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
+import '../../controllers/account_detail_controller.dart';
 import 'information.dart';
 import 'interest.dart';
 
@@ -12,6 +15,7 @@ class Gender extends StatefulWidget {
   State<Gender> createState() => _GenderState();
 }
 class _GenderState extends State<Gender> {
+  AccountDetailController accountDetailController = Get.put(AccountDetailController());
   bool wpressed = true;
   bool mpressed = true;
   bool cpressed = true;
@@ -89,6 +93,11 @@ class _GenderState extends State<Gender> {
           if(mpressed == true){
             setState(() {
               wpressed = !wpressed;
+              if(wpressed==false){
+                accountDetailController.selectedSex = 'Woman';
+              }else{
+                accountDetailController.selectedSex = '';
+              }
             });
           }else{
             setState(() {
@@ -117,6 +126,11 @@ class _GenderState extends State<Gender> {
           if(wpressed == true){
             setState(() {
               mpressed = !mpressed;
+              if(mpressed==false){
+                accountDetailController.selectedSex = 'Man';
+              }else{
+                accountDetailController.selectedSex = '';
+              }
             });
           }else{
             setState(() {
@@ -141,19 +155,25 @@ class _GenderState extends State<Gender> {
   }
   Widget _continueButton(){
     return TextButton(
-        onPressed: (){
+        onPressed: ()async{
           if(wpressed == false || mpressed == false){
             setState(() {
               cpressed = !cpressed;
             });
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return const Interest();
-                },
-              ),
-            );
+            if(accountDetailController.selectedSex.isNotEmpty){
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const Interest();
+                  },
+                ),
+              );
+              print(accountDetailController.selectedSex);
+              accountDetailController.accountDetailWithData();
+            }else {
+              print("請選擇性別");
+            }
           }
         },
         child: Container(
