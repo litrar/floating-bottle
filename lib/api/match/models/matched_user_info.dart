@@ -1,24 +1,21 @@
-import '../../pages/tool/time.dart';
+import '../../../pages/tool/time.dart';
 
-class UserInfo {
+class MatchedUserInfo {
   int id;
   String name;
   String? college;
-  String? department;
-  String? sex;
-
-  String? avatar;
-  String? age;
+  String? sex;  
   String? city;
+  String? age;
+  String? avatar;
+  List<String>? personalities;
+  List<String>? interests;
   // DateTime? bdate;
   // String? address;
 
-  List<String>? personalities;
-  List<String>? interests;
-
   bool isSelected;
 
-  UserInfo(
+  MatchedUserInfo(
       {required this.id,
       required this.name,
       required this.avatar,
@@ -30,15 +27,14 @@ class UserInfo {
       this.interests,
       required this.isSelected});
 
-  UserInfo.fromJson(Map<String, dynamic> json)
-      : id = json['userId'],
+  MatchedUserInfo.fromJson(Map<String, dynamic> json)
+      : id = json['id'],
         name = json['name'],
         college = json['college'],
-        department = json['department'],
-        sex = json['sex'],
+        sex = json['gender'],
         city = json['city'],
         age = json['age'],
-        avatar = json['avatar'],
+        // avatar = json['avatar'],
         personalities = json['personality'],
         interests = json['interest'],
         isSelected = false;

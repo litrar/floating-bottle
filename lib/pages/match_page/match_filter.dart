@@ -1,3 +1,4 @@
+
 import 'package:floating_bottle/api/match.dart';
 import 'package:floating_bottle/api/match/models/filter_fillout_data.dart';
 import 'package:floating_bottle/pages/components/button.dart';
@@ -7,6 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:searchfield/searchfield.dart';
+
+import '../../api/http_response.dart';
+import '../../api/match/models/match_result.dart';
+import '../../api/match/models/matched_user_info.dart';
 
 class MatchFilterPage extends StatefulWidget {
   const MatchFilterPage({Key? key}) : super(key: key);
@@ -197,8 +202,8 @@ class _MatchFilterPageState extends State<MatchFilterPage> {
                 _title(context),
                 _school(context, buttons),
                 _sexual(context, buttons),
-                _city(context),
-                _language(context),
+                _city(context, context.read<FilterFillOutData>()),
+                _language(context, context.read<FilterFillOutData>()),
                 _personality(context, buttons),
                 _interest(context, buttons),
                 _continueButton(context, buttons)
@@ -309,7 +314,7 @@ class _MatchFilterPageState extends State<MatchFilterPage> {
         ));
   }
 
-  Widget _city(BuildContext context) {
+  Widget _city(BuildContext context, FilterFillOutData f) {
     return Container(
         height: 70.h,
         margin: EdgeInsets.only(top: 8.h),
@@ -347,6 +352,10 @@ class _MatchFilterPageState extends State<MatchFilterPage> {
                                         fontFamily: 'Abril Fatface')),
                               )))
                           .toList(),
+                       onSuggestionTap: (SearchFieldListItem<String> x) {
+                        f.city = x.searchKey.substring(0, x.searchKey.length-5);
+                        print(f!.all());
+                      },
                       marginColor: Colors.white,
                       searchStyle: TextStyle(
                           fontSize: 16.sp, fontFamily: 'Abril Fatface'),
@@ -371,7 +380,7 @@ class _MatchFilterPageState extends State<MatchFilterPage> {
         ));
   }
 
-  Widget _language(BuildContext context) {
+  Widget _language(BuildContext context, FilterFillOutData f) {
     return Container(
         height: 70.h,
         margin: EdgeInsets.only(top: 8.h),
@@ -410,6 +419,10 @@ class _MatchFilterPageState extends State<MatchFilterPage> {
                                         fontFamily: 'Abril Fatface')),
                               )))
                           .toList(),
+                      onSuggestionTap: (SearchFieldListItem<String> x) {
+                        f.languages.add(x.searchKey);
+                        print(f!.all());
+                      },
                       marginColor: Colors.white,
                       searchStyle: TextStyle(
                           fontSize: 16.sp, fontFamily: 'Abril Fatface'),
@@ -595,45 +608,102 @@ class _MatchFilterPageState extends State<MatchFilterPage> {
         color: Colors.white.withOpacity(0.0),
         child: InkWell(
             onTap: () async {
-              // for (int i = 0; i < 4; i++) {
-              //   if (buttons[i].getBool() == true) {
-              //     p1 = !p1;
-              //     break;
-              //   }
-              // }
-              // for (int i = 4; i < 6; i++) {
-              //   if (buttons[i].getBool() == true) {
-              //     p2 = !p2;
-              //     break;
-              //   }
-              // }
-              // for (int i = 6; i < 22; i++) {
-              //   if (buttons[i].getBool() == true) {
-              //     p3 = !p3;
-              //     break;
-              //   }
-              // }
-              // for (int i = 22; i < 36; i++) {
-              //   if (buttons[i].getBool() == true) {
-              //     p4 = !p4;
-              //     break;
-              //   }
-              // }
-              print('$p1$p2$p3$p4');
-              MatchApi matchApi = context.read();
-              var res = await matchApi.getFilterMatch(context.read<FilterFillOutData>());
-              if(res.isSuccess){
-                
+              List<MatchedUserInfo> userInfoList = [];
+              MatchedUserInfo? userInfo;
+              MatchApi matchApi = context.read<MatchApi>();
+
+              var res = await matchApi
+                  .getFilterMatch(context.read<FilterFillOutData>());
+              if (res.isSuccess) {
+              print('succeed');
+                for (MatchResult m in res.data!) {
+                  HttpRes<MatchedUserInfo> userRes =
+                      await matchApi.showUserById(m.id);
+                  userInfo = userRes.data;
+                  if (userInfo != null) {
+                    userInfoList.add(userInfo);
+                  }
+                }
+                Future.microtask(() {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return MatchResultPage(matchedUsers: userInfoList);
+                      },
+                    ),
+                  );
+                });
+              } else {
+                print('fail');
+                Future.microtask(() {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return MatchResultPage();
+                      },
+                    ),
+                  );
+                });
               }
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return MatchResultPage();
-                  },
-                ),
-              );
             },
+
+            // onTap: () async {
+            //   // for (int i = 0; i < 4; i++) {
+            //   //   if (buttons[i].getBool() == true) {
+            //   //     p1 = !p1;
+            //   //     break;
+            //   //   }
+            //   // }
+            //   // for (int i = 4; i < 6; i++) {
+            //   //   if (buttons[i].getBool() == true) {
+            //   //     p2 = !p2;
+            //   //     break;
+            //   //   }
+            //   // }
+            //   // for (int i = 6; i < 22; i++) {
+            //   //   if (buttons[i].getBool() == true) {
+            //   //     p3 = !p3;
+            //   //     break;
+            //   //   }
+            //   // }
+            //   // for (int i = 22; i < 36; i++) {
+            //   //   if (buttons[i].getBool() == true) {
+            //   //     p4 = !p4;
+            //   //     break;
+            //   //   }
+            //   // }
+            //   print('$p1$p2$p3$p4');
+            //   List<MatchedUserInfo> userInfoList = [];
+            //   MatchedUserInfo userInfo;
+            //   MatchApi matchApi = context.read();
+            //   var res = await matchApi
+            //       .getFilterMatch(context.read<FilterFillOutData>());
+
+            //   if (res.isSuccess) {
+            //     for (MatchResult m in res.data!) {
+            //       userInfo = (await matchApi.showUserById(m.id)) as MatchedUserInfo;
+            //       userInfoList.add(userInfo);
+            //     }
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute(
+            //         builder: (context) {
+            //           return MatchResultPage(matchResult: userInfoList);
+            //         },
+            //       ),
+            //     );
+            //   }
+            //   Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //       builder: (context) {
+            //         return MatchResultPage();
+            //       },
+            //     ),
+            //   );
+            // },
             child: Container(
               alignment: Alignment.center,
               child: const Text("Find Someone",

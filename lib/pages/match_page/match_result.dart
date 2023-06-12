@@ -1,21 +1,24 @@
+import 'package:floating_bottle/api/match/models/match_result.dart';
 import 'package:floating_bottle/pages/contact_page/contact_detail.dart';
-import 'package:floating_bottle/api/user/user_info.dart';
+import 'package:floating_bottle/api/match/models/matched_user_info.dart';
 import 'package:floating_bottle/pages/match_page/bloc/selected_people_cubit.dart';
+import 'package:floating_bottle/pages/match_page/match.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../api/match.dart';
 import '../write_letter.dart';
 
 class MatchResultPage extends StatefulWidget {
-  MatchResultPage({super.key, this.id});
-  List<int>? id;
+  MatchResultPage({super.key, this.matchedUsers});
+  List<MatchedUserInfo>? matchedUsers;
   @override
   State<MatchResultPage> createState() => _MatchResultPageState();
 }
 
 class _MatchResultPageState extends State<MatchResultPage> {
-  List<UserInfo> users = [
-    UserInfo(
+  List<MatchedUserInfo> users = [
+    MatchedUserInfo(
         id: 1,
         avatar: 'assetsfolder/friend1.jpg',
         name: 'Ann',
@@ -26,7 +29,7 @@ class _MatchResultPageState extends State<MatchResultPage> {
         personalities: ['Extroverted', 'Outgoing'],
         interests: ['Cooking', 'Movie', 'Pet'],
         isSelected: false),
-    UserInfo(
+    MatchedUserInfo(
         id: 2,
         avatar: 'assetsfolder/friend3.jpg',
         name: 'Hanns',
@@ -37,7 +40,7 @@ class _MatchResultPageState extends State<MatchResultPage> {
         personalities: ['Extroverted', 'Trustworthy'],
         interests: ['Cooking', 'Reading'],
         isSelected: false),
-    UserInfo(
+    MatchedUserInfo(
         id: 3,
         avatar: 'assetsfolder/friend2.jpg',
         name: 'Stella',
@@ -75,8 +78,14 @@ class _MatchResultPageState extends State<MatchResultPage> {
                     Padding(padding: EdgeInsets.only(left: 15.w)),
                     IconButton(
                       onPressed: () {
-                        Navigator.pop(context);
-                        Navigator.pop(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return MatchPage();
+                            },
+                          ),
+                        );
                       },
                       icon: Icon(
                         Icons.arrow_back_ios_new,
@@ -90,7 +99,7 @@ class _MatchResultPageState extends State<MatchResultPage> {
                 SizedBox(
                   height: 30.h,
                 ),
-                BlocBuilder<SelectedUsersCubit, List<UserInfo>>(
+                BlocBuilder<SelectedUsersCubit, List<MatchedUserInfo>>(
                     builder: (context, state) {
                   return Column(children: [
                     for (var user in users)
@@ -121,12 +130,12 @@ class _MatchResultPageState extends State<MatchResultPage> {
   }
 
   Widget _matchedUser(
-      SelectedUsersCubit cubit, BuildContext context, UserInfo user) {
+      SelectedUsersCubit cubit, BuildContext context, MatchedUserInfo user) {
     return Container(
       margin: EdgeInsets.only(top: 20.h),
       height: 60.h,
       width: MediaQuery.of(context).size.width * 0.8,
-      decoration: user.isSelected!
+      decoration: user.isSelected
           ? BoxDecoration(
               borderRadius: BorderRadius.circular(35),
               color: const Color.fromARGB(255, 86, 140, 167),
@@ -139,7 +148,9 @@ class _MatchResultPageState extends State<MatchResultPage> {
         color: Colors.white.withOpacity(0.0),
         child: InkWell(
           onTap: () {
-            cubit.set_selected(user.id!, !user.isSelected);
+            cubit.set_selected(user.id, !user.isSelected);
+            //下面的user應該是widget build裡面的users的，無法更動的isSelected = false;
+            print(user.isSelected);
             if (user.isSelected == true) {
               Navigator.of(context).push(
                 MaterialPageRoute(
@@ -164,7 +175,7 @@ class _MatchResultPageState extends State<MatchResultPage> {
               ),
               Text(
                 user.name,
-                style: user.isSelected!
+                style: user.isSelected
                     ? TextStyle(
                         color: Colors.white,
                         fontSize: 26.sp,
@@ -184,12 +195,10 @@ class _MatchResultPageState extends State<MatchResultPage> {
   }
 
   Widget _continueButton(BuildContext context) {
-    // List<bool> check = users.map((e) => e.isSelected!).toList();
-
-    return BlocBuilder<SelectedUsersCubit, List<UserInfo>>(
+    return BlocBuilder<SelectedUsersCubit, List<MatchedUserInfo>>(
         builder: (context, state) {
       SelectedUsersCubit cubit = context.read();
-      UserInfo? selected = cubit.getSelect();
+      MatchedUserInfo? selected = cubit.getSelect();
 
       return InkWell(
           onTap: () {
@@ -211,7 +220,7 @@ class _MatchResultPageState extends State<MatchResultPage> {
             height: 55.h,
             width: MediaQuery.of(context).size.width * 0.8,
             decoration: !(selected == null)
-            // selected?.isSelected ?? false
+                // selected?.isSelected ?? false
                 ? BoxDecoration(
                     color: const Color.fromARGB(255, 86, 140, 167),
                     borderRadius: BorderRadius.circular(35))

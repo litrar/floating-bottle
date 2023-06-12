@@ -7,14 +7,14 @@ class HttpRes<T> {
 
   HttpRes.fromJson(Map<String, dynamic> json,
       {T? Function(Map<String, dynamic>)? dataDecodeFunc, int? code})
-      : code = code ?? json["code"] ?? -1,
+      :
+        // code = code ?? json["code"] ?? -1,
+        // isSuccess = json["isSuccess"] ?? false,
+        // message = json["message"],
+        code = code ?? -1,
         isSuccess = json["isSuccess"] ?? false,
-        message = json["message"],
-        data = (dataDecodeFunc != null &&
-                json["data"] != null &&
-                json["data"] is Map<String, dynamic>)
-            ? dataDecodeFunc(json["data"])
-            : json["data"];
+        message = json["message"] ?? 'we have no message',
+        data = (dataDecodeFunc != null) ? dataDecodeFunc(json) : null;
 
   HttpRes({bool? isSuccess, String? message, T? data, int? code})
       : code = code ?? -1,

@@ -1,10 +1,10 @@
-import 'package:floating_bottle/api/user/user_info.dart';
+import 'package:floating_bottle/api/match/models/matched_user_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ContactDetailPage extends StatefulWidget {
   const ContactDetailPage({super.key, required this.user});
-  final UserInfo user;
+  final MatchedUserInfo user;
 
   @override
   State<ContactDetailPage> createState() => _ContactDetailPageState();

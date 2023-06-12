@@ -1,8 +1,12 @@
+import 'package:floating_bottle/api/match.dart';
 import 'package:floating_bottle/pages/match_page/random_match_result.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../api/user/user_info.dart';
+import '../../api/http_response.dart';
+import '../../api/match/models/matched_user_info.dart';
+import 'match_result.dart';
 
 class SearchIDPage extends StatefulWidget {
   const SearchIDPage({super.key});
@@ -12,8 +16,8 @@ class SearchIDPage extends StatefulWidget {
 }
 
 class _SearchIDPageState extends State<SearchIDPage> {
-  List<UserInfo> users = [
-    UserInfo(
+  List<MatchedUserInfo> users = [
+    MatchedUserInfo(
         avatar: 'assetsfolder/friend1.jpg',
         id: 67890,
         name: 'Ann',
@@ -28,6 +32,8 @@ class _SearchIDPageState extends State<SearchIDPage> {
   final TextEditingController _searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    MatchApi matchApi = context.read();
+
     return Scaffold(
         body: Stack(
       children: [
@@ -108,14 +114,50 @@ class _SearchIDPageState extends State<SearchIDPage> {
           // Add a search icon or button to the search bar
           prefixIcon: IconButton(
             icon: const Icon(Icons.search, size: 30, color: Colors.black),
-            onPressed: () {
+            onPressed: () async {
               // Perform the search here
-              if (int.parse(_searchController.text) == users[0].id) {
-                Navigator.of(context).push(
+
+              // if (int.parse(_searchController.text) == users[0].id) {
+              //   Navigator.of(context).push(
+              //     MaterialPageRoute(
+              //       builder: (context) => const DMatchResultPage(),
+              //     ),
+              //   );
+              // }
+              MatchApi matchApi = context.read<MatchApi>();
+              MatchedUserInfo? userInfo;
+              List<MatchedUserInfo> userInfoList = [];
+              int id = int.parse(_searchController.text);
+              print(id);
+              var res = await matchApi.getSearchIDMatch(id);
+              if (res.isSuccess) {
+                print('succeed');
+                HttpRes<MatchedUserInfo> userRes =
+                    await matchApi.showUserById(res.data!.id);
+                userInfo = userRes.data;
+                if (userInfo != null) {
+                  userInfoList.add(userInfo);
+                }
+
+                Future.microtask(() {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return MatchResultPage(matchedUsers: userInfoList);
+                      },
+                    ),
+                  );
+                });
+              } else {
+                
+                Future.microtask(() {
+                  Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => const DMatchResultPage(),
                   ),
                 );
+                });
               }
             },
           ),

@@ -68,7 +68,7 @@ class _MyButtonState extends State<MyButton> {
                 setState(() {
                   widget.setStatePage();
                   isSelected = !isSelected;
-                  widget.f?.sex = widget.bName;
+                  widget.f?.sex = 'F';
                   print(widget.f!.all());
                 });
                 break;

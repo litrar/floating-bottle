@@ -7,9 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import '../../api/http_response.dart';
+import '../../api/match.dart';
+import '../../api/match/models/match_result.dart';
+import '../../api/match/models/matched_user_info.dart';
 import '../components/bottom_bar.dart';
 import '../theme/color_theme.dart';
 import '../theme/theme_bloc.dart';
+import 'match_result.dart';
 import 'match_route.dart';
 
 class MatchSubPage implements SubPage {
@@ -40,6 +45,7 @@ class _MatchPageState extends State<MatchPage> {
   bool cbutton = true;
 
   Widget build(BuildContext context) {
+    MatchApi matchApi = context.read();
     return BlocBuilder<ThemeCubit, ColorTheme>(builder: (context, state) {
       return Scaffold(
         bottomNavigationBar: BottomBar(SubPage.CONTACT),
@@ -208,7 +214,11 @@ class _MatchPageState extends State<MatchPage> {
 
   Widget _continueButton(BuildContext context) {
     return InkWell(
-        onTap: () {
+        onTap: () async {
+          MatchApi matchApi = context.read<MatchApi>();
+          MatchedUserInfo? userInfo;
+          List<MatchedUserInfo> userInfoList = [];
+
           if (random == false || filter == false || searchID == false) {
             setState(() {
               cbutton = !cbutton;
@@ -232,14 +242,46 @@ class _MatchPageState extends State<MatchPage> {
                 ),
               );
             } else {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const DMatchResultPage();
-                  },
-                ),
-              );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) {
+              //       return const DMatchResultPage();
+              //     },
+              //   ),
+              // );
+              var res = await matchApi.getRandomMatch();
+              if (res.isSuccess) {
+                print('succeed');
+                HttpRes<MatchedUserInfo> userRes =
+                    await matchApi.showUserById(res.data!.id);
+                userInfo = userRes.data;
+                if (userInfo != null) {
+                  userInfoList.add(userInfo);
+                }
+
+                Future.microtask(() {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return MatchResultPage(matchedUsers: userInfoList);
+                      },
+                    ),
+                  );
+                });
+              } else {
+                Future.microtask(() {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return MatchResultPage(matchedUsers: userInfoList);
+                      },
+                    ),
+                  );
+                });
+              }
             }
           }
         },

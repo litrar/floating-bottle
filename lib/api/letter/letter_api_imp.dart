@@ -30,7 +30,7 @@ class _LetterApi implements LetterApi {
     var res = await _dio.delete("https://ecc3-111-241-177-116.ngrok-free.app/api/Letter/$letterId");
     return HttpRes(
         isSuccess: res.statusCode == 200,
-        message: res.data["message"],
+        message: "已刪除",
         code: res.statusCode);
   }
 
