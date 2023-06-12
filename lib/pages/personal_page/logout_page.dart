@@ -2,6 +2,8 @@ import 'package:floating_bottle/pages/personal_page/personal_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:go_router/go_router.dart';
 
 import '../authentication/login.dart';
@@ -60,9 +62,10 @@ class _LogoutState extends State<Logout> {
                                     )
                                 ),
                                 onPressed: () {
-                                  context.go(
-                                    Login.route.path,
-                                  );
+                                  Get.toNamed(Login.route.name);
+                                  // context.go(
+                                  //   Login.route.,
+                                  // );
                                 },
                                 child: Text("Yes", style: TextStyle(
                                     fontSize: 22.sp,color: Colors.white,fontFamily: 'Bellota-Regular'
