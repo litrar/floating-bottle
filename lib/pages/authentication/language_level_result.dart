@@ -1,16 +1,19 @@
+import 'package:floating_bottle/controllers/registeration_controller.dart';
 import 'package:floating_bottle/pages/authentication/personality.dart';
 import 'package:floating_bottle/pages/authentication/search_bar.dart';
 import 'package:floating_bottle/pages/personal_page/personal_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
+import '../../controllers/account_detail_controller.dart';
 import 'login.dart';
 
 class LanguageLevelResult extends StatefulWidget {
-  const LanguageLevelResult({Key? key, required this.level, required this.item})
+  const LanguageLevelResult({Key? key, required this.item})
       : super(key: key);
-  final String level;
   final String item;
 
   @override
@@ -18,8 +21,9 @@ class LanguageLevelResult extends StatefulWidget {
 }
 
 class _LanguageLevelResultState extends State<LanguageLevelResult> {
+  RegisterationController registerationController = Get.put(RegisterationController());
+  AccountDetailController accountDetailController = Get.put(AccountDetailController());
   Widget build(BuildContext context) {
-    widget.level;
     widget.item;
     return Scaffold(
       body: Stack(children: <Widget>[
@@ -61,8 +65,7 @@ class _LanguageLevelResultState extends State<LanguageLevelResult> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return LanguageLevelResult(
-                                level: '', item: "${widget.item}");
+                            return LanguageLevelResult(item: "${widget.item}");
                           },
                         ),
                       );
@@ -129,7 +132,7 @@ class _LanguageLevelResultState extends State<LanguageLevelResult> {
                   child: Column(
                     children: [
                       Text(
-                        "${widget.item} - ${widget.level}",
+                        "${widget.item}",
                         style: TextStyle(
                             fontSize: 20.sp, fontWeight: FontWeight.bold),
                       )
@@ -155,7 +158,9 @@ class _LanguageLevelResultState extends State<LanguageLevelResult> {
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(55)))),
-        onPressed: () {
+        onPressed: () async {
+          accountDetailController.accountDetailWithData();
+          registerationController.registerWithEmail();
           Navigator.push(
             context,
             MaterialPageRoute(
