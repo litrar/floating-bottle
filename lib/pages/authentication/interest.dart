@@ -2,7 +2,9 @@ import 'package:floating_bottle/pages/authentication/personality.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import '../../controllers/account_detail_controller.dart';
 import 'button1.dart';
 import 'gender.dart';
 
@@ -12,13 +14,14 @@ class Interest extends StatefulWidget {
   State<Interest> createState() => _InterestState();
 }
 class _InterestState extends State<Interest> {
+  AccountDetailController accountDetailController = Get.put(AccountDetailController());
   bool cpressed = false;
   bool p1 = true;
 
   Widget build(BuildContext context){
     final List<MyButton1> buttons = [
       MyButton1((isSelected) => setState(() {}), bName: 'Cooking', icon: const Icon(Icons.cookie_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Photography', icon: const Icon(Icons.camera_alt_outlined)),
+      MyButton1((isSelected) => setState(() {}), bName: 'Photography', icon: const Icon(Icons.camera_alt_outlined),),
       MyButton1((isSelected) => setState(() {}), bName: 'Art', icon: const Icon(Icons.color_lens_outlined)),
       MyButton1((isSelected) => setState(() {}), bName: 'Basketball', icon: const Icon(Icons.sports_basketball_outlined)),
       MyButton1((isSelected) => setState(() {}), bName: 'Dance', icon: const Icon(Icons.accessibility_new_outlined)),
@@ -70,7 +73,8 @@ class _InterestState extends State<Interest> {
                           );
                         },
                         icon: Icon(Icons.arrow_back_ios_rounded,size: 36.sp,color: Colors.white,),),
-                      TextButton(onPressed: (){
+                      TextButton(onPressed: ()async{
+                        accountDetailController.accountDetailWithData();
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -189,8 +193,9 @@ class _InterestState extends State<Interest> {
     );
   }
   Widget _continueButton(BuildContext context, List<MyButton1> buttons) {
-    for (int i = 0; i < 19; i++) {
+    for (int i = 0; i < buttons.length; i++) {
       if (buttons[i].getBool() == true) {
+        accountDetailController.selectedInterests.add(buttons[i].bName);
         p1 = !p1;
         break;
       }
@@ -209,14 +214,18 @@ class _InterestState extends State<Interest> {
         color: Colors.white.withOpacity(0.0),
         child: InkWell(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const Personality();
-                  },
-                ),
-              );
+             if(accountDetailController.selectedInterests.isNotEmpty){
+               accountDetailController.accountDetailWithData();
+               print(accountDetailController.selectedInterests);
+               Navigator.push(
+                 context,
+                 MaterialPageRoute(
+                   builder: (context) {
+                     return const Personality();
+                   },
+                 ),
+               );
+             }
             },
             child: Container(
               alignment: Alignment.center,
