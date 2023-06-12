@@ -1,10 +1,13 @@
+import 'package:floating_bottle/pages/authentication/button2.dart';
 import 'package:floating_bottle/pages/authentication/interest.dart';
 import 'package:floating_bottle/pages/authentication/language.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import '../../controllers/account_detail_controller.dart';
 
-import 'button1.dart';
 
 class Personality extends StatefulWidget {
   const Personality({Key? key}) : super(key: key);
@@ -12,31 +15,32 @@ class Personality extends StatefulWidget {
   State<Personality> createState() => _PersonalityState();
 }
 class _PersonalityState extends State<Personality> {
+  AccountDetailController accountDetailController = Get.put(AccountDetailController());
   bool cpressed = false;
   bool p1 = true;
 
   Widget build(BuildContext context){
-    final List<MyButton1> buttons = [
-      MyButton1((isSelected) => setState(() {}), bName: 'Adventurous', icon: const Icon(Icons.compass_calibration_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Analytical', icon: const Icon(Icons.analytics_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Confident', icon: const Icon(Icons.star)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Creative', icon: const Icon(Icons.create_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Empathetic', icon: const Icon(Icons.monitor_heart_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Friendly', icon: const Icon(Icons.people_alt)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Independent', icon: const Icon(Icons.person_rounded)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Introverted', icon: const Icon(Icons.mood_bad_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Optimistic', icon: const Icon(Icons.tag_faces)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Organized', icon: const Icon(Icons.add_chart)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Reliable', icon: const Icon(Icons.people_alt_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Perfectionist', icon: const Icon(Icons.thumb_up_alt_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Meticulous', icon: const Icon(Icons.center_focus_strong_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Outgoing', icon: const Icon(Icons.accessibility_new_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Spontaneous', icon: const Icon(Icons.self_improvement_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Thoughtful', icon: const Icon(Icons.face)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Trustworthy', icon: const Icon(Icons.badge_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Visionary', icon: const Icon(Icons.schedule)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Warm-hearted', icon: const Icon(Icons.heart_broken)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Witty', icon: const Icon(Icons.wb_incandescent_outlined)),
+    final List<MyButton2> buttons = [
+      MyButton2((isSelected) => setState(() {}), bName: 'Adventurous', icon: const Icon(Icons.compass_calibration_outlined)),
+      MyButton2((isSelected) => setState(() {}), bName: 'Analytical', icon: const Icon(Icons.analytics_outlined)),
+      MyButton2((isSelected) => setState(() {}), bName: 'Confident', icon: const Icon(Icons.star)),
+      MyButton2((isSelected) => setState(() {}), bName: 'Creative', icon: const Icon(Icons.create_outlined)),
+      MyButton2((isSelected) => setState(() {}), bName: 'Empathetic', icon: const Icon(Icons.monitor_heart_outlined)),
+      MyButton2((isSelected) => setState(() {}), bName: 'Friendly', icon: const Icon(Icons.people_alt)),
+      MyButton2((isSelected) => setState(() {}), bName: 'Independent', icon: const Icon(Icons.person_rounded)),
+      MyButton2((isSelected) => setState(() {}), bName: 'Introverted', icon: const Icon(Icons.mood_bad_outlined)),
+      MyButton2((isSelected) => setState(() {}), bName: 'Optimistic', icon: const Icon(Icons.tag_faces)),
+      MyButton2((isSelected) => setState(() {}), bName: 'Organized', icon: const Icon(Icons.add_chart)),
+      MyButton2((isSelected) => setState(() {}), bName: 'Reliable', icon: const Icon(Icons.people_alt_outlined)),
+      MyButton2((isSelected) => setState(() {}), bName: 'Perfectionist', icon: const Icon(Icons.thumb_up_alt_outlined)),
+      MyButton2((isSelected) => setState(() {}), bName: 'Meticulous', icon: const Icon(Icons.center_focus_strong_outlined)),
+      MyButton2((isSelected) => setState(() {}), bName: 'Outgoing', icon: const Icon(Icons.accessibility_new_outlined)),
+      MyButton2((isSelected) => setState(() {}), bName: 'Spontaneous', icon: const Icon(Icons.self_improvement_outlined)),
+      MyButton2((isSelected) => setState(() {}), bName: 'Thoughtful', icon: const Icon(Icons.face)),
+      MyButton2((isSelected) => setState(() {}), bName: 'Trustworthy', icon: const Icon(Icons.badge_outlined)),
+      MyButton2((isSelected) => setState(() {}), bName: 'Visionary', icon: const Icon(Icons.schedule)),
+      MyButton2((isSelected) => setState(() {}), bName: 'Warm-hearted', icon: const Icon(Icons.heart_broken)),
+      MyButton2((isSelected) => setState(() {}), bName: 'Witty', icon: const Icon(Icons.wb_incandescent_outlined)),
     ];
 
 
@@ -70,7 +74,8 @@ class _PersonalityState extends State<Personality> {
                           );
                         },
                         icon: Icon(Icons.arrow_back_ios_rounded,size: 36.sp,color: Colors.white,),),
-                      TextButton(onPressed: (){
+                      TextButton(onPressed: ()async{
+                        accountDetailController.accountDetailWithData();
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -105,7 +110,7 @@ class _PersonalityState extends State<Personality> {
       ),
     );
   }
-  Widget button(BuildContext context,List<MyButton1> buttons){
+  Widget button(BuildContext context,List<MyButton2> buttons){
     return Container(
       height: 500.h,
       child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
@@ -188,9 +193,10 @@ class _PersonalityState extends State<Personality> {
       ]),
     );
   }
-  Widget _continueButton(BuildContext context, List<MyButton1> buttons) {
+  Widget _continueButton(BuildContext context, List<MyButton2> buttons) {
     for (int i = 0; i < 19; i++) {
       if (buttons[i].getBool() == true) {
+        accountDetailController.selectedPersonality.add(buttons[i].bName);
         p1 = !p1;
         break;
       }
@@ -209,14 +215,18 @@ class _PersonalityState extends State<Personality> {
         color: Colors.white.withOpacity(0.0),
         child: InkWell(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const Language();
-                  },
-                ),
-              );
+              if(accountDetailController.selectedPersonality.isNotEmpty){
+                accountDetailController.accountDetailWithData();
+                print(accountDetailController.selectedPersonality);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const Language();
+                    },
+                  ),
+                );
+              }
             },
             child: Container(
               alignment: Alignment.center,
