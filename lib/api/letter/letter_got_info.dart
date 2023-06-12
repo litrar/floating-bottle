@@ -10,11 +10,11 @@ class LetterGot {
   int matchedAccountId;
 
   LetterGot.fromJson(Map<String, dynamic> json)
-      : letterId = json["letterId"] ?? "",
-        matchId = json["matchId"] ?? "",
+      : letterId = json["letterId"] ?? 0,
+        matchId = json["matchId"] ?? 0,
         topic = json["topic"] ?? "",
         content = json["content"] ?? "",
-        time = parseTime(json["time"]),
-        matcherId = json["macherId"] ?? "",
-        matchedAccountId = json["matchedAccountId"];
+        time = DateTime.parse(json["time"] ?? ''),
+        matcherId = json["macherId"] ?? 0,
+        matchedAccountId = json["matchedAccountId"] ?? 0;
 }
