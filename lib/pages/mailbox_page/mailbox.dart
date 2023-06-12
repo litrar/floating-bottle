@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:floating_bottle/pages/mailbox_page/friend.dart';
 import 'package:floating_bottle/pages/mailbox_page/letter.dart';
 import 'package:floating_bottle/pages/mailbox_page/user.dart';
@@ -5,7 +6,9 @@ import 'package:floating_bottle/pages/subpage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:go_router/go_router.dart';
+import '../../api/letter.dart';
 import '../components/bottom_bar.dart';
 import '../theme/color_theme.dart';
 import '../theme/theme_bloc.dart';
@@ -25,43 +28,77 @@ class MailboxSubPage implements SubPage {
   }
 
   @override
-  GoRoute get route => mail_route;
+  GetPage get route => mail_route;
 }
 
-class MailBoxPage extends StatelessWidget {
+class MailBoxPage extends StatefulWidget {
   MailBoxPage(this.friend, {Key? key}) : super(key: key);
 
   final Friend friend;
-  // = Friend([
-  //   User(
-  //     "assetsfolder/friend1.jpg",
-  //     "Ann",
-  //     Letter("Ann", "assetsfolder/friend1.jpg", "It was great to hear from you. I hope this letter finds you well. I’m writing to you to catch up and let you know what’s been going on in my life. Since we last spoke, I’ve been keeping busy with work and personal projects. I’ve started a new job at a marketing agency, which has been both challenging and exciting. The team is great and I’m learning a lot every day. In my free time, I’ve been working on my photography skills and have even started a small business taking photos for local events and weddings. I’ve also been fortunate enough to do some traveling recently. Last month, I went on a trip to Japan and had an amazing time exploring the country and experiencing its culture. The food was incredible and the scenery was breathtaking. I can’t wait to plan my next adventure. How about you? What have you been up to lately? Best regards, Ann"),
-  //     "2023/5/19",
-  //     "20:45",
-  //   ),
-  //   User(
-  //     "assetsfolder/friend2.jpg",
-  //     "Pink",
-  //     Letter("Pink", "assetsfolder/friend2.jpg", "Happy Wednesday! I hope this email finds you..."),
-  //     "2023/5/19",
-  //     "20:45",
-  //   ),
-  //   User(
-  //     "assetsfolder/friend3.jpg",
-  //     "HiChew",
-  //     Letter("HiChew", "assetsfolder/friend3.jpg", "Thank you for your last email. Sorry for the..."),
-  //     "2023/5/19",
-  //     "20:45",
-  //   ),
-  //   User(
-  //     "assetsfolder/friend4.jpg",
-  //     "Emma Lin",
-  //     Letter("Emma Lin", "assetsfolder/friend4.jpg", "April Fool's pranks are way too predictable. I'll..."),
-  //     "2023/5/19",
-  //     "20:45",
-  //   ),
-  // ]);
+
+  _MailBoxPageState createState() => _MailBoxPageState();
+// = Friend([
+//   User(
+//     "assetsfolder/friend1.jpg",
+//     "Ann",
+//     Letter("Ann", "assetsfolder/friend1.jpg", "It was great to hear from you. I hope this letter finds you well. I’m writing to you to catch up and let you know what’s been going on in my life. Since we last spoke, I’ve been keeping busy with work and personal projects. I’ve started a new job at a marketing agency, which has been both challenging and exciting. The team is great and I’m learning a lot every day. In my free time, I’ve been working on my photography skills and have even started a small business taking photos for local events and weddings. I’ve also been fortunate enough to do some traveling recently. Last month, I went on a trip to Japan and had an amazing time exploring the country and experiencing its culture. The food was incredible and the scenery was breathtaking. I can’t wait to plan my next adventure. How about you? What have you been up to lately? Best regards, Ann"),
+//     "2023/5/19",
+//     "20:45",
+//   ),
+//   User(
+//     "assetsfolder/friend2.jpg",
+//     "Pink",
+//     Letter("Pink", "assetsfolder/friend2.jpg", "Happy Wednesday! I hope this email finds you..."),
+//     "2023/5/19",
+//     "20:45",
+//   ),
+//   User(
+//     "assetsfolder/friend3.jpg",
+//     "HiChew",
+//     Letter("HiChew", "assetsfolder/friend3.jpg", "Thank you for your last email. Sorry for the..."),
+//     "2023/5/19",
+//     "20:45",
+//   ),
+//   User(
+//     "assetsfolder/friend4.jpg",
+//     "Emma Lin",
+//     Letter("Emma Lin", "assetsfolder/friend4.jpg", "April Fool's pranks are way too predictable. I'll..."),
+//     "2023/5/19",
+//     "20:45",
+//   ),
+// ]);
+}
+class _MailBoxPageState extends State<MailBoxPage>{
+  late final Dio _dio;
+  late final LetterApi _letterApi;
+  List<LetterGot> letters = [];
+
+  void initState() {
+    super.initState();
+    _dio = Dio();
+    _letterApi = LetterApi(_dio);
+    fetchNewLetters();
+  }
+
+  Future<void> fetchNewLetters() async {
+    try {
+      final response = await _letterApi.getLetter(1, 2);
+      if (response.isSuccess) {
+        final jsonData = response.data as List<dynamic>;
+        setState(() {
+          letters = jsonData
+              .map((json) => LetterGot.fromJson(json as Map<String, dynamic>))
+              .toList();
+        });
+      } else {
+        throw Exception('Failed to fetch letters');
+      }
+    } catch (e) {
+      // Handle error
+      print(e);
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -239,3 +276,174 @@ class MailBoxPage extends StatelessWidget {
     );
   }
 }
+//
+// import 'package:dio/dio.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
+// import 'package:flutter_screenutil/flutter_screenutil.dart';
+// import 'package:get/get.dart';
+// import 'package:get/get_core/src/get_main.dart';
+// import 'package:get/get_navigation/src/routes/get_route.dart';
+// import 'package:go_router/go_router.dart';
+//
+// import '../../api/letter.dart';
+// import '../components/bottom_bar.dart';
+// import '../subpage.dart';
+// import '../theme/color_theme.dart';
+// import '../theme/theme_bloc.dart';
+// import 'friend.dart';
+// import 'letter_content.dart';
+// // import 'letter_got.dart';
+// import 'user.dart';
+// import 'mail_route.dart';
+//
+// class MailboxSubPage implements SubPage {
+//   MailboxSubPage();
+//
+//   @override
+//   Widget getIcon(bool active) {
+//     return active
+//         ? Image.asset(
+//       "assetsfolder/mail_black-removebg-preview.png",
+//       cacheHeight: 50,
+//       cacheWidth: 50,
+//     )
+//         : Image.asset(
+//       "assetsfolder/mail_white-removebg-preview.png",
+//       cacheHeight: 50,
+//       cacheWidth: 50,
+//     );
+//   }
+//
+//   @override
+//   GetPage get route => mail_route;
+// }
+//
+// class MailBoxPage extends StatefulWidget {
+//   MailBoxPage(this.friend, {Key? key}) : super(key: key);
+//
+//   final Friend friend;
+//
+//   _MailBoxPageState createState() => _MailBoxPageState();
+// }
+//
+// class _MailBoxPageState extends State<MailBoxPage> {
+//   late final Dio _dio;
+//   late final LetterApi _letterApi;
+//   List<LetterGot> letters = [];
+//
+//   void initState() {
+//     super.initState();
+//     _dio = Dio();
+//     _letterApi = LetterApi(_dio);
+//     fetchNewLetters();
+//   }
+//
+//   Future<void> fetchNewLetters() async {
+//     try {
+//       final response = await _letterApi.getLetter(1, 2);
+//       if (response.isSuccess) {
+//         final jsonData = response.data as List<dynamic>;
+//         setState(() {
+//           letters = jsonData
+//               .map((json) => LetterGot.fromJson(json as Map<String, dynamic>))
+//               .toList();
+//         });
+//       } else {
+//         throw Exception('Failed to fetch letters');
+//       }
+//     } catch (e) {
+//       // Handle error
+//       print(e);
+//     }
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return BlocBuilder<ThemeCubit, ColorTheme>(
+//       builder: (context, state) {
+//         return Scaffold(
+//           bottomNavigationBar: BottomBar(SubPage.CONTACT),
+//           body: Stack(
+//             children: [
+//               Container(
+//                 decoration: const BoxDecoration(
+//                   image: DecorationImage(
+//                     image: AssetImage("assetsfolder/personal_background.jpg"),
+//                     fit: BoxFit.cover,
+//                   ),
+//                 ),
+//               ),
+//               Container(
+//                 margin: EdgeInsets.only(top: 80.h),
+//                 child: Column(
+//                   children: [
+//                     Text(
+//                       'New Letters',
+//                       style: TextStyle(
+//                         fontSize: 30.sp,
+//                         fontWeight: FontWeight.w700,
+//                         color: Colors.blueGrey,
+//                         fontFamily: 'Bellota-Regular',
+//                       ),
+//                     ),
+//                     Divider(
+//                       color: Colors.black,
+//                       endIndent: 0,
+//                       indent: 0,
+//                       thickness: 2.h,
+//                     ),
+//                   ],
+//                 ),
+//               ),
+//               Container(
+//                 width: 450.w,
+//                 margin: EdgeInsets.only(top: 120.h, right: 1.w),
+//                 child: CustomScrollView(
+//                   slivers: [
+//                     SliverFillRemaining(
+//                       child: Column(
+//                         children: [
+//                           for (var fp in widget.friend.friends)
+//                             Container(
+//                               margin: EdgeInsets.only(bottom: 10.h),
+//                               child: ListTile(
+//                                 title: Text(
+//                                   fp.name,
+//                                   style: TextStyle(
+//                                     fontSize: 25.sp,
+//                                     fontWeight: FontWeight.bold,
+//                                     color: Colors.black,
+//                                     fontFamily: 'Bellota-Regular',
+//                                   ),
+//                                 ),
+//                                 leading: Container(
+//                                   width: 50.w,
+//                                   height: 50.h,
+//                                   decoration: BoxDecoration(
+//                                     shape: BoxShape.circle,
+//                                     image: DecorationImage(
+//                                       image: AssetImage(fp.picture),
+//                                       fit: BoxFit.cover,
+//                                     ),
+//                                   ),
+//                                 ),
+//                                 onTap: () {
+//                                   Get.to(() => LetterContent(fp, name: '', picture: '', content: '',));
+//                                 },
+//                               ),
+//                             ),
+//                         ],
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+//               ),
+//             ],
+//           ),
+//         );
+//       },
+//     );
+//   }
+// }
+//
