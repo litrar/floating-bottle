@@ -1,4 +1,5 @@
 import 'package:floating_bottle/pages/mailbox_page/user.dart';
+import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:go_router/go_router.dart';
 import 'friend.dart';
 import 'letter.dart';
@@ -39,7 +40,8 @@ Friend friend = Friend([
   ),
 ]);
 
-final mail_route = GoRoute(
-    path: "/mailbox",
-    builder: (context, state) => MailBoxPage(friend),
-    routes: []);
+final mail_route = GetPage(
+  name: "/mailbox",
+  page: () => MailBoxPage(friend),
+  children: [],
+);
