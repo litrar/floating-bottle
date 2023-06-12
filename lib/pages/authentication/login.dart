@@ -1,7 +1,9 @@
-import 'package:floating_bottle/pages/authentication/information.dart';
+import 'package:floating_bottle/controllers/login_controller.dart';
 import 'package:floating_bottle/pages/authentication/registration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:go_router/go_router.dart';
 
 import '../subpage.dart';
@@ -11,11 +13,14 @@ class Login extends StatefulWidget {
 
   @override
   State<Login> createState() => _LoginPageState();
-  static final GoRoute route =
-      GoRoute(path: "/logIn", builder: ((context, state) => const Login()));
+  static final GetPage route = GetPage(
+    name: "/logIn",
+    page: () => const Login(),
+  );
 }
 
 class _LoginPageState extends State<Login> {
+  LoginController loginController = Get.put(LoginController());
   bool _passwordVisible = false;
 
   @override
@@ -32,43 +37,41 @@ class _LoginPageState extends State<Login> {
                 ),
               ),
             ),
-            ListView(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(top: 120.h),
-                  child: Column(
-                    children: [
-                      Text(
-                        "Hi there!",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 30.sp,
-                            color: Colors.white),
+            SingleChildScrollView(
+              child: Container(
+                margin: EdgeInsets.only(top: 120.h),
+                child: Column(
+                  children: [
+                    Text(
+                      "Hi there!",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 30.sp,
+                          color: Colors.white),
+                    ),
+                    Text(
+                      "Let's Get Penpals",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 33.sp,
+                        height: 1.h,
+                        color: Colors.white,
                       ),
-                      Text(
-                        "Let's Get Penpals",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 33.sp,
-                          height: 1.h,
+                    ),
+                    _emailField(),
+                    _passwordField(),
+                    _loginButton(),
+                    Text(
+                      "or",
+                      style: TextStyle(
                           color: Colors.white,
-                        ),
-                      ),
-                      _emailField(),
-                      _passwordField(),
-                      _loginButton(),
-                      Text(
-                        "or",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 25.sp,
-                            fontWeight: FontWeight.w400),
-                      ),
-                      _createAccountButton(),
-                    ],
-                  ),
-                )
-              ],
+                          fontSize: 25.sp,
+                          fontWeight: FontWeight.w400),
+                    ),
+                    _createAccountButton(),
+                  ],
+                ),
+              ),
             )
           ],
         ));
@@ -101,6 +104,7 @@ class _LoginPageState extends State<Login> {
         style: TextStyle(
             fontSize: 22.sp, color: Colors.black, fontWeight: FontWeight.w500),
         cursorWidth: 3.w,
+        controller: loginController.emailController,
       ),
     );
   }
@@ -143,6 +147,7 @@ class _LoginPageState extends State<Login> {
         style: TextStyle(
             fontSize: 22.sp, color: Colors.black, fontWeight: FontWeight.w500),
         cursorWidth: 3.w,
+        controller: loginController.passwordController,
       ),
     );
   }
@@ -159,7 +164,9 @@ class _LoginPageState extends State<Login> {
                 RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(55)))),
         onPressed: () {
-          context.go(SubPage.PERSONAL.route.path);
+          loginController.loginWithEmail();
+          // context.go(SubPage.PERSONAL.route.path);
+          Get.toNamed(SubPage.PERSONAL.route.name);
         },
         child: Text(
           "Log in",
