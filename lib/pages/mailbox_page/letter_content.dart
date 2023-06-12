@@ -1,5 +1,6 @@
 import 'package:floating_bottle/pages/mailbox_page/delete_letter.dart';
 import 'package:floating_bottle/pages/mailbox_page/report.dart';
+import 'package:floating_bottle/pages/mailbox_page/user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
