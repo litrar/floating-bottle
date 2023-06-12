@@ -1,10 +1,11 @@
 import 'package:dio/dio.dart';
-import 'package:floating_bottle/pages/authentication/vertification.dart';
+import 'package:floating_bottle/controllers/registeration_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../api/register_api.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+// import 'package:floating_bottle/api/register_api.dart';
 import 'information.dart';
 import 'login.dart';
 
@@ -16,9 +17,15 @@ class Registration extends StatefulWidget {
 }
 
 class _RegistrationState extends State<Registration> {
+  RegisterationController registerationController = Get.put(RegisterationController());
   bool _passwordVisible = false;
   bool isChecked = false;
-  late final RegisterApi _registerApi;
+  // late final RegisterApi _registerApi;
+
+  // void initState() {
+  //   super.initState();
+  //   _registerApi = RegisterApi(Dio());
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -99,6 +106,7 @@ class _RegistrationState extends State<Registration> {
         style: TextStyle(
             fontSize: 22.sp, color: Colors.black, fontWeight: FontWeight.w500),
         cursorWidth: 3,
+        controller: registerationController.nameController,
       ),
     );
   }
@@ -129,6 +137,7 @@ class _RegistrationState extends State<Registration> {
         style: TextStyle(
             fontSize: 22.sp, color: Colors.black, fontWeight: FontWeight.w500),
         cursorWidth: 3.w,
+        controller: registerationController.emailController,
       ),
     );
   }
@@ -170,6 +179,7 @@ class _RegistrationState extends State<Registration> {
         style: TextStyle(
             fontSize: 22.sp, color: Colors.black, fontWeight: FontWeight.w500),
         cursorWidth: 3.w,
+        controller: registerationController.passwordController,
       ),
     );
   }
@@ -211,6 +221,7 @@ class _RegistrationState extends State<Registration> {
         style: TextStyle(
             fontSize: 22.sp, color: Colors.black, fontWeight: FontWeight.w500),
         cursorWidth: 3.w,
+        controller: registerationController.confirmPasswordController,
       ),
     );
   }
@@ -251,6 +262,7 @@ class _RegistrationState extends State<Registration> {
                   RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(55)))),
           onPressed: () async {
+            registerationController.registerWithEmail();
             // _registerApi = new RegisterApi(new Dio());
             // var result =
             //     await _registerApi.register('a', 'b', 'c', 'c', 'd', 'e', 'f');
