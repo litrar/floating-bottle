@@ -1,10 +1,10 @@
+import 'package:floating_bottle/pages/authentication/button3.dart';
 import 'package:floating_bottle/pages/personal_page/save_interest_page.dart';
 import 'package:floating_bottle/pages/personal_page/setting_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../authentication/button1.dart';
 
 class EditInterest extends StatefulWidget {
   const EditInterest({Key? key}) : super(key: key);
@@ -14,27 +14,27 @@ class EditInterest extends StatefulWidget {
 }
 class _EditInterestState extends State<EditInterest> {
   Widget build(BuildContext context) {
-    final List<MyButton1> buttons = [
-      MyButton1((isSelected) => setState(() {}), bName: 'Cooking', icon: const Icon(Icons.cookie_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Photography', icon: const Icon(Icons.camera_alt_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Art', icon: const Icon(Icons.color_lens_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Basketball', icon: const Icon(Icons.sports_basketball_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Dance', icon: const Icon(Icons.accessibility_new_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Reading', icon: const Icon(Icons.book_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Instrument', icon: const Icon(Icons.piano)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Makeup', icon: const Icon(Icons.color_lens_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Cuisine', icon: const Icon(Icons.local_drink_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Coding', icon: const Icon(Icons.computer)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Shopping', icon: const Icon(Icons.shopping_cart_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Music', icon: const Icon(Icons.music_note_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Pet', icon: const Icon(Icons.pets_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Tennis', icon: const Icon(Icons.sports_tennis_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Video Games', icon: const Icon(Icons.videogame_asset_sharp)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Swimming', icon: const Icon(Icons.water_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Movie', icon: const Icon(Icons.movie_creation_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Traveling', icon: const Icon(Icons.travel_explore_outlined)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Cartoon', icon: const Icon(Icons.tv)),
-      MyButton1((isSelected) => setState(() {}), bName: 'Party', icon: const Icon(Icons.celebration_outlined)),
+    final List<MyButton3> buttons = [
+      MyButton3((isSelected) => setState(() {}), bName: 'Cooking', icon: const Icon(Icons.cookie_outlined)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Photography', icon: const Icon(Icons.camera_alt_outlined)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Art', icon: const Icon(Icons.color_lens_outlined)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Basketball', icon: const Icon(Icons.sports_basketball_outlined)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Dance', icon: const Icon(Icons.accessibility_new_outlined)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Reading', icon: const Icon(Icons.book_outlined)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Instrument', icon: const Icon(Icons.piano)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Makeup', icon: const Icon(Icons.color_lens_outlined)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Cuisine', icon: const Icon(Icons.local_drink_outlined)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Coding', icon: const Icon(Icons.computer)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Shopping', icon: const Icon(Icons.shopping_cart_outlined)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Music', icon: const Icon(Icons.music_note_outlined)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Pet', icon: const Icon(Icons.pets_outlined)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Tennis', icon: const Icon(Icons.sports_tennis_outlined)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Video Games', icon: const Icon(Icons.videogame_asset_sharp)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Swimming', icon: const Icon(Icons.water_outlined)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Movie', icon: const Icon(Icons.movie_creation_outlined)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Traveling', icon: const Icon(Icons.travel_explore_outlined)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Cartoon', icon: const Icon(Icons.tv)),
+      MyButton3((isSelected) => setState(() {}), bName: 'Party', icon: const Icon(Icons.celebration_outlined)),
     ];
     return Scaffold(
         body: Stack(
@@ -94,7 +94,7 @@ class _EditInterestState extends State<EditInterest> {
         )
     );
   }
-  Widget button(BuildContext context,List<MyButton1> buttons){
+  Widget button(BuildContext context,List<MyButton3> buttons){
     return Container(
       height: 500.h,
       child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
