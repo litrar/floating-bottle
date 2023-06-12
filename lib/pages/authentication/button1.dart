@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../../controllers/account_detail_controller.dart';
 
 class MyButton1 extends StatefulWidget {
   const MyButton1(this.setStatePage, {super.key, required this.icon, required this.bName});
@@ -18,6 +22,7 @@ class MyButton1 extends StatefulWidget {
 }
 
 class _MyButton1State extends State<MyButton1> {
+  AccountDetailController accountDetailController = Get.put(AccountDetailController());
   bool isSelected = false;
   late Icon icons;
   String name = "";
@@ -26,6 +31,7 @@ class _MyButton1State extends State<MyButton1> {
   void initState() {
     icons = widget.icon;
     name = widget.bName;
+    isSelected = accountDetailController.selectedInterests.contains(name);
     super.initState();
   }
 
@@ -49,7 +55,7 @@ class _MyButton1State extends State<MyButton1> {
             setState(() {
               isSelected = !isSelected;
             });
-            widget.setStatePage(isSelected);
+            accountDetailController.toggleInterest(name);
           },
           child: Container(
             padding: EdgeInsets.only(left: 13.w),
