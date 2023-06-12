@@ -2,6 +2,7 @@ import 'package:floating_bottle/pages/subpage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:go_router/go_router.dart';
 import '../components/bottom_bar.dart';
 import '../mailbox_page/friend.dart';
@@ -24,7 +25,7 @@ class ContactSubPage implements SubPage {
   }
 
   @override
-  GoRoute get route => c_route;
+  GetPage get route => c_route;
 }
 
 class ContactPage extends StatefulWidget {
