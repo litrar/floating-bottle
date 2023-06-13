@@ -5,7 +5,7 @@ class User{
   String name;
   Letter letter;
   String date;
-  String time;
+  DateTime time;
 
   User(this.picture,this.name,this.letter,this.date,this.time);
 }
