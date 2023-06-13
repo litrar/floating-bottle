@@ -170,7 +170,7 @@ class _GenderState extends State<Gender> {
                 ),
               );
               print(accountDetailController.selectedSex);
-              accountDetailController.accountDetailWithData();
+              // accountDetailController.accountDetailWithData();
             }else {
               print("請選擇性別");
             }
