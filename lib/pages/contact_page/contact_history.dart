@@ -16,40 +16,40 @@ class ContactHistory extends StatelessWidget {
   ContactHistory({super.key, this.friendInfo, this.userId});
   int? userId;
   MatchedUserInfo? friendInfo;
-  final Friend friend = Friend([
-    User(
-      "assetsfolder/friend1.jpg",
-      "Ann",
-      Letter("Ann", "assetsfolder/friend1.jpg",
-          "It was great to hear from you. I'm writing to you..."),
-      "2023/5/19",
-      "20:45",
-    ),
-    User(
-      "assetsfolder/avatar.jpg",
-      "Me",
-      Letter("Me", "assetsfolder/avatar.jpg",
-          "Hey, Ann. I'm really sorry for what you told me. I"),
-      "2023/5/19",
-      "20:45",
-    ),
-    User(
-      "assetsfolder/friend1.jpg",
-      "Ann",
-      Letter("Ann", "assetsfolder/friend1.jpg",
-          "Hi, I got something that I've been thinking for a long time to tell u."),
-      "2023/5/19",
-      "20:45",
-    ),
-    User(
-      "assetsfolder/avatar.jpg",
-      "Me",
-      Letter("Me", "assetsfolder/avatar.jpg",
-          "Happy Wednesday! I hope this email finds you"),
-      "2023/5/19",
-      "20:45",
-    ),
-  ]);
+  // final Friend friend = Friend([
+  //   User(
+  //     "assetsfolder/friend1.jpg",
+  //     "Ann",
+  //     Letter("Ann", "assetsfolder/friend1.jpg",
+  //         "It was great to hear from you. I'm writing to you..."),
+  //     "2023/5/19",
+  //     "20:45",
+  //   ),
+  //   User(
+  //     "assetsfolder/avatar.jpg",
+  //     "Me",
+  //     Letter("Me", "assetsfolder/avatar.jpg",
+  //         "Hey, Ann. I'm really sorry for what you told me. I"),
+  //     "2023/5/19",
+  //     "20:45",
+  //   ),
+  //   User(
+  //     "assetsfolder/friend1.jpg",
+  //     "Ann",
+  //     Letter("Ann", "assetsfolder/friend1.jpg",
+  //         "Hi, I got something that I've been thinking for a long time to tell u."),
+  //     "2023/5/19",
+  //     "20:45",
+  //   ),
+  //   User(
+  //     "assetsfolder/avatar.jpg",
+  //     "Me",
+  //     Letter("Me", "assetsfolder/avatar.jpg",
+  //         "Happy Wednesday! I hope this email finds you"),
+  //     "2023/5/19",
+  //     "20:45",
+  //   ),
+  // ]);
 
   List<LetterGot>? letterList;
 
@@ -130,7 +130,7 @@ class ContactHistory extends StatelessWidget {
           children: [
             ClipOval(
               child: Image.asset(
-                friend.friends[0].picture,
+                "assetsfolder/friend1.jpg",
                 width: 60.w,
                 height: 60.h,
                 fit: BoxFit.cover,
@@ -183,9 +183,12 @@ class ContactHistory extends StatelessWidget {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
                                   builder: (context) => LetterContent(
-                                    name: friendInfo!.name,
+                                    matcherId: userId!,
+                                    matchedAccountId: l.matchedAccountId,
+                                    name: l.matcherName,
                                     picture: "assetsfolder/friend1.jpg",
-                                    content: l.content,
+                                    content: l.content, 
+                                    letterId: l.letterId, time: l.time,
                                   ),
                                 ),
                               );

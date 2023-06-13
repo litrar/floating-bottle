@@ -10,21 +10,18 @@ import '../api/letter.dart';
 import 'http_page_builder.dart';
 
 class WriteLetter extends StatefulWidget {
-  WriteLetter({Key? key,
-    required this.matcherId,
-    required this.matchedAccountId,
-    required this.time,
-    required this.name}) : super(key: key);
+  WriteLetter(
+      {Key? key, this.matcherId, this.matchedAccountId, this.time, this.name})
+      : super(key: key);
   @override
   State<StatefulWidget> createState() => _WriteLetterState();
-  final int matcherId;
-  final int matchedAccountId;
-  final DateTime time;
-  final String name;
+  int? matcherId;
+  int? matchedAccountId;
+  DateTime? time;
+  String? name;
 }
 
 class _WriteLetterState extends State<WriteLetter> {
-
   XFile? image;
   final ImagePicker picker = ImagePicker();
   final myController = TextEditingController();
@@ -123,7 +120,7 @@ class _WriteLetterState extends State<WriteLetter> {
                 ),
               ),
               Text(
-                widget.name,
+                widget.name!,
                 style: TextStyle(
                     fontSize: 30.sp,
                     fontFamily: 'Bellota-Regular',
@@ -219,12 +216,12 @@ class _WriteLetterState extends State<WriteLetter> {
           onTap: () async {
             var letterApi = context.read<LetterApi>();
             var result = await letterApi.sendLetter(LetterSent(
-                matcherId: widget.matcherId,
-                matchedAccountId: widget.matchedAccountId,
+                matcherId: widget.matcherId!,
+                matchedAccountId: widget.matchedAccountId!,
                 topic: myController.text.split("\n")[0],
                 content: myController.text,
                 attType: ' null',
-                time: widget.time));
+                time: widget.time!));
             print(result);
             context.go('/contact');
           },

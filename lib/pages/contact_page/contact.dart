@@ -43,15 +43,15 @@ class ContactPage extends StatefulWidget {
 class _ContactPageState extends State<ContactPage>
     with SingleTickerProviderStateMixin {
   int userId = Get.arguments;
-  final Friend friend = Friend([
-    User(
-      "assetsfolder/friend1.jpg",
-      "Ann",
-      Letter("Ann", "assetsfolder/friend1.jpg",
-          "It was great to hear from you. I'm writing to you..."),
-      "2023/5/19",
-      "20:45",
-    ),
+  // final Friend friend = Friend([
+  //   User(
+  //     "assetsfolder/friend1.jpg",
+  //     "Ann",
+  //     Letter("Ann", "assetsfolder/friend1.jpg",
+  //         "It was great to hear from you. I'm writing to you..."),
+  //     "2023/5/19",
+  //     "20:45",
+  //   ),
 
     // User(
     //   "assetsfolder/friend3.jpg",
@@ -69,18 +69,18 @@ class _ContactPageState extends State<ContactPage>
     //   "2023/5/19",
     //   "20:45",
     // ),
-  ]);
+  // ]);
 
-  final Friend pending = Friend([
-    User(
-      "assetsfolder/friend2.jpg",
-      "Pink",
-      Letter("Pink", "assetsfolder/friend2.jpg",
-          "It was great to hear from you. I'm writing to you..."),
-      "2023/5/19",
-      "20:45",
-    ),
-  ]);
+  // final Friend pending = Friend([
+  //   User(
+  //     "assetsfolder/friend2.jpg",
+  //     "Pink",
+  //     Letter("Pink", "assetsfolder/friend2.jpg",
+  //         "It was great to hear from you. I'm writing to you..."),
+  //     "2023/5/19",
+  //     "20:45",
+  //   ),
+  // ]);
 
   late TabController _controller;
 

@@ -6,6 +6,7 @@ import 'package:floating_bottle/pages/match_page/match.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../api/match.dart';
 import '../write_letter.dart';
 
 class MatchResultPage extends StatefulWidget {
@@ -53,6 +54,14 @@ class _MatchResultPageState extends State<MatchResultPage> {
         isSelected: false),
   ];
   bool cbutton = true;
+
+  MatchedUserInfo? matcherInfo;
+  Future<void> getProfile(BuildContext context) async {
+    MatchApi userApi = context.read();
+    var res = await userApi.showUserById(widget.userId!);
+    print("hahaha ${res.data}");
+    if (res.isSuccess) matcherInfo = res.data;
+  }
 
   @override
   Widget build(BuildContext _context) {
@@ -196,45 +205,50 @@ class _MatchResultPageState extends State<MatchResultPage> {
   }
 
   Widget _continueButton(BuildContext context) {
-    return BlocBuilder<SelectedUsersCubit, List<MatchedUserInfo>>(
-        builder: (context, state) {
-      SelectedUsersCubit cubit = context.read();
-      MatchedUserInfo? selected = cubit.getSelect();
+    return FutureBuilder(
+      future:getProfile(context),
+      builder: (context, snapshot) {
+        return BlocBuilder<SelectedUsersCubit, List<MatchedUserInfo>>(
+            builder: (context, state) {
+          SelectedUsersCubit cubit = context.read();
+          MatchedUserInfo? selected = cubit.getSelect();
 
-      return InkWell(
-          onTap: () {
-            if (selected != null) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return WriteLetter();
-                  },
+          return InkWell(
+              onTap: () {
+                if (selected != null) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return WriteLetter(matcherId: widget.userId!, matchedAccountId: selected.id, time:DateTime.now(), name:matcherInfo!.name);
+                      },
+                    ),
+                  );
+                }
+              },
+              child: Container(
+                margin: EdgeInsets.only(
+                  top: 90.h,
                 ),
-              );
-            }
-          },
-          child: Container(
-            margin: EdgeInsets.only(
-              top: 90.h,
-            ),
-            height: 55.h,
-            width: MediaQuery.of(context).size.width * 0.8,
-            decoration: !(selected == null)
-                // selected?.isSelected ?? false
-                ? BoxDecoration(
-                    color: const Color.fromARGB(255, 86, 140, 167),
-                    borderRadius: BorderRadius.circular(35))
-                : BoxDecoration(
-                    color: const Color.fromARGB(255, 152, 169, 189),
-                    borderRadius: BorderRadius.circular(35)),
-            alignment: Alignment.center,
-            child: const Text("Send a letter",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold)),
-          ));
-    });
+                height: 55.h,
+                width: MediaQuery.of(context).size.width * 0.8,
+                decoration: !(selected == null)
+                    // selected?.isSelected ?? false
+                    ? BoxDecoration(
+                        color: const Color.fromARGB(255, 86, 140, 167),
+                        borderRadius: BorderRadius.circular(35))
+                    : BoxDecoration(
+                        color: const Color.fromARGB(255, 152, 169, 189),
+                        borderRadius: BorderRadius.circular(35)),
+                alignment: Alignment.center,
+                child: const Text("Send a letter",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold)),
+              ));
+        });
+      }
+    );
   }
 }

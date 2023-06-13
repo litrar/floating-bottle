@@ -159,7 +159,7 @@ class _DMatchResultPageState extends State<DMatchResultPage> {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return WriteLetter();
+                    return WriteLetter(matcherId: 1,matchedAccountId: 2,time: DateTime.now(),name: '?',);
                   },
                 ),
               );
