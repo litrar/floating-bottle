@@ -7,7 +7,10 @@ class LetterGot {
   String content;
   DateTime time;
   int matcherId;
+  String matcherName;
   int matchedAccountId;
+  String matchedAccName;
+
 
   LetterGot.fromJson(Map<String, dynamic> json)
       : letterId = json["letterId"] ?? 0,
@@ -16,5 +19,7 @@ class LetterGot {
         content = json["content"] ?? "",
         time = DateTime.parse(json["time"] ?? ''),
         matcherId = json["macherId"] ?? 0,
-        matchedAccountId = json["matchedAccountId"] ?? 0;
+        matcherName = json["matcherName"] ?? '',
+        matchedAccountId = json["matchedAccountId"] ?? 0,
+        matchedAccName = json["matchedAccName"] ?? '';
 }
