@@ -6,12 +6,12 @@ import 'package:floating_bottle/pages/match_page/match.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../api/match.dart';
 import '../write_letter.dart';
 
 class MatchResultPage extends StatefulWidget {
-  MatchResultPage({super.key, this.matchedUsers});
+  MatchResultPage({super.key, this.matchedUsers, this.userId});
   List<MatchedUserInfo>? matchedUsers;
+  int? userId;
   @override
   State<MatchResultPage> createState() => _MatchResultPageState();
 }
@@ -58,7 +58,8 @@ class _MatchResultPageState extends State<MatchResultPage> {
   Widget build(BuildContext _context) {
     return BlocProvider(
       lazy: true,
-      create: (_) => SelectedUsersCubit(users),
+      //跟後端說 filter一定要有match到人
+      create: (_) => SelectedUsersCubit(widget.matchedUsers!),
       child: Builder(builder: (context) {
         return Scaffold(
           body: Stack(children: [
@@ -102,7 +103,7 @@ class _MatchResultPageState extends State<MatchResultPage> {
                 BlocBuilder<SelectedUsersCubit, List<MatchedUserInfo>>(
                     builder: (context, state) {
                   return Column(children: [
-                    for (var user in users)
+                    for (var user in widget.matchedUsers!)
                       _matchedUser(context.read(), context, user)
                   ]);
                 }),

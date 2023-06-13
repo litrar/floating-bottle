@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:searchfield/searchfield.dart';
 
+import '../../api/user/profile.dart';
+
 class EditCity extends StatefulWidget {
-  const EditCity({Key? key}) : super(key: key);
+  EditCity({Key? key, required this.profile}) : super(key: key);
+  Profile profile;
 
   @override
   State<EditCity> createState() => _EditCityState();
@@ -38,7 +41,7 @@ class _EditCityState extends State<EditCity> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return const Setting(email: "110306999@g.nccu.edu.tw",name:"");
+                            return Setting(profile: widget.profile,email: "110306999@g.nccu.edu.tw",name:"");
                           },
                         ),
                       );
@@ -52,7 +55,7 @@ class _EditCityState extends State<EditCity> {
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return const Setting(email: "110306999@g.nccu.edu.tw",name:"");
+                                return Setting(profile: widget.profile,email: "110306999@g.nccu.edu.tw",name:"");
                               },
                             ),
                           );

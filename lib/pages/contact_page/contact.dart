@@ -1,9 +1,13 @@
+import 'package:floating_bottle/api/contact.dart';
+import 'package:floating_bottle/api/match/models/matched_user_info.dart';
 import 'package:floating_bottle/pages/subpage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
+import '../../api/http_response.dart';
+import '../../api/match.dart';
 import '../components/bottom_bar.dart';
 import '../mailbox_page/friend.dart';
 import '../mailbox_page/letter.dart';
@@ -11,6 +15,7 @@ import '../mailbox_page/user.dart';
 import '../theme/color_theme.dart';
 import '../theme/theme_bloc.dart';
 import 'c_route.dart';
+import 'contact_history.dart';
 
 class ContactSubPage implements SubPage {
   ContactSubPage();
@@ -30,12 +35,14 @@ class ContactSubPage implements SubPage {
 
 class ContactPage extends StatefulWidget {
   ContactPage({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => _ContactPageState();
 }
 
 class _ContactPageState extends State<ContactPage>
     with SingleTickerProviderStateMixin {
+  int userId = Get.arguments;
   final Friend friend = Friend([
     User(
       "assetsfolder/friend1.jpg",
@@ -45,14 +52,7 @@ class _ContactPageState extends State<ContactPage>
       "2023/5/19",
       "20:45",
     ),
-    // User(
-    //   "assetsfolder/friend2.jpg",
-    //   "Pink",
-    //   Letter("Pink", "assetsfolder/friend2.jpg",
-    //       "It was great to hear from you. I'm writing to you..."),
-    //   "2023/5/19",
-    //   "20:45",
-    // ),
+
     // User(
     //   "assetsfolder/friend3.jpg",
     //   "HiChew",
@@ -88,7 +88,7 @@ class _ContactPageState extends State<ContactPage>
     const Tab(
       text: 'FRIENDS',
     ),
-    new Tab(text: 'PENDING'),
+    const Tab(text: 'PENDING'),
   ];
 
   void initState() {
@@ -102,8 +102,40 @@ class _ContactPageState extends State<ContactPage>
     super.dispose();
   }
 
+  List<int>? friendIdList;
+  List<int>? pendingIdList;
+  MatchedUserInfo? friendInfo;
+  MatchedUserInfo? pendingInfo;
+  List<MatchedUserInfo>? friendInfoList;
+  List<MatchedUserInfo>? pendingInfoList;
+
+  Future<void> getData(BuildContext context) async {
+    ContactApi contactApi = context.read();
+    MatchApi matchApi = context.read();
+    var res_f = await contactApi.getFriends(userId);
+    var res_p = await contactApi.getPendings(userId);
+    if (res_f.isSuccess) friendIdList = res_f.data;
+    if (res_p.isSuccess) friendIdList = res_p.data;
+    for (int m in res_f.data!) {
+      HttpRes<MatchedUserInfo> userRes = await matchApi.showUserById(m);
+      friendInfo = userRes.data;
+      if (friendInfo != null) {
+        friendInfoList!.add(friendInfo!);
+      }
+    }
+    for (int m in res_p.data!) {
+      HttpRes<MatchedUserInfo> userRes = await matchApi.showUserById(m);
+      pendingInfo = userRes.data;
+      if (pendingInfo != null) {
+        pendingInfoList!.add(pendingInfo!);
+      }
+    }
+  }
+
   Widget build(BuildContext context) {
-    return BlocBuilder<ThemeCubit, ColorTheme>(builder: (context, state) {
+    return FutureBuilder<void>(
+      future: getData(context),
+      builder: (context, state) {
       return Scaffold(
         bottomNavigationBar: BottomBar(SubPage.CONTACT),
         body: Stack(
@@ -131,14 +163,14 @@ class _ContactPageState extends State<ContactPage>
                             (e) => e,
                           )
                           .toList(),
-                      // controller: _controller,
                       labelStyle: TextStyle(
                           fontSize: 20.sp,
                           fontFamily: 'Abril Fatface',
                           fontWeight: FontWeight.bold),
                       isScrollable: true,
-                      unselectedLabelColor: Color.fromARGB(255, 175, 199, 232),
-                      labelColor: Color.fromARGB(255, 118, 168, 239),
+                      unselectedLabelColor:
+                          const Color.fromARGB(255, 175, 199, 232),
+                      labelColor: const Color.fromARGB(255, 118, 168, 239),
                       indicatorColor: const Color.fromARGB(255, 122, 161, 216),
                       indicatorSize: TabBarIndicatorSize.label,
                     ),
@@ -149,13 +181,13 @@ class _ContactPageState extends State<ContactPage>
                     Column(
                       children: [
                         Padding(padding: EdgeInsets.only(top: 10.h)),
-                        Expanded(child: _listView(context, friend)),
+                        Expanded(child: _listView(context, friendInfoList!)),
                       ],
                     ),
                     Column(
                       children: [
                         Padding(padding: EdgeInsets.only(top: 10.h)),
-                        Expanded(child: _listView(context, pending)),
+                        Expanded(child: _listView(context, pendingInfoList!)),
                       ],
                     ),
                   ],
@@ -177,24 +209,31 @@ class _ContactPageState extends State<ContactPage>
           fontFamily: 'Abril Fatface',
           fontWeight: FontWeight.bold),
       isScrollable: true,
-      unselectedLabelColor: Color.fromARGB(255, 175, 199, 232),
-      labelColor: Color.fromARGB(255, 118, 168, 239),
+      unselectedLabelColor: const Color.fromARGB(255, 175, 199, 232),
+      labelColor: const Color.fromARGB(255, 118, 168, 239),
       indicatorColor: const Color.fromARGB(255, 122, 161, 216),
       indicatorSize: TabBarIndicatorSize.label,
     );
   }
 
-  Widget _listView(BuildContext context, Friend f) {
+  Widget _listView(BuildContext context, List<MatchedUserInfo> users) {
     return ListView(
       children: [
-        for (var f in f.friends)
+        for (var u in users)
           Container(
               decoration: BoxDecoration(color: Colors.white.withOpacity(0.5)),
               child: Material(
                 color: Colors.white.withOpacity(0.0),
                 child: InkWell(
                   onTap: () {
-                    context.go('/contact/history');
+                    Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return ContactHistory(friendInfo: u, userId: userId);
+                      },
+                    ),
+                  );
                   },
                   child: Container(
                     decoration: const BoxDecoration(
@@ -206,7 +245,7 @@ class _ContactPageState extends State<ContactPage>
                     child: Row(children: [
                       ClipOval(
                         child: Image.asset(
-                          f.picture,
+                          "assetsfolder/friend1.jpg",
                           width: 50.w,
                           height: 50.h,
                           fit: BoxFit.cover,
@@ -216,7 +255,7 @@ class _ContactPageState extends State<ContactPage>
                         width: 20.w,
                       ),
                       Text(
-                        f.name,
+                        u.name,
                         style: TextStyle(
                             fontSize: 20.sp,
                             fontFamily: 'Bellota-Regular',

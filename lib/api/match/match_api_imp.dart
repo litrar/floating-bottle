@@ -8,18 +8,16 @@ class _MatchApi implements MatchApi {
 
   @override
   Future<HttpRes<MatchResult>> getRandomMatch() async {
-    var req = await _dio.get(
-        "https://0c28-36-229-146-249.ngrok-free.app/api/Users/random",
+    var req = await _dio.get("$baseUrl/api/Users/random",
         options: Options(headers: headers));
     print(req.data);
     return HttpRes<MatchResult>.fromJson(req.data,
         code: req.statusCode, dataDecodeFunc: MatchResult.fromJson);
   }
-  
+
   @override
   Future<HttpRes<List<MatchResult>>> getFilterMatch(FilterFillOutData f) async {
-    var req = await _dio.post(
-        "https://0c28-36-229-146-249.ngrok-free.app/api/Users/filter",
+    var req = await _dio.post("$baseUrl/api/Users/filter",
         data: {
           'college': f.getCollege(),
           'department': f.getDepartment(),
@@ -58,28 +56,32 @@ class _MatchApi implements MatchApi {
 
   @override
   Future<HttpRes<MatchResult>> getSearchIDMatch(int id) async {
-    var req = await _dio.get(
-        "https://0c28-36-229-146-249.ngrok-free.app/api/Users/$id",
+    var req = await _dio.get("$baseUrl/api/Users/$id",
         options: Options(headers: headers));
-    print(req.data + 'sdk');
-    print(req.data == String);
-    return HttpRes<MatchResult>.fromJson(req.data,
-        code: req.statusCode, dataDecodeFunc: MatchResult.fromJson);
+    if (req.statusCode == 200) {
+      return HttpRes<MatchResult>.fromJson(req.data,
+          code: req.statusCode, dataDecodeFunc: MatchResult.fromJson);
+    } else {
+      return HttpRes.failed(
+          errMsg: 'error for getSearchIDMatch', code: req.statusCode);
+    }
   }
 
   @override
+  //回傳包有user的資料的MatchedUserInfo
   Future<HttpRes<MatchedUserInfo>> showUserById(int userId) async {
-    var req = await _dio.get(
-        "https://0c28-36-229-146-249.ngrok-free.app/api/Users/ShowUserById/$userId",
+    var req = await _dio.get("$baseUrl/api/Users/ShowUserById/$userId",
         options: Options(headers: headers));
     //print(req.data);
     return HttpRes<MatchedUserInfo>.fromJson(req.data,
         code: req.statusCode, dataDecodeFunc: MatchedUserInfo.fromJson);
   }
-  
+
   @override
-  Future<HttpRes<MatchedUserInfo>> insertUserPair(int userId1, int userId2) {
-    // TODO: implement insertUserPair
-    throw UnimplementedError();
+  Future<bool> insertUserPair(int userId1, int userId2) async {
+    var req = await _dio.post(
+        "$baseUrl/api/Users/InsertUserPair/$userId1/$userId2",
+        options: Options(headers: headers));
+    return req.statusCode == 200;
   }
 }

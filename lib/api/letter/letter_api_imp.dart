@@ -1,17 +1,15 @@
 part of '../letter.dart';
 
-
-
 class _LetterApi implements LetterApi {
   final Dio _dio;
-
+  final headers = {'ngrok-skip-browser-warning': 'true'};
   _LetterApi(this._dio);
 
   @override
   Future<HttpRes<List<LetterGot>>> getLetter(int matcherId, int matchedAccountId) async {
     var req =
     //這邊要再加matcher, matched的變數到網址裡面
-        await _dio.get("https://ecc3-111-241-177-116.ngrok-free.app/api/Letter?matcher=$matcherId&matched=$matchedAccountId");
+        await _dio.get("$baseUrl/api/Letter/GetLetter/$matcherId/$matchedAccountId", options: Options(headers: headers));
     if (req.statusCode == 200) {
       final List<dynamic> jsonData = req.data;
       final letters = jsonData
@@ -31,48 +29,21 @@ class _LetterApi implements LetterApi {
   }
 
   @override
-  // Future<bool> sendLetter(LetterSent data) async{
-  //   var res = await _dio.post("https://ecc3-111-241-177-116.ngrok-free.app/api/Letter",
-  //       data: await data.toData(),
-  //       options: Options(headers: {'Content-Type': 'multipart/form-data'}));
-  //   return res.statusCode == 200;
-  // }
-  Future<bool> sendLetter(LetterSent data) async {
-    try {
-      final formData = await data.toData();
-      final response = await _dio.post(
-        "https://ecc3-111-241-177-116.ngrok-free.app/api/Letter",
-        data: formData,
-        options: Options(headers: {'Content-Type': 'multipart/form-data'}),
-      );
-
-      return response.statusCode == 200;
-    } catch (error) {
-      print('Error sending letter: $error');
-      return false;
-    }
+  Future<bool> sendLetter(LetterSent data) async{
+    var res = await _dio.post("$baseUrl/api/Letter",
+        data: await data.toData(),
+        options: Options(headers: {'ngrok-skip-browser-warning': 'true','Content-Type': 'multipart/form-data',},
+        ));
+    return res.statusCode == 200;
   }
-
   
   @override
-  // Future<HttpRes> deleteLetter(int letterId) async{
-  //   var res = await _dio.delete("https://ecc3-111-241-177-116.ngrok-free.app/api/Letter/$letterId");
-  //   return HttpRes(
-  //       isSuccess: res.statusCode == 200,
-  //       message: "已刪除",
-  //       code: res.statusCode);
-  // }
-  @override
-  Future<HttpRes> deleteLetter(int letterId) async {
-    var res = await _dio.delete(
-      "https://ecc3-111-241-177-116.ngrok-free.app/api/Letter/$letterId",
-    );
+  Future<HttpRes> deleteLetter(int letterId) async{
+    var res = await _dio.delete("$baseUrl/api/Letter/$letterId");
     return HttpRes(
-      isSuccess: res.statusCode == 200,
-      message: "已刪除",
-      code: res.statusCode,
-    );
+        isSuccess: res.statusCode == 200,
+        message: "已刪除",
+        code: res.statusCode);
   }
-
 
 }

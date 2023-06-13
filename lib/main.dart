@@ -74,10 +74,9 @@
 //         debugShowCheckedModeBanner: false);
 //   }
 // }
-import 'package:floating_bottle/pages/match_page/match.dart';
-import 'package:get/get.dart';
 import 'package:dio/dio.dart';
 import 'package:floating_bottle/api/match/models/filter_fillout_data.dart';
+import 'package:floating_bottle/api/user.dart';
 import 'package:floating_bottle/pages/authentication/login.dart';
 import 'package:floating_bottle/pages/components/error_page.dart';
 import 'package:floating_bottle/pages/personal_page/personal_page.dart';
@@ -86,13 +85,13 @@ import 'package:floating_bottle/pages/theme/theme_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 
-
+import 'api/contact.dart';
 import 'api/letter.dart';
 import 'api/match.dart';
 import 'controllers/account_detail_controller.dart';
-import 'controllers/registeration_controller.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -101,7 +100,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   AccountDetailController accountDetailController = Get.put(AccountDetailController());
-  RegisterationController registerationController = Get.put(RegisterationController());
   final Dio _dio = Dio(BaseOptions(
       connectTimeout: Duration(milliseconds: 10000),
       receiveTimeout: Duration(milliseconds: 10000),
@@ -115,8 +113,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: Login.route.name, page: () => Login()),
         for (var page in SubPage.PAGES)
-
-          GetPage(name: page.route.name, page: () => PersonalPage(accountDetailController.accId.toString())),
+          GetPage(name: page.route.name, page: () => PersonalPage(accountDetailController.nameController.text)),
       ],
       unknownRoute: GetPage(
         name: '/error',
@@ -138,6 +135,8 @@ class MyApp extends StatelessWidget {
             providers: [
               RepositoryProvider(create: (_) => LetterApi(_dio)),
               RepositoryProvider(create: (_) => MatchApi(_dio)),
+              RepositoryProvider(create: (_) => ContactApi(_dio)),
+              RepositoryProvider(create: (_) => UserApi(_dio)),
               RepositoryProvider(
                 create: (_) => FilterFillOutData(
                   college: '',

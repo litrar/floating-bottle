@@ -8,17 +8,20 @@ import 'package:floating_bottle/pages/personal_page/personal_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../api/user/profile.dart';
 import 'edit_city_page.dart';
 import 'edit_interest_page.dart';
 
 class Setting extends StatefulWidget {
-  const Setting({Key? key, required this.email, required this.name})
+  const Setting({Key? key, required this.email, required this.name, required this.profile})
       : super(key: key);
+  final String email;
+  final String name;
+  final Profile profile;
 
   @override
   State<Setting> createState() => _SettingState();
-  final String email;
-  final String name;
+
 }
 
 class _SettingState extends State<Setting> {
@@ -44,7 +47,7 @@ class _SettingState extends State<Setting> {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return const PersonalPage('Remi Chuang');
+                          return PersonalPage(widget.name);
                         },
                       ),
                     );
@@ -95,8 +98,9 @@ class _SettingState extends State<Setting> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return const ChangeEmail(
-                                      email: '110306999@g.nccu.edu.tw',
+                                    return ChangeEmail(
+                                      profile: widget.profile,
+                                      email: widget.email,
                                     );
                                   },
                                 ),
@@ -119,7 +123,7 @@ class _SettingState extends State<Setting> {
                                       fontFamily: 'Bellota-Regular',
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text("${widget.email}")
+                                Text(widget.email)
                               ],
                             ),
                           ),
@@ -132,8 +136,9 @@ class _SettingState extends State<Setting> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return const ChangeEmail(
-                                      email: '110306999@g.nccu.edu.tw',
+                                    return ChangeEmail(
+                                      profile: widget.profile,
+                                      email: widget.email,
                                     );
                                   },
                                 ),
@@ -152,7 +157,8 @@ class _SettingState extends State<Setting> {
                           MaterialPageRoute(
                             builder: (context) {
                               return ChangeEmail(
-                                email: '${widget.email}',
+                                profile: widget.profile,
+                                email: widget.email,
                               );
                             },
                           ),
@@ -186,8 +192,8 @@ class _SettingState extends State<Setting> {
                                 MaterialPageRoute(
                                   builder: (context) {
                                     return ChangeName(
-                                      email: '${widget.email}',
-                                      name: '${widget.name}',
+                                      email: widget.email,
+                                      name: widget.name,
                                     );
                                   },
                                 ),
@@ -259,7 +265,7 @@ class _SettingState extends State<Setting> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return const ChangeGender();
+                                    return ChangeGender(profile: widget.profile,);
                                   },
                                 ),
                               );
@@ -285,7 +291,7 @@ class _SettingState extends State<Setting> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return const ChangeGender();
+                                    return ChangeGender(profile: widget.profile,);
                                   },
                                 ),
                               );
@@ -302,7 +308,7 @@ class _SettingState extends State<Setting> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return const ChangeGender();
+                              return ChangeGender(profile: widget.profile);
                             },
                           ),
                         );
@@ -324,7 +330,7 @@ class _SettingState extends State<Setting> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return const EditInterest();
+                                    return EditInterest(profile: widget.profile);
                                   },
                                 ),
                               );
@@ -350,7 +356,7 @@ class _SettingState extends State<Setting> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return const EditInterest();
+                                    return EditInterest(profile: widget.profile);
                                   },
                                 ),
                               );
@@ -367,7 +373,7 @@ class _SettingState extends State<Setting> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return const EditInterest();
+                              return EditInterest(profile: widget.profile);
                             },
                           ),
                         );
@@ -389,7 +395,7 @@ class _SettingState extends State<Setting> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return const EditPersonality();
+                                    return EditPersonality(profile: widget.profile);
                                   },
                                 ),
                               );
@@ -415,7 +421,7 @@ class _SettingState extends State<Setting> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return const EditPersonality();
+                                    return EditPersonality(profile: widget.profile);
                                   },
                                 ),
                               );
@@ -432,7 +438,7 @@ class _SettingState extends State<Setting> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return const EditPersonality();
+                              return EditPersonality(profile: widget.profile);
                             },
                           ),
                         );
@@ -454,7 +460,7 @@ class _SettingState extends State<Setting> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return const EditCity();
+                                    return EditCity(profile: widget.profile);
                                   },
                                 ),
                               );
@@ -480,7 +486,7 @@ class _SettingState extends State<Setting> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return const EditCity();
+                                    return EditCity(profile: widget.profile);
                                   },
                                 ),
                               );
@@ -497,7 +503,7 @@ class _SettingState extends State<Setting> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return const EditCity();
+                              return EditCity(profile: widget.profile);
                             },
                           ),
                         );
@@ -519,7 +525,7 @@ class _SettingState extends State<Setting> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return const EditLanguage();
+                                    return EditLanguage(profile: widget.profile);
                                   },
                                 ),
                               );
@@ -545,7 +551,7 @@ class _SettingState extends State<Setting> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return const EditLanguage();
+                                    return EditLanguage(profile: widget.profile);
                                   },
                                 ),
                               );
@@ -562,7 +568,7 @@ class _SettingState extends State<Setting> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return const EditLanguage();
+                              return EditLanguage(profile: widget.profile);
                             },
                           ),
                         );
@@ -587,7 +593,7 @@ class _SettingState extends State<Setting> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return const DeleteAccount();
+                              return DeleteAccount(profile: widget.profile);
                             },
                           ),
                         );

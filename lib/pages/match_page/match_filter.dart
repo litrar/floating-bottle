@@ -1,4 +1,3 @@
-
 import 'package:floating_bottle/api/match.dart';
 import 'package:floating_bottle/api/match/models/filter_fillout_data.dart';
 import 'package:floating_bottle/pages/components/button.dart';
@@ -14,7 +13,9 @@ import '../../api/match/models/match_result.dart';
 import '../../api/match/models/matched_user_info.dart';
 
 class MatchFilterPage extends StatefulWidget {
-  const MatchFilterPage({Key? key}) : super(key: key);
+  MatchFilterPage({Key? key, this.userId}) : super(key: key);
+  int? userId;
+
   @override
   State<MatchFilterPage> createState() => _MatchFilterPageState();
 }
@@ -35,7 +36,7 @@ class _MatchFilterPageState extends State<MatchFilterPage> {
 
   @override
   Widget build(BuildContext context) {
-    MatchApi matchApi = context.read();
+    // MatchApi matchApi = context.read();
 
     final List<MyButton> buttons = [
       MyButton(
@@ -352,8 +353,9 @@ class _MatchFilterPageState extends State<MatchFilterPage> {
                                         fontFamily: 'Abril Fatface')),
                               )))
                           .toList(),
-                       onSuggestionTap: (SearchFieldListItem<String> x) {
-                        f.city = x.searchKey.substring(0, x.searchKey.length-5);
+                      onSuggestionTap: (SearchFieldListItem<String> x) {
+                        f.city =
+                            x.searchKey.substring(0, x.searchKey.length - 5);
                         print(f!.all());
                       },
                       marginColor: Colors.white,
@@ -615,7 +617,7 @@ class _MatchFilterPageState extends State<MatchFilterPage> {
               var res = await matchApi
                   .getFilterMatch(context.read<FilterFillOutData>());
               if (res.isSuccess) {
-              print('succeed');
+                print('succeed');
                 for (MatchResult m in res.data!) {
                   HttpRes<MatchedUserInfo> userRes =
                       await matchApi.showUserById(m.id);

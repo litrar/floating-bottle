@@ -9,7 +9,8 @@ import '../../api/match/models/matched_user_info.dart';
 import 'match_result.dart';
 
 class SearchIDPage extends StatefulWidget {
-  const SearchIDPage({super.key});
+  SearchIDPage({super.key, this.userId});
+  int? userId;
 
   @override
   State<SearchIDPage> createState() => _SearchIDPageState();
@@ -32,7 +33,7 @@ class _SearchIDPageState extends State<SearchIDPage> {
   final TextEditingController _searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    MatchApi matchApi = context.read();
+    // MatchApi matchApi = context.read();
 
     return Scaffold(
         body: Stack(
@@ -150,13 +151,12 @@ class _SearchIDPageState extends State<SearchIDPage> {
                   );
                 });
               } else {
-                
                 Future.microtask(() {
                   Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const DMatchResultPage(),
-                  ),
-                );
+                    MaterialPageRoute(
+                      builder: (context) => const DMatchResultPage(),
+                    ),
+                  );
                 });
               }
             },

@@ -6,7 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FilterRepository extends StatelessWidget {
-  const FilterRepository({super.key});
+  FilterRepository({super.key, this.userId});
+  int? userId;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class FilterRepository extends StatelessWidget {
             languages: [],
             personalties: [],
             interests: []),
-        child: MatchFilterPage(),
+        child: MatchFilterPage(userId: userId),
       );
     });
   }

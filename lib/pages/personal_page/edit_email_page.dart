@@ -3,9 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class EditEmail extends StatefulWidget {
-  const EditEmail({Key? key}) : super(key: key);
+import '../../api/user/profile.dart';
 
+class EditEmail extends StatefulWidget {
+  const EditEmail({Key? key, required this.profile}) : super(key: key);
+  final Profile profile;
   @override
   State<EditEmail> createState() => _EditEmailState();
 }
@@ -15,7 +17,7 @@ class _EditEmailState extends State<EditEmail> {
     return Scaffold(
         body: Stack(
           children: <Widget>[
-            const ChangeEmail(email: '',),
+            ChangeEmail(profile: widget.profile,email: '',),
             Container(
               margin: const EdgeInsets.all(0),
               color: Colors.white60,
@@ -38,7 +40,7 @@ class _EditEmailState extends State<EditEmail> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => ChangeEmail(email: '${_textFieldValue}',),
+                              builder: (context) => ChangeEmail(email: '${_textFieldValue}',profile: widget.profile,),
                             ),
                           );
                       }, icon: Icon(Icons.check,size: 20.sp,),

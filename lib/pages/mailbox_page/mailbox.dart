@@ -1,13 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:floating_bottle/pages/mailbox_page/friend.dart';
-import 'package:floating_bottle/pages/mailbox_page/letter.dart';
-import 'package:floating_bottle/pages/mailbox_page/user.dart';
 import 'package:floating_bottle/pages/subpage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_navigation/src/routes/get_route.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
 import '../../api/letter.dart';
 import '../../api/match.dart';
 import '../components/bottom_bar.dart';
@@ -35,7 +32,7 @@ class MailboxSubPage implements SubPage {
 
 class MailBoxPage extends StatefulWidget {
   MailBoxPage(this.friend, {Key? key}) : super(key: key);
-
+  int userId = Get.arguments;
   final Friend friend;
 
   _MailBoxPageState createState() => _MailBoxPageState();

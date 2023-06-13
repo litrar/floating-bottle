@@ -1,5 +1,3 @@
-import '../../pages/tool/time.dart';
-
 class LetterGot {
   int letterId;
   int matchId;

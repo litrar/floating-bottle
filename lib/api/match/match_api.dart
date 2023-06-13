@@ -6,7 +6,7 @@ Future<HttpRes<MatchResult>> getRandomMatch();
 Future<HttpRes<List<MatchResult>>> getFilterMatch(FilterFillOutData f);
 Future<HttpRes<MatchResult>> getSearchIDMatch(int id);
 Future<HttpRes<MatchedUserInfo>> showUserById(int userId);
-Future<HttpRes<MatchedUserInfo>> insertUserPair(int userId1, int userId2);
+Future<bool> insertUserPair(int userId1, int userId2);
 
 
 }

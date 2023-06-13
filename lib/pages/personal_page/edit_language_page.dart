@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:searchfield/searchfield.dart';
 
+import '../../api/user/profile.dart';
 import 'change_language_level.dart';
 
 class EditLanguage extends StatefulWidget {
-  const EditLanguage({Key? key}) : super(key: key);
+  const EditLanguage({Key? key, required this.profile}) : super(key: key);
+  final Profile profile;
 
   @override
   State<EditLanguage> createState() => _EditLanguageState();
@@ -39,7 +41,7 @@ class _EditLanguageState extends State<EditLanguage> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return const Setting(email: "110306999@g.nccu.edu.tw",name:"");
+                            return Setting(profile: widget.profile,email: "110306999@g.nccu.edu.tw",name:"");
                           },
                         ),
                       );
@@ -51,7 +53,7 @@ class _EditLanguageState extends State<EditLanguage> {
                         onPressed: (){
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => ChangeLanguage(item: _searchController.text),
+                              builder: (context) => ChangeLanguage(profile: widget.profile,item: _searchController.text),
                             ),
                           );
                         },

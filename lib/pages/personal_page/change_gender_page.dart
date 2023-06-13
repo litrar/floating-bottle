@@ -3,9 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ChangeGender extends StatefulWidget {
-  const ChangeGender({Key? key}) : super(key: key);
+import '../../api/user/profile.dart';
 
+class ChangeGender extends StatefulWidget {
+  const ChangeGender({Key? key, required this.profile}) : super(key: key);
+  final Profile profile;
   @override
   State<ChangeGender> createState() => _ChangeGenderState();
 }
@@ -35,7 +37,7 @@ class _ChangeGenderState extends State<ChangeGender> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return const Setting(email: "110306999@g.nccu.edu.tw",name:"");
+                            return Setting(profile: widget.profile, email: "110306999@g.nccu.edu.tw",name:"");
                           },
                         ),
                       );

@@ -2,11 +2,14 @@ import 'package:floating_bottle/pages/personal_page/edit_language_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../api/user/profile.dart';
 import 'change_language_level_result.dart';
 
 class ChangeLanguage extends StatefulWidget {
-  const ChangeLanguage({Key? key, required this.item}) : super(key: key);
+  const ChangeLanguage({Key? key, required this.item, required this.profile}) : super(key: key);
   final String? item;
+    final Profile profile;
+
 
   @override
   _ChangeLanguageState createState() => _ChangeLanguageState();
@@ -17,7 +20,7 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
     widget.item;
     return Scaffold(
         body: Stack(children: <Widget>[
-      const EditLanguage(),
+      EditLanguage(profile: widget.profile),
       Container(
         margin: const EdgeInsets.all(0),
         color: Colors.white60,
@@ -52,6 +55,7 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
                           Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (context) => ChangeLanguageLevelResult(
+                                profile: widget.profile,
                                   level: "Native Speaker",
                                   item: "${widget.item}"),
                             ),
@@ -79,7 +83,7 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
                         onPressed: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => ChangeLanguageLevelResult(
+                              builder: (context) => ChangeLanguageLevelResult(profile: widget.profile,
                                   level: "Beginner", item: "${widget.item}"),
                             ),
                           );
@@ -103,7 +107,7 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
                         onPressed: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => ChangeLanguageLevelResult(
+                              builder: (context) => ChangeLanguageLevelResult(profile: widget.profile,
                                   level: "Intermediate",
                                   item: "${widget.item}"),
                             ),
@@ -128,7 +132,7 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
                         onPressed: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => ChangeLanguageLevelResult(
+                              builder: (context) => ChangeLanguageLevelResult(profile: widget.profile,
                                   level: "Advanced", item: "${widget.item}"),
                             ),
                           );

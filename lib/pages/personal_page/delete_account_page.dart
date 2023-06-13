@@ -3,11 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../api/user/profile.dart';
 import '../authentication/login.dart';
 
 class DeleteAccount extends StatefulWidget {
-  const DeleteAccount({Key? key}) : super(key: key);
-
+  DeleteAccount({Key? key, required this.profile}) : super(key: key);
+  final Profile profile;
   @override
   State<DeleteAccount> createState() => _DeleteAccountState();
 }
@@ -17,7 +18,10 @@ class _DeleteAccountState extends State<DeleteAccount> {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          const Setting(email: "110306999@g.nccu.edu.tw", name: ""),
+          Setting(
+              profile: widget.profile,
+              email: "110306999@g.nccu.edu.tw",
+              name: ""),
           Container(
             margin: const EdgeInsets.all(0),
             color: Colors.white60,

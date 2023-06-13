@@ -4,9 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SavePersonality extends StatefulWidget {
-  const SavePersonality({Key? key}) : super(key: key);
+import '../../api/user/profile.dart';
 
+class SavePersonality extends StatefulWidget {
+  const SavePersonality({Key? key, required this.profile}) : super(key: key);
+final Profile profile;
   @override
   State<SavePersonality> createState() => _SavePersonalityState();
 }
@@ -15,7 +17,7 @@ class _SavePersonalityState extends State<SavePersonality> {
     return Scaffold(
         body: Stack(
           children: <Widget>[
-            const  EditInterest(),
+            EditInterest(profile: widget.profile,),
             Container(
               margin: const EdgeInsets.all(0),
               color: Colors.white60,
@@ -62,7 +64,7 @@ class _SavePersonalityState extends State<SavePersonality> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) {
-                                        return const Setting(email: "110306999@g.nccu.edu.tw",name:"");
+                                        return Setting(profile: widget.profile,email: "110306999@g.nccu.edu.tw",name:"");
                                       },
                                     ),
                                   );

@@ -1,16 +1,12 @@
 import 'package:floating_bottle/pages/match_page/match_filter_listener.dart';
-import 'package:floating_bottle/pages/match_page/random_match_result.dart';
-import 'package:floating_bottle/pages/match_page/match_filter.dart';
 import 'package:floating_bottle/pages/match_page/search_id.dart';
 import 'package:floating_bottle/pages/subpage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_navigation/src/routes/get_route.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
 import '../../api/http_response.dart';
 import '../../api/match.dart';
-import '../../api/match/models/match_result.dart';
 import '../../api/match/models/matched_user_info.dart';
 import '../components/bottom_bar.dart';
 import '../theme/color_theme.dart';
@@ -45,8 +41,17 @@ class _MatchPageState extends State<MatchPage> {
   bool searchID = true;
   bool cbutton = true;
 
+  int userId = Get.arguments;
+
+  // Profile? profile;
+  // Future<void> getData(BuildContext context) async {
+  //   MatchApi matchApi = context.read();
+  //   UserApi userApi = context.read();
+  //   var res = await userApi.getProfile('lisaaa');
+  //   if (res.isSuccess) profile = res.data;
+  // }
+
   Widget build(BuildContext context) {
-    MatchApi matchApi = context.read();
     return BlocBuilder<ThemeCubit, ColorTheme>(builder: (context, state) {
       return Scaffold(
         bottomNavigationBar: BottomBar(SubPage.CONTACT),
@@ -229,7 +234,7 @@ class _MatchPageState extends State<MatchPage> {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return const FilterRepository();
+                    return FilterRepository(userId: userId,);
                   },
                 ),
               );
@@ -238,7 +243,7 @@ class _MatchPageState extends State<MatchPage> {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return const SearchIDPage();
+                    return SearchIDPage(userId: userId,);
                   },
                 ),
               );
@@ -266,23 +271,12 @@ class _MatchPageState extends State<MatchPage> {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return MatchResultPage(matchedUsers: userInfoList);
+                        return MatchResultPage(matchedUsers: userInfoList, userId: userId);
                       },
                     ),
                   );
                 });
-              } else {
-                Future.microtask(() {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return MatchResultPage(matchedUsers: userInfoList);
-                      },
-                    ),
-                  );
-                });
-              }
+              } 
             }
           }
         },
@@ -295,7 +289,7 @@ class _MatchPageState extends State<MatchPage> {
                   color: Colors.white60,
                   borderRadius: BorderRadius.circular(35))
               : BoxDecoration(
-                  color: Color.fromARGB(255, 86, 140, 167),
+                  color: const Color.fromARGB(255, 86, 140, 167),
                   borderRadius: BorderRadius.circular(35)),
           alignment: Alignment.center,
           child: Text("Continue",

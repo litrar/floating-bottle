@@ -5,10 +5,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../api/user/profile.dart';
+
 
 class EditPersonality extends StatefulWidget {
-  const EditPersonality({Key? key}) : super(key: key);
-
+  const EditPersonality({Key? key, required this.profile}) : super(key: key);
+final Profile profile;
   @override
   State<EditPersonality> createState() => _EditPersonalityState();
 }
@@ -57,7 +59,7 @@ class _EditPersonalityState extends State<EditPersonality> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return const Setting(email: "110306999@g.nccu.edu.tw",name:"");
+                            return Setting(profile: widget.profile,email: "110306999@g.nccu.edu.tw",name:"");
                           },
                         ),
                       );
@@ -72,7 +74,7 @@ class _EditPersonalityState extends State<EditPersonality> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return const SavePersonality();
+                              return SavePersonality(profile: widget.profile,);
                             },
                           ),
                         );

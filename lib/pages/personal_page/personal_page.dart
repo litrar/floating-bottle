@@ -1,3 +1,4 @@
+import 'package:floating_bottle/api/user.dart';
 import 'package:floating_bottle/pages/components/devloping.dart';
 import 'package:floating_bottle/pages/personal_page/logout_page.dart';
 import 'package:floating_bottle/pages/personal_page/setting_page.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:go_router/go_router.dart';
+import '../../api/user/profile.dart';
 import '../components/bottom_bar.dart';
 import '../theme/color_theme.dart';
 import '../theme/theme_bloc.dart';
@@ -29,38 +31,52 @@ class PersonalSubPage implements SubPage {
 }
 
 class PersonalPage extends StatelessWidget {
-  const PersonalPage(this.name, {super.key});
+  PersonalPage(this.name, {super.key});
   final String name;
+  int? userId; //看後端到底要怎麼改
+
+  Profile? profile;
+  Future<void> getProfile(BuildContext context) async {
+    UserApi userApi = context.read();
+    var res = await userApi.getProfile(userId!);
+    print("hahaha ${res.data}");
+    if (res.isSuccess) profile = res.data;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ThemeCubit, ColorTheme>(builder: (context, state) {
-      return Scaffold(
-        bottomNavigationBar: BottomBar(SubPage.PERSONAL),
-        body: Stack(
-          children: [
-            Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assetsfolder/personal_background.jpg"),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            Column(
+    return FutureBuilder(
+      future: getProfile(context),
+      builder: (context, snapshot) {
+        return BlocBuilder<ThemeCubit, ColorTheme>(builder: (context, state) {
+          return Scaffold(
+            bottomNavigationBar: BottomBar(SubPage.PERSONAL),
+            body: Stack(
               children: [
-                _avatar(context),
-                _letterHistory(context),
-                _messageBox(context),
-                _settings(context),
-                _contact(context),
-                _logoutButton(context)
+                Container(
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assetsfolder/personal_background.jpg"),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                Column(
+                  children: [
+                    _avatar(context),
+                    _letterHistory(context),
+                    _messageBox(context),
+                    _settings(context),
+                    _contact(context),
+                    _logoutButton(context)
+                  ],
+                )
               ],
-            )
-          ],
-        ),
-      );
-    });
+            ),
+          );
+        });
+      }
+    );
   }
 
   Widget _avatar(BuildContext context) {
@@ -124,9 +140,9 @@ class PersonalPage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const ChangeName(
-                                    email: '',
-                                    name: 'Remi Chuang',
+                              builder: (context) => ChangeName(
+                                    email: profile!.email,
+                                    name: name,
                                   )),
                         );
                       },
@@ -141,9 +157,9 @@ class PersonalPage extends StatelessWidget {
               Container(
                 padding: EdgeInsets.fromLTRB(10, 0, 0, 20.h),
                 child: Text(
-                  " #ID: 12345",
+                  profile!.id.toString(),
                   style: TextStyle(
-                    color: Color.fromARGB(255, 99, 97, 97),
+                    color: const Color.fromARGB(255, 99, 97, 97),
                     fontSize: 14.sp,
                     fontFamily: 'Bellota-Regular',
                   ),
@@ -170,7 +186,7 @@ class PersonalPage extends StatelessWidget {
                 // mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    '0',
+                    '-',
                     style: TextStyle(
                         fontSize: 36.sp,
                         fontFamily: 'Bellota-Regular',
@@ -190,7 +206,7 @@ class PersonalPage extends StatelessWidget {
             ),
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(
-                '0',
+                '-',
                 style: TextStyle(
                     fontSize: 36.sp,
                     fontFamily: 'Bellota-Regular',
@@ -214,7 +230,7 @@ class PersonalPage extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return DevelopingPage("Letter History");
+                      return const DevelopingPage("Letter History");
                     },
                   ),
                 );
@@ -266,7 +282,7 @@ class PersonalPage extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return DevelopingPage("Message Box");
+                        return const DevelopingPage("Message Box");
                       },
                     ),
                   );
@@ -299,9 +315,9 @@ class PersonalPage extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return Setting(
-                            email: "110306999@g.nccu.edu.tw",
-                            name: "Remi Chuang");
+                        return Setting(profile: profile!,
+                            email: profile!.email,
+                            name: name);
                       },
                     ),
                   );
@@ -327,8 +343,8 @@ class PersonalPage extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return const Setting(
-                            email: "110306999@g.nccu.edu.tw", name: "");
+                        return Setting(profile: profile!,
+                            email: profile!.email, name: name);
                       },
                     ),
                   );
@@ -345,8 +361,10 @@ class PersonalPage extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) {
-                  return const Setting(
-                      email: "110306999@g.nccu.edu.tw", name: "");
+                  return Setting(
+                      profile: profile!,
+                      email: profile
+                      !.email, name: name);
                 },
               ),
             );
@@ -388,7 +406,7 @@ class PersonalPage extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return DevelopingPage('Contact Us');
+                        return const DevelopingPage('Contact Us');
                       },
                     ),
                   );
@@ -431,7 +449,7 @@ class PersonalPage extends StatelessWidget {
                 child: Text(
                   'Log out',
                   style: TextStyle(
-                      color: Color.fromARGB(255, 99, 97, 97),
+                      color: const Color.fromARGB(255, 99, 97, 97),
                       fontSize: 21.sp,
                       fontFamily: 'Bellota-Regular',
                       fontWeight: FontWeight.bold),

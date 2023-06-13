@@ -5,13 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:searchfield/searchfield.dart';
 
+import '../../api/user/profile.dart';
 import 'change_language_level.dart';
 import 'edit_language_page.dart';
 
 class ChangeLanguageLevelResult extends StatefulWidget {
-  const ChangeLanguageLevelResult({Key? key,required this.level,required this.item}) : super(key: key);
+  const ChangeLanguageLevelResult({Key? key,required this.level,required this.item, required this.profile}) : super(key: key);
   final String level;
   final String item;
+  final Profile profile;
+
 
   @override
   State<ChangeLanguageLevelResult> createState() => _ChangeLanguageLevelResultState();
@@ -46,7 +49,7 @@ class _ChangeLanguageLevelResultState extends State<ChangeLanguageLevelResult> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return const Setting(email: "110306999@g.nccu.edu.tw",name:"");
+                            return Setting(email: "110306999@g.nccu.edu.tw",name:"", profile: widget.profile,);
                           },
                         ),
                       );
@@ -58,7 +61,7 @@ class _ChangeLanguageLevelResultState extends State<ChangeLanguageLevelResult> {
                         onPressed: (){
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => ChangeLanguage(item: _searchController.text),
+                              builder: (context) => ChangeLanguage(item: _searchController.text, profile: widget.profile,),
                             ),
                           );
                         },

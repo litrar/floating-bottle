@@ -1,6 +1,5 @@
 import 'package:floating_bottle/pages/mailbox_page/user.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
-import 'package:go_router/go_router.dart';
 import 'friend.dart';
 import 'letter.dart';
 import 'mailbox.dart';

@@ -5,10 +5,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../api/user/profile.dart';
+
 
 class EditInterest extends StatefulWidget {
-  const EditInterest({Key? key}) : super(key: key);
-
+  const EditInterest({Key? key, required this.profile}) : super(key: key);
+  final Profile profile;
   @override
   State<EditInterest> createState() => _EditInterestState();
 }
@@ -57,7 +59,7 @@ class _EditInterestState extends State<EditInterest> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return const Setting(email: "110306999@g.nccu.edu.tw",name:"");
+                            return Setting(profile: widget.profile,email: "110306999@g.nccu.edu.tw",name:"");
                           },
                         ),
                       );
@@ -72,7 +74,7 @@ class _EditInterestState extends State<EditInterest> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return const SaveInterest();
+                              return SaveInterest(profile: widget.profile);
                             },
                           ),
                         );
