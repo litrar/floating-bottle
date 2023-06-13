@@ -1,4 +1,3 @@
-
 import 'package:floating_bottle/pages/personal_page/setting_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +6,6 @@ import 'package:searchfield/searchfield.dart';
 
 import '../../api/user/profile.dart';
 import 'change_language_level.dart';
-import 'edit_language_page.dart';
 
 class ChangeLanguageLevelResult extends StatefulWidget {
   const ChangeLanguageLevelResult({Key? key,required this.level,required this.item, required this.profile}) : super(key: key);

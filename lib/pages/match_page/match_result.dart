@@ -1,4 +1,3 @@
-import 'package:floating_bottle/api/match/models/match_result.dart';
 import 'package:floating_bottle/pages/contact_page/contact_detail.dart';
 import 'package:floating_bottle/api/match/models/matched_user_info.dart';
 import 'package:floating_bottle/pages/match_page/bloc/selected_people_cubit.dart';

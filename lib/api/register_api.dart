@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:floating_bottle/api/http_response.dart';
 
 class RegisterApi {
   final Dio _dio;

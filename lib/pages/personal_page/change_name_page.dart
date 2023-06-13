@@ -1,10 +1,7 @@
 import 'package:floating_bottle/pages/personal_page/edit_name_page.dart';
 import 'package:floating_bottle/pages/personal_page/personal_page.dart';
-import 'package:floating_bottle/pages/personal_page/setting_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
 class ChangeName extends StatefulWidget {
   const ChangeName({Key? key, required this.email, required this.name})

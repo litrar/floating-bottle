@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:floating_bottle/pages/mailbox_page/letter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,7 +6,6 @@ import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../api/letter.dart';
-import 'http_page_builder.dart';
 
 class WriteLetter extends StatefulWidget {
   WriteLetter(

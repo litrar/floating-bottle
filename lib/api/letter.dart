@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:image_picker/image_picker.dart';
 import 'api_config.dart';
 import 'letter/letter_got_info.dart';
 import 'http_response.dart';

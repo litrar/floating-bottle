@@ -1,9 +1,7 @@
-import 'package:floating_bottle/pages/authentication/language_level.dart';
 import 'package:floating_bottle/pages/authentication/language_level_result.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../../controllers/account_detail_controller.dart';
 

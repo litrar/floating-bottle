@@ -5,7 +5,7 @@ class LetterSent {
   int matchedAccountId;
   String topic;
   String content;
-  String attType;
+  String? attType;
   DateTime time;
 
   LetterSent(
@@ -13,13 +13,12 @@ class LetterSent {
       required int matchedAccountId,
       required String topic,
       required String content,
-      required String attType,
+      this.attType,
       required DateTime time})
       : matcherId = matcherId,
         matchedAccountId = matchedAccountId,
         topic = topic,
         content = content,
-        attType = attType ?? 'null',
         time = time;
 
   Future<FormData> toData() async {

@@ -5,15 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
 import '../../api/http_response.dart';
 import '../../api/match.dart';
 import '../components/bottom_bar.dart';
-import '../mailbox_page/friend.dart';
-import '../mailbox_page/letter.dart';
-import '../mailbox_page/user.dart';
-import '../theme/color_theme.dart';
-import '../theme/theme_bloc.dart';
 import 'c_route.dart';
 import 'contact_history.dart';
 

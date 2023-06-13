@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
-import 'package:go_router/go_router.dart';
 import '../../api/user/profile.dart';
 import '../components/bottom_bar.dart';
 import '../theme/color_theme.dart';
