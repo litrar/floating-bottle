@@ -24,7 +24,7 @@ class BottomBar extends StatelessWidget {
       type: BottomNavigationBarType.fixed,
       onTap: (page) {
         // context.go(SubPage.PAGES[page].route.path);
-        Get.toNamed(SubPage.PAGES[page].route.name);
+        Get.to(SubPage.PAGES[page].route.page);
       },
       items: [
         for (var page in SubPage.PAGES)
