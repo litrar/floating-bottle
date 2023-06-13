@@ -1,8 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:floating_bottle/pages/mailbox_page/letter_content.dart';
 import 'package:floating_bottle/pages/mailbox_page/mailbox.dart';
 import 'package:floating_bottle/pages/mailbox_page/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../api/letter.dart';
 import 'friend.dart';
 import 'letter.dart';
 
@@ -11,7 +13,9 @@ class DeleteLetter extends StatefulWidget {
       {Key? key,
       required this.name,
       required this.picture,
-      required this.content})
+      required this.content,
+      required this.time,
+      required this.letterId})
       : super(key: key);
 
   @override
@@ -19,33 +23,44 @@ class DeleteLetter extends StatefulWidget {
   final String name;
   final String picture;
   final String content;
+  final DateTime time;
+  final int letterId;
 }
 
 class _DeleteLetterState extends State<DeleteLetter> {
+  late final Dio _dio;
+  late final LetterApi _letterApi;
+
+  void initState() {
+    super.initState();
+    _dio = Dio();
+    _letterApi = LetterApi(_dio);
+  }
+
   Friend friend = Friend([
     User(
       "assetsfolder/friend1.jpg",
       "Ann",
       Letter("Ann", "assetsfolder/friend1.jpg",
           "It was great to hear from you. I hope this letter finds you well. I’m writing to you to catch up and let you know what’s been going on in my life. Since we last spoke, I’ve been keeping busy with work and personal projects. I’ve started a new job at a marketing agency, which has been both challenging and exciting. The team is great and I’m learning a lot every day. In my free time, I’ve been working on my photography skills and have even started a small business taking photos for local events and weddings. I’ve also been fortunate enough to do some traveling recently. Last month, I went on a trip to Japan and had an amazing time exploring the country and experiencing its culture. The food was incredible and the scenery was breathtaking. I can’t wait to plan my next adventure. How about you? What have you been up to lately? Best regards, Ann"),
-      "2023/5/19",
-      "20:45",
+      "",
+      DateTime(2023,05,19),
     ),
     User(
       "assetsfolder/friend2.jpg",
       "Pink",
       Letter("Pink", "assetsfolder/friend2.jpg",
           "Happy Wednesday! I hope this email finds you..."),
-      "2023/5/19",
-      "20:45",
+      "",
+      DateTime(2023,05,19),
     ),
     User(
       "assetsfolder/friend3.jpg",
       "HiChew",
       Letter("HiChew", "assetsfolder/friend3.jpg",
           "Thank you for your last email. Sorry for the..."),
-      "2023/5/19",
-      "20:45",
+      "",
+      DateTime(2023,05,19),
     ),
   ]);
   Widget build(BuildContext context) {
@@ -55,7 +70,11 @@ class _DeleteLetterState extends State<DeleteLetter> {
           LetterContent(
               name: "${widget.name}",
               picture: "${widget.picture}",
-              content: "${widget.content}"),
+              content: "${widget.content}",
+              matcherId: 0,
+              matchedAccountId: 0,
+              time: widget.time,
+              letterId: widget.letterId,),
           Container(
             margin: const EdgeInsets.all(0),
             color: Colors.white60,
@@ -105,15 +124,19 @@ class _DeleteLetterState extends State<DeleteLetter> {
                                       RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(10)))),
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) {
-                                      return MailBoxPage(friend);
-                                    },
-                                  ),
-                                );
+                              onPressed: () async {
+                                var response = await _letterApi.deleteLetter(
+                                    widget.letterId);
+                                if (response.isSuccess) {
+                                  Navigator.push(
+                                    context, // Use the stored BuildContext reference
+                                    MaterialPageRoute(
+                                      builder: (context) => MailBoxPage(friend),
+                                    ),
+                                  );
+                                } else {
+                                  Navigator.pop(context);
+                                }
                               },
                               child: Text(
                                 "Yes",
