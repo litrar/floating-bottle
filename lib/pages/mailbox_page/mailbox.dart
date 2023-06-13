@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:floating_bottle/pages/mailbox_page/friend.dart';
+import 'package:floating_bottle/pages/mailbox_page/user.dart';
 import 'package:floating_bottle/pages/subpage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +11,7 @@ import '../../api/match.dart';
 import '../components/bottom_bar.dart';
 import '../theme/color_theme.dart';
 import '../theme/theme_bloc.dart';
+import 'letter.dart';
 import 'letter_content.dart';
 import 'mail_route.dart';
 
@@ -44,7 +46,7 @@ class _MailBoxPageState extends State<MailBoxPage> {
   late final LetterApi _letterApi;
   List<LetterGot> letters = [];
 
-  get index => letters.length;
+  // get index => letters.length;
 
   void initState() {
     super.initState();
@@ -62,29 +64,68 @@ class _MailBoxPageState extends State<MailBoxPage> {
 
   Future<void> fetchNewLetters() async {
     try {
-      final response = await _letterApi.getLetter(
-          letters[index].matcherId, letters[index].matchedAccountId);
-      if (response.isSuccess) {
-        final jsonData = response.data as List<dynamic>;
-        setState(() {
-          letters = jsonData
-              .map((json) => LetterGot.fromJson(json as Map<String, dynamic>))
-              .toList();
-          final List<User> convertedLetters = letters.map((letter) =>
-              User(
-                  "assetsfolder/大頭照.jpg", letters[index].matcherName, Letter(letters[index].matcherName, "assetsfolder/大頭照.jpg", letter.content), "",
-                  letters[index].time
-              )).toList();
-          widget.friend.friends.addAll(convertedLetters);
-        });
-      } else {
-        throw Exception('Failed to fetch letters');
+      for (int index = 0; index < letters.length; index++) {
+        final response = await _letterApi.getLetter(
+          letters[index].matcherId,
+          letters[index].matchedAccountId,
+        );
+
+        if (response.isSuccess) {
+          final jsonData = response.data as List<dynamic>;
+          setState(() {
+            letters = jsonData
+                .map((json) => LetterGot.fromJson(json as Map<String, dynamic>))
+                .toList();
+            final List<User> convertedLetters = letters.map((letter) =>
+                User(
+                  "assetsfolder/大頭照.jpg",
+                  letter.matcherName,
+                  Letter(
+                    letter.matcherName,
+                    "assetsfolder/大頭照.jpg",
+                    letter.content,
+                  ),
+                  "",
+                  letter.time,
+                )).toList();
+            widget.friend.friends.addAll(convertedLetters);
+          });
+        } else {
+          throw Exception('Failed to fetch letters');
+        }
       }
     } catch (e) {
       // Handle error
       print(e);
     }
   }
+
+
+  // Future<void> fetchNewLetters() async {
+  //   try {
+  //     final response = await _letterApi.getLetter(
+  //         letters[index].matcherId, letters[index].matchedAccountId);
+  //     if (response.isSuccess) {
+  //       final jsonData = response.data as List<dynamic>;
+  //       setState(() {
+  //         letters = jsonData
+  //             .map((json) => LetterGot.fromJson(json as Map<String, dynamic>))
+  //             .toList();
+  //         final List<User> convertedLetters = letters.map((letter) =>
+  //             User(
+  //                 "assetsfolder/大頭照.jpg", letters[index].matcherName, Letter(letters[index].matcherName, "assetsfolder/大頭照.jpg", letter.content), "",
+  //                 letters[index].time
+  //             )).toList();
+  //         widget.friend.friends.addAll(convertedLetters);
+  //       });
+  //     } else {
+  //       throw Exception('Failed to fetch letters');
+  //     }
+  //   } catch (e) {
+  //     // Handle error
+  //     print(e);
+  //   }
+  // }
 
 
   @override
@@ -186,23 +227,26 @@ class _MailBoxPageState extends State<MailBoxPage> {
                                       ),
                                     ),
                                     onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              LetterContent(
-                                                name: fp.name,
-                                                picture: fp.picture,
-                                                content: fp.letter.content,
-                                                matcherId:letters[index].matcherId,
-                                                matchedAccountId: letters[index].matchedAccountId,
-                                                time: fp.time,
-                                                letterId: letters[index].letterId,
-                                                ),
-                                        ),
-                                      );
-                                      removeLetter(fp);
+                                      int index = widget.friend.friends.indexOf(fp); // 获取fp在friends列表中的索引
+                                      if (index >= 0 && index < letters.length) {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => LetterContent(
+                                              name: fp.name,
+                                              picture: fp.picture,
+                                              content: fp.letter.content,
+                                              matcherId: letters[index].matcherId,
+                                              matchedAccountId: letters[index].matchedAccountId,
+                                              time: fp.time,
+                                              letterId: letters[index].letterId,
+                                            ),
+                                          ),
+                                        );
+                                        removeLetter(fp);
+                                      }
                                     },
+
                                   ),
                                 ),
                               ),
