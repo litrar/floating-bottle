@@ -234,7 +234,7 @@ class _InformationState extends State<Information> {
             )
         ),
         onPressed: () async {
-          accountDetailController.accountDetailWithData();
+          // accountDetailController.accountDetailWithData();
           print(accountDetailController.schoolController);
           print(accountDetailController.cityController);
           print(accountDetailController.birthDateController);
