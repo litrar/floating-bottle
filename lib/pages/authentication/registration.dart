@@ -262,7 +262,7 @@ class _RegistrationState extends State<Registration> {
                   RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(55)))),
           onPressed: () async {
-            registerationController.registerWithEmail();
+            // registerationController.registerWithEmail();
             // _registerApi = new RegisterApi(new Dio());
             // var result =
             //     await _registerApi.register('a', 'b', 'c', 'c', 'd', 'e', 'f');
