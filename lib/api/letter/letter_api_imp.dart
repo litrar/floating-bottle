@@ -32,8 +32,7 @@ class _LetterApi implements LetterApi {
   Future<bool> sendLetter(LetterSent data) async{
     var res = await _dio.post("$baseUrl/api/Letter",
         data: await data.toData(),
-        options: Options(headers: {'ngrok-skip-browser-warning': 'true','Content-Type': 'multipart/form-data',},
-        ));
+        options: Options(headers: {'ngrok-skip-browser-warning': 'true','Content-Type': 'multipart/form-data',},));
     return res.statusCode == 200;
   }
   

@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:dio/dio.dart';
 
 class RegisterationController extends GetxController{
+  int accId = 0;
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -14,7 +15,7 @@ class RegisterationController extends GetxController{
   Dio dio = Dio();
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
-  Future<void> registerWithEmail() async {
+  Future<int> registerWithEmail() async {
     try{
       // var headers = {'ngrok-skip-browser-warning': 'true'};
       var headers = {'Content-Type': 'application/json'};
@@ -32,19 +33,23 @@ class RegisterationController extends GetxController{
           body: jsonEncode(body),
           headers: headers);
 
+      print(response.statusCode);
+      print(response.body);
       if(response.statusCode == 200){
         final json = jsonDecode(response.body);
-        if(json['code'] == 0){
+        if(true){
+          print(json);
           var token = json['data']['Token'];
           print(token);
-          final SharedPreferences? prefs = await _prefs;
-
-          await prefs?.setString('token', token);
+          final SharedPreferences prefs = await _prefs;
+          await prefs.setInt("accId", json["data"]["accId"]);
+          await prefs.setString('token', token);
           nameController.clear();
           emailController.clear();
           passwordController.clear();
           confirmPasswordController.clear();
           // Get.off(Information());
+          return json["data"]["accId"];
         }else{
           throw jsonDecode(response.body)["message"] ?? "Unknown Error Occured";
         }
@@ -52,7 +57,7 @@ class RegisterationController extends GetxController{
         throw jsonDecode(response.body)["Message"] ?? "Unknown Error Occured";
       }
     }catch(e){
-        Get.back();
+        // Get.back();
         showDialog(
             context: Get.context!,
             builder: (context){
@@ -65,5 +70,6 @@ class RegisterationController extends GetxController{
               );
             });
     }
+    return 0;
   }
 }

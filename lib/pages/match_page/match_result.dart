@@ -157,6 +157,7 @@ class _MatchResultPageState extends State<MatchResultPage> {
         color: Colors.white.withOpacity(0.0),
         child: InkWell(
           onTap: () {
+            print(user.isSelected);
             cubit.set_selected(user.id, !user.isSelected);
             //下面的user應該是widget build裡面的users的，無法更動的isSelected = false;
             print(user.isSelected);

@@ -259,12 +259,13 @@ class _RegistrationState extends State<Registration> {
                   RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(55)))),
           onPressed: () async {
-            // registerationController.registerWithEmail();
+
             // _registerApi = new RegisterApi(new Dio());
             // var result =
             //     await _registerApi.register('a', 'b', 'c', 'c', 'd', 'e', 'f');
             if (isChecked == true) {
               // print(result);
+              int accId = await registerationController.registerWithEmail();
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -278,7 +279,7 @@ class _RegistrationState extends State<Registration> {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return const Registration();
+                    return const Information();
                   },
                 ),
               );

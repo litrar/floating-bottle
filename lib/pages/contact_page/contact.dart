@@ -101,8 +101,8 @@ class _ContactPageState extends State<ContactPage>
   List<int>? pendingIdList;
   MatchedUserInfo? friendInfo;
   MatchedUserInfo? pendingInfo;
-  List<MatchedUserInfo>? friendInfoList;
-  List<MatchedUserInfo>? pendingInfoList;
+  List<MatchedUserInfo> friendInfoList = [];
+  List<MatchedUserInfo> pendingInfoList = [];
 
   Future<void> getData(BuildContext context) async {
     ContactApi contactApi = context.read();

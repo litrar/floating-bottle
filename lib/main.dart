@@ -79,6 +79,7 @@ import 'package:floating_bottle/api/match/models/filter_fillout_data.dart';
 import 'package:floating_bottle/api/user.dart';
 import 'package:floating_bottle/pages/authentication/login.dart';
 import 'package:floating_bottle/pages/components/error_page.dart';
+import 'package:floating_bottle/pages/match_page/match.dart';
 import 'package:floating_bottle/pages/personal_page/personal_page.dart';
 import 'package:floating_bottle/pages/subpage.dart';
 import 'package:floating_bottle/pages/theme/theme_bloc.dart';
@@ -113,7 +114,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: Login.route.name, page: () => Login()),
         for (var page in SubPage.PAGES)
-          GetPage(name: page.route.name, page: () => PersonalPage(userId:accountDetailController.accId))
+          GetPage(name: page.route.name, page: () => MatchPage())
       ],
       unknownRoute: GetPage(
         name: '/error',

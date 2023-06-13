@@ -157,7 +157,7 @@ class _LanguageLevelResultState extends State<LanguageLevelResult> {
                     borderRadius: BorderRadius.circular(55)))),
         onPressed: () async {
           accountDetailController.accountDetailWithData();
-          registerationController.registerWithEmail();
+          // registerationController.registerWithEmail();
           Navigator.push(
             context,
             MaterialPageRoute(

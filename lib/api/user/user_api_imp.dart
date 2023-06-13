@@ -3,7 +3,9 @@ part of '../user.dart';
 class _UserApi implements UserApi {
   final Dio _dio;
   final headers = {'ngrok-skip-browser-warning': 'true'};
-  _UserApi(this._dio);
+  _UserApi(this._dio){
+    _dio.interceptors.add(LogInterceptor());
+  }
 
   @override
   Future<HttpRes<Profile>> getProfile(int id) async {

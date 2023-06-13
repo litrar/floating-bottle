@@ -2,14 +2,16 @@ import 'dart:convert';
 import 'package:floating_bottle/pages/authentication/login.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:dio/dio.dart';
+import 'package:dio/dio.dart' as dio;
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../utils/api_endpoints.dart';
 
 class AccountDetailController extends GetxController {
-  final Dio _dio = Dio();
+  final _dio = dio.Dio()
+  ..interceptors.add(dio.LogInterceptor(requestBody: true,responseBody: true));
   int accId = 0;
   TextEditingController schoolController = TextEditingController();
   TextEditingController cityController = TextEditingController();
@@ -18,6 +20,7 @@ class AccountDetailController extends GetxController {
   List<String> selectedPersonality = <String>[].obs;
   List<String> selectedLanguage = <String>[].obs;
   String selectedSex = '';
+  String avatar = '';
 
   Map<String, dynamic> toJson() {
     return {
@@ -25,66 +28,26 @@ class AccountDetailController extends GetxController {
       'School': schoolController.text,
       'City': cityController.text,
       'BirthDate': birthDateController.text,
-      'Sex': selectedSex,
+      'Sex': selectedSex.startsWith("W") ? "F" : "M",
       'Interest': selectedInterests,
       'Personality': selectedPersonality,
       'Language': selectedLanguage,
+      'Avatar': dio.MultipartFile.fromString(avatar),
     };
   }
 
-
-  Future<void> accountDetailWithData() async {
-    try {
-      var headers = {'Content-Type': 'application/json'};
-      var url = Uri.parse(ApiEndPoints.baseUrl + ApiEndPoints.authEndpoints.accountDetail);
-      var body = toJson();
-
-      http.Response response = await http.post(
-        url,
-        body: jsonEncode(body),
-        headers: headers,
-      );
-
-      if (response.statusCode == 200) {
-        final json = jsonDecode(response.body);
-        if (json['code'] == 0) {
-          var token = json['data']['token'];
-          var accIdValue;
-          try {
-            accIdValue = int.parse(json['data']['accId'].toString());
-          } catch (e) {
-            accIdValue = 0; // 设置默认值
-          }
-          accId = accIdValue;
-          print(accId);
-          // print('account id: $accId');
-          final SharedPreferences prefs = await SharedPreferences.getInstance();
-          await prefs.setString('token', token);
-          await prefs?.setInt('accId', accId!);
-          clearFormFields();
-          Get.off(Login());
-        } else {
-          throw jsonDecode(response.body)["message"] ?? 'Unknown Error Occurred';
-        }
-      } else {
-        throw jsonDecode(response.body)["Message"] ?? 'Unknown Error Occurred';
-      }
-    } catch (e) {
-      Get.back();
-      Get.dialog(
-        AlertDialog(
-          title: Text('Error'),
-          content: Text(e.toString()),
-          actions: [
-            TextButton(
-              onPressed: () => Get.back(),
-              child: Text('OK'),
-            ),
-          ],
-        ),
-      );
-    }
+  Future<int> accountDetailWithData() async {
+    var json = toJson();
+    json["AccId"] = 21;
+    print(json);
+    var res = await _dio.post(ApiEndPoints.baseUrl + ApiEndPoints.authEndpoints.accountDetail,
+        data: dio.FormData.fromMap(json),
+        options: dio.Options(headers: {'Content-Type': 'multipart/form-data'}));
+    return res.data["data"]["accId"];
   }
+
+
+
 
   void toggleInterest(String interest) {
     if (selectedInterests.contains(interest)) {

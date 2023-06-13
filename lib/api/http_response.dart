@@ -12,7 +12,7 @@ class HttpRes<T> {
         // isSuccess = json["isSuccess"] ?? false,
         // message = json["message"],
         code = code ?? -1,
-        isSuccess = json["isSuccess"] ?? false,
+        isSuccess = json["isSuccess"] ?? true,
         message = json["message"] ?? 'we have no message',
         data = (dataDecodeFunc != null) ? dataDecodeFunc(json) : null;
 

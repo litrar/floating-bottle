@@ -1,8 +1,10 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
+import 'package:floating_bottle/pages/contact_page/contact.dart';
 import 'package:floating_bottle/pages/personal_page/personal_page.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide FormData;
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -11,51 +13,28 @@ import 'account_detail_controller.dart';
 
 class LoginController extends GetxController {
   AccountDetailController accountDetailController = Get.put(AccountDetailController());
-
+  Dio dio = Dio()..interceptors.add(LogInterceptor(requestBody: true,responseBody: true));
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
-  Future<void> loginWithEmail() async {
+  Future<int> loginWithEmail() async {
     // var headers = {'ngrok-skip-browser-warning': 'true'};
-    var headers = {'Content-Type': 'application/json'};
-    try {
-      var url = Uri.parse(
-          ApiEndPoints.baseUrl + ApiEndPoints.authEndpoints.loginEmail);
-      Map body = {
-        'Email': emailController.text.trim(),
-        'Password': passwordController.text
-      };
-      http.Response response =
-      await http.post(url, body: jsonEncode(body), headers: headers);
+    var data = {
+      'nccuEmail': emailController.text.trim(),
+      'Password': passwordController.text
+    };
+    print(data);
+    var res = await dio.post(ApiEndPoints.baseUrl+ApiEndPoints.authEndpoints.loginEmail,
+    data: data,
+    options: Options(
+      headers: {'Content-Type': 'application/json'},
+    ));
+    emailController.clear();
+    passwordController.clear();
+    accountDetailController.accId = res.data["data"]["accId"];
 
-      if (response.statusCode == 200) {
-        final json = jsonDecode(response.body);
-        if (json['code'] == 0) {
-          var token = json['data']['Token'];
-          final SharedPreferences? prefs = await _prefs;
-          await prefs?.setString('token', token);
-
-          emailController.clear();
-          passwordController.clear();
-          Get.off(PersonalPage(userId:accountDetailController.accId));
-        } else if (json['code'] == 1) {
-          throw jsonDecode(response.body)['message'];
-        }
-      } else {
-        throw jsonDecode(response.body)["Message"] ?? "Unknown Error Occured";
-      }
-    } catch (error) {
-      Get.back();
-      showDialog(
-          context: Get.context!,
-          builder: (context) {
-            return SimpleDialog(
-              title: Text('Error'),
-              contentPadding: EdgeInsets.all(20),
-              children: [Text(error.toString())],
-            );
-          });
-    }
+    //Get.off(ContactPage(),arguments: accountDetailController.accId);
+    return accountDetailController.accId;
   }
 }

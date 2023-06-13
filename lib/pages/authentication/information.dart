@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'gender.dart';
 
 class Information extends StatefulWidget {
   const Information({Key? key}) : super(key: key);
-
 
   @override
   State<Information> createState() => _InformationState();
@@ -36,7 +36,7 @@ class _InformationState extends State<Information> {
                       margin: EdgeInsets.only(top: 15.h,left: 270.w,bottom: 10.h),
                       child: TextButton(
                         onPressed: () async {
-                        accountDetailController.accountDetailWithData();
+                        await accountDetailController.accountDetailWithData();
                         Navigator.push(
                           context,
                           MaterialPageRoute(

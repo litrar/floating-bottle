@@ -163,10 +163,10 @@ class _LoginPageState extends State<Login> {
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(55)))),
-        onPressed: () {
-          loginController.loginWithEmail();
+        onPressed: () async {
+          var id =await loginController.loginWithEmail();
           // context.go(SubPage.PERSONAL.route.path);
-          Get.toNamed(SubPage.PERSONAL.route.name, arguments: accountDetailController.accId);
+          Get.toNamed(SubPage.MATCH.route.name, arguments: id);
         },
         child: Text(
           "Log in",
