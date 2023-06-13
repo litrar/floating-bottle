@@ -20,8 +20,8 @@ class LoginController extends GetxController {
       var url = Uri.parse(
           ApiEndPoints.baseUrl + ApiEndPoints.authEndpoints.loginEmail);
       Map body = {
-        'email': emailController.text.trim(),
-        'password': passwordController.text
+        'Email': emailController.text.trim(),
+        'Password': passwordController.text
       };
       http.Response response =
       await http.post(url, body: jsonEncode(body), headers: headers);
