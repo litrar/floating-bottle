@@ -31,20 +31,48 @@ class _LetterApi implements LetterApi {
   }
 
   @override
-  Future<bool> sendLetter(LetterSent data) async{
-    var res = await _dio.post("https://ecc3-111-241-177-116.ngrok-free.app/api/Letter",
-        data: await data.toData(),
-        options: Options(headers: {'Content-Type': 'multipart/form-data'}));
-    return res.statusCode == 200;
+  // Future<bool> sendLetter(LetterSent data) async{
+  //   var res = await _dio.post("https://ecc3-111-241-177-116.ngrok-free.app/api/Letter",
+  //       data: await data.toData(),
+  //       options: Options(headers: {'Content-Type': 'multipart/form-data'}));
+  //   return res.statusCode == 200;
+  // }
+  Future<bool> sendLetter(LetterSent data) async {
+    try {
+      final formData = await data.toData();
+      final response = await _dio.post(
+        "https://ecc3-111-241-177-116.ngrok-free.app/api/Letter",
+        data: formData,
+        options: Options(headers: {'Content-Type': 'multipart/form-data'}),
+      );
+
+      return response.statusCode == 200;
+    } catch (error) {
+      print('Error sending letter: $error');
+      return false;
+    }
   }
+
   
   @override
-  Future<HttpRes> deleteLetter(int letterId) async{
-    var res = await _dio.delete("https://ecc3-111-241-177-116.ngrok-free.app/api/Letter/$letterId");
+  // Future<HttpRes> deleteLetter(int letterId) async{
+  //   var res = await _dio.delete("https://ecc3-111-241-177-116.ngrok-free.app/api/Letter/$letterId");
+  //   return HttpRes(
+  //       isSuccess: res.statusCode == 200,
+  //       message: "已刪除",
+  //       code: res.statusCode);
+  // }
+  @override
+  Future<HttpRes> deleteLetter(int letterId) async {
+    var res = await _dio.delete(
+      "https://ecc3-111-241-177-116.ngrok-free.app/api/Letter/$letterId",
+    );
     return HttpRes(
-        isSuccess: res.statusCode == 200,
-        message: "已刪除",
-        code: res.statusCode);
+      isSuccess: res.statusCode == 200,
+      message: "已刪除",
+      code: res.statusCode,
+    );
   }
+
 
 }
