@@ -215,7 +215,7 @@ class _InterestState extends State<Interest> {
         child: InkWell(
             onTap: () {
              if(accountDetailController.selectedInterests.isNotEmpty){
-               accountDetailController.accountDetailWithData();
+               // accountDetailController.accountDetailWithData();
                print(accountDetailController.selectedInterests);
                Navigator.push(
                  context,
