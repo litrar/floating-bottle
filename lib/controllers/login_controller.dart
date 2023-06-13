@@ -7,8 +7,11 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../utils/api_endpoints.dart';
+import 'account_detail_controller.dart';
 
 class LoginController extends GetxController {
+  AccountDetailController accountDetailController = Get.put(AccountDetailController());
+
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
@@ -35,7 +38,7 @@ class LoginController extends GetxController {
 
           emailController.clear();
           passwordController.clear();
-          Get.off(PersonalPage(""));
+          Get.off(PersonalPage(userId:accountDetailController.accId));
         } else if (json['code'] == 1) {
           throw jsonDecode(response.body)['message'];
         }

@@ -8,7 +8,7 @@ class LetterGot {
   String matcherName;
   int matchedAccountId;
   String matchedAccName;
-
+  String image;
 
   LetterGot.fromJson(Map<String, dynamic> json)
       : letterId = json["letterId"] ?? 0,
@@ -19,5 +19,6 @@ class LetterGot {
         matcherId = json["macherId"] ?? 0,
         matcherName = json["matcherName"] ?? '',
         matchedAccountId = json["matchedAccountId"] ?? 0,
+        image = json["Avatar"]??'',
         matchedAccName = json["matchedAccName"] ?? '';
 }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../controllers/account_detail_controller.dart';
 import '../subpage.dart';
 
 class Login extends StatefulWidget {
@@ -18,6 +19,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginPageState extends State<Login> {
+  AccountDetailController accountDetailController = Get.put(AccountDetailController());
   LoginController loginController = Get.put(LoginController());
   bool _passwordVisible = false;
 
@@ -164,7 +166,7 @@ class _LoginPageState extends State<Login> {
         onPressed: () {
           loginController.loginWithEmail();
           // context.go(SubPage.PERSONAL.route.path);
-          Get.toNamed(SubPage.PERSONAL.route.name);
+          Get.toNamed(SubPage.PERSONAL.route.name, arguments: accountDetailController.accId);
         },
         child: Text(
           "Log in",

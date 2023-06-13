@@ -30,8 +30,8 @@ class PersonalSubPage implements SubPage {
 }
 
 class PersonalPage extends StatelessWidget {
-  PersonalPage(this.name, {super.key});
-  final String name;
+  PersonalPage({super.key,this.userId });
+  // final String name;
   int? userId; //看後端到底要怎麼改
 
   Profile? profile;
@@ -47,7 +47,6 @@ class PersonalPage extends StatelessWidget {
     return FutureBuilder(
       future: getProfile(context),
       builder: (context, snapshot) {
-        return BlocBuilder<ThemeCubit, ColorTheme>(builder: (context, state) {
           return Scaffold(
             bottomNavigationBar: BottomBar(SubPage.PERSONAL),
             body: Stack(
@@ -73,7 +72,7 @@ class PersonalPage extends StatelessWidget {
               ],
             ),
           );
-        });
+    
       }
     );
   }
@@ -127,7 +126,7 @@ class PersonalPage extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.only(left: 10),
                       child: Text(
-                        name,
+                        profile!.name!,
                         style: TextStyle(
                             fontSize: 22.sp,
                             fontFamily: 'Bellota-Regular',
@@ -141,7 +140,7 @@ class PersonalPage extends StatelessWidget {
                           MaterialPageRoute(
                               builder: (context) => ChangeName(
                                     email: profile!.email,
-                                    name: name,
+                                    name: profile!.name!,
                                   )),
                         );
                       },
@@ -316,7 +315,7 @@ class PersonalPage extends StatelessWidget {
                       builder: (context) {
                         return Setting(profile: profile!,
                             email: profile!.email,
-                            name: name);
+                            name: profile!.name!);
                       },
                     ),
                   );
@@ -343,7 +342,7 @@ class PersonalPage extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (context) {
                         return Setting(profile: profile!,
-                            email: profile!.email, name: name);
+                            email: profile!.email, name: profile!.name!);
                       },
                     ),
                   );
@@ -363,7 +362,7 @@ class PersonalPage extends StatelessWidget {
                   return Setting(
                       profile: profile!,
                       email: profile
-                      !.email, name: name);
+                      !.email, name: profile!.name!);
                 },
               ),
             );

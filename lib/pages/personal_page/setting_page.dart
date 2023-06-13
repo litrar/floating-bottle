@@ -47,7 +47,7 @@ class _SettingState extends State<Setting> {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return PersonalPage(widget.name);
+                          return PersonalPage(userId:widget.profile.id);
                         },
                       ),
                     );

@@ -18,7 +18,7 @@ class _LogoutState extends State<Logout> {
     return Scaffold(
         body: Stack(
           children: <Widget>[
-            PersonalPage('Remi Chuang'),
+            PersonalPage(),
             Container(
               margin: const EdgeInsets.all(0),
               color: Colors.white60,

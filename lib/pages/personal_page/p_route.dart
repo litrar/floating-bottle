@@ -4,11 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
-final mainPage = (BuildContext context, GetXState state) => PersonalPage('Remi Chuang');
+final mainPage = (BuildContext context, GetXState state) => PersonalPage();
 
 final p_route = GetPage(
   name: "/personal",
-  page: () => PersonalPage('Remi Chuang'),
+  page: () => PersonalPage(),
   children: [
     GetPage(
       name: "/edit_name",

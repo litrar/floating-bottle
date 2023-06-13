@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:floating_bottle/api/contact.dart';
 import 'package:floating_bottle/api/match/models/matched_user_info.dart';
 import 'package:floating_bottle/pages/subpage.dart';
@@ -47,22 +48,22 @@ class _ContactPageState extends State<ContactPage>
   //     "20:45",
   //   ),
 
-    // User(
-    //   "assetsfolder/friend3.jpg",
-    //   "HiChew",
-    //   Letter("HiChew", "assetsfolder/friend3.jpg",
-    //       "It was great to hear from you. I'm writing to you..."),
-    //   "2023/5/19",
-    //   "20:45",
-    // ),
-    // User(
-    //   "assetsfolder/friend4.jpg",
-    //   "Charles",
-    //   Letter("Charles", "assetsfolder/friend4.jpg",
-    //       "It was great to hear from you. I'm writing to you..."),
-    //   "2023/5/19",
-    //   "20:45",
-    // ),
+  // User(
+  //   "assetsfolder/friend3.jpg",
+  //   "HiChew",
+  //   Letter("HiChew", "assetsfolder/friend3.jpg",
+  //       "It was great to hear from you. I'm writing to you..."),
+  //   "2023/5/19",
+  //   "20:45",
+  // ),
+  // User(
+  //   "assetsfolder/friend4.jpg",
+  //   "Charles",
+  //   Letter("Charles", "assetsfolder/friend4.jpg",
+  //       "It was great to hear from you. I'm writing to you..."),
+  //   "2023/5/19",
+  //   "20:45",
+  // ),
   // ]);
 
   // final Friend pending = Friend([
@@ -128,70 +129,73 @@ class _ContactPageState extends State<ContactPage>
 
   Widget build(BuildContext context) {
     return FutureBuilder<void>(
-      future: getData(context),
-      builder: (context, state) {
-      return Scaffold(
-        bottomNavigationBar: BottomBar(SubPage.CONTACT),
-        body: Stack(
-          children: [
-            Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assetsfolder/personal_background.jpg"),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            SafeArea(
-                child: DefaultTabController(
-              length: 2,
-              child: Scaffold(
-                backgroundColor: Colors.white.withOpacity(0.0),
-                appBar: PreferredSize(
-                  preferredSize: const Size.fromHeight(50.0),
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: TabBar(
-                      tabs: topTabs
-                          .map(
-                            (e) => e,
-                          )
-                          .toList(),
-                      labelStyle: TextStyle(
-                          fontSize: 20.sp,
-                          fontFamily: 'Abril Fatface',
-                          fontWeight: FontWeight.bold),
-                      isScrollable: true,
-                      unselectedLabelColor:
-                          const Color.fromARGB(255, 175, 199, 232),
-                      labelColor: const Color.fromARGB(255, 118, 168, 239),
-                      indicatorColor: const Color.fromARGB(255, 122, 161, 216),
-                      indicatorSize: TabBarIndicatorSize.label,
+        future: getData(context),
+        builder: (context, state) {
+          return Scaffold(
+            bottomNavigationBar: BottomBar(SubPage.CONTACT),
+            body: Stack(
+              children: [
+                Container(
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assetsfolder/personal_background.jpg"),
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
-                body: TabBarView(
-                  children: [
-                    Column(
+                SafeArea(
+                    child: DefaultTabController(
+                  length: 2,
+                  child: Scaffold(
+                    backgroundColor: Colors.white.withOpacity(0.0),
+                    appBar: PreferredSize(
+                      preferredSize: const Size.fromHeight(50.0),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: TabBar(
+                          tabs: topTabs
+                              .map(
+                                (e) => e,
+                              )
+                              .toList(),
+                          labelStyle: TextStyle(
+                              fontSize: 20.sp,
+                              fontFamily: 'Abril Fatface',
+                              fontWeight: FontWeight.bold),
+                          isScrollable: true,
+                          unselectedLabelColor:
+                              const Color.fromARGB(255, 175, 199, 232),
+                          labelColor: const Color.fromARGB(255, 118, 168, 239),
+                          indicatorColor:
+                              const Color.fromARGB(255, 122, 161, 216),
+                          indicatorSize: TabBarIndicatorSize.label,
+                        ),
+                      ),
+                    ),
+                    body: TabBarView(
                       children: [
-                        Padding(padding: EdgeInsets.only(top: 10.h)),
-                        Expanded(child: _listView(context, friendInfoList!)),
+                        Column(
+                          children: [
+                            Padding(padding: EdgeInsets.only(top: 10.h)),
+                            Expanded(
+                                child: _listView(context, friendInfoList!)),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Padding(padding: EdgeInsets.only(top: 10.h)),
+                            Expanded(
+                                child: _listView(context, pendingInfoList!)),
+                          ],
+                        ),
                       ],
                     ),
-                    Column(
-                      children: [
-                        Padding(padding: EdgeInsets.only(top: 10.h)),
-                        Expanded(child: _listView(context, pendingInfoList!)),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ))
-          ],
-        ),
-      );
-    });
+                  ),
+                ))
+              ],
+            ),
+          );
+        });
   }
 
   Widget _tabBar(BuildContext context) {
@@ -221,13 +225,13 @@ class _ContactPageState extends State<ContactPage>
                 child: InkWell(
                   onTap: () {
                     Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return ContactHistory(friendInfo: u, userId: userId);
-                      },
-                    ),
-                  );
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return ContactHistory(friendInfo: u, userId: userId);
+                        },
+                      ),
+                    );
                   },
                   child: Container(
                     decoration: const BoxDecoration(
@@ -238,12 +242,19 @@ class _ContactPageState extends State<ContactPage>
                     padding: EdgeInsets.symmetric(horizontal: 20.w),
                     child: Row(children: [
                       ClipOval(
-                        child: Image.asset(
-                          "assetsfolder/friend1.jpg",
+                        child: Image(
+                          image: CachedNetworkImageProvider(u.avatar!),
                           width: 50.w,
                           height: 50.h,
                           fit: BoxFit.cover,
                         ),
+                        // child: Image.asset(
+                        //   CachedNetworkImageProvider(u.avatar!) as String,
+                        //   width: 50.w,
+                        //   height: 50.h,
+                        //   fit: BoxFit.cover,
+                        // ),
+                        
                       ),
                       SizedBox(
                         width: 20.w,

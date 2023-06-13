@@ -113,7 +113,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: Login.route.name, page: () => Login()),
         for (var page in SubPage.PAGES)
-          GetPage(name: page.route.name, page: () => PersonalPage(accountDetailController.accId.toString()))
+          GetPage(name: page.route.name, page: () => PersonalPage(userId:accountDetailController.accId))
       ],
       unknownRoute: GetPage(
         name: '/error',

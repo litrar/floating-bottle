@@ -46,7 +46,7 @@ class _ChangeNameState extends State<ChangeName> {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return PersonalPage(name);
+                        return PersonalPage(userId: 1,);
                       },
                     ),
                   );
