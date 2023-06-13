@@ -205,49 +205,60 @@ class _MatchResultPageState extends State<MatchResultPage> {
 
   Widget _continueButton(BuildContext context) {
     return FutureBuilder(
-      future:getProfile(context),
-      builder: (context, snapshot) {
-        return BlocBuilder<SelectedUsersCubit, List<MatchedUserInfo>>(
-            builder: (context, state) {
-          SelectedUsersCubit cubit = context.read();
-          MatchedUserInfo? selected = cubit.getSelect();
+        future: getProfile(context),
+        builder: (context, snapshot) {
+          return BlocBuilder<SelectedUsersCubit, List<MatchedUserInfo>>(
+              builder: (context, state) {
+            SelectedUsersCubit cubit = context.read();
+            MatchedUserInfo? selected = cubit.getSelect();
+            MatchApi matchApi = context.read();
 
-          return InkWell(
-              onTap: () {
-                if (selected != null) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return WriteLetter(matcherId: widget.userId!, matchedAccountId: selected.id, time:DateTime.now(), name:matcherInfo!.name);
-                      },
-                    ),
-                  );
-                }
-              },
-              child: Container(
-                margin: EdgeInsets.only(
-                  top: 90.h,
-                ),
-                height: 55.h,
-                width: MediaQuery.of(context).size.width * 0.8,
-                decoration: !(selected == null)
-                    // selected?.isSelected ?? false
-                    ? BoxDecoration(
-                        color: const Color.fromARGB(255, 86, 140, 167),
-                        borderRadius: BorderRadius.circular(35))
-                    : BoxDecoration(
-                        color: const Color.fromARGB(255, 152, 169, 189),
-                        borderRadius: BorderRadius.circular(35)),
-                alignment: Alignment.center,
-                child: const Text("Send a letter",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold)),
-              ));
+            return InkWell(
+                onTap: () async {
+                  if (selected != null) {
+                    if (await matchApi.insertUserPair(
+                        widget.userId!, selected.id)) {
+                      Future.microtask(() {
+                        Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return WriteLetter(
+                                matcherId: widget.userId!,
+                                matchedAccountId: selected.id,
+                                time: DateTime.now(),
+                                name: matcherInfo!.name);
+                          },
+                        ),
+                      );
+
+                      });
+                      
+                    }
+                  }
+                },
+                child: Container(
+                  margin: EdgeInsets.only(
+                    top: 90.h,
+                  ),
+                  height: 55.h,
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  decoration: !(selected == null)
+                      // selected?.isSelected ?? false
+                      ? BoxDecoration(
+                          color: const Color.fromARGB(255, 86, 140, 167),
+                          borderRadius: BorderRadius.circular(35))
+                      : BoxDecoration(
+                          color: const Color.fromARGB(255, 152, 169, 189),
+                          borderRadius: BorderRadius.circular(35)),
+                  alignment: Alignment.center,
+                  child: const Text("Send a letter",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold)),
+                ));
+          });
         });
-      }
-    );
   }
 }
