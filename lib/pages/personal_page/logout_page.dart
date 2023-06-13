@@ -62,7 +62,7 @@ class _LogoutState extends State<Logout> {
                                     )
                                 ),
                                 onPressed: () {
-                                  Get.toNamed(Login.route.name);
+                                  Get.to(Login.route);
                                   // context.go(
                                   //   Login.route.,
                                   // );
