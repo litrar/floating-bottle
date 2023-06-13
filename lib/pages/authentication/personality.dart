@@ -216,7 +216,7 @@ class _PersonalityState extends State<Personality> {
         child: InkWell(
             onTap: () {
               if(accountDetailController.selectedPersonality.isNotEmpty){
-                accountDetailController.accountDetailWithData();
+                // accountDetailController.accountDetailWithData();
                 print(accountDetailController.selectedPersonality);
                 Navigator.push(
                   context,
