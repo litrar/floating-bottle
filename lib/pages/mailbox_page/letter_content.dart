@@ -12,17 +12,27 @@ class LetterContent extends StatefulWidget {
       {Key? key,
       required this.name,
       required this.picture,
-      required this.content})
+      required this.content,
+      required this.matcherId,
+      required this.matchedAccountId,
+      required this.time,
+      required this.letterId})
       : super(key: key);
   final String name;
   final String picture;
   final String content;
+  final int matcherId;
+  final int matchedAccountId;
+  final DateTime time;
+  final int letterId;
+
 
   @override
   State<LetterContent> createState() => _LetterContentState();
 }
 
 class _LetterContentState extends State<LetterContent> {
+  late final VoidCallback onLetterDeleted;
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
@@ -104,6 +114,8 @@ class _LetterContentState extends State<LetterContent> {
                             name: '${widget.name}',
                             picture: '${widget.picture}',
                             content: '${widget.content}',
+                            time: widget.time,
+                            letterId: widget.letterId,
                           );
                         },
                       ),
@@ -152,7 +164,11 @@ class _LetterContentState extends State<LetterContent> {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return WriteLetter();
+                          return WriteLetter(
+                            matcherId: widget.matcherId,
+                            matchedAccountId: widget.matchedAccountId,
+                            time: widget.time,
+                            name: widget.name,);
                         },
                       ),
                     );
