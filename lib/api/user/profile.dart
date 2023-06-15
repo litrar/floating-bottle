@@ -25,18 +25,18 @@ class Profile {
   });
 
   Profile.fromJson(Map<String, dynamic> json)
-      : id = json['userId'] ?? "",
+      : id = json['accId'] ?? 0,
         email = json['address'] ?? "",
         name = json['name'],
         college = json['college'] ?? "",
         department = json['department'] ?? "",
         sex = json['sex'] ?? "",
         city = json['city'] ?? "",
-        languages = json['language'] ?? "",
-        personalities = json['personality'] ?? "",
-        interests = json['interest'] ?? "",
+        languages = json['language'] ?? [],
+        personalities = json['personality'] ?? [],
+        interests = json['interest'] ?? [],
         age = json['age'] ?? "",
-        bdate = DateTime.tryParse(json['bdate'] ?? "");
+        bdate = DateTime.now();
 
   static Profile? tryCast(dynamic object) {
     if (object is Map<String, dynamic>) return Profile.fromJson(object);
