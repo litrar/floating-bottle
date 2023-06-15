@@ -60,7 +60,7 @@ class _DMatchResultPageState extends State<DMatchResultPage> {
             ),
             _title(context),
             _matchedUser(context, users[0]),
-            _continueButton(context),
+            _continueButton(context,users[0]),
           ],
         ))
       ],
@@ -147,7 +147,7 @@ class _DMatchResultPageState extends State<DMatchResultPage> {
     );
   }
 
-  Widget _continueButton(BuildContext context) {
+  Widget _continueButton(BuildContext context,MatchedUserInfo user) {
     List<bool> check = users.map((e) => e.isSelected!).toList();
 
     return InkWell(
@@ -159,7 +159,7 @@ class _DMatchResultPageState extends State<DMatchResultPage> {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return WriteLetter(matcherId: 1,matchedAccountId: 2,time: DateTime.now(),name: '?',);
+                    return WriteLetter(matcherId: 1,matchedAccountId: user.id,time: DateTime.now(),name: user.name,);
                   },
                 ),
               );
