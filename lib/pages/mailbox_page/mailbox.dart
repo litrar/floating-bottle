@@ -204,7 +204,7 @@ class _MailBoxPageState extends State<MailBoxPage> {
                                             child: Text(
                                               "${fp.name}",
                                               style: TextStyle(
-                                                fontSize: 20.sp,
+                                                fontSize: 19.sp,
                                                 color: Colors.black,
                                                 fontFamily: 'Bellota-Regular',
                                               ),
@@ -217,7 +217,7 @@ class _MailBoxPageState extends State<MailBoxPage> {
                                             child: Text(
                                               "${fp.time}",
                                               style: TextStyle(
-                                                fontSize: 20.sp,
+                                                fontSize: 13.sp,
                                                 color: Colors.black,
                                                 fontFamily: 'Bellota-Regular',
                                               ),
@@ -227,6 +227,7 @@ class _MailBoxPageState extends State<MailBoxPage> {
                                       ),
                                     ),
                                     onTap: () {
+                                      print("tapped");
                                       int index = widget.friend.friends.indexOf(fp); // 获取fp在friends列表中的索引
                                       if (index >= 0 && index < letters.length) {
                                         Navigator.push(
