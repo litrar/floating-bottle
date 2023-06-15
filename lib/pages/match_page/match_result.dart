@@ -116,7 +116,8 @@ class _MatchResultPageState extends State<MatchResultPage> {
                       _matchedUser(context.read(), context, user)
                   ]);
                 }),
-                _continueButton(context),
+                for(var user in widget.matchedUsers!)
+                   _continueButton(context,user)
               ],
             ))
           ]),
@@ -206,7 +207,7 @@ class _MatchResultPageState extends State<MatchResultPage> {
     );
   }
 
-  Widget _continueButton(BuildContext context) {
+  Widget _continueButton(BuildContext context,MatchedUserInfo user) {
     return FutureBuilder(
         future: getProfile(context),
         builder: (context, snapshot) {
@@ -232,7 +233,7 @@ class _MatchResultPageState extends State<MatchResultPage> {
                                 matcherId: widget.userId!,
                                 matchedAccountId: selected.id,
                                 time: DateTime.now(),
-                                name: matcherInfo!.name);
+                                name: user.name);
                           },
                         ),
                       );

@@ -9,6 +9,7 @@ import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../api/letter.dart';
+import 'components/bottom_bar.dart';
 
 class WriteLetter extends StatefulWidget {
   WriteLetter(
@@ -77,7 +78,7 @@ class _WriteLetterState extends State<WriteLetter> {
                   size: 35.sp,
                 ),
               ),
-              Text(' Ann',
+              Text(widget.name!,
                   style: TextStyle(
                       color: const Color.fromARGB(255, 101, 142, 200),
                       fontFamily: 'Abril Fatface',
@@ -224,7 +225,7 @@ class _WriteLetterState extends State<WriteLetter> {
                 attType: ' null',
                 time: widget.time!));
             print(result);
-            Get.toNamed(SubPage.CONTACT.route.name,arguments: 21);
+            Get.toNamed(SubPage.CONTACT.route.name,arguments: BottomBar.userId);
           },
           child: Container(
               height: 40.h,
