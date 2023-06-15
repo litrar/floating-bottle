@@ -23,12 +23,12 @@ class LetterSent {
 
   Future<FormData> toData() async {
     return FormData.fromMap({
-      "macherId": matcherId,
-      "matchedAccountId": matchedAccountId,
-      "topic": topic,
-      "content": content,
-      "attType": attType,
-      "time":time
+      "MacherId": matcherId,
+      "MatchedAccountId": matchedAccountId,
+      "Topic": topic,
+      "Content": content,
+      "AttType": attType,
+      "Time":time
     });
   }
 }
