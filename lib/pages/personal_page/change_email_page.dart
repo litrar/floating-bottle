@@ -1,8 +1,6 @@
 import 'package:floating_bottle/pages/personal_page/setting_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../api/user/profile.dart';
 import 'edit_email_page.dart';
 
@@ -38,7 +36,7 @@ class _ChangeEmailState extends State<ChangeEmail> {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return Setting(profile: widget.profile, email: "${widget.email}", name: "");
+                        return Setting(profile: widget.profile);
                       },
                     ),
                   );

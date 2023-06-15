@@ -24,7 +24,7 @@ class _LoginPageState extends State<Login> {
   bool _passwordVisible = false;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { 
     return Scaffold(
         resizeToAvoidBottomInset: true,
         body: Stack(

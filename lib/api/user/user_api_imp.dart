@@ -11,6 +11,9 @@ class _UserApi implements UserApi {
   @override
   Future<HttpRes<Profile>> getProfile(int id) async {
     var req = await _dio.get("$baseUrl/api/profile/$id",
+        data: {
+          "userId": id,
+        },
         options: Options(headers: headers));
     return HttpRes<Profile>.fromJson(jsonDecode(req.data["data"]),
         code: req.statusCode, dataDecodeFunc: Profile.fromJson);
@@ -19,7 +22,10 @@ class _UserApi implements UserApi {
   @override
   Future<bool> editProfile(int userId, Profile p) async {
     var res = await _dio.put("$baseUrl/api/profile/$userId",
-        data: {userId: p.id}, options: Options(headers: headers));
+        data: {
+          "userId": p.id,
+        },
+        options: Options(headers: headers));
     return res.statusCode == 200;
   }
 

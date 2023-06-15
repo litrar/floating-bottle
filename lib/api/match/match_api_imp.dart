@@ -74,7 +74,7 @@ class _MatchApi implements MatchApi {
   Future<HttpRes<MatchedUserInfo>> showUserById(int userId) async {
     var req = await _dio.get("$baseUrl/api/Users/ShowUserById/$userId",
         options: Options(headers: headers));
-    //print(req.data);
+    print(req.data);
     return HttpRes<MatchedUserInfo>.fromJson(jsonDecode(req.data),
         code: req.statusCode, dataDecodeFunc: MatchedUserInfo.fromJson);
   }

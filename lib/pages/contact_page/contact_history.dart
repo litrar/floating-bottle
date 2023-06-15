@@ -6,8 +6,6 @@ import 'package:intl/intl.dart';
 import '../../api/letter.dart';
 import '../../api/match.dart';
 import '../../api/match/models/matched_user_info.dart';
-import '../mailbox_page/friend.dart';
-import '../mailbox_page/letter.dart';
 import '../mailbox_page/letter_content.dart';
 import '../theme/theme_bloc.dart';
 

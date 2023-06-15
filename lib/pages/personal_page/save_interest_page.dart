@@ -64,7 +64,7 @@ class _SaveInterestState extends State<SaveInterest> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) {
-                                        return Setting(profile: widget.profile,email: "110306999@g.nccu.edu.tw",name:"");
+                                        return Setting(profile: widget.profile);
                                       },
                                     ),
                                   );

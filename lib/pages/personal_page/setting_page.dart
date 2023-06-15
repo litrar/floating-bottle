@@ -13,10 +13,9 @@ import 'edit_city_page.dart';
 import 'edit_interest_page.dart';
 
 class Setting extends StatefulWidget {
-  const Setting({Key? key, required this.email, required this.name, required this.profile})
+  const Setting({Key? key, required this.profile})
       : super(key: key);
-  final String email;
-  final String name;
+
   final Profile profile;
 
   @override
@@ -100,7 +99,7 @@ class _SettingState extends State<Setting> {
                                   builder: (context) {
                                     return ChangeEmail(
                                       profile: widget.profile,
-                                      email: widget.email,
+                                      email: widget.profile.email,
                                     );
                                   },
                                 ),
@@ -123,7 +122,7 @@ class _SettingState extends State<Setting> {
                                       fontFamily: 'Bellota-Regular',
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text(widget.email)
+                                Text(widget.profile.email)
                               ],
                             ),
                           ),
@@ -138,7 +137,7 @@ class _SettingState extends State<Setting> {
                                   builder: (context) {
                                     return ChangeEmail(
                                       profile: widget.profile,
-                                      email: widget.email,
+                                      email: widget.profile.email,
                                     );
                                   },
                                 ),
@@ -158,7 +157,7 @@ class _SettingState extends State<Setting> {
                             builder: (context) {
                               return ChangeEmail(
                                 profile: widget.profile,
-                                email: widget.email,
+                                email: widget.profile.email,
                               );
                             },
                           ),
@@ -192,8 +191,8 @@ class _SettingState extends State<Setting> {
                                 MaterialPageRoute(
                                   builder: (context) {
                                     return ChangeName(
-                                      email: widget.email,
-                                      name: widget.name,
+                                      email: widget.profile.email,
+                                      name: widget.profile.name!,
                                     );
                                   },
                                 ),
@@ -221,8 +220,8 @@ class _SettingState extends State<Setting> {
                                 MaterialPageRoute(
                                   builder: (context) {
                                     return ChangeName(
-                                      email: '${widget.email}',
-                                      name: '${widget.name}',
+                                      email: widget.profile.email,
+                                      name: widget.profile.name!,
                                     );
                                   },
                                 ),
@@ -241,8 +240,8 @@ class _SettingState extends State<Setting> {
                           MaterialPageRoute(
                             builder: (context) {
                               return ChangeName(
-                                email: '${widget.email}',
-                                name: '${widget.name}',
+                                email: widget.profile.email,
+                                name: widget.profile.name!,
                               );
                             },
                           ),

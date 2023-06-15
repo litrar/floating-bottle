@@ -1,5 +1,5 @@
 class ApiEndPoints {
-  static const String baseUrl = 'https://10fb-140-119-120-6.ngrok-free.app/api/';
+  static const String baseUrl = 'https://2620-140-119-120-6.ngrok-free.app/api/';
   static _AuthEndPoints authEndpoints = _AuthEndPoints();
 }
 

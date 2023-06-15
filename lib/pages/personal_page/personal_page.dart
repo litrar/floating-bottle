@@ -11,8 +11,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import '../../api/user/profile.dart';
 import '../components/bottom_bar.dart';
-import '../theme/color_theme.dart';
-import '../theme/theme_bloc.dart';
+import 'bloc/profile.dart';
 import 'change_name_page.dart';
 import 'p_route.dart';
 
@@ -32,7 +31,7 @@ class PersonalSubPage implements SubPage {
 }
 
 class PersonalPage extends StatelessWidget {
-  PersonalPage({super.key,this.userId});
+  PersonalPage({super.key, this.userId});
   // final String name;
   int? userId = BottomBar.userId; //看後端到底要怎麼改
 
@@ -49,39 +48,42 @@ class PersonalPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: getProfile(context),
-      builder: (context, snapshot) {
-        if(!(snapshot.connectionState == ConnectionState.done)){
-          return const Scaffold();
-        }
-          return Scaffold(
-            bottomNavigationBar: BottomBar(SubPage.PERSONAL),
-            body: Stack(
-              children: [
-                Container(
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("assetsfolder/personal_background.jpg"),
-                      fit: BoxFit.cover,
-                    ),
+        future: getProfile(context),
+        builder: (context, snapshot) {
+          if (!(snapshot.connectionState == ConnectionState.done)) {
+            return const Scaffold();
+          }
+          return BlocProvider(
+              create: (_) => ProfileBloc(profile!),
+              child: Builder(builder: (context) {
+                return Scaffold(
+                  bottomNavigationBar: BottomBar(SubPage.PERSONAL),
+                  body: Stack(
+                    children: [
+                      Container(
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(
+                                "assetsfolder/personal_background.jpg"),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      Column(
+                        children: [
+                          _avatar(context),
+                          _letterHistory(context),
+                          _messageBox(context),
+                          _settings(context),
+                          _contact(context),
+                          _logoutButton(context)
+                        ],
+                      )
+                    ],
                   ),
-                ),
-                Column(
-                  children: [
-                    _avatar(context),
-                    _letterHistory(context),
-                    _messageBox(context),
-                    _settings(context),
-                    _contact(context),
-                    _logoutButton(context)
-                  ],
-                )
-              ],
-            ),
-          );
-    
-      }
-    );
+                );
+              }));
+        });
   }
 
   Widget _avatar(BuildContext context) {
@@ -320,9 +322,9 @@ class PersonalPage extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return Setting(profile: profile!,
-                            email: profile!.email,
-                            name: profile!.name!);
+                        return Setting(
+                          profile: profile!,
+                        );
                       },
                     ),
                   );
@@ -348,8 +350,9 @@ class PersonalPage extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return Setting(profile: profile!,
-                            email: profile!.email, name: profile!.name!);
+                        return Setting(
+                          profile: profile!,
+                        );
                       },
                     ),
                   );
@@ -367,9 +370,8 @@ class PersonalPage extends StatelessWidget {
               MaterialPageRoute(
                 builder: (context) {
                   return Setting(
-                      profile: profile!,
-                      email: profile
-                      !.email, name: profile!.name!);
+                    profile: profile!,
+                  );
                 },
               ),
             );

@@ -47,7 +47,7 @@ class _ChangeLanguageLevelResultState extends State<ChangeLanguageLevelResult> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return Setting(email: "110306999@g.nccu.edu.tw",name:"", profile: widget.profile,);
+                            return Setting(profile: widget.profile,);
                           },
                         ),
                       );

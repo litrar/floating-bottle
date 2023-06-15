@@ -59,7 +59,7 @@ class _EditPersonalityState extends State<EditPersonality> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return Setting(profile: widget.profile,email: "110306999@g.nccu.edu.tw",name:"");
+                            return Setting(profile: widget.profile);
                           },
                         ),
                       );

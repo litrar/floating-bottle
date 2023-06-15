@@ -20,8 +20,7 @@ class _DeleteAccountState extends State<DeleteAccount> {
         children: <Widget>[
           Setting(
               profile: widget.profile,
-              email: "110306999@g.nccu.edu.tw",
-              name: ""),
+              ),
           Container(
             margin: const EdgeInsets.all(0),
             color: Colors.white60,
