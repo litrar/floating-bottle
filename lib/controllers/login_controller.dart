@@ -8,6 +8,7 @@ import 'package:get/get.dart' hide FormData;
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../pages/components/bottom_bar.dart';
 import '../utils/api_endpoints.dart';
 import 'account_detail_controller.dart';
 
@@ -35,6 +36,7 @@ class LoginController extends GetxController {
     accountDetailController.accId = res.data["data"]["accId"];
 
     //Get.off(ContactPage(),arguments: accountDetailController.accId);
+    BottomBar.userId = accountDetailController.accId;
     return accountDetailController.accId;
   }
 }
