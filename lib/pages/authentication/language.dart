@@ -112,7 +112,7 @@ class _LanguageState extends State<Language> {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(35))
             )
         ),
-        onPressed: () {
+        onPressed: () async {
           Navigator.push(
             context,
             MaterialPageRoute(

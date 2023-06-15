@@ -212,9 +212,9 @@ class _PersonalityState extends State<Personality> {
       child: Material(
         color: Colors.white.withOpacity(0.0),
         child: InkWell(
-            onTap: () {
+            onTap: () async {
               if(accountDetailController.selectedPersonality.isNotEmpty){
-                // accountDetailController.accountDetailWithData();
+                await accountDetailController.accountDetailWithData();
                 print(accountDetailController.selectedPersonality);
                 Navigator.push(
                   context,

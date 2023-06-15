@@ -13,11 +13,12 @@ class SelectedUsersCubit extends Cubit<List<MatchedUserInfo>> {
       if (user.id == userID) {
         user.isSelected = opposite;
         print(user.isSelected);
-      } else
+      } else {
         print('false');
-      user.isSelected = false;
+        user.isSelected = false;
+      }
     }
-    // emit(newUsers);
+    emit(newUsers);
   }
 
   MatchedUserInfo? getSelect() {

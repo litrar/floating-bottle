@@ -156,7 +156,7 @@ class _LanguageLevelResultState extends State<LanguageLevelResult> {
                 RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(55)))),
         onPressed: () async {
-          accountDetailController.accountDetailWithData();
+          await accountDetailController.accountDetailWithData();
           // registerationController.registerWithEmail();
           Navigator.push(
             context,

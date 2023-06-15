@@ -1,7 +1,10 @@
 import 'dart:io';
+import 'package:floating_bottle/pages/subpage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -221,7 +224,7 @@ class _WriteLetterState extends State<WriteLetter> {
                 attType: ' null',
                 time: widget.time!));
             print(result);
-            context.go('/contact');
+            Get.toNamed(SubPage.CONTACT.route.name,arguments: 21);
           },
           child: Container(
               height: 40.h,

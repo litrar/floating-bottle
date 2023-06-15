@@ -72,7 +72,7 @@ class _InterestState extends State<Interest> {
                         },
                         icon: Icon(Icons.arrow_back_ios_rounded,size: 36.sp,color: Colors.white,),),
                       TextButton(onPressed: ()async{
-                        accountDetailController.accountDetailWithData();
+                        // accountDetailController.accountDetailWithData();
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -211,9 +211,9 @@ class _InterestState extends State<Interest> {
       child: Material(
         color: Colors.white.withOpacity(0.0),
         child: InkWell(
-            onTap: () {
+            onTap: () async {
              if(accountDetailController.selectedInterests.isNotEmpty){
-               // accountDetailController.accountDetailWithData();
+               await accountDetailController.accountDetailWithData();
                print(accountDetailController.selectedInterests);
                Navigator.push(
                  context,

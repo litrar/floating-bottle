@@ -167,6 +167,7 @@ class _GenderState extends State<Gender> {
                   },
                 ),
               );
+              await accountDetailController.accountDetailWithData();
               print(accountDetailController.selectedSex);
               // accountDetailController.accountDetailWithData();
             }else {
