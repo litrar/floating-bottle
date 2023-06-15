@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:floating_bottle/api/user/profile.dart';
 import 'http_response.dart';
