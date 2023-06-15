@@ -15,7 +15,7 @@ class _UserApi implements UserApi {
           "userId": id,
         },
         options: Options(headers: headers));
-    return HttpRes<Profile>.fromJson(jsonDecode(req.data["data"]),
+    return HttpRes<Profile>.fromJson(req.data["data"],
         code: req.statusCode, dataDecodeFunc: Profile.fromJson);
   }
 

@@ -2,8 +2,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../api/user/profile.dart';
 
-class ProfileBloc extends Cubit<Profile> {
-  ProfileBloc(super.initialState) : super();
+class ProfileCubit extends Cubit<Profile> {
+  ProfileCubit(super.initialState) : super();
 
   void changeEmail(String email) {
     emit(state.copyWith(email: email));

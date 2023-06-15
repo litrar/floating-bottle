@@ -99,7 +99,6 @@ class _SettingState extends State<Setting> {
                                   builder: (context) {
                                     return ChangeEmail(
                                       profile: widget.profile,
-                                      email: widget.profile.email,
                                     );
                                   },
                                 ),
@@ -137,7 +136,6 @@ class _SettingState extends State<Setting> {
                                   builder: (context) {
                                     return ChangeEmail(
                                       profile: widget.profile,
-                                      email: widget.profile.email,
                                     );
                                   },
                                 ),
@@ -157,7 +155,6 @@ class _SettingState extends State<Setting> {
                             builder: (context) {
                               return ChangeEmail(
                                 profile: widget.profile,
-                                email: widget.profile.email,
                               );
                             },
                           ),

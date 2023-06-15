@@ -5,11 +5,10 @@ import '../../api/user/profile.dart';
 import 'edit_email_page.dart';
 
 class ChangeEmail extends StatefulWidget {
-  const ChangeEmail({Key? key, required this.email, required this.profile}) : super(key: key);
+  const ChangeEmail({Key? key, required this.profile}) : super(key: key);
 
   @override
   State<ChangeEmail> createState() => _ChangeEmailState();
-  final String email;
   final Profile profile;
 }
 
@@ -80,7 +79,7 @@ class _ChangeEmailState extends State<ChangeEmail> {
                     Padding(padding: EdgeInsets.only(left: 10.w)),
                     Container(
                         child: Text(
-                      "${widget.email}",
+                      widget.profile.email,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 25.sp,

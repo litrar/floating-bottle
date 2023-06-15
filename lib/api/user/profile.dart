@@ -31,7 +31,7 @@ class Profile extends Equatable {
   });
 
   Profile.fromJson(Map<String, dynamic> json)
-      : id = json['userId'] ?? "",
+      : id = json['accId'] ?? "",
         email = json['address'] ?? "",
         name = json['name'],
         college = json['college'] ?? "",

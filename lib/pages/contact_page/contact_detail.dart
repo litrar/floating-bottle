@@ -154,7 +154,7 @@ class _ContactDetailPageState extends State<ContactDetailPage> {
                     width: 10.w,
                   ),
                   Text(
-                    widget.user.age! + 'y',
+                    '${widget.user.age!}y',
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 18.sp,

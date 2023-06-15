@@ -20,7 +20,7 @@ class _DMatchResultPageState extends State<DMatchResultPage> {
         college: 'National Chengchi University',
         sex: 'Woman',
         city: 'Taipeisd',
-        age: '20',
+        age: 20,
         personalities: ['Extroverted', 'Outgoing'],
         interests: ['Cooking', 'Movie', 'Pet'],
         isSelected: true),

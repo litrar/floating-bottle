@@ -13,8 +13,10 @@ import '../utils/api_endpoints.dart';
 import 'account_detail_controller.dart';
 
 class LoginController extends GetxController {
-  AccountDetailController accountDetailController = Get.put(AccountDetailController());
-  Dio dio = Dio()..interceptors.add(LogInterceptor(requestBody: true,responseBody: true));
+  AccountDetailController accountDetailController =
+      Get.put(AccountDetailController());
+  Dio dio = Dio()
+    ..interceptors.add(LogInterceptor(requestBody: true, responseBody: true));
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
@@ -26,14 +28,19 @@ class LoginController extends GetxController {
       'Password': passwordController.text
     };
     print(data);
-    var res = await dio.post(ApiEndPoints.baseUrl+ApiEndPoints.authEndpoints.loginEmail,
-    data: data,
-    options: Options(
-      headers: {'Content-Type': 'application/json'},
-    ));
+    var res = await dio.post(
+        ApiEndPoints.baseUrl + ApiEndPoints.authEndpoints.loginEmail,
+        data: data,
+        options: Options(
+          headers: {'Content-Type': 'application/json'},
+        ));
     emailController.clear();
     passwordController.clear();
-    accountDetailController.accId = res.data["data"]["accId"];
+    if (res.data['isSuccess']) {
+      accountDetailController.accId = res.data["data"]["accId"];
+    } else {
+      print('找不到使用者');
+    }
 
     //Get.off(ContactPage(),arguments: accountDetailController.accId);
     BottomBar.userId = accountDetailController.accId;

@@ -5,7 +5,7 @@ class MatchedUserInfo {
   String? college;
   String? sex;  
   String? city;
-  String? age;
+  int? age;
   String? avatar;
   List<String>? personalities;
   List<String>? interests;
@@ -31,10 +31,11 @@ class MatchedUserInfo {
         name = json['name'],
         college = json['college'],
         sex = json['gender'],
-        city = json['city'],
+        city = (json['city'] as String).replaceAll(" ", ""),
         age = json['age'],
         // avatar = json['avatar'],
-        personalities = json['personality'],
-        interests = json['interest'],
+        personalities = (json['personality'] as List).cast(),
+        interests = (json['interest']as List).cast(),
+        avatar = json["avatar"] ?? 'assetsfolder/friend1.jpg',
         isSelected = false;
 }

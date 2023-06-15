@@ -11,7 +11,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import '../../api/user/profile.dart';
 import '../components/bottom_bar.dart';
-import 'bloc/profile.dart';
+import 'bloc/profile_cubit.dart';
 import 'change_name_page.dart';
 import 'p_route.dart';
 
@@ -54,7 +54,7 @@ class PersonalPage extends StatelessWidget {
             return const Scaffold();
           }
           return BlocProvider(
-              create: (_) => ProfileBloc(profile!),
+              create: (_) => ProfileCubit(profile!),
               child: Builder(builder: (context) {
                 return Scaffold(
                   bottomNavigationBar: BottomBar(SubPage.PERSONAL),
@@ -69,15 +69,19 @@ class PersonalPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Column(
-                        children: [
-                          _avatar(context),
-                          _letterHistory(context),
-                          _messageBox(context),
-                          _settings(context),
-                          _contact(context),
-                          _logoutButton(context)
-                        ],
+                      BlocBuilder<ProfileCubit, Profile>(
+                        builder: (context, state) {
+                          return Column(
+                            children: [
+                              _avatar(context, context.read()),
+                              _letterHistory(context),
+                              _messageBox(context),
+                              _settings(context, context.read()),
+                              _contact(context),
+                              _logoutButton(context)
+                            ],
+                          );
+                        }
                       )
                     ],
                   ),
@@ -86,7 +90,7 @@ class PersonalPage extends StatelessWidget {
         });
   }
 
-  Widget _avatar(BuildContext context) {
+  Widget _avatar(BuildContext context, ProfileCubit cubit) {
     return Container(
       margin: const EdgeInsets.only(top: 70.0),
       padding: EdgeInsets.symmetric(horizontal: 15.w),
@@ -305,7 +309,7 @@ class PersonalPage extends StatelessWidget {
         ));
   }
 
-  Widget _settings(BuildContext context) {
+  Widget _settings(BuildContext context, ProfileCubit cubit) {
     return Container(
         width: MediaQuery.of(context).size.width,
         height: 60.h,
