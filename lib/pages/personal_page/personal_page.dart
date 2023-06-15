@@ -6,6 +6,8 @@ import 'package:floating_bottle/pages/subpage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import '../../api/user/profile.dart';
 import '../components/bottom_bar.dart';
@@ -30,13 +32,15 @@ class PersonalSubPage implements SubPage {
 }
 
 class PersonalPage extends StatelessWidget {
-  PersonalPage({super.key,this.userId });
+  PersonalPage({super.key,this.userId});
   // final String name;
-  int? userId; //看後端到底要怎麼改
+  int? userId = BottomBar.userId; //看後端到底要怎麼改
 
   Profile? profile;
   Future<void> getProfile(BuildContext context) async {
     UserApi userApi = context.read();
+    userId = BottomBar.userId;
+    print("$userId");
     var res = await userApi.getProfile(userId!);
     print("hahaha ${res.data}");
     if (res.isSuccess) profile = res.data;
@@ -47,6 +51,9 @@ class PersonalPage extends StatelessWidget {
     return FutureBuilder(
       future: getProfile(context),
       builder: (context, snapshot) {
+        if(!(snapshot.connectionState == ConnectionState.done)){
+          return const Scaffold();
+        }
           return Scaffold(
             bottomNavigationBar: BottomBar(SubPage.PERSONAL),
             body: Stack(
