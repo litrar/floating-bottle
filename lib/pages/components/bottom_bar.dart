@@ -5,8 +5,8 @@ import '../subpage.dart';
 
 class BottomBar extends StatelessWidget {
   SubPage currentPage;
-  int? userId;
-  BottomBar(this.currentPage, {Key? key, this.userId}) : super(key: key);
+  static int? userId;
+  BottomBar(this.currentPage, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
