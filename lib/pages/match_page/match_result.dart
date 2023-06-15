@@ -1,3 +1,4 @@
+import 'package:floating_bottle/pages/components/bottom_bar.dart';
 import 'package:floating_bottle/pages/contact_page/contact_detail.dart';
 import 'package:floating_bottle/api/match/models/matched_user_info.dart';
 import 'package:floating_bottle/pages/match_page/bloc/selected_people_cubit.dart';
@@ -9,9 +10,9 @@ import '../../api/match.dart';
 import '../write_letter.dart';
 
 class MatchResultPage extends StatefulWidget {
-  MatchResultPage({super.key, this.matchedUsers, this.userId});
+  MatchResultPage({super.key, this.matchedUsers,  int? userId});
   List<MatchedUserInfo>? matchedUsers;
-  int? userId;
+  int? userId = BottomBar.userId;
   @override
   State<MatchResultPage> createState() => _MatchResultPageState();
 }
@@ -158,10 +159,11 @@ class _MatchResultPageState extends State<MatchResultPage> {
         child: InkWell(
           onTap: () {
             print(user.isSelected);
+            print(user.name);
             cubit.set_selected(user.id, !user.isSelected);
             //下面的user應該是widget build裡面的users的，無法更動的isSelected = false;
             print(user.isSelected);
-            if (user.isSelected == true) {
+            if (user.isSelected == false) {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => ContactDetailPage(user: user),
@@ -216,9 +218,11 @@ class _MatchResultPageState extends State<MatchResultPage> {
 
             return InkWell(
                 onTap: () async {
+                  print("tapped");
                   if (selected != null) {
+                    print("selected");
                     if (await matchApi.insertUserPair(
-                        widget.userId!, selected.id)) {
+                        widget.userId!, selected!.id)) {
                       Future.microtask(() {
                         Navigator.push(
                         context,
