@@ -11,6 +11,7 @@ class FilterRepository extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(builder: (context, child) {
+      print('$userId at match_filter_listener');
       return RepositoryProvider<FilterFillOutData>(
         create: (_) => FilterFillOutData(
             college: '',

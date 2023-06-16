@@ -32,7 +32,7 @@ class _MatchFilterPageState extends State<MatchFilterPage> {
     'New Taipei City',
     'Kaohsiung City'
   ];
-  final List<String> suggestions_l = ['Chinese', 'English', 'Spanish'];
+  final List<String> suggestions_l = ['Mandarin', 'English', 'Spanish'];
 
   @override
   Widget build(BuildContext context) {
@@ -356,7 +356,7 @@ class _MatchFilterPageState extends State<MatchFilterPage> {
                       onSuggestionTap: (SearchFieldListItem<String> x) {
                         f.city =
                             x.searchKey.substring(0, x.searchKey.length - 5);
-                        print(f!.all());
+                        print(f.all());
                       },
                       marginColor: Colors.white,
                       searchStyle: TextStyle(
@@ -422,8 +422,8 @@ class _MatchFilterPageState extends State<MatchFilterPage> {
                               )))
                           .toList(),
                       onSuggestionTap: (SearchFieldListItem<String> x) {
-                        f.languages.add(x.searchKey);
-                        print(f!.all());
+                        f.languages.add("'${x.searchKey}'");
+                        print(f.all());
                       },
                       marginColor: Colors.white,
                       searchStyle: TextStyle(
@@ -610,6 +610,7 @@ class _MatchFilterPageState extends State<MatchFilterPage> {
         color: Colors.white.withOpacity(0.0),
         child: InkWell(
             onTap: () async {
+              print('${widget.userId} at match_filter.dart');
               List<MatchedUserInfo> userInfoList = [];
               MatchedUserInfo? userInfo;
               MatchApi matchApi = context.read<MatchApi>();
@@ -617,7 +618,7 @@ class _MatchFilterPageState extends State<MatchFilterPage> {
               var res = await matchApi
                   .getFilterMatch(context.read<FilterFillOutData>());
               if (res.isSuccess) {
-                print('succeed');
+                print('succeed at match_filter.dart _continueButton');
                 for (MatchResult m in res.data!) {
                   HttpRes<MatchedUserInfo> userRes =
                       await matchApi.showUserById(m.id);
@@ -631,13 +632,13 @@ class _MatchFilterPageState extends State<MatchFilterPage> {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return MatchResultPage(matchedUsers: userInfoList);
+                        return MatchResultPage(matchedUsers: userInfoList, userId: widget.userId,);
                       },
                     ),
                   );
                 });
               } else {
-                print('fail');
+                print('fail at match_filter.dart _continueButton');
                 Future.microtask(() {
                   Navigator.push(
                     context,

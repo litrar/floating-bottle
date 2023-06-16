@@ -38,44 +38,6 @@ class ContactPage extends StatefulWidget {
 class _ContactPageState extends State<ContactPage>
     with SingleTickerProviderStateMixin {
   int userId = Get.arguments;
-  // final Friend friend = Friend([
-  //   User(
-  //     "assetsfolder/friend1.jpg",
-  //     "Ann",
-  //     Letter("Ann", "assetsfolder/friend1.jpg",
-  //         "It was great to hear from you. I'm writing to you..."),
-  //     "2023/5/19",
-  //     "20:45",
-  //   ),
-
-  // User(
-  //   "assetsfolder/friend3.jpg",
-  //   "HiChew",
-  //   Letter("HiChew", "assetsfolder/friend3.jpg",
-  //       "It was great to hear from you. I'm writing to you..."),
-  //   "2023/5/19",
-  //   "20:45",
-  // ),
-  // User(
-  //   "assetsfolder/friend4.jpg",
-  //   "Charles",
-  //   Letter("Charles", "assetsfolder/friend4.jpg",
-  //       "It was great to hear from you. I'm writing to you..."),
-  //   "2023/5/19",
-  //   "20:45",
-  // ),
-  // ]);
-
-  // final Friend pending = Friend([
-  //   User(
-  //     "assetsfolder/friend2.jpg",
-  //     "Pink",
-  //     Letter("Pink", "assetsfolder/friend2.jpg",
-  //         "It was great to hear from you. I'm writing to you..."),
-  //     "2023/5/19",
-  //     "20:45",
-  //   ),
-  // ]);
 
   late TabController _controller;
 
@@ -110,19 +72,19 @@ class _ContactPageState extends State<ContactPage>
     var res_f = await contactApi.getFriends(userId);
     var res_p = await contactApi.getPendings(userId);
     if (res_f.isSuccess) friendIdList = res_f.data;
-    if (res_p.isSuccess) friendIdList = res_p.data;
-    for (int m in res_f.data!) {
+    if (res_p.isSuccess) pendingIdList = res_p.data;
+    for (int m in friendIdList!) {
       HttpRes<MatchedUserInfo> userRes = await matchApi.showUserById(m);
       friendInfo = userRes.data;
       if (friendInfo != null) {
-        friendInfoList!.add(friendInfo!);
+        friendInfoList.add(friendInfo!);
       }
     }
-    for (int m in res_p.data!) {
+    for (int m in pendingIdList!) {
       HttpRes<MatchedUserInfo> userRes = await matchApi.showUserById(m);
       pendingInfo = userRes.data;
       if (pendingInfo != null) {
-        pendingInfoList!.add(pendingInfo!);
+        pendingInfoList.add(pendingInfo!);
       }
     }
   }
@@ -131,6 +93,7 @@ class _ContactPageState extends State<ContactPage>
     return FutureBuilder<void>(
         future: getData(context),
         builder: (context, state) {
+          if(!(state.connectionState == ConnectionState.done)) return Scaffold();
           return Scaffold(
             bottomNavigationBar: BottomBar(SubPage.CONTACT),
             body: Stack(
@@ -178,14 +141,14 @@ class _ContactPageState extends State<ContactPage>
                           children: [
                             Padding(padding: EdgeInsets.only(top: 10.h)),
                             Expanded(
-                                child: _listView(context, friendInfoList!)),
+                                child: _listView(context, friendInfoList)),
                           ],
                         ),
                         Column(
                           children: [
                             Padding(padding: EdgeInsets.only(top: 10.h)),
                             Expanded(
-                                child: _listView(context, pendingInfoList!)),
+                                child: _listView(context, pendingInfoList)),
                           ],
                         ),
                       ],
@@ -241,20 +204,10 @@ class _ContactPageState extends State<ContactPage>
                     height: 60.h,
                     padding: EdgeInsets.symmetric(horizontal: 20.w),
                     child: Row(children: [
-                      ClipOval(
-                        child: Image(
-                          image: CachedNetworkImageProvider(u.avatar!),
-                          width: 50.w,
-                          height: 50.h,
-                          fit: BoxFit.cover,
-                        ),
-                        // child: Image.asset(
-                        //   CachedNetworkImageProvider(u.avatar!) as String,
-                        //   width: 50.w,
-                        //   height: 50.h,
-                        //   fit: BoxFit.cover,
-                        // ),
-                        
+                      CircleAvatar(
+                        radius: 25.w,
+                        backgroundColor: Colors.grey,
+                        backgroundImage: AssetImage("assetsfolder/大頭照.jpg"),
                       ),
                       SizedBox(
                         width: 20.w,

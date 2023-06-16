@@ -4,9 +4,7 @@ class _MatchApi implements MatchApi {
   final Dio _dio;
   final headers = {'ngrok-skip-browser-warning': 'true'};
 
-  _MatchApi(this._dio){
-    _dio.interceptors.add(LogInterceptor(responseBody: true));
-  }
+  _MatchApi(this._dio);
 
   @override
   Future<HttpRes<MatchResult>> getRandomMatch() async {
@@ -32,7 +30,7 @@ class _MatchApi implements MatchApi {
         options: Options(headers: headers));
 
     List<MatchResult> list = <MatchResult>[];
-    print(req.data);
+    print('${req.data} at getFilterMatch');
     if (req.data == null) return HttpRes.failed();
     if (req.statusCode == 200) {
       print('req.statusCode = 200');
@@ -74,7 +72,7 @@ class _MatchApi implements MatchApi {
   Future<HttpRes<MatchedUserInfo>> showUserById(int userId) async {
     var req = await _dio.get("$baseUrl/api/Users/ShowUserById/$userId",
         options: Options(headers: headers));
-    print(req.data);
+    print('${req.data} at showUserById');
     return HttpRes<MatchedUserInfo>.fromJson(req.data,
         code: req.statusCode, dataDecodeFunc: MatchedUserInfo.fromJson);
   }

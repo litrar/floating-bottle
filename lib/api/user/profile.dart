@@ -13,7 +13,7 @@ class Profile extends Equatable {
   List<String>? languages;
   List<String>? personalities;
   List<String>? interests;
-  String? age;
+  int? age;
 
   Profile({
     required this.email,
@@ -38,9 +38,9 @@ class Profile extends Equatable {
         department = json['department'] ?? "",
         sex = json['sex'] ?? "",
         city = json['city'] ?? "",
-        languages = json['language'] ?? "",
-        personalities = json['personality'] ?? "",
-        interests = json['interest'] ?? "",
+        languages = (json['language']as List).cast(),
+        personalities = (json['personality']as List).cast(),
+        interests = (json['interest']as List).cast(),
         age = json['age'] ?? "",
         bdate = DateTime.tryParse(json['bdate'] ?? "");
 
@@ -97,7 +97,7 @@ class Profile extends Equatable {
       List<String>? languages,
       List<String>? personalities,
       List<String>? interests,
-      String? age}) {
+      int? age}) {
     return Profile(
         id: id ?? this.id,
         email: email ?? this.email,

@@ -105,7 +105,8 @@ class MyApp extends StatelessWidget {
       connectTimeout: Duration(milliseconds: 10000),
       receiveTimeout: Duration(milliseconds: 10000),
       sendTimeout: Duration(milliseconds: 10000),
-      validateStatus: (_) => true));
+      validateStatus: (_) => true))
+      ..interceptors.add(LogInterceptor(responseBody: true));
   late GetMaterialApp _getMaterialApp;
 
   MyApp({Key? key}) {

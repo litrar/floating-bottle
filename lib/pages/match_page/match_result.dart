@@ -65,64 +65,68 @@ class _MatchResultPageState extends State<MatchResultPage> {
 
   @override
   Widget build(BuildContext _context) {
-    return BlocProvider(
-      lazy: true,
-      //跟後端說 filter一定要有match到人
-      create: (_) => SelectedUsersCubit(widget.matchedUsers!),
-      child: Builder(builder: (context) {
-        return Scaffold(
-          body: Stack(children: [
-            Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assetsfolder/match_background.jpg"),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            SafeArea(
-                child: Column(
-              children: [
-                Row(
-                  children: [
-                    Padding(padding: EdgeInsets.only(left: 15.w)),
-                    IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return MatchPage();
-                            },
-                          ),
-                        );
-                      },
-                      icon: Icon(
-                        Icons.arrow_back_ios_new,
-                        color: Colors.white,
-                        size: 35.sp,
-                      ),
+    return FutureBuilder(
+      future: getProfile(context),
+      builder: (context, snapshot) {
+        return BlocProvider(
+          lazy: true,
+          //跟後端說 filter一定要有match到人
+          create: (_) => SelectedUsersCubit(widget.matchedUsers!),
+          child: Builder(builder: (context) {
+            return Scaffold(
+              body: Stack(children: [
+                Container(
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assetsfolder/match_background.jpg"),
+                      fit: BoxFit.cover,
                     ),
+                  ),
+                ),
+                SafeArea(
+                    child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Padding(padding: EdgeInsets.only(left: 15.w)),
+                        IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return MatchPage();
+                                },
+                              ),
+                            );
+                          },
+                          icon: Icon(
+                            Icons.arrow_back_ios_new,
+                            color: Colors.white,
+                            size: 35.sp,
+                          ),
+                        ),
+                      ],
+                    ),
+                    _title(context),
+                    SizedBox(
+                      height: 30.h,
+                    ),
+                    BlocBuilder<SelectedUsersCubit, List<MatchedUserInfo>>(
+                        builder: (context, state) {
+                      return Column(children: [
+                        for (var user in widget.matchedUsers!)
+                          _matchedUser(context.read(), context, user)
+                      ]);
+                    }),
+                    _continueButton(context),
                   ],
-                ),
-                _title(context),
-                SizedBox(
-                  height: 30.h,
-                ),
-                BlocBuilder<SelectedUsersCubit, List<MatchedUserInfo>>(
-                    builder: (context, state) {
-                  return Column(children: [
-                    for (var user in widget.matchedUsers!)
-                      _matchedUser(context.read(), context, user)
-                  ]);
-                }),
-                for(var user in widget.matchedUsers!)
-                   _continueButton(context,user)
-              ],
-            ))
-          ]),
+                ))
+              ]),
+            );
+          }),
         );
-      }),
+      }
     );
   }
 
@@ -207,10 +211,7 @@ class _MatchResultPageState extends State<MatchResultPage> {
     );
   }
 
-  Widget _continueButton(BuildContext context,MatchedUserInfo user) {
-    return FutureBuilder(
-        future: getProfile(context),
-        builder: (context, snapshot) {
+  Widget _continueButton(BuildContext context) {
           return BlocBuilder<SelectedUsersCubit, List<MatchedUserInfo>>(
               builder: (context, state) {
             SelectedUsersCubit cubit = context.read();
@@ -233,7 +234,7 @@ class _MatchResultPageState extends State<MatchResultPage> {
                                 matcherId: widget.userId!,
                                 matchedAccountId: selected.id,
                                 time: DateTime.now(),
-                                name: user.name);
+                                name: matcherInfo!.name);
                           },
                         ),
                       );
@@ -265,6 +266,6 @@ class _MatchResultPageState extends State<MatchResultPage> {
                           fontWeight: FontWeight.bold)),
                 ));
           });
-        });
+        
   }
 }

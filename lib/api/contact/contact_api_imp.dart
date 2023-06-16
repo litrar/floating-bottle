@@ -7,8 +7,8 @@ class _ContactApi implements ContactApi {
   @override
   //回傳list of 朋友們的id
   Future<HttpRes> getFriends(int userId) async {
-    var res = await _dio.get(
-        "$baseUrl/api/Phonebook/MatchedPairs/$userId", options: Options(headers: headers));
+    var res = await _dio.get("$baseUrl/api/Phonebook/MatchedPairs/$userId",
+        options: Options(headers: headers));
 
     List<int> list = <int>[];
     dynamic rawListMap = res.data;
@@ -16,7 +16,7 @@ class _ContactApi implements ContactApi {
       for (var id in rawListMap) {
         if (id != null) {
           list.add(id);
-          print(id);
+          print('$id at getFriends');
         }
       }
     }
@@ -30,8 +30,8 @@ class _ContactApi implements ContactApi {
 
   @override
   Future<HttpRes> getPendings(int userId) async {
-    var res = await _dio.get(
-        "$baseUrl/api/Phonebook/Pending/$userId", options: Options(headers: headers));
+    var res = await _dio.get("$baseUrl/api/Phonebook/Pending/$userId",
+        options: Options(headers: headers));
 
     List<int> list = <int>[];
     dynamic rawListMap = res.data;

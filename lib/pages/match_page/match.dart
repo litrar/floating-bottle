@@ -41,7 +41,7 @@ class _MatchPageState extends State<MatchPage> {
   bool searchID = true;
   bool cbutton = true;
 
-  int userId = Get.arguments;
+  int? userId = BottomBar.userId;
 
   // Profile? profile;
   // Future<void> getData(BuildContext context) async {
@@ -221,6 +221,7 @@ class _MatchPageState extends State<MatchPage> {
   Widget _continueButton(BuildContext context) {
     return InkWell(
         onTap: () async {
+          print('$userId,at match.dart _continueButton');
           MatchApi matchApi = context.read<MatchApi>();
           MatchedUserInfo? userInfo;
           List<MatchedUserInfo> userInfoList = [];
@@ -234,7 +235,9 @@ class _MatchPageState extends State<MatchPage> {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return FilterRepository(userId: userId,);
+                    return FilterRepository(
+                      userId: userId,
+                    );
                   },
                 ),
               );
@@ -243,7 +246,9 @@ class _MatchPageState extends State<MatchPage> {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return SearchIDPage(userId: userId,);
+                    return SearchIDPage(
+                      userId: userId,
+                    );
                   },
                 ),
               );
@@ -271,12 +276,13 @@ class _MatchPageState extends State<MatchPage> {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return MatchResultPage(matchedUsers: userInfoList, userId: userId);
+                        return MatchResultPage(
+                            matchedUsers: userInfoList, userId: userId);
                       },
                     ),
                   );
                 });
-              } 
+              }
             }
           }
         },

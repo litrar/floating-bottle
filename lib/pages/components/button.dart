@@ -53,7 +53,6 @@ class _MyButtonState extends State<MyButton> {
                   widget.setStatePage();
                   isSelected = !isSelected;
                   widget.f?.college = 'NCCU';
-                  print(widget.f!.all());
                 });
                 break;
               case "department":
@@ -61,7 +60,6 @@ class _MyButtonState extends State<MyButton> {
                   widget.setStatePage();
                   isSelected = !isSelected;
                   widget.f?.department = "MIS";
-                  print(widget.f!.all());
                 });
                 break;
               case "sex":
@@ -69,22 +67,20 @@ class _MyButtonState extends State<MyButton> {
                   widget.setStatePage();
                   isSelected = !isSelected;
                   widget.f?.sex = 'F';
-                  print(widget.f!.all());
                 });
                 break;
               case "personalities":
                 setState(() {
                   widget.setStatePage();
                   isSelected = !isSelected;
-                  widget.f?.personalties.add(widget.bName);
-                  print(widget.f!.all());
+                  widget.f?.personalties.add("'${widget.bName}'");
                 });
                 break;
               case "interests":
                 setState(() {
                   widget.setStatePage();
                   isSelected = !isSelected;
-                  widget.f?.interests.add(widget.bName);
+                  widget.f?.interests.add("'${widget.bName}'");
                   print(widget.f!.all());
                 });
                 break;

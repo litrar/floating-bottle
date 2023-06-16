@@ -6,53 +6,25 @@ import 'package:intl/intl.dart';
 import '../../api/letter.dart';
 import '../../api/match.dart';
 import '../../api/match/models/matched_user_info.dart';
+import '../components/bottom_bar.dart';
 import '../mailbox_page/letter_content.dart';
 import '../theme/theme_bloc.dart';
 
-class ContactHistory extends StatelessWidget {
+class ContactHistory extends StatefulWidget {
   ContactHistory({super.key, this.friendInfo, this.userId});
   int? userId;
   MatchedUserInfo? friendInfo;
-  // final Friend friend = Friend([
-  //   User(
-  //     "assetsfolder/friend1.jpg",
-  //     "Ann",
-  //     Letter("Ann", "assetsfolder/friend1.jpg",
-  //         "It was great to hear from you. I'm writing to you..."),
-  //     "2023/5/19",
-  //     "20:45",
-  //   ),
-  //   User(
-  //     "assetsfolder/avatar.jpg",
-  //     "Me",
-  //     Letter("Me", "assetsfolder/avatar.jpg",
-  //         "Hey, Ann. I'm really sorry for what you told me. I"),
-  //     "2023/5/19",
-  //     "20:45",
-  //   ),
-  //   User(
-  //     "assetsfolder/friend1.jpg",
-  //     "Ann",
-  //     Letter("Ann", "assetsfolder/friend1.jpg",
-  //         "Hi, I got something that I've been thinking for a long time to tell u."),
-  //     "2023/5/19",
-  //     "20:45",
-  //   ),
-  //   User(
-  //     "assetsfolder/avatar.jpg",
-  //     "Me",
-  //     Letter("Me", "assetsfolder/avatar.jpg",
-  //         "Happy Wednesday! I hope this email finds you"),
-  //     "2023/5/19",
-  //     "20:45",
-  //   ),
-  // ]);
 
+  @override
+  State<ContactHistory> createState() => _ContactHistoryState();
+}
+
+class _ContactHistoryState extends State<ContactHistory> {
   List<LetterGot>? letterList;
 
   Future<void> getData(BuildContext context) async {
     LetterApi letterApi = context.read();
-    var res = await letterApi.getLetter(userId!, friendInfo!.id);
+    var res = await letterApi.getLetter(widget.userId!, widget.friendInfo!.id);
     if (res.isSuccess) letterList = res.data;
   }
 
@@ -71,7 +43,9 @@ class ContactHistory extends StatelessWidget {
     ThemeCubit themeCubit = context.read();
     return FutureBuilder(
         future: getData(context),
-        builder: (context, snapshot) {
+        builder: (context, state) {
+          if (!(state.connectionState == ConnectionState.done))
+            return Scaffold();
           return Scaffold(
             body: Stack(children: [
               Container(
@@ -90,7 +64,16 @@ class ContactHistory extends StatelessWidget {
                       Padding(padding: EdgeInsets.only(left: 15.w)),
                       IconButton(
                         onPressed: () {
-                          context.go('/contact');
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return ContactHistory(
+                                  userId: BottomBar.userId,
+                                );
+                              },
+                            ),
+                          );
                         },
                         icon: Icon(
                           Icons.arrow_back_ios_new,
@@ -105,7 +88,7 @@ class ContactHistory extends StatelessWidget {
                               fontSize: 28.sp))
                     ],
                   ),
-                  _introduction(context, friendInfo!),
+                  _introduction(context, widget.friendInfo!),
                   Expanded(child: _listView(context, letterList!))
                 ],
               ))
@@ -162,128 +145,127 @@ class ContactHistory extends StatelessWidget {
   }
 
   Widget _listView(BuildContext context, List<LetterGot> letterList) {
-      
-      return CustomScrollView(
-        slivers: [
-          SliverFillRemaining(
-              hasScrollBody: false,
-              child: Column(
-                children: [
-                  for (var l in letterList)
-                    Container(
-                        decoration:
-                            BoxDecoration(color: Colors.white.withOpacity(0.5)),
-                        child: Material(
-                          color: Colors.white.withOpacity(0.0),
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => LetterContent(
-                                    matcherId: userId!,
-                                    matchedAccountId: l.matchedAccountId,
-                                    name: l.matcherName,
-                                    picture: "assetsfolder/friend1.jpg",
-                                    content: l.content, 
-                                    letterId: l.letterId, time: l.time,
-                                  ),
+    return CustomScrollView(
+      slivers: [
+        SliverFillRemaining(
+            hasScrollBody: false,
+            child: Column(
+              children: [
+                for (var l in letterList)
+                  Container(
+                      decoration:
+                          BoxDecoration(color: Colors.white.withOpacity(0.5)),
+                      child: Material(
+                        color: Colors.white.withOpacity(0.0),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => LetterContent(
+                                  matcherId: widget.userId!,
+                                  matchedAccountId: l.matchedAccountId,
+                                  name: l.matcherName,
+                                  picture: "assetsfolder/friend1.jpg",
+                                  content: l.content,
+                                  letterId: l.letterId,
+                                  time: l.time,
                                 ),
-                              );
-                            },
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                  border: Border(
-                                bottom: BorderSide(color: Colors.black),
-                              )),
-                              height: 60.h,
-                              padding: EdgeInsets.only(left: 20.w),
-                              child: Row(children: [
-                                ClipOval(
-                                  child: Image.asset(
-                                    "assetsfolder/friend1.jpg",
-                                    width: 50.w,
-                                    height: 50.h,
-                                    fit: BoxFit.cover,
-                                  ),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            decoration: const BoxDecoration(
+                                border: Border(
+                              bottom: BorderSide(color: Colors.black),
+                            )),
+                            height: 60.h,
+                            padding: EdgeInsets.only(left: 20.w),
+                            child: Row(children: [
+                              ClipOval(
+                                child: Image.asset(
+                                  "assetsfolder/friend1.jpg",
+                                  width: 50.w,
+                                  height: 50.h,
+                                  fit: BoxFit.cover,
                                 ),
-                                SizedBox(
-                                  width: 16.w,
-                                ),
-                                Column(
-                                  
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        ConstrainedBox(
-                                          constraints:
-                                              BoxConstraints(minWidth: 45.w),
-                                          child: Text(
-                                            friendInfo!.name,
+                              ),
+                              SizedBox(
+                                width: 16.w,
+                              ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      ConstrainedBox(
+                                        constraints:
+                                            BoxConstraints(minWidth: 45.w),
+                                        child: Text(
+                                          widget.friendInfo!.name,
+                                          style: TextStyle(
+                                              fontSize: 20.sp,
+                                              fontFamily: 'Bellota-Regular',
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
+                                      Row(
+                                        children: [
+                                          SizedBox(
+                                            width: 140.w,
+                                          ),
+                                          Text(
+                                            DateFormat('yyyy/M/d')
+                                                .format(l.time),
                                             style: TextStyle(
-                                                fontSize: 20.sp,
+                                              fontSize: 10.sp,
+                                              fontFamily: 'Bellota-Regular',
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                          Text(
+                                            DateFormat('H:mm').format(l.time),
+                                            style: TextStyle(
+                                              fontSize: 10.sp,
+                                              fontFamily: 'Bellota-Regular',
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  Flexible(
+                                    child: SingleChildScrollView(
+                                        child: Row(
+                                      children: [
+                                        LimitedBox(
+                                          maxWidth: 265.w,
+                                          child: Text(
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                            l.content,
+                                            style: TextStyle(
+                                                fontSize: 14.sp,
+                                                color: const Color.fromARGB(
+                                                    255, 138, 138, 138),
                                                 fontFamily: 'Bellota-Regular',
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ),
-                                        Row(
-                                          children: [
-                                            SizedBox(
-                                              width: 140.w,
-                                            ),
-                                            Text(
-                                              DateFormat('yyyy/M/d').format(l.time),
-                                              style: TextStyle(
-                                                fontSize: 10.sp,
-                                                fontFamily: 'Bellota-Regular',
-                                                color: Colors.black,
-                                              ),
-                                            ),
-                                            Text(
-                                              DateFormat('H:mm').format(l.time),
-                                              style: TextStyle(
-                                                fontSize: 10.sp,
-                                                fontFamily: 'Bellota-Regular',
-                                                color: Colors.black,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
                                       ],
-                                    ),
-                                    Flexible(
-                                      child: SingleChildScrollView(
-                                          child: Row(
-                                        children: [
-                                          LimitedBox(
-                                            maxWidth: 265.w,
-                                            child: Text(
-                                              maxLines: 1,
-                                              overflow: TextOverflow.ellipsis,
-                                              l.content,
-                                              style: TextStyle(
-                                                  fontSize: 14.sp,
-                                                  color: const Color.fromARGB(
-                                                      255, 138, 138, 138),
-                                                  fontFamily: 'Bellota-Regular',
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                        ],
-                                      )),
-                                    )
-                                  ],
-                                ),
-                              ]),
-                            ),
+                                    )),
+                                  )
+                                ],
+                              ),
+                            ]),
                           ),
-                        ))
-                ],
-              ))
-        ],
-      );
-   
+                        ),
+                      ))
+              ],
+            ))
+      ],
+    );
   }
 
   Widget _floatButton(BuildContext context, ThemeCubit themeCubit) {
