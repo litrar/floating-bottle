@@ -93,7 +93,17 @@ class _ContactPageState extends State<ContactPage>
     return FutureBuilder<void>(
         future: getData(context),
         builder: (context, state) {
-          if(!(state.connectionState == ConnectionState.done)) return Scaffold();
+          if (!(state.connectionState == ConnectionState.done))
+            return Scaffold(
+              body: Center(
+                  child: Text(
+                'Please wait a second',
+                style: TextStyle(
+                    fontSize: 24,
+                    fontFamily: 'Bellota-Regular',
+                    fontWeight: FontWeight.bold),
+              )),
+            );
           return Scaffold(
             bottomNavigationBar: BottomBar(SubPage.CONTACT),
             body: Stack(
@@ -140,8 +150,7 @@ class _ContactPageState extends State<ContactPage>
                         Column(
                           children: [
                             Padding(padding: EdgeInsets.only(top: 10.h)),
-                            Expanded(
-                                child: _listView(context, friendInfoList)),
+                            Expanded(child: _listView(context, friendInfoList)),
                           ],
                         ),
                         Column(

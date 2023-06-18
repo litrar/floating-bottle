@@ -1,12 +1,12 @@
+import 'package:floating_bottle/pages/write_letter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../../api/letter.dart';
 import '../../api/match.dart';
 import '../../api/match/models/matched_user_info.dart';
-import '../components/bottom_bar.dart';
 import '../mailbox_page/letter_content.dart';
 import '../theme/theme_bloc.dart';
 
@@ -45,7 +45,11 @@ class _ContactHistoryState extends State<ContactHistory> {
         future: getData(context),
         builder: (context, state) {
           if (!(state.connectionState == ConnectionState.done))
-            return Scaffold();
+            return const Scaffold(
+              body: Center(child: Text('Please wait a second', style: TextStyle(fontSize: 24,
+                      fontFamily: 'Bellota-Regular',
+                      fontWeight: FontWeight.bold),)),
+            );
           return Scaffold(
             body: Stack(children: [
               Container(
@@ -64,16 +68,15 @@ class _ContactHistoryState extends State<ContactHistory> {
                       Padding(padding: EdgeInsets.only(left: 15.w)),
                       IconButton(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return ContactHistory(
-                                  userId: BottomBar.userId,
-                                );
-                              },
-                            ),
-                          );
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) {
+                          //       return ContactPage();
+                          //     },
+                          //   ),
+                          // );
+                          Get.to('/contact', arguments: widget.userId);
                         },
                         icon: Icon(
                           Icons.arrow_back_ios_new,
@@ -270,8 +273,25 @@ class _ContactHistoryState extends State<ContactHistory> {
 
   Widget _floatButton(BuildContext context, ThemeCubit themeCubit) {
     return InkWell(
-        onTap: () {
-          context.go("/contact/history/write");
+        onTap: () async {
+          // context.go("/contact/history/write");
+          // String userName = await getWriterName(context, widget.userId!);
+          // print('$userName before going to WriteLetter()');
+          print(1);
+          Future.microtask(() {
+            print(2);
+            MaterialPageRoute(
+              builder: (context) {
+                print(3);
+                return WriteLetter(
+                  matcherId: widget.userId,
+                  matchedAccountId: widget.friendInfo!.id,
+                  time: DateTime.now(),
+                  name: widget.friendInfo!.name,
+                );
+              },
+            );
+          });
         },
         child: Container(
           decoration: BoxDecoration(

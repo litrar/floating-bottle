@@ -70,19 +70,18 @@ class PersonalPage extends StatelessWidget {
                         ),
                       ),
                       BlocBuilder<ProfileCubit, Profile>(
-                        builder: (context, state) {
-                          return Column(
-                            children: [
-                              _avatar(context, context.read()),
-                              _letterHistory(context),
-                              _messageBox(context),
-                              _settings(context, context.read()),
-                              _contact(context),
-                              _logoutButton(context)
-                            ],
-                          );
-                        }
-                      )
+                          builder: (context, state) {
+                        return Column(
+                          children: [
+                            _avatar(context, context.read()),
+                            _letterHistory(context),
+                            _messageBox(context),
+                            _settings(context, context.read()),
+                            _contact(context),
+                            _logoutButton(context)
+                          ],
+                        );
+                      })
                     ],
                   ),
                 );
@@ -108,24 +107,24 @@ class PersonalPage extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
-              Positioned(
-                right: -1,
-                bottom: -1,
-                child: Container(
-                  height: 25,
-                  width: 25,
-                  decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
-                  child: const InkWell(
-                    child: Icon(
-                      Icons.add_a_photo,
-                      size: 15.0,
-                      color: Color(0xFF404040),
-                    ),
-                  ),
-                ),
-              )
+              // Positioned(
+              //   right: -1,
+              //   bottom: -1,
+              //   child: Container(
+              //     height: 25,
+              //     width: 25,
+              //     decoration: const BoxDecoration(
+              //         color: Colors.white,
+              //         borderRadius: BorderRadius.all(Radius.circular(20))),
+              //     child: const InkWell(
+              //       child: Icon(
+              //         Icons.add_a_photo,
+              //         size: 15.0,
+              //         color: Color(0xFF404040),
+              //       ),
+              //     ),
+              //   ),
+              // )
             ],
           ),
           Column(
@@ -168,7 +167,7 @@ class PersonalPage extends StatelessWidget {
               Container(
                 padding: EdgeInsets.fromLTRB(10, 0, 0, 20.h),
                 child: Text(
-                  profile!.id.toString(),
+                  '#ID: ${profile!.id.toString()}',
                   style: TextStyle(
                     color: const Color.fromARGB(255, 99, 97, 97),
                     fontSize: 14.sp,
