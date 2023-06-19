@@ -31,7 +31,7 @@ class Profile extends Equatable {
   });
 
   Profile.fromJson(Map<String, dynamic> json)
-      : id = json['accId'] ?? "",
+      : id = json['accId']  ?? 3,
         email = json['address'] ?? "",
         name = json['name'],
         college = json['college'] ?? "",
@@ -39,9 +39,12 @@ class Profile extends Equatable {
         sex = json['sex'] ?? "",
         city = json['city'] ?? "",
         languages = (json['language']as List).cast(),
+        // languages = json['language'],
         personalities = (json['personality']as List).cast(),
+        // personalities = json['personality'],
         interests = (json['interest']as List).cast(),
-        age = json['age'] ?? "",
+        // interests = json['interest'],
+        age = json['age'] ?? 20,
         bdate = DateTime.tryParse(json['bdate'] ?? "");
 
   Future<FormData> toFormData() async {

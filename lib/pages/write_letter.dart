@@ -222,8 +222,9 @@ class _WriteLetterState extends State<WriteLetter> {
                 attType: ' null',
                 time: widget.time!));
             print(result);
-            Get.toNamed(SubPage.CONTACT.route.name,arguments: BottomBar.userId);
+            Get.toNamed('/contact_page${SubPage.CONTACT.route.name}',arguments: BottomBar.userId);
           },
+          ///Users/changninghsuan/vscode_workspace/DBMS_fbottle_new/lib/pages/contact_page/contact.dart
           child: Container(
               height: 40.h,
               width: MediaQuery.of(context).size.width * 0.3,

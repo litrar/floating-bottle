@@ -46,9 +46,14 @@ class _ContactHistoryState extends State<ContactHistory> {
         builder: (context, state) {
           if (!(state.connectionState == ConnectionState.done))
             return const Scaffold(
-              body: Center(child: Text('Please wait a second', style: TextStyle(fontSize: 24,
-                      fontFamily: 'Bellota-Regular',
-                      fontWeight: FontWeight.bold),)),
+              body: Center(
+                  child: Text(
+                'Please wait a second',
+                style: TextStyle(
+                    fontSize: 24,
+                    fontFamily: 'Bellota-Regular',
+                    fontWeight: FontWeight.bold),
+              )),
             );
           return Scaffold(
             body: Stack(children: [
@@ -76,7 +81,7 @@ class _ContactHistoryState extends State<ContactHistory> {
                           //     },
                           //   ),
                           // );
-                          Get.to('/contact', arguments: widget.userId);
+                          Navigator.pop(context);
                         },
                         icon: Icon(
                           Icons.arrow_back_ios_new,
@@ -277,19 +282,19 @@ class _ContactHistoryState extends State<ContactHistory> {
           // context.go("/contact/history/write");
           // String userName = await getWriterName(context, widget.userId!);
           // print('$userName before going to WriteLetter()');
-          print(1);
           Future.microtask(() {
-            print(2);
-            MaterialPageRoute(
-              builder: (context) {
-                print(3);
-                return WriteLetter(
-                  matcherId: widget.userId,
-                  matchedAccountId: widget.friendInfo!.id,
-                  time: DateTime.now(),
-                  name: widget.friendInfo!.name,
-                );
-              },
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return WriteLetter(
+                    matcherId: widget.userId,
+                    matchedAccountId: widget.friendInfo!.id,
+                    time: DateTime.now(),
+                    name: widget.friendInfo!.name,
+                  );
+                },
+              ),
             );
           });
         },
