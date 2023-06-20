@@ -8,7 +8,8 @@ import '../../controllers/account_detail_controller.dart';
 import '../subpage.dart';
 
 class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+  const Login({Key? key,this.accId}) : super(key: key);
+  final int? accId;
 
   @override
   State<Login> createState() => _LoginPageState();
