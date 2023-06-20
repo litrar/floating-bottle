@@ -78,11 +78,11 @@ class _MailBoxPageState extends State<MailBoxPage> {
                 .toList();
             final List<User> convertedLetters = letters.map((letter) =>
                 User(
-                  "assetsfolder/大頭照.jpg",
+                  "assetsfolder/bottle.png",
                   letter.matcherName,
                   Letter(
                     letter.matcherName,
-                    "assetsfolder/大頭照.jpg",
+                    "assetsfolder/bottle.png",
                     letter.content,
                   ),
                   "",
@@ -99,34 +99,6 @@ class _MailBoxPageState extends State<MailBoxPage> {
       print(e);
     }
   }
-
-
-  // Future<void> fetchNewLetters() async {
-  //   try {
-  //     final response = await _letterApi.getLetter(
-  //         letters[index].matcherId, letters[index].matchedAccountId);
-  //     if (response.isSuccess) {
-  //       final jsonData = response.data as List<dynamic>;
-  //       setState(() {
-  //         letters = jsonData
-  //             .map((json) => LetterGot.fromJson(json as Map<String, dynamic>))
-  //             .toList();
-  //         final List<User> convertedLetters = letters.map((letter) =>
-  //             User(
-  //                 "assetsfolder/大頭照.jpg", letters[index].matcherName, Letter(letters[index].matcherName, "assetsfolder/大頭照.jpg", letter.content), "",
-  //                 letters[index].time
-  //             )).toList();
-  //         widget.friend.friends.addAll(convertedLetters);
-  //       });
-  //     } else {
-  //       throw Exception('Failed to fetch letters');
-  //     }
-  //   } catch (e) {
-  //     // Handle error
-  //     print(e);
-  //   }
-  // }
-
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:floating_bottle/api/match.dart';
 import 'package:floating_bottle/pages/recreatable.dart';
 import 'package:floating_bottle/pages/subpage.dart';
 import 'package:flutter/material.dart';
@@ -218,20 +219,24 @@ class _WriteLetterState extends State<WriteLetter> {
         color: Colors.white.withOpacity(0.0),
         child: InkWell(
           onTap: () async {
+            MatchApi matchApi = context.read<MatchApi>();
             String imagePath = "";
             if (image != null) {
               imagePath = image!.path;
             }
+            if (await matchApi.insertUserPair(
+                widget.matcherId, widget.matchedAccountId!)) {
+              var letterApi = context.read<LetterApi>();
+              var result = await letterApi.sendLetter(LetterSent(
+                  image: imagePath,
+                  matcherId: widget.matcherId,
+                  matchedAccountId: widget.matchedAccountId!,
+                  topic: myController.text.split("\n")[0],
+                  content: myController.text,
+                  time: widget.time!));
+              print('$result成功了沒');
+            }
 
-            var letterApi = context.read<LetterApi>();
-            var result = await letterApi.sendLetter(LetterSent(
-                image: imagePath,
-                matcherId: widget.matcherId,
-                matchedAccountId: widget.matchedAccountId!,
-                topic: myController.text.split("\n")[0],
-                content: myController.text,
-                time: widget.time!));
-            print('$result成功了沒');
             Get.toNamed('${SubPage.CONTACT.route.name}',
                 arguments: BottomBar.userId);
           },

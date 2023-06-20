@@ -82,6 +82,9 @@ class _MatchApi implements MatchApi {
     var req = await _dio.post(
         "$baseUrl/api/Users/InsertUserPair/$userId1/$userId2",
         options: Options(headers: headers));
+    if (req.statusCode == 200) {
+      print('sucessfully inserted!');
+    }
     return req.statusCode == 200;
   }
 }
