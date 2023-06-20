@@ -4,16 +4,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../controllers/registeration_controller.dart';
 import 'gender.dart';
 
 class Information extends StatefulWidget {
-  const Information({Key? key}) : super(key: key);
-
+  const Information({Key? key,this.accId}) : super(key: key);
+  final int? accId;
   @override
   State<Information> createState() => _InformationState();
 }
 class _InformationState extends State<Information> {
   AccountDetailController accountDetailController = Get.put(AccountDetailController());
+  RegisterationController registerationController = Get.put(RegisterationController());
+
   late DateTime selectedDateTime;
   var imgUrl = "https://images.app.goo.gl/xE38wS6pmvP5RZwRA";
 
@@ -41,7 +44,7 @@ class _InformationState extends State<Information> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return const Gender();
+                              return Gender(accId: widget.accId,);
                             },
                           ),
                         );
@@ -232,18 +235,20 @@ class _InformationState extends State<Information> {
             )
         ),
         onPressed: () async {
-          // accountDetailController.accountDetailWithData();
           print(accountDetailController.schoolController);
           print(accountDetailController.cityController);
           print(accountDetailController.birthDateController);
+          int accId = await accountDetailController.accountDetailWithData();
+          // int accId = 11;
           Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) {
-                return const Gender();
+                return Gender(accId: accId,);
               },
             ),
           );
+
         },
         child: Text("Continue",style: TextStyle(
             fontSize: 20.sp,color: Colors.white

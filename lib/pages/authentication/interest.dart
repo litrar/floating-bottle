@@ -7,7 +7,8 @@ import 'button1.dart';
 import 'gender.dart';
 
 class Interest extends StatefulWidget {
-  const Interest({Key? key}) : super(key: key);
+  const Interest({Key? key,this.accId}) : super(key: key);
+  final int? accId;
   @override
   State<Interest> createState() => _InterestState();
 }
@@ -77,7 +78,7 @@ class _InterestState extends State<Interest> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return const Personality();
+                              return Personality(accId: widget.accId,);
                             },
                           ),
                         );
@@ -211,20 +212,42 @@ class _InterestState extends State<Interest> {
       child: Material(
         color: Colors.white.withOpacity(0.0),
         child: InkWell(
+            // onTap: () async {
+            //  if(accountDetailController.selectedInterests.isNotEmpty){
+            //    print(accountDetailController.selectedInterests);
+            //
+            //    Navigator.push(
+            //      context,
+            //      MaterialPageRoute(
+            //        builder: (context) {
+            //          return Personality(accId: widget.accId,);
+            //        },
+            //      ),
+            //    );
+            //    await accountDetailController.accountDetailWithData();
+            //  }
+            // },
             onTap: () async {
-             if(accountDetailController.selectedInterests.isNotEmpty){
-               await accountDetailController.accountDetailWithData();
-               print(accountDetailController.selectedInterests);
-               Navigator.push(
-                 context,
-                 MaterialPageRoute(
-                   builder: (context) {
-                     return const Personality();
-                   },
-                 ),
-               );
-             }
+              if (accountDetailController.selectedInterests.isNotEmpty) {
+                print(accountDetailController.selectedInterests);
+
+                try {
+                  await accountDetailController.accountDetailWithData();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return Personality(accId: widget.accId);
+                      },
+                    ),
+                  );
+                } catch (e) {
+                  print(e);
+                  // Handle the error as needed
+                }
+              }
             },
+
             child: Container(
               alignment: Alignment.center,
               child: const Text("Continue",

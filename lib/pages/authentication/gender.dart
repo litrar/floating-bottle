@@ -7,7 +7,8 @@ import 'information.dart';
 import 'interest.dart';
 
 class Gender extends StatefulWidget {
-  const Gender({Key? key}) : super(key: key);
+  const Gender({Key? key,this.accId}) : super(key: key);
+  final int? accId;
 
   @override
   State<Gender> createState() => _GenderState();
@@ -54,7 +55,7 @@ class _GenderState extends State<Gender> {
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return const Interest();
+                                return Interest(accId: widget.accId,);
                               },
                             ),
                           );
@@ -159,11 +160,12 @@ class _GenderState extends State<Gender> {
               cpressed = !cpressed;
             });
             if(accountDetailController.selectedSex.isNotEmpty){
+              // int accId = 11;
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return const Interest();
+                    return Interest(accId: widget.accId,);
                   },
                 ),
               );
