@@ -61,10 +61,7 @@ class _LogoutState extends State<Logout> {
                                     )
                                 ),
                                 onPressed: () {
-                                  Get.to(Login.route);
-                                  // context.go(
-                                  //   Login.route.,
-                                  // );
+                                  Get.offAll(() => Login());
                                 },
                                 child: Text("Yes", style: TextStyle(
                                     fontSize: 22.sp,color: Colors.white,fontFamily: 'Bellota-Regular'
