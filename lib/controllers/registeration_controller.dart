@@ -32,7 +32,6 @@ class RegisterationController extends GetxController{
           url,
           body: jsonEncode(body),
           headers: headers);
-
       print(response.statusCode);
       print(response.body);
       if(response.statusCode == 200){
@@ -42,16 +41,17 @@ class RegisterationController extends GetxController{
           var token = json['data']['Token'];
           print(token);
           final SharedPreferences prefs = await _prefs;
-          await prefs.setInt("accId", json["data"]["accId"]);
+          await prefs.setInt("accId", json["data"]["AccId"]);
           await prefs.setString('token', token);
           nameController.clear();
           emailController.clear();
           passwordController.clear();
           confirmPasswordController.clear();
           // Get.off(Information());
-          return json["data"]["accId"];
+          accId = json["data"]["AccId"];
+          return accId;
         }else{
-          throw jsonDecode(response.body)["message"] ?? "Unknown Error Occured";
+          // throw jsonDecode(response.body)["message"] ?? "Unknown Error Occured";
         }
       }else{
         throw jsonDecode(response.body)["Message"] ?? "Unknown Error Occured";
