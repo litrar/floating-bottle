@@ -14,7 +14,7 @@ class AccountDetailController extends GetxController {
   RegisterationController registerationController = Get.put(RegisterationController());
   final _dio = dio.Dio()
   ..interceptors.add(dio.LogInterceptor(requestBody: true,responseBody: true));
-  int accId = 11;
+  int accId = 7;
   TextEditingController schoolController = TextEditingController();
   TextEditingController cityController = TextEditingController();
   TextEditingController birthDateController = TextEditingController();
@@ -45,7 +45,7 @@ class AccountDetailController extends GetxController {
       // var accId = registerationController.accId;
       json["AccId"] = accId;
       // print(json);
-      accId =11;
+      accId =7;
       var res = await _dio.post(
         ApiEndPoints.baseUrl + ApiEndPoints.authEndpoints.accountDetail,
         data: dio.FormData.fromMap(json),
