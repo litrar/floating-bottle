@@ -270,7 +270,7 @@ class _RegistrationState extends State<Registration> {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return const Information();
+                    return Information(accId: accId,);
                   },
                 ),
               );
@@ -279,7 +279,7 @@ class _RegistrationState extends State<Registration> {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return const Information();
+                    return Information();
                   },
                 ),
               );
