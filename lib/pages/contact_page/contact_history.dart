@@ -25,7 +25,7 @@ class _ContactHistoryState extends State<ContactHistory> {
 
   Future<void> getData(BuildContext context) async {
     LetterApi letterApi = context.read();
-    var res = await letterApi.getLetter(widget.userId!, widget.friendInfo!.id);
+    var res = await letterApi.getLetter(widget.userId, widget.friendInfo!.id);
     if (res.isSuccess) letterList = res.data;
   }
 
