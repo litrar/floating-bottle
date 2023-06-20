@@ -10,7 +10,7 @@ import '../../api/match.dart';
 import '../write_letter.dart';
 
 class MatchResultPage extends StatefulWidget {
-  MatchResultPage({super.key, this.matchedUsers,  int? userId});
+  MatchResultPage({super.key, this.matchedUsers, int? userId});
   List<MatchedUserInfo>? matchedUsers;
   int? userId = BottomBar.userId;
   @override
@@ -66,68 +66,67 @@ class _MatchResultPageState extends State<MatchResultPage> {
   @override
   Widget build(BuildContext _context) {
     return FutureBuilder(
-      future: getProfile(context),
-      builder: (context, snapshot) {
-        return BlocProvider(
-          lazy: true,
-          //跟後端說 filter一定要有match到人
-          create: (_) => SelectedUsersCubit(widget.matchedUsers!),
-          child: Builder(builder: (context) {
-            return Scaffold(
-              body: Stack(children: [
-                Container(
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("assetsfolder/match_background.jpg"),
-                      fit: BoxFit.cover,
+        future: getProfile(context),
+        builder: (context, snapshot) {
+          return BlocProvider(
+            lazy: true,
+            //跟後端說 filter一定要有match到人
+            create: (_) => SelectedUsersCubit(widget.matchedUsers!),
+            child: Builder(builder: (context) {
+              return Scaffold(
+                body: Stack(children: [
+                  Container(
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("assetsfolder/match_background.jpg"),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
-                ),
-                SafeArea(
-                    child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Padding(padding: EdgeInsets.only(left: 15.w)),
-                        IconButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return MatchPage();
-                                },
-                              ),
-                            );
-                          },
-                          icon: Icon(
-                            Icons.arrow_back_ios_new,
-                            color: Colors.white,
-                            size: 35.sp,
+                  SafeArea(
+                      child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Padding(padding: EdgeInsets.only(left: 15.w)),
+                          IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return MatchPage();
+                                  },
+                                ),
+                              );
+                            },
+                            icon: Icon(
+                              Icons.arrow_back_ios_new,
+                              color: Colors.white,
+                              size: 35.sp,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                    _title(context),
-                    SizedBox(
-                      height: 30.h,
-                    ),
-                    BlocBuilder<SelectedUsersCubit, List<MatchedUserInfo>>(
-                        builder: (context, state) {
-                      return Column(children: [
-                        for (var user in widget.matchedUsers!)
-                          _matchedUser(context.read(), context, user)
-                      ]);
-                    }),
-                    _continueButton(context),
-                  ],
-                ))
-              ]),
-            );
-          }),
-        );
-      }
-    );
+                        ],
+                      ),
+                      _title(context),
+                      SizedBox(
+                        height: 30.h,
+                      ),
+                      BlocBuilder<SelectedUsersCubit, List<MatchedUserInfo>>(
+                          builder: (context, state) {
+                        return Column(children: [
+                          for (var user in widget.matchedUsers!)
+                            _matchedUser(context.read(), context, user)
+                        ]);
+                      }),
+                      _continueButton(context),
+                    ],
+                  ))
+                ]),
+              );
+            }),
+          );
+        });
   }
 
   Container _title(BuildContext context) {
@@ -163,12 +162,8 @@ class _MatchResultPageState extends State<MatchResultPage> {
         color: Colors.white.withOpacity(0.0),
         child: InkWell(
           onTap: () {
-            print(user.isSelected);
-            print(user.name);
             cubit.set_selected(user.id, !user.isSelected);
-            //下面的user應該是widget build裡面的users的，無法更動的isSelected = false;
-            print(user.isSelected);
-            if (user.isSelected == false) {
+            if (user.isSelected == true) {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => ContactDetailPage(user: user),
@@ -212,60 +207,52 @@ class _MatchResultPageState extends State<MatchResultPage> {
   }
 
   Widget _continueButton(BuildContext context) {
-          return BlocBuilder<SelectedUsersCubit, List<MatchedUserInfo>>(
-              builder: (context, state) {
-            SelectedUsersCubit cubit = context.read();
-            MatchedUserInfo? selected = cubit.getSelect();
-            MatchApi matchApi = context.read();
+    return BlocBuilder<SelectedUsersCubit, List<MatchedUserInfo>>(
+        builder: (context, state) {
+      SelectedUsersCubit cubit = context.read();
+      MatchedUserInfo? selected = cubit.getSelect();
+      MatchApi matchApi = context.read();
 
-            return InkWell(
-                onTap: () async {
-                  print("tapped");
-                  if (selected != null) {
-                    print("selected");
-                    if (await matchApi.insertUserPair(
-                        widget.userId!, selected!.id)) {
-                      Future.microtask(() {
-                        Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return WriteLetter(
-                                matcherId: widget.userId!,
-                                matchedAccountId: selected.id,
-                                time: DateTime.now(),
-                                name: matcherInfo!.name);
-                          },
-                        ),
-                      );
-
-                      });
-                      
-                    }
-                  }
-                },
-                child: Container(
-                  margin: EdgeInsets.only(
-                    top: 90.h,
+      return InkWell(
+          onTap: () async {
+            if (selected != null) {
+              Future.microtask(() {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return WriteLetter(
+                          matcherId: widget.userId!,
+                          matchedAccountId: selected.id,
+                          time: DateTime.now(),
+                          name: selected.name);
+                    },
                   ),
-                  height: 55.h,
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  decoration: !(selected == null)
-                      // selected?.isSelected ?? false
-                      ? BoxDecoration(
-                          color: const Color.fromARGB(255, 86, 140, 167),
-                          borderRadius: BorderRadius.circular(35))
-                      : BoxDecoration(
-                          color: const Color.fromARGB(255, 152, 169, 189),
-                          borderRadius: BorderRadius.circular(35)),
-                  alignment: Alignment.center,
-                  child: const Text("Send a letter",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold)),
-                ));
-          });
-        
+                );
+              });
+            }
+          },
+          child: Container(
+            margin: EdgeInsets.only(
+              top: 90.h,
+            ),
+            height: 55.h,
+            width: MediaQuery.of(context).size.width * 0.8,
+            decoration: !(selected == null)
+                // selected?.isSelected ?? false
+                ? BoxDecoration(
+                    color: const Color.fromARGB(255, 86, 140, 167),
+                    borderRadius: BorderRadius.circular(35))
+                : BoxDecoration(
+                    color: const Color.fromARGB(255, 152, 169, 189),
+                    borderRadius: BorderRadius.circular(35)),
+            alignment: Alignment.center,
+            child: const Text("Send a letter",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold)),
+          ));
+    });
   }
 }
