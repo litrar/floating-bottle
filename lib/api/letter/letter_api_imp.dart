@@ -29,10 +29,21 @@ class _LetterApi implements LetterApi {
   }
 
   @override
-  Future<bool> sendLetter(LetterSent data) async{
+  Future<bool> sendLetter(LetterSent l) async{
     var res = await _dio.post("$baseUrl/api/Letter/SendLetter",
-        data: await data.toData(),
-        options: Options(headers: {'ngrok-skip-browser-warning': 'true','Content-Type': 'multipart/form-data',},));
+        data:{
+          // 'letterId': l.getLetterId(),
+          // 'matchId': l.getMatchId(),
+          'topic': l.getTopic(),
+          'content': l.getContent(),
+          'time': l.getTime(),
+          // 'att': l.getImage(),
+          'matcherId': l.getmatcherId(),
+          'matcherName': l.getMatcherName(),
+          'matchedAccountId': l.getMatchedAccId(),
+          'matchedAccName': l.getMatchedAccName()
+        },
+        options: Options(headers: {'ngrok-skip-browser-warning': 'true'},));
     return res.statusCode == 200;
   }
   

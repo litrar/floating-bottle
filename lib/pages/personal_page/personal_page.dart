@@ -51,7 +51,16 @@ class PersonalPage extends StatelessWidget {
         future: getProfile(context),
         builder: (context, snapshot) {
           if (!(snapshot.connectionState == ConnectionState.done)) {
-            return const Scaffold();
+            return const Scaffold(
+              body: Center(
+                  child: Text(
+                'Please wait a second',
+                style: TextStyle(
+                    fontSize: 24,
+                    fontFamily: 'Bellota-Regular',
+                    fontWeight: FontWeight.bold),
+              )),
+            );
           }
           return BlocProvider(
               create: (_) => ProfileCubit(profile!),

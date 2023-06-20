@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:floating_bottle/pages/recreatable.dart';
 import 'package:floating_bottle/pages/subpage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -93,13 +94,13 @@ class _WriteLetterState extends State<WriteLetter> {
     );
   }
 
-  Future getImage(ImageSource media) async {
-    var img = await picker.pickImage(source: media);
+  // Future getImage(ImageSource media) async {
+  //   var img = await picker.pickImage(source: media);
 
-    setState(() {
-      image = img;
-    });
-  }
+  //   setState(() {
+  //     image = img;
+  //   });
+  // }
 
   Widget _avatar(BuildContext context) {
     return Container(
@@ -143,7 +144,7 @@ class _WriteLetterState extends State<WriteLetter> {
             IconButton(
               onPressed: () async {
                 XFile? x = await picker.pickImage(source: ImageSource.gallery);
-
+                if (x == null) return;
                 setState(() {
                   image = x;
                 });
@@ -219,7 +220,7 @@ class _WriteLetterState extends State<WriteLetter> {
                 matchedAccountId: widget.matchedAccountId!,
                 topic: myController.text.split("\n")[0],
                 content: myController.text,
-                attType: ' null',
+                // image: image!.path,
                 time: widget.time!));
             print(result);
             Get.toNamed('/contact_page${SubPage.CONTACT.route.name}',arguments: BottomBar.userId);
