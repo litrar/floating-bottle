@@ -150,14 +150,14 @@ class _ContactPageState extends State<ContactPage>
                         Column(
                           children: [
                             Padding(padding: EdgeInsets.only(top: 10.h)),
-                            Expanded(child: _listView(context, friendInfoList)),
+                            Expanded(child: _listView(context, friendInfoList, false)),
                           ],
                         ),
                         Column(
                           children: [
                             Padding(padding: EdgeInsets.only(top: 10.h)),
                             Expanded(
-                                child: _listView(context, pendingInfoList)),
+                                child: _listView(context, pendingInfoList, true)),
                           ],
                         ),
                       ],
@@ -186,7 +186,7 @@ class _ContactPageState extends State<ContactPage>
     );
   }
 
-  Widget _listView(BuildContext context, List<MatchedUserInfo> users) {
+  Widget _listView(BuildContext context, List<MatchedUserInfo> users, bool pendingOrNot) {
     return ListView(
       children: [
         for (var u in users)
@@ -200,7 +200,7 @@ class _ContactPageState extends State<ContactPage>
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return ContactHistory(friendInfo: u, userId: userId);
+                          return ContactHistory(friendInfo: u, userId: userId, pendingOrNot: pendingOrNot,);
                         },
                       ),
                     );

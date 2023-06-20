@@ -216,20 +216,24 @@ class _MatchResultPageState extends State<MatchResultPage> {
       return InkWell(
           onTap: () async {
             if (selected != null) {
-              Future.microtask(() {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return WriteLetter(
+              if (await matchApi.insertUserPair(widget.userId!, selected.id)) {
+                Future.microtask(() {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return WriteLetter(
                           matcherId: widget.userId!,
                           matchedAccountId: selected.id,
                           time: DateTime.now(),
-                          name: selected.name);
-                    },
-                  ),
-                );
-              });
+                          name: selected.name,
+                          replyToPending: false,
+                        );
+                      },
+                    ),
+                  );
+                });
+              }
             }
           },
           child: Container(

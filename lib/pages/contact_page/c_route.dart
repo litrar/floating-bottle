@@ -10,11 +10,11 @@ final c_route = GetPage(
   children: [
     GetPage(
       name: "/contact/history",
-      page: () => ContactHistory(userId: BottomBar.userId!,),
+      page: () => ContactHistory(userId: BottomBar.userId!, pendingOrNot: false,),
       children: [
         GetPage(
           name: "/contact/history/write",
-          page: () => WriteLetter(matcherId:BottomBar.userId!),
+          page: () => WriteLetter(matcherId:BottomBar.userId!, replyToPending: false,),
         ),
       ],
     ),

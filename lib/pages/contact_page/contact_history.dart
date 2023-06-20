@@ -11,9 +11,10 @@ import '../mailbox_page/letter_content.dart';
 import '../theme/theme_bloc.dart';
 
 class ContactHistory extends StatefulWidget {
-  ContactHistory({super.key, this.friendInfo, required this.userId});
+  ContactHistory({super.key, this.friendInfo, required this.userId, required this.pendingOrNot});
   int userId;
   MatchedUserInfo? friendInfo;
+  bool pendingOrNot;
 
   @override
   State<ContactHistory> createState() => _ContactHistoryState();
@@ -101,7 +102,7 @@ class _ContactHistoryState extends State<ContactHistory> {
                 ],
               ))
             ]),
-            floatingActionButton: _floatButton(context, themeCubit),
+            floatingActionButton: _floatButton(context, themeCubit, widget.pendingOrNot),
           );
         });
   }
@@ -276,7 +277,8 @@ class _ContactHistoryState extends State<ContactHistory> {
     );
   }
 
-  Widget _floatButton(BuildContext context, ThemeCubit themeCubit) {
+  Widget _floatButton(
+      BuildContext context, ThemeCubit themeCubit, bool pedingOrNot) {
     return InkWell(
         onTap: () async {
           // context.go("/contact/history/write");
@@ -293,6 +295,7 @@ class _ContactHistoryState extends State<ContactHistory> {
                     matchedAccountId: widget.friendInfo!.id,
                     time: DateTime.now(),
                     name: widget.friendInfo!.name,
+                    replyToPending: pedingOrNot,
                   );
                 },
               ),

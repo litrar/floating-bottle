@@ -165,7 +165,8 @@ class _LetterContentState extends State<LetterContent> {
                             matcherId: widget.matcherId,
                             matchedAccountId: widget.matchedAccountId,
                             time: widget.time,
-                            name: widget.name,);
+                            name: widget.name,
+                            replyToPending: false,);
                         },
                       ),
                     );

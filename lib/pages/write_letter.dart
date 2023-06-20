@@ -16,7 +16,8 @@ class WriteLetter extends StatefulWidget {
       required this.matcherId,
       this.matchedAccountId,
       this.time,
-      this.name})
+      this.name,
+      required this.replyToPending})
       : super(key: key);
   @override
   State<StatefulWidget> createState() => _WriteLetterState();
@@ -24,6 +25,7 @@ class WriteLetter extends StatefulWidget {
   int? matchedAccountId;
   DateTime? time;
   String? name;
+  bool replyToPending = false;
 }
 
 class _WriteLetterState extends State<WriteLetter> {
@@ -224,9 +226,11 @@ class _WriteLetterState extends State<WriteLetter> {
             if (image != null) {
               imagePath = image!.path;
             }
-            if (await matchApi.insertUserPair(
-                widget.matcherId, widget.matchedAccountId!)) {
-              var letterApi = context.read<LetterApi>();
+            if(widget.replyToPending){
+              await matchApi.insertUserPair(
+                widget.matcherId, widget.matchedAccountId!);
+            }            
+            var letterApi = context.read<LetterApi>();
               var result = await letterApi.sendLetter(LetterSent(
                   image: imagePath,
                   matcherId: widget.matcherId,
@@ -235,7 +239,6 @@ class _WriteLetterState extends State<WriteLetter> {
                   content: myController.text,
                   time: widget.time!));
               print('$result成功了沒');
-            }
 
             Get.toNamed('${SubPage.CONTACT.route.name}',
                 arguments: BottomBar.userId);
