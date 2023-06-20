@@ -10,6 +10,8 @@ class SearchBarDelegate extends SearchDelegate<String> {
   late bool flag = false;
   AccountDetailController accountDetailController = Get.put(AccountDetailController());
 
+  SearchBarDelegate(int? accId);
+
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
@@ -30,12 +32,12 @@ class SearchBarDelegate extends SearchDelegate<String> {
 
   @override
   Widget buildResults(BuildContext context) {
-    return LanguageLevelResult(item: query);
+    return LanguageLevelResult(item: query,accId: accountDetailController.accId,);
   }
   void showResults(BuildContext context){
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => LanguageLevelResult(item: query),
+        builder: (context) => LanguageLevelResult(item: query,accId: accountDetailController.accId,),
       ),
     );
     // super.showResults(context);
