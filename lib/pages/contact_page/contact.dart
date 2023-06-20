@@ -216,7 +216,7 @@ class _ContactPageState extends State<ContactPage>
                       CircleAvatar(
                         radius: 25.w,
                         backgroundColor: Colors.grey,
-                        backgroundImage: AssetImage("assetsfolder/大頭照.jpg"),
+                        backgroundImage: AssetImage("assetsfolder/bottle.png"),
                       ),
                       SizedBox(
                         width: 20.w,

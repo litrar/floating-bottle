@@ -11,8 +11,8 @@ import '../mailbox_page/letter_content.dart';
 import '../theme/theme_bloc.dart';
 
 class ContactHistory extends StatefulWidget {
-  ContactHistory({super.key, this.friendInfo, this.userId});
-  int? userId;
+  ContactHistory({super.key, this.friendInfo, required this.userId});
+  int userId;
   MatchedUserInfo? friendInfo;
 
   @override
@@ -118,7 +118,7 @@ class _ContactHistoryState extends State<ContactHistory> {
           children: [
             ClipOval(
               child: Image.asset(
-                "assetsfolder/friend1.jpg",
+                "assetsfolder/bottle.png",
                 width: 60.w,
                 height: 60.h,
                 fit: BoxFit.cover,
@@ -170,10 +170,10 @@ class _ContactHistoryState extends State<ContactHistory> {
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) => LetterContent(
-                                  matcherId: widget.userId!,
+                                  matcherId: widget.userId,
                                   matchedAccountId: l.matchedAccountId,
                                   name: l.matcherName,
-                                  picture: "assetsfolder/friend1.jpg",
+                                  picture: "assetsfolder/bottle.png",
                                   content: l.content,
                                   letterId: l.letterId,
                                   time: l.time,
@@ -191,7 +191,7 @@ class _ContactHistoryState extends State<ContactHistory> {
                             child: Row(children: [
                               ClipOval(
                                 child: Image.asset(
-                                  "assetsfolder/friend1.jpg",
+                                  "assetsfolder/bottle.png",
                                   width: 50.w,
                                   height: 50.h,
                                   fit: BoxFit.cover,
@@ -220,7 +220,7 @@ class _ContactHistoryState extends State<ContactHistory> {
                                       Row(
                                         children: [
                                           SizedBox(
-                                            width: 140.w,
+                                            width: 120.w,
                                           ),
                                           Text(
                                             DateFormat('yyyy/M/d')
@@ -281,7 +281,8 @@ class _ContactHistoryState extends State<ContactHistory> {
         onTap: () async {
           // context.go("/contact/history/write");
           // String userName = await getWriterName(context, widget.userId!);
-          // print('$userName before going to WriteLetter()');
+          print('${widget.userId} before going to WriteLetter()');
+          print('${widget.friendInfo!.id} before going to WriteLetter()');
           Future.microtask(() {
             Navigator.push(
               context,

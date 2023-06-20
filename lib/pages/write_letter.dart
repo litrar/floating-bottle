@@ -11,11 +11,15 @@ import 'components/bottom_bar.dart';
 
 class WriteLetter extends StatefulWidget {
   WriteLetter(
-      {Key? key, this.matcherId, this.matchedAccountId, this.time, this.name})
+      {Key? key,
+      required this.matcherId,
+      this.matchedAccountId,
+      this.time,
+      this.name})
       : super(key: key);
   @override
   State<StatefulWidget> createState() => _WriteLetterState();
-  int? matcherId;
+  int matcherId;
   int? matchedAccountId;
   DateTime? time;
   String? name;
@@ -113,7 +117,7 @@ class _WriteLetterState extends State<WriteLetter> {
             children: [
               ClipOval(
                 child: Image.asset(
-                  'assetsfolder/friend1.jpg',
+                  'assetsfolder/bottle.png',
                   width: 50.w,
                   height: 50.h,
                   fit: BoxFit.cover,
@@ -214,18 +218,23 @@ class _WriteLetterState extends State<WriteLetter> {
         color: Colors.white.withOpacity(0.0),
         child: InkWell(
           onTap: () async {
+            String imagePath = "";
+            if (image != null) {
+              imagePath = image!.path;
+            }
+
             var letterApi = context.read<LetterApi>();
             var result = await letterApi.sendLetter(LetterSent(
-                matcherId: widget.matcherId!,
+                image: imagePath,
+                matcherId: widget.matcherId,
                 matchedAccountId: widget.matchedAccountId!,
                 topic: myController.text.split("\n")[0],
                 content: myController.text,
-                // image: image!.path,
                 time: widget.time!));
-            print(result);
-            Get.toNamed('/contact_page${SubPage.CONTACT.route.name}',arguments: BottomBar.userId);
+            print('$result成功了沒');
+            Get.toNamed('${SubPage.CONTACT.route.name}',
+                arguments: BottomBar.userId);
           },
-          ///Users/changninghsuan/vscode_workspace/DBMS_fbottle_new/lib/pages/contact_page/contact.dart
           child: Container(
               height: 40.h,
               width: MediaQuery.of(context).size.width * 0.3,
@@ -256,6 +265,8 @@ class _WriteLetterState extends State<WriteLetter> {
         child: InkWell(
           onTap: () {
             text = myController.text;
+            print(widget.matcherId);
+            print(widget.matchedAccountId);
           },
           child: Container(
               height: 40.h,

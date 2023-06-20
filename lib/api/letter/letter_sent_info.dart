@@ -40,13 +40,13 @@ class LetterSent {
     });
   }
 
-  int getLetterId() {
-    return letterId!;
-  }
+  // int getLetterId() {
+  //   return letterId!;
+  // }
 
-  int getMatchId() {
-    return matchId!;
-  }
+  // int getMatchId() {
+  //   return matchId!;
+  // }
 
   String getTopic() {
     return topic;
@@ -61,6 +61,9 @@ class LetterSent {
   }
 
   String getImage() {
+    if(image == null) {
+      return "";
+    }
     return image!;
   }
 
@@ -77,7 +80,7 @@ class LetterSent {
   }
 
   int getMatchedAccId() {
-    return matcherId;
+    return matchedAccountId;
   }
 
   String getMatchedAccName() {

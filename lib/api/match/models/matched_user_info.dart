@@ -36,6 +36,6 @@ class MatchedUserInfo {
         // avatar = json['avatar'],
         personalities = (json['personality'] as List).cast(),
         interests = (json['interest']as List).cast(),
-        avatar = json["avatar"] ?? 'assetsfolder/friend1.jpg',
+        avatar = json["avatar"] ?? 'assetsfolder/bottle.png',
         isSelected = false;
 }

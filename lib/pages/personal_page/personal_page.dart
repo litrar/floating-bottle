@@ -110,7 +110,7 @@ class PersonalPage extends StatelessWidget {
             children: [
               ClipOval(
                 child: Image.asset(
-                  "assetsfolder/avatar.jpg",
+                  "assetsfolder/bottle.png",
                   width: 100,
                   height: 100,
                   fit: BoxFit.cover,

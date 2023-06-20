@@ -58,7 +58,7 @@ class _ContactDetailPageState extends State<ContactDetailPage> {
       children: [
         ClipOval(
           child: Image.asset(
-            "assetsfolder/friend1.jpg",
+            "assetsfolder/bottle.png",
             width: 120.w,
             height: 120.h,
             fit: BoxFit.cover,

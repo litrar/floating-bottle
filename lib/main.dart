@@ -78,7 +78,9 @@ import 'package:dio/dio.dart';
 import 'package:floating_bottle/api/match/models/filter_fillout_data.dart';
 import 'package:floating_bottle/api/user.dart';
 import 'package:floating_bottle/pages/authentication/login.dart';
+import 'package:floating_bottle/pages/components/bottom_bar.dart';
 import 'package:floating_bottle/pages/components/error_page.dart';
+import 'package:floating_bottle/pages/contact_page/contact.dart';
 import 'package:floating_bottle/pages/match_page/match.dart';
 import 'package:floating_bottle/pages/personal_page/personal_page.dart';
 import 'package:floating_bottle/pages/subpage.dart';
@@ -115,7 +117,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: Login.route.name, page: () => Login()),
         for (var page in SubPage.PAGES)
-          GetPage(name: page.route.name, page: () => MatchPage())
+          GetPage(name: page.route.name, page: () => ContactPage(), arguments: BottomBar.userId)
       ],
       unknownRoute: GetPage(
         name: '/error',
