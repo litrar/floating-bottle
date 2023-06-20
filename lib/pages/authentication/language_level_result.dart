@@ -9,10 +9,10 @@ import '../../controllers/account_detail_controller.dart';
 import 'login.dart';
 
 class LanguageLevelResult extends StatefulWidget {
-  const LanguageLevelResult({Key? key, required this.item})
+  const LanguageLevelResult({Key? key, required this.item,this.accId})
       : super(key: key);
   final String item;
-
+  final int? accId;
   @override
   State<LanguageLevelResult> createState() => _LanguageLevelResultState();
 }
@@ -20,6 +20,7 @@ class LanguageLevelResult extends StatefulWidget {
 class _LanguageLevelResultState extends State<LanguageLevelResult> {
   RegisterationController registerationController = Get.put(RegisterationController());
   AccountDetailController accountDetailController = Get.put(AccountDetailController());
+  @override
   Widget build(BuildContext context) {
     widget.item;
     return Scaffold(
@@ -62,7 +63,7 @@ class _LanguageLevelResultState extends State<LanguageLevelResult> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return LanguageLevelResult(item: "${widget.item}");
+                            return LanguageLevelResult(item: widget.item);
                           },
                         ),
                       );
@@ -115,7 +116,7 @@ class _LanguageLevelResultState extends State<LanguageLevelResult> {
                 ),
                 onTap: () {
                   //跳轉頁面
-                  showSearch(context: context, delegate: SearchBarDelegate());
+                  showSearch(context: context, delegate: SearchBarDelegate(widget.accId));
                 },
               ),
             ),
@@ -129,7 +130,7 @@ class _LanguageLevelResultState extends State<LanguageLevelResult> {
                   child: Column(
                     children: [
                       Text(
-                        "${widget.item}",
+                        widget.item,
                         style: TextStyle(
                             fontSize: 20.sp, fontWeight: FontWeight.bold),
                       )
@@ -155,18 +156,37 @@ class _LanguageLevelResultState extends State<LanguageLevelResult> {
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(55)))),
+        // onPressed: () async {
+        //   await accountDetailController.accountDetailWithData();
+        //   // registerationController.registerWithEmail();
+        //   Navigator.push(
+        //     context,
+        //     MaterialPageRoute(
+        //       builder: (context) {
+        //         return Login(accId: widget.accId,);
+        //       },
+        //     ),
+        //   );
+        // },
         onPressed: () async {
-          await accountDetailController.accountDetailWithData();
-          // registerationController.registerWithEmail();
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) {
-                return Login();
-              },
-            ),
-          );
+          try {
+            await accountDetailController.accountDetailWithData();
+            // registerationController.registerWithEmail();
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return Login(accId: widget.accId);
+                },
+              ),
+            );
+          } catch (e) {
+            // Handle the exception here
+            print('Error during accountDetailWithData: $e');
+            // Show an error message or perform any other necessary actions
+          }
         },
+
         child: Text(
           "Start",
           style: TextStyle(fontSize: 20.sp, color: Colors.white),

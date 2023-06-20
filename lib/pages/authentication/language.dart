@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Language extends StatefulWidget {
-  const Language({Key? key}) : super(key: key);
-
+  const Language({Key? key,this.accId}) : super(key: key);
+  final int? accId;
 
   @override
   State<Language> createState() => _LanguageState();
@@ -89,7 +89,7 @@ class _LanguageState extends State<Language> {
                     ),
                     onTap: (){
                       //跳轉頁面
-                      showSearch(context: context,delegate: SearchBarDelegate());
+                      showSearch(context: context,delegate: SearchBarDelegate(widget.accId));
                     },
                   ),
                 ),

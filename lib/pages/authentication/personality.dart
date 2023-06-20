@@ -8,7 +8,8 @@ import '../../controllers/account_detail_controller.dart';
 
 
 class Personality extends StatefulWidget {
-  const Personality({Key? key}) : super(key: key);
+  const Personality({Key? key,this.accId}) : super(key: key);
+  final int? accId;
   @override
   State<Personality> createState() => _PersonalityState();
 }
@@ -78,7 +79,7 @@ class _PersonalityState extends State<Personality> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return const Language();
+                              return Language(accId: widget.accId,);
                             },
                           ),
                         );
@@ -214,16 +215,16 @@ class _PersonalityState extends State<Personality> {
         child: InkWell(
             onTap: () async {
               if(accountDetailController.selectedPersonality.isNotEmpty){
-                await accountDetailController.accountDetailWithData();
                 print(accountDetailController.selectedPersonality);
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return const Language();
+                      return Language(accId: widget.accId,);
                     },
                   ),
                 );
+                await accountDetailController.accountDetailWithData();
               }
             },
             child: Container(
