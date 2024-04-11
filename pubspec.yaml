@@ -38,8 +38,8 @@ dependencies:
   flutter_bloc: ^8.1.1
   go_router: ^6.0.6
   flutter_screenutil: ^5.0.1
-  cached_network_image:
-  image_picker: ^0.8.3
+  cached_network_image: ^3.3.1
+  image_picker: 1.0.7
   http: ^0.13.4
   get: ^4.6.1
   shared_preferences: ^2.0.15

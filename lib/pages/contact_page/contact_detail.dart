@@ -52,36 +52,35 @@ class _ContactDetailPageState extends State<ContactDetailPage> {
   }
 
   Widget _avatarBar(BuildContext context) {
-    return Container(
-        child: Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        ClipOval(
-          child: Image.asset(
-            "assetsfolder/bottle.png",
-            width: 120.w,
-            height: 120.h,
-            fit: BoxFit.cover,
-          ),
-        ),
-        Text(
-          widget.user.name,
-          style: TextStyle(
-              color: Colors.black,
-              fontSize: 40.sp,
-              fontFamily: 'Bellota-Regular',
-              fontWeight: FontWeight.bold),
-        ),
-        Text(
-          widget.user.college ?? 'National Chengchi University',
-          style: TextStyle(
-              color: const Color.fromARGB(255, 146, 145, 145),
-              fontSize: 15.sp,
-              fontFamily: 'Bellota-Regular',
-              fontWeight: FontWeight.bold),
-        ),
-      ],
-    ));
+    return Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+    ClipOval(
+      child: Image.asset(
+        "assetsfolder/bottle.png",
+        width: 120.w,
+        height: 120.h,
+        fit: BoxFit.cover,
+      ),
+    ),
+    Text(
+      widget.user.name,
+      style: TextStyle(
+          color: Colors.black,
+          fontSize: 40.sp,
+          fontFamily: 'Bellota-Regular',
+          fontWeight: FontWeight.bold),
+    ),
+    Text(
+      widget.user.college ?? 'National Chengchi University',
+      style: TextStyle(
+          color: const Color.fromARGB(255, 146, 145, 145),
+          fontSize: 15.sp,
+          fontFamily: 'Bellota-Regular',
+          fontWeight: FontWeight.bold),
+    ),
+          ],
+        );
   }
 
   Widget _genderBar(BuildContext context) {
